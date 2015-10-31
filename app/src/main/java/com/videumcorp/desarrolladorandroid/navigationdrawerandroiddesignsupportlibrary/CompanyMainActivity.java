@@ -52,12 +52,6 @@ public class CompanyMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         String empresa = (String)getIntent().getExtras().get(EMPRESA);
-        listContainerCompany = (ListView) findViewById(R.id.list_view_containers);
-        listContainerCompany = (ListView) list;
-        arrayList = new ArrayList<String>();
-        adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.custom, arrayList);
-        listContainerCompany.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
 
         nameCompany = (TextView) findViewById(R.id.nameCompany);
         nameCompany.setText(empresa);
