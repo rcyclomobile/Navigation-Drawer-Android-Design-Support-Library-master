@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:state_pressed="true"
+        android:state_enabled="true"
+
+        android:drawable="@drawable/solid_color_shape_pressed" />
+    <item
+        android:state_enabled="true"
+        android:drawable="@drawable/solid_color_shape" />
+
+</selector><!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/drawable/states_solid_color_shape.xml -->

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:checked="true"
+            android:id="@+id/item_navigation_drawer_inbox"
+            android:icon="@drawable/ic_inbox_black_24dp"
+            android:title="Solicitar contenedor" />
+        <item
+            android:id="@+id/item_navigation_drawer_starred"
+            android:icon="@drawable/ic_action_toggle_star"
+            android:title="Contenedores Llenos" />
+        <item
+            android:id="@+id/item_navigation_drawer_sent_mail"
+            android:icon="@drawable/ic_action_content_send"
+            android:title="Enviar mail" />
+        <item
+            android:id="@+id/item_navigation_drawer_drafts"
+            android:icon="@drawable/ic_action_content_report"
+            android:title="Salirme" />
+    </group>
+
+    <item android:title="Subheader">
+        <menu>
+            <item
+                android:id="@+id/item_navigation_drawer_settings"
+                android:icon="@drawable/ic_action_action_settings"
+                android:title="Ajustes" />
+            <item
+                android:id="@+id/item_navigation_drawer_help_and_feedback"
+                android:icon="@drawable/ic_exit_to_app_48px"
+                android:title="Logout" />
+        </menu>
+    </item>
+
+</menu><!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/menu/navigation_drawer_menu.xml -->
