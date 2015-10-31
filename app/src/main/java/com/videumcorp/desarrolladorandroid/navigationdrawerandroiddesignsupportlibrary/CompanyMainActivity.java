@@ -169,6 +169,8 @@ public class CompanyMainActivity extends AppCompatActivity {
                                 return true;
                             case R.id.item_navigation_drawer_help_and_feedback:
                                 menuItem.setChecked(true);
+                                intent = new Intent(CompanyMainActivity.this,TopLevelActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                startActivity(intent);
                                 Toast.makeText(CompanyMainActivity.this, menuItem.getTitle().toString(), Toast.LENGTH_SHORT).show();
                                 drawerLayout.closeDrawer(GravityCompat.START);
                                 return true;
