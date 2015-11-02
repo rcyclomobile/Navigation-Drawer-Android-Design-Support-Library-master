@@ -7,4 +7,12 @@
     <string name="title_activity_company_login">CompanyLoginActivity</string>
     <string name="title_activity_company_register">CompanyRegisterActivity</string>
     <string name="title_activity_select_coordinates">Map</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_company_modify_container">CompanyModifyContainerActivity</string>
+    <string name="title_activity_establishment_login">EstablishmentLoginActivity</string>
+    <string name="title_activity_establishment_register">EstablishmentRegisterActivity</string>
+    <string name="title_activity_establishment_main">EstablishmentMainActivity</string>
+    <string name="title_activity_solicitud_pendiente">SolicitudPendiente</string>
 </resources>

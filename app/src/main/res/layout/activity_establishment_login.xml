@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:fitsSystemWindows="true"
+
+    tools:context="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.SelectEstablishmentActivity.CompanyLoginActivity">
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:rowCount="12"
+    android:columnCount="2"
+    android:background="#4CAF50"
+    tools:context="com.hfad.carlostest.formularioActivity">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:textColor="#ffffff"
+            android:layout_columnSpan="2"
+            android:text="FUNDACIONES"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_row="1"
+            android:layout_marginTop="25dp"
+            android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:src="@drawable/logo5" />
+
+        <!--  Email Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_row="4"
+            android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_row="5"
+                android:layout_column="0"
+                android:layout_columnSpan="2"
+                android:inputType="textEmailAddress"
+                android:hint="Email"
+                android:text="sanJose@gmail.com"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <!--  Password Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_row="5"
+            android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:hint="Password"
+                android:text="admin"/>
+        </android.support.design.widget.TextInputLayout>
+
+
+        <Button
+            android:textColor="#d8e4af"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_row="6"
+            android:theme="@android:style/Theme.Light"
+            android:background="@drawable/states_solid_color_shape"
+            android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:text="ENTRAR"
+            android:onClick="enter"
+            />
+
+        <Button
+            android:textColor="#d8e4af"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:theme="@android:style/Theme.Light"
+            android:background="@drawable/states_solid_color_shape"
+            android:layout_row="7"
+            android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:text="REGISTRARSE"
+            android:onClick="register"
+            />
+
+    </GridLayout>
+
+</ScrollView>
+</android.support.design.widget.CoordinatorLayout>

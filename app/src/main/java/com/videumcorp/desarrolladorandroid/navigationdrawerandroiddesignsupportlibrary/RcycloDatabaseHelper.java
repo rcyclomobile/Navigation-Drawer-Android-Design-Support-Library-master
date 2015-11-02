@@ -16,19 +16,24 @@ class RcycloDatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE ESTABLISHMENT (_id INTEGER PRIMARY KEY AUTOINCREMENT, " + "NAME TEXT, " + "EMAIL TEXT, " + "PASSWORD TEXT, " + "PHONE TEXT, " + "ADDRESS TEXT, " + "WASTE TEXT);");
         db.execSQL("CREATE TABLE COMPANY       (_id INTEGER PRIMARY KEY AUTOINCREMENT, " + "NAME TEXT, " + "EMAIL TEXT, " + "PASSWORD TEXT, " + "PHONE TEXT, " + "ADDRESS TEXT, " + "ACTIVO TEXT);");
-        db.execSQL("CREATE TABLE CONTAINER     (_id INTEGER PRIMARY KEY AUTOINCREMENT, " + "NAME_CONTAINER TEXT, " + "LATLONG TEXT, " + "ESTABLISHMENT TEXT, " + "COMPANY TEXT, " + "ESTADO TEXT, " + "ACTIVO TEXT);");
+        db.execSQL("CREATE TABLE CONTAINER     (_id INTEGER PRIMARY KEY AUTOINCREMENT, " + "NAME_CONTAINER TEXT, " + "LATLONG TEXT, " + "ESTABLISHMENT TEXT, " + "COMPANY TEXT, " + "ESTADO TEXT, " + "ACTIVO TEXT, " + "WASTE TEXT);");
 
-        insertEstablishment(db, "Fundacion San Jose",       "sanJose@gmail.com",        "admin",    "800 212 200",      "Santiago",         "papel");
+        insertEstablishment(db, "Fundacion San Jose", "sanJose@gmail.com", "admin", "800 212 200", "Santiago", "papel");
         insertEstablishment(db, "Fundacion Maria Ayuda",    "mariaAyuda@gmail.com",     "admin",    "23 28 0100",       "Santiago",         "plastico");
         insertEstablishment(db, "CENFA",                    "cenfa@gmail.com",          "admin",    "22 59 4187",       "Valparaiso",       "vidrio");
         insertEstablishment(db, "COAR",                     "coar@gmail.com",           "admin",    "27 32 2821",       "Santiago",         "lata");
 
 
 
-        insertCompany(db, "Jumbo",  "jumbo@gmail.com", "admin", "6032424",  "Valparaiso");
+        insertCompany(db, "Jumbo", "jumbo@gmail.com", "admin", "6032424", "Valparaiso");
         insertCompany(db, "Entel",  "entel@gmail.com", "admin", "6032424",  "Santiago");
         insertCompany(db, "Torre",  "torre@gmail.com", "admin", "6032424",  "Santiago");
 
+
+        insertContainer(db, "Basurerito", "Av Pedro Montt", "Fundacion San Jose", "Jumbo", "Lleno", "ACTIVO", "papel");
+        insertContainer(db,"Basurerito2", "Av Pedro Montt", "CENFA", "Jumbo", "Medio", "ACTIVO", "vidrio");
+        insertContainer(db,"Basurerito3", "Av Pedro Montt1", "Fundacion San Jose", "Jumbo", "Vacio", "INACTIVO", "papel");
+        insertContainer(db,"Basurerito4", "Av Pedro Montt2", "Fundacion San Jose", "Jumbo", "Vacio", "INACTIVO", "papel");
     }
 
     @Override
@@ -59,7 +64,7 @@ class RcycloDatabaseHelper extends SQLiteOpenHelper {
 
 
 
-    public static void  insertContainer(SQLiteDatabase db, String nameContainer, String latlong, String establishmentName, String companyName, String estado, String activo) {
+    public static void  insertContainer(SQLiteDatabase db, String nameContainer, String latlong, String establishmentName, String companyName, String estado, String activo, String waste) {
         ContentValues containerValues = new ContentValues();
         containerValues.put("NAME_CONTAINER", nameContainer);
         containerValues.put("LATLONG", latlong);
@@ -67,6 +72,7 @@ class RcycloDatabaseHelper extends SQLiteOpenHelper {
         containerValues.put("COMPANY", companyName);
         containerValues.put("ESTADO", estado);
         containerValues.put("ACTIVO", activo);
+        containerValues.put("WASTE", waste);
         db.insert("CONTAINER", null, containerValues);
     }
 

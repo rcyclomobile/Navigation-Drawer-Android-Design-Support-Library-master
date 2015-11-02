@@ -20,7 +20,7 @@ import de.keyboardsurfer.android.widget.crouton.Style;
 
 public class FormConteinerRequestActivity extends Activity {
 
-    private final int DURACION = 1000;
+    private final int DURACION = 300;
 
     public static final String WASTE = "waste";
     public static final String FUNDACION = "fundacion";
@@ -71,7 +71,7 @@ public class FormConteinerRequestActivity extends Activity {
         else {
             SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(this);
             db = rcycloDatabaseHelper.getWritableDatabase();
-            insertContainer(db, nombre_contenedor, tvCoordenadas.getText().toString(), tvFundacion.getText().toString(), tvEmpresa.getText().toString(), "VACIO", "INACTIVO");
+            insertContainer(db, nombre_contenedor, tvCoordenadas.getText().toString(), tvFundacion.getText().toString(), tvEmpresa.getText().toString(), "VACIO", "INACTIVO",tvWaste.getText().toString());
             db.close();
             Crouton.makeText(this, "¡Su Solicitud ha sido enviada!", Style.CONFIRM).show();
             TimerTask task = new TimerTask() {
@@ -88,7 +88,7 @@ public class FormConteinerRequestActivity extends Activity {
         }
     }
 
-    public static void  insertContainer(SQLiteDatabase db, String nameContainer, String latlong, String establishmentName, String companyName, String estado, String activo) {
+    public static void  insertContainer(SQLiteDatabase db, String nameContainer, String latlong, String establishmentName, String companyName, String estado, String activo, String waste) {
         ContentValues containerValues = new ContentValues();
         containerValues.put("NAME_CONTAINER", nameContainer);
         containerValues.put("LATLONG", latlong);
@@ -96,6 +96,7 @@ public class FormConteinerRequestActivity extends Activity {
         containerValues.put("COMPANY", companyName);
         containerValues.put("ESTADO", estado);
         containerValues.put("ACTIVO", activo);
+        containerValues.put("WASTE", waste);
         db.insert("CONTAINER", null, containerValues);
     }
 }

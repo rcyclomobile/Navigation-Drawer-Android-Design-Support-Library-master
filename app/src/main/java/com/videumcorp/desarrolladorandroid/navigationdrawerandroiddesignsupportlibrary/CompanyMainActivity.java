@@ -2,6 +2,7 @@ package com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupport
 
 import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -9,29 +10,24 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Fragments.InboxFragment;
-import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Fragments.StarredFragment;
-
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.List;
 
 public class CompanyMainActivity extends AppCompatActivity {
 
@@ -41,10 +37,10 @@ public class CompanyMainActivity extends AppCompatActivity {
     Toolbar toolbar;
     ActionBar actionBar;
     TextView nameCompany;
-    List<String> list;
     ListView listContainerCompany;
-    ArrayAdapter<String> adapter;
-    ArrayList<String> arrayList;
+    ArrayList<Container> arrayList = new ArrayList<Container>();
+    Container container;
+    Button btCambiar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +48,49 @@ public class CompanyMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         String empresa = (String)getIntent().getExtras().get(EMPRESA);
+
+        btCambiar = (Button) findViewById(R.id.btCambiar);
+
+        listContainerCompany = (ListView) findViewById(R.id.list_view_containers);
+
+
+        SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(this);
+        SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
+
+        Cursor cursor = db.query("CONTAINER", new String[]{"NAME_CONTAINER", "LATLONG", "ESTABLISHMENT", "ESTADO", "WASTE" }, "COMPANY = ? AND ACTIVO = ?", new String[]{empresa, "ACTIVO"}, null, null, null);
+
+        if(cursor.moveToFirst()){
+            do {
+                container = new Container(cursor.getString(0), cursor.getString(1), cursor.getString(2),empresa , cursor.getString(3), cursor.getString(4),"ACTIVO");
+                arrayList.add(container);
+                }while (cursor.moveToNext()) ;
+        }
+
+        if(arrayList.isEmpty()){
+            setContentView(R.layout.activity_main_empty);
+            Context context = getApplicationContext();
+            CharSequence text = "¿Deseas agregar un contenedor? Puedes hacerlo desde aqui!";
+            int duration = Toast.LENGTH_LONG;
+
+            LayoutInflater inflater = getLayoutInflater();
+            View layout = inflater.inflate(R.layout.toast_layout,
+                    (ViewGroup) findViewById(R.id.toast_layout_root));
+
+            TextView textToast = (TextView) layout.findViewById(R.id.text_toast);
+            textToast.setText(text);
+
+            Toast toast = new Toast(context);
+            toast.setDuration(duration);
+            toast.setView(layout);
+            toast.setGravity(Gravity.TOP|Gravity.LEFT, 150, 0);
+            toast.show();
+        }
+        else{
+            MyAdapter adapter = new MyAdapter(this, arrayList);
+            adapter.notifyDataSetChanged();
+            listContainerCompany.setAdapter(adapter);
+
+        }
 
         nameCompany = (TextView) findViewById(R.id.nameCompany);
         nameCompany.setText(empresa);
@@ -101,7 +140,7 @@ public class CompanyMainActivity extends AppCompatActivity {
 
         db.update("COMPANY", companyValues, "NAME = ?", new String[]{nameCompany});
 
-        Intent intent = new Intent(CompanyMainActivity.this, CompanyLoginActivity.class);
+        Intent intent = new Intent(CompanyMainActivity.this, SelectEstablishmentActivity.CompanyLoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }

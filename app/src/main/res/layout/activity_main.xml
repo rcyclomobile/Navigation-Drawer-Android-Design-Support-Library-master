@@ -7,6 +7,7 @@
     android:fitsSystemWindows="@bool/fitsSystemWindows">
 
     <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -32,6 +33,8 @@
         <ListView
             android:id="@+id/list_view_containers"
             android:layout_width="match_parent"
+            android:layout_marginTop="25dp"
+            tools:listitem="@layout/item_list"
             android:layout_height="wrap_content">
         </ListView>
 

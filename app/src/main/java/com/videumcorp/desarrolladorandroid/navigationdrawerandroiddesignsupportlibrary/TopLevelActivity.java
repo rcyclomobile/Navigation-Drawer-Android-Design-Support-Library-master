@@ -14,7 +14,12 @@ public class TopLevelActivity extends Activity {
     }
 
     public void companyRegister(View view){
-        Intent intent = new Intent(this, CompanyLoginActivity.class);
+        Intent intent = new Intent(this, SelectEstablishmentActivity.CompanyLoginActivity.class);
+        startActivity(intent);
+    }
+
+    public void establishmentRegister(View view){
+        Intent intent = new Intent(this, EstablishmentLoginActivity.class);
         startActivity(intent);
     }
 

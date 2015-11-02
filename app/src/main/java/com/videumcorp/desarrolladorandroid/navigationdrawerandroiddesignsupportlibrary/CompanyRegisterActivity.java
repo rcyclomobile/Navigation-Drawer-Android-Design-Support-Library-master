@@ -10,7 +10,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -77,7 +76,7 @@ public class CompanyRegisterActivity extends Activity {
                     TimerTask task = new TimerTask() {
                         @Override
                         public void run() {
-                            Intent intent = new Intent().setClass(CompanyRegisterActivity.this, CompanyLoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            Intent intent = new Intent().setClass(CompanyRegisterActivity.this, SelectEstablishmentActivity.CompanyLoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             startActivity(intent);
                         }
                     };
