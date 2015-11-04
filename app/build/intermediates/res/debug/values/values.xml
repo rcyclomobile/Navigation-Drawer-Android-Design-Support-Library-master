@@ -1074,6 +1074,10 @@
     <string name="create_calendar_message">Allow Ad to create a calendar event?</string>
     <string name="create_calendar_title">Create calendar event</string>
     <string name="decline">Decline</string>
+    <!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="defaultpassword">  <a href="Editar contraseña">Editar Contraseña</a></string>
+    <string name="defaultprofile">  <a href="Editar perfil">Editar Perfil</a></string>
     <!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/src/debug/res/values/google_maps_api.xml -->
     <eat-comment/>
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
@@ -1081,6 +1085,7 @@
     </string>
     <!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/values/strings.xml -->
     <eat-comment/>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hello_world">Hello world!</string>
     <!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.0.0/res/values/values.xml -->
     <eat-comment/>
@@ -1104,9 +1109,14 @@
     <!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="title_activity_company_login">CompanyLoginActivity</string>
+    <string name="title_activity_company_modify_container">CompanyModifyContainerActivity</string>
     <string name="title_activity_company_register">CompanyRegisterActivity</string>
+    <string name="title_activity_establishment_login">EstablishmentLoginActivity</string>
+    <string name="title_activity_establishment_main">EstablishmentMainActivity</string>
+    <string name="title_activity_establishment_register">EstablishmentRegisterActivity</string>
     <string name="title_activity_select_coordinates">Map</string>
     <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_solicitud_pendiente">SolicitudPendiente</string>
     <string name="title_activity_top_level">TopLevelActivity</string>
     <!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/7.5.0/res/values/wallet_strings.xml -->
     <eat-comment/>

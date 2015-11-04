@@ -15,4 +15,8 @@
     <string name="title_activity_establishment_register">EstablishmentRegisterActivity</string>
     <string name="title_activity_establishment_main">EstablishmentMainActivity</string>
     <string name="title_activity_solicitud_pendiente">SolicitudPendiente</string>
+
+    <string name="defaultprofile">  <a href="Editar perfil">Editar Perfil</a></string>
+    <string name="defaultpassword">  <a href="Editar contraseña">Editar Contraseña</a></string>
+
 </resources>

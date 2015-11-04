@@ -8,7 +8,9 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -27,6 +29,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class CompanyMainActivity extends AppCompatActivity {
@@ -151,11 +154,11 @@ public class CompanyMainActivity extends AppCompatActivity {
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        String empresa = (String) getIntent().getExtras().get(EMPRESA);
                         switch (menuItem.getItemId()) {
                             case R.id.item_navigation_drawer_inbox:
                                 menuItem.setChecked(true);
                                 drawerLayout.closeDrawer(GravityCompat.START);
-                                final String empresa = (String)getIntent().getExtras().get(EMPRESA);
                                 Intent intent = new Intent(CompanyMainActivity.this, SelectWasteActivity.class);
                                 intent.putExtra(SelectWasteActivity.EMPRESA, empresa);
                                 startActivity(intent);
@@ -198,11 +201,12 @@ public class CompanyMainActivity extends AppCompatActivity {
                                 Toast.makeText(CompanyMainActivity.this, "Launching " + menuItem.getTitle().toString(), Toast.LENGTH_SHORT).show();
                                 drawerLayout.closeDrawer(GravityCompat.START);
                                 intent = new Intent(CompanyMainActivity.this, SettingsActivity.class);
+                                intent.putExtra(SelectWasteActivity.EMPRESA, empresa);
                                 startActivity(intent);
                                 return true;
                             case R.id.item_navigation_drawer_help_and_feedback:
                                 menuItem.setChecked(true);
-                                intent = new Intent(CompanyMainActivity.this,TopLevelActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                intent = new Intent(CompanyMainActivity.this, TopLevelActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                                 startActivity(intent);
                                 Toast.makeText(CompanyMainActivity.this, menuItem.getTitle().toString(), Toast.LENGTH_SHORT).show();
                                 drawerLayout.closeDrawer(GravityCompat.START);
@@ -213,5 +217,6 @@ public class CompanyMainActivity extends AppCompatActivity {
                 });
 
     }
+
 }
 
