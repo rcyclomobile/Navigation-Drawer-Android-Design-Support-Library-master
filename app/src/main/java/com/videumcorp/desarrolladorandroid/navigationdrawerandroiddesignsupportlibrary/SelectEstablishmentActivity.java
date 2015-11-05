@@ -1,7 +1,10 @@
 package com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ListActivity;
+import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,6 +15,7 @@ import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -77,7 +81,7 @@ public class SelectEstablishmentActivity extends ListActivity {
 
     public static class CompanyLoginActivity extends Activity {
 
-        private final int DURACION = 200;
+        private final int DURACION = 300;
         EditText etEmail, etPassword;
 
         @Override
@@ -108,7 +112,7 @@ public class SelectEstablishmentActivity extends ListActivity {
                 etEmail.setError(null);
             }
 
-            if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
+            if (password.isEmpty()) {
                 etPassword.setError("Contraseña incorrecta");
                 valid = false;
             } else {
@@ -123,27 +127,56 @@ public class SelectEstablishmentActivity extends ListActivity {
         public void enter(View view){
             String email    = etEmail.getText().toString();
             String password = etPassword.getText().toString();
-            String active = "ACTIVO";
             SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(this);
-            SQLiteDatabase db = rcycloDatabaseHelper.getReadableDatabase();
-            Cursor cursor = db.query("COMPANY", new String[]{"NAME", "EMAIL", "PASSWORD", "PHONE", "ADDRESS", "ACTIVO"}, "EMAIL = ? AND PASSWORD = ? AND ACTIVO = ?", new String[]{email, password, active}, null, null, null);
-
+            final SQLiteDatabase db = rcycloDatabaseHelper.getReadableDatabase();
+            Cursor cursor = db.query("COMPANY", new String[]{"NAME", "EMAIL", "PASSWORD", "PHONE", "ADDRESS", "ACTIVO"}, "EMAIL = ? AND PASSWORD = ?", new String[]{email, password}, null, null, null);
             if (validate()) {
                 if (cursor.moveToFirst()) {
-                    final String empresa = cursor.getString(0);
-                    cursor.close();
-                    db.close();
-                    Crouton.makeText(this, "Bienvenido a Rcyclo " + empresa + "!", Style.CONFIRM).show();
-                    TimerTask task = new TimerTask() {
-                        @Override
+                    if(cursor.getString(5).equals("INNACTIVO")){
+                        final String empresa = cursor.getString(0);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(CompanyLoginActivity.this);
+                        builder.setMessage("Su cuenta actualmente esta inactiva. ¿Desea volver a activarla?");
+                        builder.setTitle("Activacion de cuenta");
+                        builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast toast = Toast.makeText(getApplicationContext(), "Su cuenta ha sido activada exitosamente.", Toast.LENGTH_SHORT);
+                                toast.show();
+                                ContentValues companyValues = new ContentValues();
+                                companyValues.put("ACTIVO", "ACTIVO");
+                                db.update("COMPANY", companyValues, "NAME = ?", new String[]{empresa});
+                                db.delete("CONTAINER","COMPANY = ?",new String[]{empresa} );
+
+                                Intent intent = new Intent(CompanyLoginActivity.this, CompanyMainActivity.class);
+                                intent.putExtra(CompanyMainActivity.EMPRESA, empresa);
+                                startActivity(intent);
+                            }
+                        });
+
+                        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                    }
+                    else{
+                        final String empresa = cursor.getString(0);
+                        cursor.close();
+                        db.close();
+                        Crouton.makeText(this, "Bienvenido a Rcyclo " + empresa + "!", Style.CONFIRM).show();
+                        TimerTask task = new TimerTask() {@Override
                         public void run() {
                             Intent intent = new Intent(CompanyLoginActivity.this, CompanyMainActivity.class);
                             intent.putExtra(CompanyMainActivity.EMPRESA, empresa);
                             startActivity(intent);
-                        }
-                    };
-                    Timer timer = new Timer();
-                    timer.schedule(task, DURACION);
+                            }
+                        };
+                        Timer timer = new Timer();
+                        timer.schedule(task, DURACION);
+                    }
                 }
                 else{
                     Crouton.makeText(this, "Este usuario no existe", Style.ALERT).show();

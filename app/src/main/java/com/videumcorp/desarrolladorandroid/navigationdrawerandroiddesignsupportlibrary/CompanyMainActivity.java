@@ -41,7 +41,7 @@ public class CompanyMainActivity extends AppCompatActivity {
     ActionBar actionBar;
     TextView nameCompany;
     ListView listContainerCompany;
-    ArrayList<Container> arrayList = new ArrayList<Container>();
+    ArrayList<Container> arrayList = new ArrayList<>();
     Container container;
     Button btCambiar;
 
@@ -73,7 +73,7 @@ public class CompanyMainActivity extends AppCompatActivity {
             setContentView(R.layout.activity_main_empty);
             Context context = getApplicationContext();
             CharSequence text = "¿Deseas agregar un contenedor? Puedes hacerlo desde aqui!";
-            int duration = Toast.LENGTH_LONG;
+            int duration = Toast.LENGTH_SHORT;
 
             LayoutInflater inflater = getLayoutInflater();
             View layout = inflater.inflate(R.layout.toast_layout,
@@ -143,6 +143,12 @@ public class CompanyMainActivity extends AppCompatActivity {
 
         db.update("COMPANY", companyValues, "NAME = ?", new String[]{nameCompany});
 
+        ContentValues containerValues = new ContentValues();
+
+        containerValues.put("ESTADO", "Congelado");
+
+        db.update("CONTAINER", containerValues, "COMPANY = ?", new String[]{nameCompany});
+
         Intent intent = new Intent(CompanyMainActivity.this, SelectEstablishmentActivity.CompanyLoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
@@ -198,10 +204,9 @@ public class CompanyMainActivity extends AppCompatActivity {
                                 return true;
                             case R.id.item_navigation_drawer_settings:
                                 menuItem.setChecked(true);
-                                Toast.makeText(CompanyMainActivity.this, "Launching " + menuItem.getTitle().toString(), Toast.LENGTH_SHORT).show();
                                 drawerLayout.closeDrawer(GravityCompat.START);
                                 intent = new Intent(CompanyMainActivity.this, SettingsActivity.class);
-                                intent.putExtra(SelectWasteActivity.EMPRESA, empresa);
+                                intent.putExtra(SettingsActivity.EMPRESA, empresa);
                                 startActivity(intent);
                                 return true;
                             case R.id.item_navigation_drawer_help_and_feedback:

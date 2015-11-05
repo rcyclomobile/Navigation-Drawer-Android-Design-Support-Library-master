@@ -2,60 +2,39 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\7.5.0\jars\classes.jar"
+        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\7.5.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="6440e5e5cfe368f9bff3c537fb8988048069cb33">
-        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-7b560304a9d6091bb6bbecec86db9c7981132559.jar" />
+        sha1="e7b35244f50663b3f8d150714bca9ecd7a290da1">
+        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-18315d8e396a1244b851c785e57e6adc75ed0003.jar" />
     </item>
     <item
-        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\libs\internal_impl-22.2.0.jar"
+        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
-        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0-82752833a8e5203d5b40b7388a51d2c255eb3f51.jar" />
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-c7da0be37ece96d959fcf85bdf0f1396e97419f8.jar" />
     </item>
     <item
-        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\7.5.0\jars\classes.jar"
+        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\7.5.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="06a42becc33232ec0ee125161da68c1829c9f8fd">
-        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-a10c4ac813d256b5b61a612ff96f14c4c6f3a9e3.jar" />
+        sha1="1a6411087ab88ce5542f593e63a2752b6b0d6f1a">
+        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-6796955cd14749d2ce1945a599183ee17a5fa424.jar" />
     </item>
     <item
-        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\7.5.0\jars\classes.jar"
+        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.0.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="ba207be21987c11b37d9f8faa08ed6e722569f30">
-        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-cb586610eaf9870d2344545b27ba299831d8e2c0.jar" />
+        sha1="a1372c17fccacca753d3951d3ad820571cbce075">
+        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-cbfdaa63fd2284553da8bdba430a8827889eeb05.jar" />
     </item>
     <item
-        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\7.5.0\jars\classes.jar"
+        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\7.5.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="a172852a35ff919e85b9b7f14bbc15c5bee25520">
-        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-1c2749ed4ac7f12d593de8136d84e5e534a14f5e.jar" />
-    </item>
-    <item
-        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.android.support\design\22.2.0\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="fc63b820d54c8a27a3a614bdd93920e0076581c2">
-        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-46da9b932c293b4f1f9c39ce6498bfff6856efc9.jar" />
-    </item>
-    <item
-        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\de.keyboardsurfer.android.widget\crouton\1.8.5\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="b81c788c5f175f94ddaac2f65e5d1726371e0963">
-        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-1dc1bf37294b22a13e390ddf86032aa965d83b61.jar" />
-    </item>
-    <item
-        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\7.5.0\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="6836d188602ec5382d1967c58b00960eb8ff8773">
-        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-820aa47db871bb57766b16fbb72ca998301ce834.jar" />
+        sha1="8d736fefa22d896e84a268354b3ed48a42663150">
+        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-b82e40c75a994724981bbaab94f859a712af09d8.jar" />
     </item>
     <item
         jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.0.0\jars\libs\internal_impl-22.0.0.jar"
@@ -72,55 +51,6 @@
         <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-18e24811ac70a6bb775094360b459fe61486cfa9.jar" />
     </item>
     <item
-        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\7.5.0\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="1a6411087ab88ce5542f593e63a2752b6b0d6f1a">
-        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-6796955cd14749d2ce1945a599183ee17a5fa424.jar" />
-    </item>
-    <item
-        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\7.5.0\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="8d736fefa22d896e84a268354b3ed48a42663150">
-        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-b82e40c75a994724981bbaab94f859a712af09d8.jar" />
-    </item>
-    <item
-        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\7.5.0\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="63ec6e9f4fe5482a7447d0f3091b8e543a02554c">
-        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-69044348b39e78a8186c1ec2ae116b56627c511e.jar" />
-    </item>
-    <item
-        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\7.5.0\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="8e3a972f28b8bae817e382257ba177a31bcadbbc">
-        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-63be610533c1951ea8a04e799b997203446b7d54.jar" />
-    </item>
-    <item
-        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\7.5.0\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="272bc5d7063f24bc3a33ea1d318cde8f31f5ec4c">
-        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-e9079f0820cd7a0ee9b0d21384766454fadfb489.jar" />
-    </item>
-    <item
-        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\7.5.0\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="1e98ef3f124bb7a11f8575f9ff5dfea330b61b6f">
-        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-ddb78eb231734e0721e1d13f9e295a85a3b3419f.jar" />
-    </item>
-    <item
-        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\7.5.0\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="29ebc7e04d877062317c8cc0e68b20f0c1fcda66">
-        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-4931a7b226320c222e0ff247a50d2a4c12ec4344.jar" />
-    </item>
-    <item
         jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\7.5.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
@@ -135,46 +65,25 @@
         <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-e84042352bad13a0f459ec367aab2c23ba388e4a.jar" />
     </item>
     <item
-        jar="C:\Users\Roberto\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.0\support-annotations-22.2.0.jar"
+        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\7.5.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
-        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.0-9deb4f3a07a4d899de770773f3c8f061830c1dde.jar" />
+        sha1="06a42becc33232ec0ee125161da68c1829c9f8fd">
+        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-a10c4ac813d256b5b61a612ff96f14c4c6f3a9e3.jar" />
     </item>
     <item
-        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.0.0\jars\classes.jar"
+        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\7.5.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="a1372c17fccacca753d3951d3ad820571cbce075">
-        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-cbfdaa63fd2284553da8bdba430a8827889eeb05.jar" />
+        sha1="ba207be21987c11b37d9f8faa08ed6e722569f30">
+        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-cb586610eaf9870d2344545b27ba299831d8e2c0.jar" />
     </item>
     <item
-        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\7.5.0\jars\classes.jar"
+        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.android.support\design\22.2.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="f02127a85abd52a2cd526d4c2409f21969f80ee8">
-        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-c11298d3187bdbc5c25456359b79fb0c703f0094.jar" />
-    </item>
-    <item
-        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.0\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
-        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-0da7d14db2093ba44e1d00e876cba8c3b2668895.jar" />
-    </item>
-    <item
-        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\7.5.0\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="e7b35244f50663b3f8d150714bca9ecd7a290da1">
-        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-18315d8e396a1244b851c785e57e6adc75ed0003.jar" />
-    </item>
-    <item
-        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
-        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-c7da0be37ece96d959fcf85bdf0f1396e97419f8.jar" />
+        sha1="fc63b820d54c8a27a3a614bdd93920e0076581c2">
+        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-46da9b932c293b4f1f9c39ce6498bfff6856efc9.jar" />
     </item>
     <item
         jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appstate\7.5.0\jars\classes.jar"
@@ -184,6 +93,13 @@
         <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-f0ce9cbd61297fd609a239b436a0d467f41aec34.jar" />
     </item>
     <item
+        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\7.5.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="69dd177337ead693c408c8dddc9546bb6f1244fa">
+        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-a6d2ae216472b112ea62f15be5e873a5dba552fe.jar" />
+    </item>
+    <item
         jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\7.5.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
@@ -191,11 +107,95 @@
         <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-1f481011fe338c3d54bc3b8e0f2f10bf59c90659.jar" />
     </item>
     <item
-        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\7.5.0\jars\classes.jar"
+        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\7.5.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
-        sha1="69dd177337ead693c408c8dddc9546bb6f1244fa">
-        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-a6d2ae216472b112ea62f15be5e873a5dba552fe.jar" />
+        sha1="6836d188602ec5382d1967c58b00960eb8ff8773">
+        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-820aa47db871bb57766b16fbb72ca998301ce834.jar" />
+    </item>
+    <item
+        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\7.5.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a172852a35ff919e85b9b7f14bbc15c5bee25520">
+        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-1c2749ed4ac7f12d593de8136d84e5e534a14f5e.jar" />
+    </item>
+    <item
+        jar="C:\Users\Roberto\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.0\support-annotations-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.0-9deb4f3a07a4d899de770773f3c8f061830c1dde.jar" />
+    </item>
+    <item
+        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
+        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-0da7d14db2093ba44e1d00e876cba8c3b2668895.jar" />
+    </item>
+    <item
+        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\de.keyboardsurfer.android.widget\crouton\1.8.5\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="b81c788c5f175f94ddaac2f65e5d1726371e0963">
+        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-1dc1bf37294b22a13e390ddf86032aa965d83b61.jar" />
+    </item>
+    <item
+        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\7.5.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="f02127a85abd52a2cd526d4c2409f21969f80ee8">
+        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-c11298d3187bdbc5c25456359b79fb0c703f0094.jar" />
+    </item>
+    <item
+        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\7.5.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="29ebc7e04d877062317c8cc0e68b20f0c1fcda66">
+        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-4931a7b226320c222e0ff247a50d2a4c12ec4344.jar" />
+    </item>
+    <item
+        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\libs\internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0-82752833a8e5203d5b40b7388a51d2c255eb3f51.jar" />
+    </item>
+    <item
+        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\7.5.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="6440e5e5cfe368f9bff3c537fb8988048069cb33">
+        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-7b560304a9d6091bb6bbecec86db9c7981132559.jar" />
+    </item>
+    <item
+        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\7.5.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="8e3a972f28b8bae817e382257ba177a31bcadbbc">
+        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-63be610533c1951ea8a04e799b997203446b7d54.jar" />
+    </item>
+    <item
+        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\7.5.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="63ec6e9f4fe5482a7447d0f3091b8e543a02554c">
+        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-69044348b39e78a8186c1ec2ae116b56627c511e.jar" />
+    </item>
+    <item
+        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\7.5.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1e98ef3f124bb7a11f8575f9ff5dfea330b61b6f">
+        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-ddb78eb231734e0721e1d13f9e295a85a3b3419f.jar" />
+    </item>
+    <item
+        jar="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\7.5.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="272bc5d7063f24bc3a33ea1d318cde8f31f5ec4c">
+        <dex dex="C:\Users\Roberto\Desktop\Cosas\isw\10\Navigation-Drawer-Android-Design-Support-Library-master\app\build\intermediates\pre-dexed\debug\classes-e9079f0820cd7a0ee9b0d21384766454fadfb489.jar" />
     </item>
 
 </items>

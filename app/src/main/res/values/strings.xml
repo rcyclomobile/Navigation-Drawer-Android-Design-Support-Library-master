@@ -18,5 +18,6 @@
 
     <string name="defaultprofile">  <a href="Editar perfil">Editar Perfil</a></string>
     <string name="defaultpassword">  <a href="Editar contraseña">Editar Contraseña</a></string>
+    <string name="title_activity_available_container">availableContainer</string>
 
 </resources>

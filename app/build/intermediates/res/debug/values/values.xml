@@ -1108,6 +1108,7 @@
     <string name="store_picture_title">Save image</string>
     <!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/values/strings.xml -->
     <eat-comment/>
+    <string name="title_activity_available_container">availableContainer</string>
     <string name="title_activity_company_login">CompanyLoginActivity</string>
     <string name="title_activity_company_modify_container">CompanyModifyContainerActivity</string>
     <string name="title_activity_company_register">CompanyRegisterActivity</string>

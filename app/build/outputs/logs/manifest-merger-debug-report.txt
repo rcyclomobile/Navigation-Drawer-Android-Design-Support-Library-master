@@ -225,7 +225,7 @@ ADDED from AndroidManifest.xml:90:9
 		ADDED from AndroidManifest.xml:93:13
 	android:name
 		ADDED from AndroidManifest.xml:91:13
-activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.SolicitudPendiente
+activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.EditProfileActivity
 ADDED from AndroidManifest.xml:95:9
 	android:label
 		ADDED from AndroidManifest.xml:97:13
@@ -233,6 +233,30 @@ ADDED from AndroidManifest.xml:95:9
 		ADDED from AndroidManifest.xml:98:13
 	android:name
 		ADDED from AndroidManifest.xml:96:13
+activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.SolicitudPendiente
+ADDED from AndroidManifest.xml:100:9
+	android:label
+		ADDED from AndroidManifest.xml:102:13
+	android:theme
+		ADDED from AndroidManifest.xml:103:13
+	android:name
+		ADDED from AndroidManifest.xml:101:13
+activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.ChangePasswordActivity
+ADDED from AndroidManifest.xml:105:9
+	android:label
+		ADDED from AndroidManifest.xml:107:13
+	android:theme
+		ADDED from AndroidManifest.xml:108:13
+	android:name
+		ADDED from AndroidManifest.xml:106:13
+activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.AvailableContainerActivity
+ADDED from AndroidManifest.xml:110:9
+	android:label
+		ADDED from AndroidManifest.xml:112:13
+	android:theme
+		ADDED from AndroidManifest.xml:113:13
+	android:name
+		ADDED from AndroidManifest.xml:111:13
 uses-sdk
 INJECTED from AndroidManifest.xml:0:0 reason: use-sdk injection requested
 MERGED from com.android.support:appcompat-v7:22.2.0:20:5

@@ -52,6 +52,7 @@ public class MyAdapterEstablishment extends ArrayAdapter<Container> {
 
         // 4. Set the text for textView
         ContainerName.setText(itemsArrayList.get(position).getNameContainer());
+        ContainerStatus.setText("Mis solicitudes");
         imContenedor.setImageResource(R.drawable.solicitud);
 
         imContenedor.setOnClickListener(new View.OnClickListener() {
@@ -63,8 +64,8 @@ public class MyAdapterEstablishment extends ArrayAdapter<Container> {
                                 "\n" + "Ubicacion: " + "\n" + itemsArrayList.get(position).getLatlong() + "\n" +
                                 "\n" + "Empresa Asociada: " + "\n" + itemsArrayList.get(position).getCompany() + "\n" +
                                 "\n" + "Estado del contenedor: " + "\n" + itemsArrayList.get(position).getStatus() + "\n" +
-                                "\n" + "Tipo de desecho: " + "\n" + itemsArrayList.get(position).getDesecho() + "\n" +
-                                "\n" + "Activo: " + "\n" + itemsArrayList.get(position).getActivo() + "\n");
+                                "\n" + "Tipo de desecho: " + "\n" + itemsArrayList.get(position).getDesecho() + "\n"
+                                 );
                 builder.setTitle("Datos de la solicitud");
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override

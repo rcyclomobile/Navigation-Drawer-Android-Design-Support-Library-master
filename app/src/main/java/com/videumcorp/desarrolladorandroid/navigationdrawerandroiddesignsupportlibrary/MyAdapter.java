@@ -55,7 +55,6 @@ public class MyAdapter extends ArrayAdapter<Container> {
 
         // 4. Set the text for textView
         ContainerName.setText(itemsArrayList.get(position).getNameContainer());
-        ContainerStatus.setText(itemsArrayList.get(position).getStatus());
         if(itemsArrayList.get(position).getStatus().equals("Vacio")) {
             imContenedor.setImageResource(R.drawable.vacio);
         }
@@ -64,6 +63,9 @@ public class MyAdapter extends ArrayAdapter<Container> {
         }
         else if(itemsArrayList.get(position).getStatus().equals("Medio")){
             imContenedor.setImageResource(R.drawable.medio);
+        }
+        else if(itemsArrayList.get(position).getStatus().equals("Congelado")){
+            imContenedor.setImageResource(R.drawable.congelado);
         }
         imContenedor.setOnClickListener(new View.OnClickListener() {
             @Override

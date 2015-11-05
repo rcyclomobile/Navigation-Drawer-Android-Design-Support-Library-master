@@ -1,5 +1,6 @@
 package com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -10,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import java.text.DateFormat;
@@ -70,6 +72,21 @@ public class SettingsActivity extends AppCompatActivity {
         correoHeaderCo.setText(emailCompany);
         fechaHeaderCo.setText(dateFormat.format(date));
 
+    }
+
+    public void editar_perfil(View view){
+        String empresa = (String)getIntent().getExtras().get(EMPRESA);
+        Intent intent = new Intent(this, EditProfileActivity.class);
+        intent.putExtra(EditProfileActivity.EMPRESA, empresa);
+
+        startActivity(intent);
+    }
+
+    public void editar_contraseña(View view){
+        String empresa = (String)getIntent().getExtras().get(EMPRESA);
+        Intent intent = new Intent(this, ChangePasswordActivity.class);
+        intent.putExtra(EditProfileActivity.EMPRESA, empresa);
+        startActivity(intent);
     }
 
     @Override

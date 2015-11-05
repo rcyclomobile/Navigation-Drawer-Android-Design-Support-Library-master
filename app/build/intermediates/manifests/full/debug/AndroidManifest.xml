@@ -48,7 +48,7 @@
         </activity>
         <activity
             android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.SettingsActivity"
-            android:label="Perfil"
+            android:label="Mi Perfil"
             android:parentActivityName="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.SelectEstablishmentActivity$CompanyLoginActivity" >
         </activity>
         <activity
@@ -112,12 +112,27 @@
         </activity>
         <activity
             android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.EstablishmentMainActivity"
-            android:label="@string/title_activity_establishment_main"
+            android:label="Menu"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.EditProfileActivity"
+            android:label="Editar perfil"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
             android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.SolicitudPendiente"
             android:label="@string/title_activity_solicitud_pendiente"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.ChangePasswordActivity"
+            android:label="Cambiar contraseña"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.AvailableContainerActivity"
+            android:label="Mis Contenedores"
             android:theme="@style/AppTheme" >
         </activity>
         <!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->

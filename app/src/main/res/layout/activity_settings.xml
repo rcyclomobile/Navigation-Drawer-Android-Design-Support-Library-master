@@ -159,7 +159,7 @@
 
     </GridLayout>
 
-    <TextView
+    <Button
         android:id="@+id/txtEditarPerfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -170,9 +170,11 @@
         android:padding="20px"
         android:layout_marginRight="75dp"
         android:text="@string/defaultprofile"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:onClick="editar_perfil"
+        />
 
-    <TextView
+    <Button
         android:id="@+id/txtEditarContraseña"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -182,6 +184,7 @@
         android:layout_marginLeft="75dp"
         android:layout_marginTop="230dp"
         android:padding="20px"
+        android:onClick="editar_contraseña"
         android:text="@string/defaultpassword"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 

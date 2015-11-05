@@ -2,7 +2,6 @@ package com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupport
 
 import android.app.AlertDialog;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -15,13 +14,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -38,7 +32,7 @@ public class EstablishmentMainActivity extends AppCompatActivity {
     ActionBar actionBar;
     TextView nameCompany;
     ListView listContainerCompany;
-    ArrayList<Container> arrayList = new ArrayList<Container>();
+    ArrayList<Container> arrayList = new ArrayList<>();
     Container container;
     Button btCambiar;
 
@@ -56,11 +50,12 @@ public class EstablishmentMainActivity extends AppCompatActivity {
         SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(this);
         SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
 
-        Cursor cursor = db.query("CONTAINER", new String[]{"NAME_CONTAINER", "LATLONG", "COMPANY", "ESTADO", "WASTE", "ACTIVO" }, "ESTABLISHMENT = ? AND ACTIVO = ?" , new String[]{empresa,"INACTIVO"}, null, null, null);
+        Cursor cursor = db.query("CONTAINER", new String[]{"NAME_CONTAINER", "LATLONG", "COMPANY", "ESTADO", "WASTE", "ACTIVO" }, "ESTABLISHMENT = ? AND ACTIVO = ? AND ESTADO != ?" , new String[]{empresa,"INACTIVO","Congelado"}, null, null, null);
 
         if(cursor.moveToFirst()){
             do {
                 container = new Container(cursor.getString(0), cursor.getString(1),empresa,cursor.getString(2) , cursor.getString(3), cursor.getString(4),cursor.getString(5));
+                //if(freezeCompany(cursor.getString(2)))
                 arrayList.add(container);
             }while (cursor.moveToNext()) ;
         }
@@ -90,7 +85,6 @@ public class EstablishmentMainActivity extends AppCompatActivity {
         setupNavigationDrawerContent(navigationView);
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -135,8 +129,8 @@ public class EstablishmentMainActivity extends AppCompatActivity {
                                 menuItem.setChecked(true);
                                 drawerLayout.closeDrawer(GravityCompat.START);
                                 final String empresa = (String)getIntent().getExtras().get(NAME);
-                                Intent intent = new Intent(EstablishmentMainActivity.this, SelectWasteActivity.class);
-                                intent.putExtra(SelectWasteActivity.EMPRESA, empresa);
+                                Intent intent = new Intent(EstablishmentMainActivity.this, AvailableContainerActivity.class);
+                                intent.putExtra(EstablishmentMainActivity.NAME, empresa);
                                 startActivity(intent);
                                 return true;
                             case R.id.item_navigation_drawer_starred_es:
