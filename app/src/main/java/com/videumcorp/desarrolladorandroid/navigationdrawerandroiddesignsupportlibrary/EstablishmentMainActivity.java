@@ -168,14 +168,11 @@ public class EstablishmentMainActivity extends AppCompatActivity {
                                 return true;
                             case R.id.item_navigation_drawer_settings_es:
                                 menuItem.setChecked(true);
-                                Toast.makeText(EstablishmentMainActivity.this, "Launching " + menuItem.getTitle().toString(), Toast.LENGTH_SHORT).show();
                                 drawerLayout.closeDrawer(GravityCompat.START);
-                                intent = new Intent(EstablishmentMainActivity.this, SettingsActivity.class);
-                                startActivity(intent);
                                 return true;
                             case R.id.item_navigation_drawer_help_and_feedback_es:
                                 menuItem.setChecked(true);
-                                intent = new Intent(EstablishmentMainActivity.this,TopLevelActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                intent = new Intent(EstablishmentMainActivity.this,FullscreenActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                                 startActivity(intent);
                                 Toast.makeText(EstablishmentMainActivity.this, menuItem.getTitle().toString(), Toast.LENGTH_SHORT).show();
                                 drawerLayout.closeDrawer(GravityCompat.START);

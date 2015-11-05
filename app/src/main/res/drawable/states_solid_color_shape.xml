@@ -3,7 +3,6 @@
     <item
         android:state_pressed="true"
         android:state_enabled="true"
-
         android:drawable="@drawable/solid_color_shape_pressed" />
     <item
         android:state_enabled="true"

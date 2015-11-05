@@ -20,4 +20,8 @@
     <string name="defaultpassword">  <a href="Editar contraseña">Editar Contraseña</a></string>
     <string name="title_activity_available_container">availableContainer</string>
 
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
 </resources>

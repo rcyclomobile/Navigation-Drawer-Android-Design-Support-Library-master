@@ -11,14 +11,6 @@
         android:scaleType="centerCrop"
         android:background="@drawable/green" />
 
-    <ImageView
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="@dimen/navigation_drawer_header_margin"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/logo5" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="52dp"
