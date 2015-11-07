@@ -258,6 +258,38 @@ ADDED from AndroidManifest.xml:110:9
 		ADDED from AndroidManifest.xml:113:13
 	android:name
 		ADDED from AndroidManifest.xml:111:13
+activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.SettingsEstablishmentActivity
+ADDED from AndroidManifest.xml:115:9
+	android:label
+		ADDED from AndroidManifest.xml:117:13
+	android:theme
+		ADDED from AndroidManifest.xml:118:13
+	android:name
+		ADDED from AndroidManifest.xml:116:13
+activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.EditProfileEstablishmentActivity
+ADDED from AndroidManifest.xml:120:9
+	android:label
+		ADDED from AndroidManifest.xml:122:13
+	android:theme
+		ADDED from AndroidManifest.xml:123:13
+	android:name
+		ADDED from AndroidManifest.xml:121:13
+activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.ChangePasswordEstablishmentActivity
+ADDED from AndroidManifest.xml:125:9
+	android:label
+		ADDED from AndroidManifest.xml:127:13
+	android:theme
+		ADDED from AndroidManifest.xml:128:13
+	android:name
+		ADDED from AndroidManifest.xml:126:13
+activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.DeleteContainerEstablishmentActivity
+ADDED from AndroidManifest.xml:130:9
+	android:label
+		ADDED from AndroidManifest.xml:132:13
+	android:theme
+		ADDED from AndroidManifest.xml:133:13
+	android:name
+		ADDED from AndroidManifest.xml:131:13
 uses-sdk
 INJECTED from AndroidManifest.xml:0:0 reason: use-sdk injection requested
 MERGED from com.android.support:appcompat-v7:22.2.0:20:5

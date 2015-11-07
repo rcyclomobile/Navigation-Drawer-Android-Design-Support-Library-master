@@ -55,7 +55,6 @@ public class EstablishmentMainActivity extends AppCompatActivity {
         if(cursor.moveToFirst()){
             do {
                 container = new Container(cursor.getString(0), cursor.getString(1),empresa,cursor.getString(2) , cursor.getString(3), cursor.getString(4),cursor.getString(5));
-                //if(freezeCompany(cursor.getString(2)))
                 arrayList.add(container);
             }while (cursor.moveToNext()) ;
         }
@@ -120,6 +119,7 @@ public class EstablishmentMainActivity extends AppCompatActivity {
 
 
     private void setupNavigationDrawerContent(NavigationView navigationView) {
+        final String empresa = (String)getIntent().getExtras().get(NAME);
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
@@ -128,7 +128,6 @@ public class EstablishmentMainActivity extends AppCompatActivity {
                             case R.id.item_navigation_drawer_inbox_es:
                                 menuItem.setChecked(true);
                                 drawerLayout.closeDrawer(GravityCompat.START);
-                                final String empresa = (String)getIntent().getExtras().get(NAME);
                                 Intent intent = new Intent(EstablishmentMainActivity.this, AvailableContainerActivity.class);
                                 intent.putExtra(EstablishmentMainActivity.NAME, empresa);
                                 startActivity(intent);
@@ -136,6 +135,9 @@ public class EstablishmentMainActivity extends AppCompatActivity {
                             case R.id.item_navigation_drawer_starred_es:
                                 menuItem.setChecked(true);
                                 drawerLayout.closeDrawer(GravityCompat.START);
+                                intent = new Intent(EstablishmentMainActivity.this, DeleteContainerEstablishmentActivity.class);
+                                intent.putExtra(DeleteContainerEstablishmentActivity.NAME, empresa);
+                                startActivity(intent);
                                 return true;
                             case R.id.item_navigation_drawer_sent_mail_es:
                                 menuItem.setChecked(true);
@@ -169,6 +171,9 @@ public class EstablishmentMainActivity extends AppCompatActivity {
                             case R.id.item_navigation_drawer_settings_es:
                                 menuItem.setChecked(true);
                                 drawerLayout.closeDrawer(GravityCompat.START);
+                                intent = new Intent(EstablishmentMainActivity.this, SettingsEstablishmentActivity.class);
+                                intent.putExtra(SettingsEstablishmentActivity.NAME, empresa);
+                                startActivity(intent);
                                 return true;
                             case R.id.item_navigation_drawer_help_and_feedback_es:
                                 menuItem.setChecked(true);

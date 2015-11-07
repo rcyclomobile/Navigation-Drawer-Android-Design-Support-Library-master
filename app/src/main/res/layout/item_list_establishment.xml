@@ -17,30 +17,19 @@ android:layout_width="match_parent" android:layout_height="match_parent"
         android:layout_width="150dp"
         android:layout_height="20dp"
         android:layout_marginTop="80dp"
-        android:layout_marginLeft="25dp"
+        android:layout_marginLeft="15dp"
         android:text="Ver solicitud"
         />
-
-<TextView
-    android:id="@+id/ContainerName"
-    android:layout_width="150dp"
-    android:layout_height="75dp"
-    android:layout_marginRight="10dp"
-    android:layout_toRightOf="@+id/move_poster"
-    android:text="Nombre Contenedor"
-    android:textStyle="bold"
-    android:gravity="center"
-    />
 
     <TextView
         android:id="@+id/Estado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:layout_marginRight="25dp"
+        android:layout_marginLeft="185dp"
         android:text="Solicitud: "
         android:gravity="center"
-        android:layout_toRightOf="@+id/ContainerName"
+        android:layout_toRightOf="@+id/move_poster"
         />
     <Button
         android:id="@+id/btCambiar"
@@ -52,7 +41,8 @@ android:layout_width="match_parent" android:layout_height="match_parent"
         android:textSize="11dp"
         android:background="@drawable/list_selector"
         android:gravity="center"
-        android:layout_toRightOf="@+id/ContainerName"
+        android:layout_marginLeft="185dp"
+        android:layout_toRightOf="@+id/move_poster"
         />
 
 <View

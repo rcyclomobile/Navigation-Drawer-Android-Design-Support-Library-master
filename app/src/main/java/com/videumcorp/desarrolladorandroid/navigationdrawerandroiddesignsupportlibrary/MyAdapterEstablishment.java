@@ -41,7 +41,7 @@ public class MyAdapterEstablishment extends ArrayAdapter<Container> {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         // 2. Get rowView from inflater
-        View rowView = inflater.inflate(R.layout.item_list, parent, false);
+        View rowView = inflater.inflate(R.layout.item_list_establishment, parent, false);
 
         // 3. Get the two text view from the rowView
         TextView ContainerName = (TextView) rowView.findViewById(R.id.ContainerName);
@@ -51,8 +51,7 @@ public class MyAdapterEstablishment extends ArrayAdapter<Container> {
 
 
         // 4. Set the text for textView
-        ContainerName.setText(itemsArrayList.get(position).getNameContainer());
-        ContainerStatus.setText("Mis solicitudes");
+        ContainerStatus.setText("Ver Solicitud");
         imContenedor.setImageResource(R.drawable.solicitud);
 
         imContenedor.setOnClickListener(new View.OnClickListener() {

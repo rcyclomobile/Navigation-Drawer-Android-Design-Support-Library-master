@@ -1117,15 +1117,24 @@
     <!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/values/strings.xml -->
     <eat-comment/>
     <string name="title_activity_available_container">availableContainer</string>
+    <string name="title_activity_change_password_establishment">
+        ChangePasswordEstablishmentActivity
+    </string>
     <string name="title_activity_company_login">CompanyLoginActivity</string>
     <string name="title_activity_company_modify_container">CompanyModifyContainerActivity</string>
     <string name="title_activity_company_register">CompanyRegisterActivity</string>
+    <string name="title_activity_delete_container_establishment">
+        DeleteContainerEstablishmentActivity
+    </string>
+    <string name="title_activity_edit_profile_establishment">EditProfileEstablishmentActivity
+    </string>
     <string name="title_activity_establishment_login">EstablishmentLoginActivity</string>
     <string name="title_activity_establishment_main">EstablishmentMainActivity</string>
     <string name="title_activity_establishment_register">EstablishmentRegisterActivity</string>
     <string name="title_activity_fullscreen">FullscreenActivity</string>
     <string name="title_activity_select_coordinates">Map</string>
     <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_settings_establishment">SettingsEstablishmentActivity</string>
     <string name="title_activity_solicitud_pendiente">SolicitudPendiente</string>
     <string name="title_activity_top_level">TopLevelActivity</string>
     <!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/7.5.0/res/values/wallet_strings.xml -->

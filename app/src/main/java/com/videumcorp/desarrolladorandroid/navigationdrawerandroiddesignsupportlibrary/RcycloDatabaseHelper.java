@@ -14,7 +14,7 @@ class RcycloDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE ESTABLISHMENT (_id INTEGER PRIMARY KEY AUTOINCREMENT, " + "NAME TEXT, " + "EMAIL TEXT, " + "PASSWORD TEXT, " + "PHONE TEXT, " + "ADDRESS TEXT, " + "WASTE TEXT);");
+        db.execSQL("CREATE TABLE ESTABLISHMENT (_id INTEGER PRIMARY KEY AUTOINCREMENT, " + "NAME TEXT, " + "EMAIL TEXT, " + "PASSWORD TEXT, " + "PHONE TEXT, " + "ADDRESS TEXT, " + "WASTE TEXT, " + "ACTIVO TEXT);");
         db.execSQL("CREATE TABLE COMPANY       (_id INTEGER PRIMARY KEY AUTOINCREMENT, " + "NAME TEXT, " + "EMAIL TEXT, " + "PASSWORD TEXT, " + "PHONE TEXT, " + "ADDRESS TEXT, " + "ACTIVO TEXT);");
         db.execSQL("CREATE TABLE CONTAINER     (_id INTEGER PRIMARY KEY AUTOINCREMENT, " + "NAME_CONTAINER TEXT, " + "LATLONG TEXT, " + "ESTABLISHMENT TEXT, " + "COMPANY TEXT, " + "ESTADO TEXT, " + "ACTIVO TEXT, " + "WASTE TEXT);");
 
@@ -47,6 +47,7 @@ class RcycloDatabaseHelper extends SQLiteOpenHelper {
         establishmentValues.put("PHONE", phone);
         establishmentValues.put("ADDRESS", address);
         establishmentValues.put("WASTE", waste);
+        establishmentValues.put("ACTIVO", "ACTIVO");
         db.insert("ESTABLISHMENT", null, establishmentValues);
     }
 

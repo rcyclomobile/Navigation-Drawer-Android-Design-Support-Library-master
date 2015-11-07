@@ -161,7 +161,7 @@ public class EditProfileActivity extends AppCompatActivity {
         public boolean isEmailUsed(String email) {
             SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(this);
             SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
-            Cursor cursor = db.query("ESTABLISHMENT", new String[]{"EMAIL"}, "EMAIL = ?", new String[]{email}, null, null, null);
+            Cursor cursor = db.query("COMPANY", new String[]{"EMAIL"}, "EMAIL = ?", new String[]{email}, null, null, null);
             if (cursor.moveToFirst()){
                 return true;
             }

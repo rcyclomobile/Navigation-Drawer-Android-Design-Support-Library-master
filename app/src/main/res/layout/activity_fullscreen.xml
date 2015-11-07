@@ -50,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="72dp"
                 android:layout_gravity="bottom"
-                android:text="Soy una Fundacion"
+                android:text="Soy una Empresa"
                 android:textSize="16dp"
                 android:onClick="companyRegister"
                 android:textColor="#d8e4af"/>
@@ -63,7 +63,7 @@
                 android:layout_width="match_parent"
                 android:background="@color/material_blue_grey_800"
                 android:layout_height="72dp"
-                android:text="Soy una empresa"
+                android:text="Soy una Fundacion"
                 android:onClick="establishmentRegister"
                 android:textSize="16dp"
                 android:textColor="#d8e4af"/>

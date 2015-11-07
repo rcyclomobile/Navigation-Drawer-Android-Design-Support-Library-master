@@ -51,7 +51,7 @@ public class MyAdapterContainerEstablishment extends ArrayAdapter<Container> {
 
         // 4. Set the text for textView
         ContainerName.setText(itemsArrayList.get(position).getNameContainer());
-        ContainerStatus.setText(itemsArrayList.get(position).getStatus());
+        ContainerStatus.setText("Ver contenedor");
         if(itemsArrayList.get(position).getStatus().equals("Vacio")) {
             imContenedor.setImageResource(R.drawable.vacio);
         }

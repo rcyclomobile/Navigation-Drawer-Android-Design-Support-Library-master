@@ -112,6 +112,26 @@
             android:label="Mis Contenedores"
             android:theme="@style/AppTheme" >
         </activity>
+        <activity
+            android:name=".SettingsEstablishmentActivity"
+            android:label="Mi perfil"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
+            android:name=".EditProfileEstablishmentActivity"
+            android:label="Editar perfil"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
+            android:name=".ChangePasswordEstablishmentActivity"
+            android:label="Cambiar contraseña"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
+            android:name=".DeleteContainerEstablishmentActivity"
+            android:label="Mis contenedores"
+            android:theme="@style/AppTheme" >
+        </activity>
     </application>
 
 </manifest>

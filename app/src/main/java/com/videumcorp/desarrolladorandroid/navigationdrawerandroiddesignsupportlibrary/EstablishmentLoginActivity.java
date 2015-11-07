@@ -44,7 +44,7 @@ public class EstablishmentLoginActivity extends Activity {
 
         SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(this);
         SQLiteDatabase db = rcycloDatabaseHelper.getReadableDatabase();
-        Cursor cursor = db.query("ESTABLISHMENT", new String[]{"NAME", "EMAIL", "PASSWORD", "PHONE", "ADDRESS"}, "EMAIL = ? AND PASSWORD = ?", new String[]{email, password}, null, null, null);
+        Cursor cursor = db.query("ESTABLISHMENT", new String[]{"NAME", "EMAIL", "PASSWORD", "PHONE", "ADDRESS"}, "EMAIL = ? AND PASSWORD = ? AND ACTIVO = ?", new String[]{email, password, "ACTIVO"}, null, null, null);
 
         if (cursor.moveToFirst()) {
             final String name = cursor.getString(0);

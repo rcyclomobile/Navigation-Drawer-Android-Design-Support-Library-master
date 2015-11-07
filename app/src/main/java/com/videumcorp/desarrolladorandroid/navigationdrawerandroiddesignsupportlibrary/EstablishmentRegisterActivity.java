@@ -73,17 +73,18 @@ public class EstablishmentRegisterActivity extends Activity {
                     establishmentValues.put("PASSWORD", password);
                     establishmentValues.put("PHONE", phone);
                     establishmentValues.put("ADDRESS", address);
+                    establishmentValues.put("ACTIVO", "ACTIVO");
 
                     SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(this);
                     SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
 
-                    if (rbPapel.isChecked() == true) {
+                    if (rbPapel.isChecked()) {
                         establishmentValues.put("WASTE", "papel");
-                    } else if (rbPlastico.isChecked() == true) {
+                    } else if (rbPlastico.isChecked()) {
                         establishmentValues.put("WASTE", "plastico");
-                    } else if (rbVidrio.isChecked() == true) {
+                    } else if (rbVidrio.isChecked()) {
                         establishmentValues.put("WASTE", "vidrio");
-                    } else if (rbLata.isChecked() == true) {
+                    } else if (rbLata.isChecked()) {
                         establishmentValues.put("WASTE", "lata");
                     }
 
