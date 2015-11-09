@@ -137,22 +137,22 @@
         </activity>
         <activity
             android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.SettingsEstablishmentActivity"
-            android:label="@string/title_activity_settings_establishment"
+            android:label="Mi perfil"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
             android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.EditProfileEstablishmentActivity"
-            android:label="@string/title_activity_edit_profile_establishment"
+            android:label="Editar perfil"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
             android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.ChangePasswordEstablishmentActivity"
-            android:label="@string/title_activity_change_password_establishment"
+            android:label="Cambiar contraseña"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
             android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.DeleteContainerEstablishmentActivity"
-            android:label="@string/title_activity_delete_container_establishment"
+            android:label="Mis contenedores"
             android:theme="@style/AppTheme" >
         </activity>
         <!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->
