@@ -70,7 +70,7 @@ public class SelectCoordinatesActivity extends FragmentActivity implements Googl
         intent.putExtra(FormConteinerRequestActivity.WASTE,waste);
         intent.putExtra(FormConteinerRequestActivity.FUNDACION,fundacion);
         intent.putExtra(FormConteinerRequestActivity.EMPRESA, empresa);
-        intent.putExtra(FormConteinerRequestActivity.COORDENADAS, coordenadas);
+        intent.putExtra(FormConteinerRequestActivity.COORDENADAS,coordenadas);
         startActivity(intent);
     }
 

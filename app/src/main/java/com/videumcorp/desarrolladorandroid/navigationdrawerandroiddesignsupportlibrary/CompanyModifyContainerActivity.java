@@ -55,7 +55,6 @@ public class CompanyModifyContainerActivity extends Activity {
             rbVacio.setEnabled(false);
             rbMitad.setEnabled(false);
             rbLLeno.setChecked(true);        }
-
         SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(this);
         db = rcycloDatabaseHelper.getReadableDatabase();
 
@@ -83,10 +82,10 @@ public class CompanyModifyContainerActivity extends Activity {
 
         ContentValues containerValues = new ContentValues();
 
-        if(rbMitad.isChecked() == true){
+        if(rbMitad.isChecked()){
             containerValues.put("ESTADO", "Medio"); }
 
-        else if(rbLLeno.isChecked() == true){
+        else if(rbLLeno.isChecked()){
             containerValues.put("ESTADO", "Lleno"); }
 
         db.update("CONTAINER", containerValues, "NAME_CONTAINER = ? AND COMPANY = ?", new String[]{nameContainer, nameCompany});

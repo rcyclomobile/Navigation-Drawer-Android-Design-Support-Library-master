@@ -32,5 +32,8 @@
     <string name="title_activity_delete_container_establishment">
         DeleteContainerEstablishmentActivity
     </string>
+    <string name="title_activity_modify_container_establishment">
+        ModifyContainerEstablishmentActivity
+    </string>
 
 </resources>

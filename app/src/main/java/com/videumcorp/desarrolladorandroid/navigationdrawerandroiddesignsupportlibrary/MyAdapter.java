@@ -3,17 +3,23 @@ package com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupport
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +29,7 @@ public class MyAdapter extends ArrayAdapter<Container> {
 
     private final Context context;
     private final ArrayList<Container> itemsArrayList;
+    private SQLiteDatabase db;
 
     public MyAdapter(Context context, ArrayList<Container> itemsArrayList) {
 
@@ -89,29 +96,97 @@ public class MyAdapter extends ArrayAdapter<Container> {
             }
         });
 
+
+
         btCambiar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                String nameContainer        = itemsArrayList.get(position).getNameContainer();
-                String latLong              = itemsArrayList.get(position).getLatlong();
+                final LayoutInflater inflater = (LayoutInflater) context
+                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+                View dialoglayout = inflater.inflate(R.layout.activity_company_modify_container, null);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+
+
+                final RadioButton rbVacio         = (RadioButton) dialoglayout.findViewById(R.id.vacio);
+                final RadioButton rbMitad         = (RadioButton) dialoglayout.findViewById(R.id.mitad);
+                final RadioButton rbLLeno         = (RadioButton) dialoglayout.findViewById(R.id.lleno);
+
+                final String nameContainer        = itemsArrayList.get(position).getNameContainer();
+                final String nameCompany          = itemsArrayList.get(position).getCompany();
                 String nameEstablishment    = itemsArrayList.get(position).getEstablishment();
-                String estateContainer      = itemsArrayList.get(position).getStatus();
+                String estado               = itemsArrayList.get(position).getStatus();
                 String waste                = itemsArrayList.get(position).getDesecho();
-                String nameCompany          = itemsArrayList.get(position).getCompany();
 
+                TextView tvNameContainer     = (TextView) dialoglayout.findViewById(R.id.nombre_contenedor);
+                TextView tvNameEstablishment = (TextView) dialoglayout.findViewById(R.id.fundacion);
+                TextView tvEstado            = (TextView) dialoglayout.findViewById(R.id.estado);
+                TextView tvWaste             = (TextView) dialoglayout.findViewById(R.id.tipo_desecho);
 
-                Intent intent = new Intent(v.getContext(), CompanyModifyContainerActivity.class);
-                intent.putExtra(CompanyModifyContainerActivity.NAME_CONTAINER, nameContainer);
-                intent.putExtra(CompanyModifyContainerActivity.LATLONG, latLong);
-                intent.putExtra(CompanyModifyContainerActivity.ESTABLISHMENT, nameEstablishment);
-                intent.putExtra(CompanyModifyContainerActivity.COMPANY, nameCompany);
-                intent.putExtra(CompanyModifyContainerActivity.ESTADO, estateContainer);
-                intent.putExtra(CompanyModifyContainerActivity.WASTE, waste);
+                tvNameContainer.setText(nameContainer);
+                tvNameEstablishment.setText(nameEstablishment);
+                tvEstado.setText(estado);
+                tvWaste.setText(waste);
 
-                context.startActivity(intent);
-                ((Activity)context).finish();
+                if("Vacio".equals(estado) ){
+                    rbVacio.setChecked(true);        }
+
+                else if("Medio".equals(estado)){
+                    rbVacio.setEnabled(false);
+                    rbMitad.setChecked(true);        }
+
+                else if("Lleno".equals(estado)){
+                    rbVacio.setEnabled(false);
+                    rbMitad.setEnabled(false);
+                    rbLLeno.setChecked(true);        }
+
+                if(!itemsArrayList.get(position).getStatus().equals("Lleno")) {
+                    builder.setPositiveButton("Cambiar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(v.getContext());
+                            SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
+
+                            ContentValues containerValues = new ContentValues();
+
+                            if (rbMitad.isChecked()) {
+                                containerValues.put("ESTADO", "Medio");
+                            } else if (rbLLeno.isChecked()) {
+                                containerValues.put("ESTADO", "Lleno");
+                            }
+
+                            db.update("CONTAINER", containerValues, "NAME_CONTAINER = ? AND COMPANY = ?", new String[]{nameContainer, nameCompany});
+                            Toast.makeText(v.getContext(), "El estado del contenedor ha sido cambiado.",
+                                    Toast.LENGTH_SHORT).show();
+                            CompanyMainActivity activity = (CompanyMainActivity) context;
+                            activity.finish();
+                            activity.startActivity(activity.getIntent());
+                        }
+                    });
+
+                    builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                }
+                else{
+                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                }
+                builder.setView(dialoglayout);
+                builder.show();
             }
         });
+
+
         // 5. retrn rowView
         return rowView;
     }
