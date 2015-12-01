@@ -6,12 +6,16 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -41,18 +45,34 @@ public class FormConteinerRequestActivity extends Activity {
         String coordenadas = (String) getIntent().getExtras().get(COORDENADAS);
         String empresa     = (String) getIntent().getExtras().get(EMPRESA);
 
-        tvWaste            = (TextView) findViewById(R.id.waste);
-        tvEmpresa          = (TextView) findViewById(R.id.empresa);
-        tvFundacion        = (TextView) findViewById(R.id.fundacion);
-        tvCoordenadas      = (TextView) findViewById(R.id.coordenadas);
-        tvEstado           = (TextView) findViewById(R.id.estado);
-        etNombreContenedor = (EditText) findViewById(R.id.nombre_contenedor);
+        String replacelatlong1 = coordenadas.replace("lat/lng: (", "");
+        String replacelatlong2 = replacelatlong1.replace(")", "");
+        String[] latlong =  replacelatlong2.split(",");
+        double latitude = Double.parseDouble(latlong[0]);
+        double longitude = Double.parseDouble(latlong[1]);
 
-        tvWaste.setText(waste);
-        tvEmpresa.setText(empresa);
-        tvFundacion.setText(fundacion);
-        tvCoordenadas.setText(coordenadas);
-        tvEstado.setText("Vacío");
+        Geocoder geocoder = new Geocoder(this);
+        List<Address> addresses;
+
+        try {
+            addresses = geocoder.getFromLocation(latitude, longitude, 1);
+            final String adddress = addresses.get(0).getAddressLine(0);
+            final String city = addresses.get(0).getLocality();
+            tvWaste            = (TextView) findViewById(R.id.waste);
+            tvEmpresa          = (TextView) findViewById(R.id.empresa);
+            tvFundacion        = (TextView) findViewById(R.id.fundacion);
+            tvCoordenadas      = (TextView) findViewById(R.id.coordenadas);
+            tvEstado           = (TextView) findViewById(R.id.estado);
+            etNombreContenedor = (EditText) findViewById(R.id.nombre_contenedor);
+
+            tvWaste.setText(waste);
+            tvEmpresa.setText(empresa);
+            tvFundacion.setText(fundacion);
+            tvCoordenadas.setText(adddress + " ," + city);
+            tvEstado.setText("Vacío");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

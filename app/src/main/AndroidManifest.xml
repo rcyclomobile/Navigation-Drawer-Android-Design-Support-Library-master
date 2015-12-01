@@ -132,6 +132,10 @@
             android:label="Mis contenedores"
             android:theme="@style/AppTheme" >
         </activity>
+        <activity
+            android:name=".NewDirectionActivity"
+            android:label="@string/title_activity_new_direction" >
+        </activity>
     </application>
 
 </manifest>

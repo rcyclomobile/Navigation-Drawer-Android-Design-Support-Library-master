@@ -35,5 +35,6 @@
     <string name="title_activity_modify_container_establishment">
         ModifyContainerEstablishmentActivity
     </string>
+    <string name="title_activity_new_direction">Map</string>
 
 </resources>

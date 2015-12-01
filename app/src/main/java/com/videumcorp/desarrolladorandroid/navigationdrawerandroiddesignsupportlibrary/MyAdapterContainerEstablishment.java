@@ -8,6 +8,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.location.Address;
+import android.location.Geocoder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +21,9 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MyAdapterContainerEstablishment extends ArrayAdapter<Container> {
 
@@ -69,27 +73,45 @@ public class MyAdapterContainerEstablishment extends ArrayAdapter<Container> {
         else if(itemsArrayList.get(position).getStatus().equals("Congelado")){
             imContenedor.setImageResource(R.drawable.congelado);
         }
-        imContenedor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-                builder.setMessage(
-                        "Nombre del contenedor: " + "\n" + itemsArrayList.get(position).getNameContainer() + "\n" +
-                                "\n" + "Ubicacion: " + "\n" + itemsArrayList.get(position).getLatlong() + "\n" +
-                                "\n" + "Empresa Asociada: " + "\n" + itemsArrayList.get(position).getCompany() + "\n" +
-                                "\n" + "Estado del contenedor: " + "\n" + itemsArrayList.get(position).getStatus() + "\n" +
-                                "\n" + "Tipo de desecho: " + "\n" + itemsArrayList.get(position).getDesecho() + "\n");
-                builder.setTitle("Datos del contenedor");
-                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
 
-                    }
-                });
-                AlertDialog dialog = builder.create();
-                dialog.show();
-            }
-        });
+        String replacelatlong1 = itemsArrayList.get(position).getLatlong().replace("lat/lng: (", "");
+        String replacelatlong2 = replacelatlong1.replace(")", "");
+        String[] latlong =  replacelatlong2.split(",");
+        double latitude = Double.parseDouble(latlong[0]);
+        double longitude = Double.parseDouble(latlong[1]);
+
+        Geocoder geocoder = new Geocoder(context);
+        List<Address> addresses;
+
+        try {
+            addresses = geocoder.getFromLocation(latitude, longitude, 1);
+            final String adddress = addresses.get(0).getAddressLine(0);
+            final String city = addresses.get(0).getLocality();
+
+            imContenedor.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(final View v) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                    builder.setMessage(
+                            "Nombre del contenedor: " + "\n" + itemsArrayList.get(position).getNameContainer() + "\n" +
+                                    "\n" + "Ubicacion: " + "\n" + adddress + " ," + city + "\n" +
+                                    "\n" + "Empresa Asociada: " + "\n" + itemsArrayList.get(position).getCompany() + "\n" +
+                                    "\n" + "Estado del contenedor: " + "\n" + itemsArrayList.get(position).getStatus() + "\n" +
+                                    "\n" + "Tipo de desecho: " + "\n" + itemsArrayList.get(position).getDesecho() + "\n");
+                    builder.setTitle("Datos del contenedor");
+                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         btCambiarNombre.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,44 +160,20 @@ public class MyAdapterContainerEstablishment extends ArrayAdapter<Container> {
         btCambiarDireccion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                final LayoutInflater inflater = (LayoutInflater) context
-                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                Intent intent = new Intent(context, NewDirectionActivity.class);
 
-                View dialoglayout = inflater.inflate(R.layout.modify_adress_container, null);
+                String empresa = itemsArrayList.get(position).getCompany();
+                String coordenadas = itemsArrayList.get(position).getLatlong();
+                String nombre = itemsArrayList.get(position).getNameContainer();
+                String fundacion = itemsArrayList.get(position).getEstablishment();
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                intent.putExtra(NewDirectionActivity.NAME,fundacion);
+                intent.putExtra(NewDirectionActivity.CONTAINER,nombre);
+                intent.putExtra(NewDirectionActivity.LATLONG,coordenadas);
+                intent.putExtra(NewDirectionActivity.COMPANY,empresa);
 
-                final EditText etActual = (EditText) dialoglayout.findViewById(R.id.et_DireccionActual);
-                final EditText etNuevo = (EditText) dialoglayout.findViewById(R.id.et_NuevaDireccion);
+                v.getContext().startActivity(intent);
 
-                etActual.setText(itemsArrayList.get(position).getLatlong());
-
-
-                builder.setPositiveButton("Cambiar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(v.getContext());
-                        db = rcycloDatabaseHelper.getWritableDatabase();
-                        ContentValues containerValues = new ContentValues();
-                        containerValues.put("LATLONG", etNuevo.getText().toString());
-                        db.update("CONTAINER", containerValues, "NAME_CONTAINER = ? AND COMPANY = ?", new String[]{itemsArrayList.get(position).getNameContainer(), itemsArrayList.get(position).getCompany()});
-                        db.close();
-                        Toast.makeText(v.getContext(), "La dirección del contenedor ha sido cambiado.",
-                                Toast.LENGTH_SHORT).show();
-                        AvailableContainerActivity activity = (AvailableContainerActivity) context;
-                        activity.finish();
-                        activity.startActivity(activity.getIntent());
-                    }
-                });
-
-                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-                builder.setView(dialoglayout);
-                builder.show();
             }
         });
 
@@ -213,37 +211,33 @@ public class MyAdapterContainerEstablishment extends ArrayAdapter<Container> {
                     rbVacio.setChecked(true);        }
 
                 else if("Medio".equals(estado)){
-                    rbVacio.setEnabled(false);
                     rbMitad.setChecked(true);        }
 
                 else if("Lleno".equals(estado)){
-                    rbVacio.setEnabled(false);
-                    rbMitad.setEnabled(false);
                     rbLLeno.setChecked(true);        }
 
-                if(!itemsArrayList.get(position).getStatus().equals("Lleno")) {
-                    builder.setPositiveButton("Cambiar", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("Cambiar", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
-                            SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(v.getContext());
-                            SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
+                        SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(v.getContext());
+                        SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
 
-                            ContentValues containerValues = new ContentValues();
+                        ContentValues containerValues = new ContentValues();
 
-                            if (rbMitad.isChecked()) {
-                                containerValues.put("ESTADO", "Medio");
-                            } else if (rbLLeno.isChecked()) {
-                                containerValues.put("ESTADO", "Lleno");
-                            }
-
-                            db.update("CONTAINER", containerValues, "NAME_CONTAINER = ? AND COMPANY = ?", new String[]{nameContainer, nameCompany});
-                            Toast.makeText(v.getContext(), "El estado del contenedor ha sido cambiado.",
-                                    Toast.LENGTH_SHORT).show();
-                            AvailableContainerActivity activity = (AvailableContainerActivity) context;
-                            activity.finish();
-                            activity.startActivity(activity.getIntent());
+                        if (rbMitad.isChecked()) {
+                            containerValues.put("ESTADO", "Medio");
+                        } else if (rbLLeno.isChecked()) {
+                            containerValues.put("ESTADO", "Lleno");
                         }
+
+                        db.update("CONTAINER", containerValues, "NAME_CONTAINER = ? AND COMPANY = ?", new String[]{nameContainer, nameCompany});
+                        Toast.makeText(v.getContext(), "El estado del contenedor ha sido cambiado.",
+                            Toast.LENGTH_SHORT).show();
+                        AvailableContainerActivity activity = (AvailableContainerActivity) context;
+                        activity.finish();
+                        activity.startActivity(activity.getIntent());
+                    }
                     });
 
                     builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -252,15 +246,6 @@ public class MyAdapterContainerEstablishment extends ArrayAdapter<Container> {
 
                         }
                     });
-                }
-                else{
-                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                        }
-                    });
-                }
                 builder.setView(dialoglayout);
                 builder.show();
             }

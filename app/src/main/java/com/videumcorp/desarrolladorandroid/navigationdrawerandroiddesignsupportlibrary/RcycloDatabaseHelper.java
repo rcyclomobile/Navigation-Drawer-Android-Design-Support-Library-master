@@ -23,17 +23,14 @@ class RcycloDatabaseHelper extends SQLiteOpenHelper {
         insertEstablishment(db, "CENFA",                    "cenfa@gmail.com",          "admin",    "22 59 4187",       "Valparaiso",       "vidrio");
         insertEstablishment(db, "COAR",                     "coar@gmail.com",           "admin",    "27 32 2821",       "Santiago",         "lata");
 
-
-
         insertCompany(db, "Jumbo", "jumbo@gmail.com", "admin", "6032424", "Valparaiso");
         insertCompany(db, "Entel",  "entel@gmail.com", "admin", "6032424",  "Santiago");
         insertCompany(db, "Torre",  "torre@gmail.com", "admin", "6032424",  "Santiago");
 
-
-        insertContainer(db, "Basurerito", "Av Pedro Montt", "Fundacion San Jose", "Jumbo", "Lleno", "ACTIVO", "papel");
-        insertContainer(db,"Basurerito2", "Av Pedro Montt", "CENFA", "Jumbo", "Medio", "ACTIVO", "vidrio");
-        insertContainer(db,"Basurerito3", "Av Pedro Montt1", "Fundacion San Jose", "Jumbo", "Vacio", "INACTIVO", "papel");
-        insertContainer(db,"Basurerito4", "Av Pedro Montt2", "Fundacion San Jose", "Jumbo", "Vacio", "INACTIVO", "papel");
+        insertContainer(db, "Basurerito", "lat/lng: (-33.440070,-70.598046)", "Fundacion San Jose", "Jumbo", "Lleno", "ACTIVO", "papel");
+        insertContainer(db,"Basurerito2", "lat/lng: (-33.434729,-70.637362)", "CENFA", "Jumbo", "Medio", "ACTIVO", "vidrio");
+        insertContainer(db,"Basurerito3", "lat/lng: (-20.239486,-70.146185)", "Fundacion San Jose", "Jumbo", "Vacio", "INACTIVO", "papel");
+        insertContainer(db,"Basurerito4", "lat/lng: (-33.440070,-70.598046)", "Fundacion San Jose", "Jumbo", "Vacio", "INACTIVO", "papel");
     }
 
     @Override

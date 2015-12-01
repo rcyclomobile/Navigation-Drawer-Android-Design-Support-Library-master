@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Cambiar nombre"
+        android:text="Cambiar Dirección"
         android:layout_marginLeft="60dp"
         android:gravity="center_horizontal"
         android:id="@+id/textView3" />
