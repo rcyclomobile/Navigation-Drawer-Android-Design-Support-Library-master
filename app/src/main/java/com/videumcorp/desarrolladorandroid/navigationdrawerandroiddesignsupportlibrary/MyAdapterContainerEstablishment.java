@@ -169,10 +169,11 @@ public class MyAdapterContainerEstablishment extends ArrayAdapter<Container> {
 
                 intent.putExtra(NewDirectionActivity.NAME,fundacion);
                 intent.putExtra(NewDirectionActivity.CONTAINER,nombre);
-                intent.putExtra(NewDirectionActivity.LATLONG,coordenadas);
-                intent.putExtra(NewDirectionActivity.COMPANY,empresa);
+                intent.putExtra(NewDirectionActivity.LATLONG, coordenadas);
+                intent.putExtra(NewDirectionActivity.COMPANY, empresa);
 
                 v.getContext().startActivity(intent);
+                ((Activity)context).finish();
 
             }
         });
@@ -229,6 +230,8 @@ public class MyAdapterContainerEstablishment extends ArrayAdapter<Container> {
                             containerValues.put("ESTADO", "Medio");
                         } else if (rbLLeno.isChecked()) {
                             containerValues.put("ESTADO", "Lleno");
+                        } else if (rbVacio.isChecked()) {
+                            containerValues.put("ESTADO", "Vacio");
                         }
 
                         db.update("CONTAINER", containerValues, "NAME_CONTAINER = ? AND COMPANY = ?", new String[]{nameContainer, nameCompany});

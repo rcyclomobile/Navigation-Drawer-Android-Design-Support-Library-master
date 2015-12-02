@@ -89,9 +89,6 @@ public class NewDirectionActivity extends FragmentActivity {
                 String state = addresses.get(0).getAdminArea();
                 String country = addresses.get(0).getCountryName();
 
-                Toast.makeText(getApplicationContext(), a + " " + b + "\n" + adddress + " " + city + " " + state + " " + country,
-                        Toast.LENGTH_SHORT).show();
-
                 final LatLng newLatLng = new LatLng(address.getLatitude(), address.getLongitude());
                 mMap.addMarker(new MarkerOptions().position(latLng).title(adddress + " ," + city));
                 mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
@@ -142,6 +139,8 @@ public class NewDirectionActivity extends FragmentActivity {
                                 containerValues.put("LATLONG", newLatLng.toString());
                                 db.update("CONTAINER", containerValues, "NAME_CONTAINER = ? AND COMPANY = ?", new String[]{nombre, empresa});
                                 db.close();
+                                Toast.makeText(getApplicationContext(), "La direccion del contenedor ha sido cambiada.",
+                                        Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(NewDirectionActivity.this, AvailableContainerActivity.class);
                                 intent.putExtra(AvailableContainerActivity.NAME, fundacion);
                                 startActivity(intent);
