@@ -15,7 +15,10 @@ import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -83,6 +86,7 @@ public class SelectEstablishmentActivity extends ListActivity {
 
         private final int DURACION = 300;
         EditText etEmail, etPassword;
+        TextView register;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +95,17 @@ public class SelectEstablishmentActivity extends ListActivity {
 
             etEmail = (EditText) findViewById(R.id.email);
             etPassword = (EditText) findViewById(R.id.password);
+
+            register = (TextView) findViewById(R.id.register);
+
+            register.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), CompanyRegisterActivity.class);
+                    startActivity(intent);
+                }
+            });
+
         }
 
         @Override
@@ -183,10 +198,5 @@ public class SelectEstablishmentActivity extends ListActivity {
                 }
             }
         }
-        public void register(View view){
-            Intent intent = new Intent(this, CompanyRegisterActivity.class);
-            startActivity(intent);
-        }
-
     }
 }

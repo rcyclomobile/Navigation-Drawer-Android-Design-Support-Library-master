@@ -10,7 +10,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -22,6 +25,7 @@ public class EstablishmentLoginActivity extends Activity {
 
     EditText etEmail, etPassword;
     private final int DURACION = 300;
+    TextView register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,15 @@ public class EstablishmentLoginActivity extends Activity {
 
         etEmail = (EditText) findViewById(R.id.email);
         etPassword = (EditText) findViewById(R.id.password);
+
+        register = (TextView) findViewById(R.id.register);
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), EstablishmentRegisterActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
