@@ -31,9 +31,11 @@ public class ChangePasswordEstablishmentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password_establishment);
+
         String empresa = (String)getIntent().getExtras().get(NAME);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         Date date = new Date();
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         TypedValue typedValueColorPrimaryDark = new TypedValue();
@@ -61,7 +63,7 @@ public class ChangePasswordEstablishmentActivity extends AppCompatActivity {
         fechaHeaderCo = (TextView) findViewById(R.id.fechaHeaderCo);
 
         nombreHeaderCo.setText(empresa);
-        correoHeaderCo.setText("emailCompany");
+        correoHeaderCo.setText(emailCompany);
         fechaHeaderCo.setText(dateFormat.format(date));
 
     }

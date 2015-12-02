@@ -115,13 +115,13 @@ public class EditProfileEstablishmentActivity extends AppCompatActivity {
    /*     else {*/
         if(!email.matches("")) {
             if (isEmailValid(email)) {
-                if (isEmailUsed(email)) {
+                if (isEmailUsed(email) && (!email.equals(emailCompany))) {
                     Crouton.makeText(this, "El Email ya existe!!", Style.ALERT).show();
                 } else {
                     if (phone.isEmpty()) {
                         etPhone.setError("No pueden haber campos en blanco.");
                     } else {
-                        String empresa = (String) getIntent().getExtras().get(NAME);
+                        String empresa = (String)getIntent().getExtras().get(NAME);
                         SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(this);
                         SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
                         ContentValues companyValues = new ContentValues();
@@ -131,6 +131,7 @@ public class EditProfileEstablishmentActivity extends AppCompatActivity {
                         Intent intent = new Intent(this, SettingsEstablishmentActivity.class);
                         intent.putExtra(SettingsEstablishmentActivity.NAME, empresa);
                         startActivity(intent);
+                        finish();
 
                     }
                 }

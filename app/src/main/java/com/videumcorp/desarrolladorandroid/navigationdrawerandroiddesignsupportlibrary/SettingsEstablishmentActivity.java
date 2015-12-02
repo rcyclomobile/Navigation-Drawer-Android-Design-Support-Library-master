@@ -81,13 +81,15 @@ public class SettingsEstablishmentActivity extends AppCompatActivity {
         intent.putExtra(EditProfileEstablishmentActivity.NAME, empresa);
 
         startActivity(intent);
+        finish();
     }
 
     public void editar_contraseña(View view){
-        String empresa = (String)getIntent().getExtras().get(NAME);
-        Intent intent = new Intent(this, ChangePasswordActivity.class);
-        intent.putExtra(EditProfileEstablishmentActivity.NAME, empresa);
+        String empresa1 = (String)getIntent().getExtras().get(NAME);
+        Intent intent = new Intent(this, ChangePasswordEstablishmentActivity.class);
+        intent.putExtra(EditProfileEstablishmentActivity.NAME, empresa1);
         startActivity(intent);
+        finish();
     }
 
     @Override
