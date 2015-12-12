@@ -11,6 +11,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.location.Address;
 import android.location.Geocoder;
 import android.view.LayoutInflater;
@@ -21,6 +23,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,7 +36,7 @@ public class MyAdapter extends ArrayAdapter<Container> {
 
     private final Context context;
     private final ArrayList<Container> itemsArrayList;
-    private SQLiteDatabase db;
+    ProgressBar progressBar;
 
     public MyAdapter(Context context, ArrayList<Container> itemsArrayList) {
 
@@ -63,17 +66,24 @@ public class MyAdapter extends ArrayAdapter<Container> {
         final Button btCambiar = (Button) rowView.findViewById(R.id.btCambiar);
         ImageView imContenedor = (ImageView) rowView.findViewById(R.id.move_poster);
 
+        progressBar = (ProgressBar) rowView.findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
+        progressBar.setProgressDrawable(rowView.getResources().getDrawable(android.R.drawable.progress_horizontal));
 
         // 4. Set the text for textView
         ContainerName.setText(itemsArrayList.get(position).getNameContainer());
         if(itemsArrayList.get(position).getStatus().equals("Vacio")) {
             imContenedor.setImageResource(R.drawable.vacio);
+            progressBar.setProgress(2);
         }
         else if(itemsArrayList.get(position).getStatus().equals("Lleno")){
             imContenedor.setImageResource(R.drawable.lleno);
+            progressBar.getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+            progressBar.setProgress(100);
         }
         else if(itemsArrayList.get(position).getStatus().equals("Medio")){
             imContenedor.setImageResource(R.drawable.medio);
+            progressBar.setProgress(50);
         }
         else if(itemsArrayList.get(position).getStatus().equals("Congelado")){
             imContenedor.setImageResource(R.drawable.congelado);

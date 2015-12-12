@@ -59,18 +59,16 @@ public class ChangePasswordEstablishmentActivity extends AppCompatActivity {
         }
 
         nombreHeaderCo = (TextView) findViewById(R.id.nombreHeaderCo);
-        correoHeaderCo = (TextView) findViewById(R.id.correoHeaderCo);
-        fechaHeaderCo = (TextView) findViewById(R.id.fechaHeaderCo);
+
 
         nombreHeaderCo.setText(empresa);
-        correoHeaderCo.setText(emailCompany);
-        fechaHeaderCo.setText(dateFormat.format(date));
+
 
     }
 
     public void change_password(View view) {
-        EditText etPasswordCo1 = (EditText) findViewById(R.id.passwordCo1);
-        EditText etPasswordCo2 = (EditText) findViewById(R.id.passwordCo2);
+        EditText etPasswordCo1 = (EditText) findViewById(R.id.nuevoCorreo1);
+        EditText etPasswordCo2 = (EditText) findViewById(R.id.nuevoCorreo2);
         String passwordCo1 = etPasswordCo1.getText().toString();
         String passwordCo2 = etPasswordCo2.getText().toString();
         if(passwordCo1.matches("")){

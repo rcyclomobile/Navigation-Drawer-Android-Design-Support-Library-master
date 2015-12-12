@@ -1,0 +1,88 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#e0e0e0">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/status_bar_kitkat_height"
+        android:background="#000"/>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent" android:layout_height="?actionBarSize"
+        android:layout_marginTop="0dp"
+
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ToolbarTheme" />
+
+    <RelativeLayout
+        android:layout_width="match_parent" android:layout_height="200dp"
+        android:background="@drawable/green9"
+        android:orientation="vertical"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:id="@+id/nombreHeaderCo"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginBottom="22dp"
+            android:layout_alignParentBottom="true"
+
+            android:gravity="center_horizontal"
+            android:textSize="26dp"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:text="Nombre"   />
+
+
+
+    </RelativeLayout>
+
+
+    <GridLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:background="#fff"
+        android:layout_margin="8dp"
+        android:padding="6dp">
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_row="0" android:layout_column="0"
+            android:src="@drawable/phone" />
+        <TextView
+            android:id="@+id/emailCo"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginTop="0dp" android:layout_marginLeft="12dp"
+            android:layout_row="0" android:layout_column="1"
+            android:layout_gravity="center|left"
+
+            android:textSize="14dp"
+            android:text="Ingrese el nuevo Telefono" />
+
+        <Button
+         android:id="@+id/aceptar"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_row="3" android:layout_column="0" android:layout_columnSpan="2"
+
+            android:layout_gravity="center_horizontal"
+            style="?android:textAppearanceSmall"
+            android:background="#2FCD81"
+            android:textColor="#ffffff"
+            android:text="Aceptar"
+            android:onClick="aceptar"/>
+
+
+
+    </GridLayout>
+
+
+</LinearLayout>

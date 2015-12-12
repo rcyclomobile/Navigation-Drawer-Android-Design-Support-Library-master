@@ -7,6 +7,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,12 +26,14 @@ import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
 
 
-public class EstablishmentRegisterActivity extends Activity {
+public class EstablishmentRegisterActivity extends AppCompatActivity {
 
     private final int DURACION = 1000;
     EditText etName, etEmail, etPassword,etPhone, etAddress;
     RadioGroup rgWaste;
     private RadioButton rbPapel, rbPlastico, rbVidrio, rbLata;
+    Toolbar toolbar;
+
 
 
     @Override
@@ -40,6 +45,9 @@ public class EstablishmentRegisterActivity extends Activity {
         etPassword  = (EditText) findViewById(R.id.EPassword);
         etPhone     = (EditText) findViewById(R.id.EPhone);
         etAddress   = (EditText) findViewById(R.id.EAddress);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
 
 
@@ -91,7 +99,9 @@ public class EstablishmentRegisterActivity extends Activity {
                     db.insert("ESTABLISHMENT", null, establishmentValues);
                     db.close();
 
-                    Crouton.makeText(this, "Fundacion Registrada correctamente!", Style.CONFIRM).show();
+                    Toast toast= Toast.makeText(getApplicationContext(),"Registro exitoso!", Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 70);
+                    toast.show();
                     TimerTask task = new TimerTask() {
                         @Override
                         public void run() {

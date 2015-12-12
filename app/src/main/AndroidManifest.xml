@@ -40,7 +40,7 @@
         </activity>
         <activity
             android:name=".CompanyRegisterActivity"
-            android:label="@string/title_activity_company_register"
+            android:label="R-Cyclo"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
@@ -135,6 +135,11 @@
         <activity
             android:name=".NewDirectionActivity"
             android:label="@string/title_activity_new_direction" >
+        </activity>
+        <activity
+            android:name=".EditPhoneActivity"
+            android:label="@string/title_activity_edit_phone"
+            android:theme="@style/AppTheme" >
         </activity>
     </application>
 

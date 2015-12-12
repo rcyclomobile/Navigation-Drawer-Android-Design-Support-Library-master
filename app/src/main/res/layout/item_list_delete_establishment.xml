@@ -32,11 +32,20 @@ android:layout_width="match_parent" android:layout_height="match_parent"
     android:gravity="center"
     />
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="110dp"
+        android:layout_height="15dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="125dp"></ProgressBar>
+
     <TextView
         android:id="@+id/Estado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="5dp"
         android:layout_marginRight="25dp"
         android:text="Contenedor: "
         android:gravity="center"
@@ -46,7 +55,7 @@ android:layout_width="match_parent" android:layout_height="match_parent"
         android:id="@+id/btCambiar"
         android:layout_width="60dp"
         android:layout_height="30dp"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="25dp"
         android:text="Borrar"
         android:textSize="11dp"

@@ -65,19 +65,11 @@ public class EditProfileEstablishmentActivity extends AppCompatActivity {
             }while (cursor.moveToNext()) ;
         }
 
-        EditText etEmail = (EditText) findViewById(R.id.emailCo);
-        EditText etPhone = (EditText) findViewById(R.id.phoneCo);
-
-        etEmail.setText(emailCompany);
-        etPhone.setText(phoneCompany);
-
         nombreHeaderCo = (TextView) findViewById(R.id.nombreHeaderCo);
-        correoHeaderCo = (TextView) findViewById(R.id.correoHeaderCo);
-        fechaHeaderCo = (TextView) findViewById(R.id.fechaHeaderCo);
+
 
         nombreHeaderCo.setText(empresa);
-        correoHeaderCo.setText(emailCompany);
-        fechaHeaderCo.setText(dateFormat.format(date));
+
 
     }
 
@@ -105,9 +97,7 @@ public class EditProfileEstablishmentActivity extends AppCompatActivity {
 
     public void aceptar(View view){
         EditText etEmail = (EditText) findViewById(R.id.emailCo);
-        EditText etPhone = (EditText) findViewById(R.id.phoneCo);
         String email =  etEmail.getText().toString();
-        String phone = etPhone.getText().toString();
 
  /*     if (email.matches("") || phone.matches("")) {
             Crouton.makeText(this, "Se deben llenar todos los campos!", Style.ALERT).show();        }
@@ -118,22 +108,17 @@ public class EditProfileEstablishmentActivity extends AppCompatActivity {
                 if (isEmailUsed(email) && (!email.equals(emailCompany))) {
                     Crouton.makeText(this, "El Email ya existe!!", Style.ALERT).show();
                 } else {
-                    if (phone.isEmpty()) {
-                        etPhone.setError("No pueden haber campos en blanco.");
-                    } else {
                         String empresa = (String)getIntent().getExtras().get(NAME);
                         SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(this);
                         SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
                         ContentValues companyValues = new ContentValues();
                         companyValues.put("EMAIL", email);
-                        companyValues.put("PHONE", phone);
                         db.update("ESTABLISHMENT", companyValues, "NAME = ? ", new String[]{empresa});
                         Intent intent = new Intent(this, SettingsEstablishmentActivity.class);
                         intent.putExtra(SettingsEstablishmentActivity.NAME, empresa);
                         startActivity(intent);
                         finish();
 
-                    }
                 }
             } else {
 

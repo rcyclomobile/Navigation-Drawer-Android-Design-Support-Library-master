@@ -8,12 +8,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -26,7 +25,6 @@ public class EstablishmentLoginActivity extends Activity {
     EditText etEmail, etPassword;
     private final int DURACION = 300;
     TextView register;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +32,6 @@ public class EstablishmentLoginActivity extends Activity {
 
         etEmail = (EditText) findViewById(R.id.email);
         etPassword = (EditText) findViewById(R.id.password);
-
         register = (TextView) findViewById(R.id.register);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +40,7 @@ public class EstablishmentLoginActivity extends Activity {
                 startActivity(intent);
             }
         });
+
     }
 
     @Override
@@ -63,7 +61,10 @@ public class EstablishmentLoginActivity extends Activity {
             final String name = cursor.getString(0);
             cursor.close();
             db.close();
-            Crouton.makeText(this, "Bienvenido a Rcyclo " + name + "!", Style.CONFIRM).show();
+
+            Toast toast= Toast.makeText(getApplicationContext(),"Bienvenido a Rcyclo " + name + "!", Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 70);
+            toast.show();
             TimerTask task = new TimerTask() {
                 @Override
                 public void run() {

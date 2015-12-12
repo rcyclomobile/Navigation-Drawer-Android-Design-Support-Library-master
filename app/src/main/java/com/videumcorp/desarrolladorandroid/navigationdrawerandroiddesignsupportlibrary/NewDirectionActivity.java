@@ -11,11 +11,13 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -31,7 +33,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.io.IOException;
 import java.util.List;
 
-public class NewDirectionActivity extends FragmentActivity {
+public class NewDirectionActivity extends AppCompatActivity {
 
     public static final String NAME = "fundacion";
     public static final String CONTAINER = "nombre";
@@ -39,6 +41,7 @@ public class NewDirectionActivity extends FragmentActivity {
     public static final String COMPANY = "empresa";
     private SQLiteDatabase db;
     private GoogleMap mMap;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,8 @@ public class NewDirectionActivity extends FragmentActivity {
         setContentView(R.layout.activity_new_direction);
         setUpMapIfNeeded();
         mMap.setMyLocationEnabled(true);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
 
     @Override
