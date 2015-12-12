@@ -366,6 +366,10 @@
     <color name="bright_foreground_material_light">@android:color/black</color>
     <color name="button_material_dark">#ff5a595b</color>
     <color name="button_material_light">#ffd6d7d7</color>
+    <!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/values/colors.xml -->
+    <eat-comment/>
+    <color name="color_carlitros1">#2fcd81</color>
+    <color name="color_carlitros2">#208f5a</color>
     <!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/8.3.0/res/values/base_colors.xml -->
     <eat-comment/>
     <color name="common_action_bar_splitter">#d2d2d2</color>
@@ -1136,6 +1140,7 @@
     <string name="title_activity_delete_container_establishment">
         DeleteContainerEstablishmentActivity
     </string>
+    <string name="title_activity_edit_phone">EditPhoneActivity</string>
     <string name="title_activity_edit_profile_establishment">EditProfileEstablishmentActivity
     </string>
     <string name="title_activity_establishment_login">EstablishmentLoginActivity</string>
@@ -1188,8 +1193,8 @@
     <!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/values/styles.xml -->
     <eat-comment/>
     <style name="Base.AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/md_green_500</item>
-        <item name="colorPrimaryDark">@color/md_green_700</item>
+        <item name="colorPrimary">@color/color_carlitros2</item>
+        <item name="colorPrimaryDark">@color/color_carlitros1</item>
         <item name="colorAccent">@color/md_pink_500</item>
         <item name="colorControlHighlight">@color/md_green_500_25</item>
         <item name="android:windowBackground">@color/md_white_1000</item>

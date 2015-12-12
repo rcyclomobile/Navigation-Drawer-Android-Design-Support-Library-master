@@ -59,6 +59,7 @@
 
                     android:hint="Corre Electronico"
                     android:textColor="#ffffff"
+                    android:text="jumbo@gmail.com"
                     android:inputType="textEmailAddress"
                     android:textSize="20dp"
                     android:maxLines="1"
@@ -74,6 +75,7 @@
                     android:layout_width="match_parent" android:layout_height="wrap_content"
                     android:hint="Contraseña"
                     android:textSize="20dp"
+                    android:text="admin"
                     android:imeActionId="@+id/login"
                     android:imeActionLabel="hola"
                     android:imeOptions="actionUnspecified" android:inputType="textPassword"

@@ -8,7 +8,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.location.Address;
 import android.location.Geocoder;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -22,7 +26,7 @@ import java.util.TimerTask;
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
 
-public class FormConteinerRequestActivity extends Activity {
+public class FormConteinerRequestActivity extends AppCompatActivity {
 
     private final int DURACION = 300;
 
@@ -34,11 +38,15 @@ public class FormConteinerRequestActivity extends Activity {
     TextView tvWaste, tvEmpresa, tvFundacion, tvCoordenadas, tvEstado;
     EditText etNombreContenedor;
     private SQLiteDatabase db;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form_conteiner_request);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         String waste       = (String) getIntent().getExtras().get(WASTE);
         String fundacion   = (String) getIntent().getExtras().get(FUNDACION);

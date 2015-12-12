@@ -1,5 +1,9 @@
 package com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary;
 
+import android.app.AlertDialog;
+import android.content.ContentValues;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -11,21 +15,31 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
 
 public class SettingsEstablishmentActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     String emailCompany, phoneCompany, addressCompany;
     public static final String NAME = "fundacion";
-    TextView nameCo, emailCo, phoneCo, adressCo, nombreHeaderCo, correoHeaderCo, fechaHeaderCo;
+    TextView nameCo, emailCo, phoneCo, adressCo, nombreHeaderCo, correoHeaderCo, fechaHeaderCo, phoneHeaderCo, passwordCo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +62,7 @@ public class SettingsEstablishmentActivity extends AppCompatActivity {
         SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(this);
         SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
 
-        Cursor cursor = db.query("ESTABLISHMENT", new String[]{"EMAIL", "PHONE", "ADDRESS" }, "NAME = ? AND ACTIVO = ?", new String[]{fundacion, "ACTIVO"}, null, null, null);
+        Cursor cursor = db.query("ESTABLISHMENT", new String[]{"EMAIL", "PHONE", "ADDRESS"}, "NAME = ? AND ACTIVO = ?", new String[]{fundacion, "ACTIVO"}, null, null, null);
 
         if (cursor.moveToFirst()) {
             do {
@@ -65,16 +79,40 @@ public class SettingsEstablishmentActivity extends AppCompatActivity {
         nombreHeaderCo = (TextView) findViewById(R.id.nombreHeaderCo);
         correoHeaderCo = (TextView) findViewById(R.id.correoHeaderCo);
         fechaHeaderCo = (TextView) findViewById(R.id.fechaHeaderCo);
+        phoneHeaderCo = (TextView) findViewById(R.id.phoneHeaderCo);
+        passwordCo = (TextView) findViewById(R.id.passwordCo);
 
-        nameCo.setText(fundacion);
         emailCo.setText(emailCompany);
         phoneCo.setText(phoneCompany);
         adressCo.setText(addressCompany);
         nombreHeaderCo.setText(fundacion);
         correoHeaderCo.setText(emailCompany);
-        fechaHeaderCo.setText(dateFormat.format(date));
+        phoneHeaderCo.setText(phoneCompany);
+
+        emailCo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                editar_perfil(v);
+            }
+        });
+
+        passwordCo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            editar_contraseña(v);
+            }
+        });
+
+        phoneCo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editar_telefono(v);
+            }
+        });
 
     }
+
+
     public void editar_perfil(View view){
         String empresa = (String)getIntent().getExtras().get(NAME);
         Intent intent = new Intent(this, EditProfileEstablishmentActivity.class);
@@ -87,7 +125,16 @@ public class SettingsEstablishmentActivity extends AppCompatActivity {
     public void editar_contraseña(View view){
         String empresa1 = (String)getIntent().getExtras().get(NAME);
         Intent intent = new Intent(this, ChangePasswordEstablishmentActivity.class);
-        intent.putExtra(EditProfileEstablishmentActivity.NAME, empresa1);
+        intent.putExtra(ChangePasswordEstablishmentActivity.NAME, empresa1);
+        startActivity(intent);
+        finish();
+    }
+
+    public void editar_telefono(View view){
+        String empresa1 = (String)getIntent().getExtras().get(NAME);
+        //cambiar
+        Intent intent = new Intent(this, EditPhoneActivity.class);
+        intent.putExtra(EditPhoneActivity.NAME, empresa1);
         startActivity(intent);
         finish();
     }
@@ -115,5 +162,32 @@ public class SettingsEstablishmentActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public static boolean isEmailValid(String email) {
+        boolean isValid = false;
+
+        String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+        CharSequence inputStr = email;
+
+        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(inputStr);
+        if (matcher.matches()) {
+            isValid = true;
+        }
+        return isValid;
+    }
+
+    public boolean isEmailUsed(String email) {
+        SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(this);
+        SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
+        Cursor cursor = db.query("ESTABLISHMENT", new String[]{"EMAIL"}, "EMAIL = ?", new String[]{email}, null, null, null);
+        if (cursor.moveToFirst()){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
 
 }

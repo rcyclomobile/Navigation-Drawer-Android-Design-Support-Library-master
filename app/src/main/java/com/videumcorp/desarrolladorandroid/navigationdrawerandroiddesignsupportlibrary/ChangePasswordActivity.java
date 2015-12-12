@@ -41,6 +41,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(colorPrimaryDark);
         }
 
+
         SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(this);
         SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
 

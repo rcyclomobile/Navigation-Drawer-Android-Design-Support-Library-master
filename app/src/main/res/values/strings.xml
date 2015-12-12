@@ -36,5 +36,6 @@
         ModifyContainerEstablishmentActivity
     </string>
     <string name="title_activity_new_direction">Map</string>
+    <string name="title_activity_edit_phone">EditPhoneActivity</string>
 
 </resources>

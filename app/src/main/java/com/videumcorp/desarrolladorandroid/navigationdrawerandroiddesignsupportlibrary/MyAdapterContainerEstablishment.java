@@ -8,6 +8,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.location.Address;
 import android.location.Geocoder;
 import android.view.LayoutInflater;
@@ -17,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +33,7 @@ public class MyAdapterContainerEstablishment extends ArrayAdapter<Container> {
     private final Context context;
     private final ArrayList<Container> itemsArrayList;
     private SQLiteDatabase db;
+    ProgressBar progressBar;
 
     public MyAdapterContainerEstablishment(Context context, ArrayList<Container> itemsArrayList) {
         super(context, R.layout.item_list_container_establishment, itemsArrayList);
@@ -57,18 +61,25 @@ public class MyAdapterContainerEstablishment extends ArrayAdapter<Container> {
         final Button btCambiarDireccion = (Button) rowView.findViewById(R.id.btCambiarDireccion);
         ImageView imContenedor = (ImageView) rowView.findViewById(R.id.move_poster);
 
+        progressBar = (ProgressBar) rowView.findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
+        progressBar.setProgressDrawable(rowView.getResources().getDrawable(android.R.drawable.progress_horizontal));
 
         // 4. Set the text for textView
         ContainerName.setText(itemsArrayList.get(position).getNameContainer());
         ContainerStatus.setText("Ver contenedor");
         if(itemsArrayList.get(position).getStatus().equals("Vacio")) {
             imContenedor.setImageResource(R.drawable.vacio);
+            progressBar.setProgress(2);
         }
         else if(itemsArrayList.get(position).getStatus().equals("Lleno")){
             imContenedor.setImageResource(R.drawable.lleno);
+            progressBar.getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+            progressBar.setProgress(100);
         }
         else if(itemsArrayList.get(position).getStatus().equals("Medio")){
             imContenedor.setImageResource(R.drawable.medio);
+            progressBar.setProgress(50);
         }
         else if(itemsArrayList.get(position).getStatus().equals("Congelado")){
             imContenedor.setImageResource(R.drawable.congelado);
@@ -181,66 +192,43 @@ public class MyAdapterContainerEstablishment extends ArrayAdapter<Container> {
         btCambiar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                final LayoutInflater inflater = (LayoutInflater) context
-                        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-                View dialoglayout = inflater.inflate(R.layout.modify_status_container, null);
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-
-
-                final RadioButton rbVacio         = (RadioButton) dialoglayout.findViewById(R.id.vacio);
-                final RadioButton rbMitad         = (RadioButton) dialoglayout.findViewById(R.id.mitad);
-                final RadioButton rbLLeno         = (RadioButton) dialoglayout.findViewById(R.id.lleno);
 
                 final String nameContainer        = itemsArrayList.get(position).getNameContainer();
                 final String nameCompany          = itemsArrayList.get(position).getCompany();
                 String estado               = itemsArrayList.get(position).getStatus();
-                String waste                = itemsArrayList.get(position).getDesecho();
 
-                TextView tvNameContainer     = (TextView) dialoglayout.findViewById(R.id.nombre_contenedor);
-                TextView tvNameEstablishment = (TextView) dialoglayout.findViewById(R.id.fundacion);
-                TextView tvEstado            = (TextView) dialoglayout.findViewById(R.id.estado);
-                TextView tvWaste             = (TextView) dialoglayout.findViewById(R.id.tipo_desecho);
+                if(!estado.equals("Vacio")) {
 
-                tvNameContainer.setText(nameContainer);
-                tvNameEstablishment.setText(nameCompany);
-                tvEstado.setText(estado);
-                tvWaste.setText(waste);
 
-                if("Vacio".equals(estado) ){
-                    rbVacio.setChecked(true);        }
+                    final LayoutInflater inflater = (LayoutInflater) context
+                            .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-                else if("Medio".equals(estado)){
-                    rbMitad.setChecked(true);        }
+                    View dialoglayout = inflater.inflate(R.layout.modify_status_container, null);
 
-                else if("Lleno".equals(estado)){
-                    rbLLeno.setChecked(true);        }
+                    AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
 
-                builder.setPositiveButton("Cambiar", new DialogInterface.OnClickListener() {
+                    TextView tvEstado            = (TextView) dialoglayout.findViewById(R.id.estado);
+
+                    tvEstado.setText(estado);
+
+                    builder.setPositiveButton("Cambiar", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
-                        SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(v.getContext());
-                        SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
+                            SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(v.getContext());
+                            SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
 
-                        ContentValues containerValues = new ContentValues();
+                            ContentValues containerValues = new ContentValues();
 
-                        if (rbMitad.isChecked()) {
-                            containerValues.put("ESTADO", "Medio");
-                        } else if (rbLLeno.isChecked()) {
-                            containerValues.put("ESTADO", "Lleno");
-                        } else if (rbVacio.isChecked()) {
                             containerValues.put("ESTADO", "Vacio");
-                        }
 
-                        db.update("CONTAINER", containerValues, "NAME_CONTAINER = ? AND COMPANY = ?", new String[]{nameContainer, nameCompany});
-                        Toast.makeText(v.getContext(), "El estado del contenedor ha sido cambiado.",
-                            Toast.LENGTH_SHORT).show();
-                        AvailableContainerActivity activity = (AvailableContainerActivity) context;
-                        activity.finish();
-                        activity.startActivity(activity.getIntent());
-                    }
+                            db.update("CONTAINER", containerValues, "NAME_CONTAINER = ? AND COMPANY = ?", new String[]{nameContainer, nameCompany});
+                            Toast.makeText(v.getContext(), "El estado del contenedor ha sido cambiado.",
+                                    Toast.LENGTH_SHORT).show();
+                            AvailableContainerActivity activity = (AvailableContainerActivity) context;
+                            activity.finish();
+                            activity.startActivity(activity.getIntent());
+                        }
                     });
 
                     builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -249,8 +237,22 @@ public class MyAdapterContainerEstablishment extends ArrayAdapter<Container> {
 
                         }
                     });
-                builder.setView(dialoglayout);
-                builder.show();
+
+                    builder.setView(dialoglayout);
+                    builder.show();
+                }
+                else{
+                    AlertDialog.Builder dialogo1 = new AlertDialog.Builder(v.getContext());
+                    dialogo1.setTitle("Cambiar estado");
+                    dialogo1.setMessage("El contenedor esta vacio");
+                    dialogo1.setCancelable(false);
+                    dialogo1.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialogo1, int id) {
+
+                        }
+                    });
+                    dialogo1.show();
+                }
             }
         });
         // 5. retrn rowView

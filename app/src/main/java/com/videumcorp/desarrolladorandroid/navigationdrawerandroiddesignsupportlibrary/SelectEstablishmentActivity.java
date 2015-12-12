@@ -18,8 +18,6 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -87,7 +85,6 @@ public class SelectEstablishmentActivity extends ListActivity {
         private final int DURACION = 300;
         EditText etEmail, etPassword;
         TextView register;
-
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -95,9 +92,7 @@ public class SelectEstablishmentActivity extends ListActivity {
 
             etEmail = (EditText) findViewById(R.id.email);
             etPassword = (EditText) findViewById(R.id.password);
-
             register = (TextView) findViewById(R.id.register);
-
             register.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -105,7 +100,6 @@ public class SelectEstablishmentActivity extends ListActivity {
                     startActivity(intent);
                 }
             });
-
         }
 
         @Override
@@ -183,11 +177,11 @@ public class SelectEstablishmentActivity extends ListActivity {
                         db.close();
                         Crouton.makeText(this, "Bienvenido a Rcyclo " + empresa + "!", Style.CONFIRM).show();
                         TimerTask task = new TimerTask() {@Override
-                        public void run() {
+                                                          public void run() {
                             Intent intent = new Intent(CompanyLoginActivity.this, CompanyMainActivity.class);
                             intent.putExtra(CompanyMainActivity.EMPRESA, empresa);
                             startActivity(intent);
-                            }
+                        }
                         };
                         Timer timer = new Timer();
                         timer.schedule(task, DURACION);
@@ -198,5 +192,6 @@ public class SelectEstablishmentActivity extends ListActivity {
                 }
             }
         }
+
     }
 }

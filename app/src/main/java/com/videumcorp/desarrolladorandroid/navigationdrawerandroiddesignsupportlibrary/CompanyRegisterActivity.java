@@ -1,6 +1,5 @@
 package com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary;
 
-
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -8,8 +7,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -19,10 +22,12 @@ import java.util.regex.Pattern;
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
 
-public class CompanyRegisterActivity extends Activity {
+public class CompanyRegisterActivity extends AppCompatActivity {
 
     private final int DURACION = 1000;
     EditText etName, etEmail, etPassword,etPhone, etAddress;
+
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,10 @@ public class CompanyRegisterActivity extends Activity {
         etPassword  = (EditText) findViewById(R.id.CPassword);
         etPhone     = (EditText) findViewById(R.id.CPhone);
         etAddress   = (EditText) findViewById(R.id.CAddress);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
     }
 
     @Override
@@ -72,7 +81,11 @@ public class CompanyRegisterActivity extends Activity {
 
                     db.insert("COMPANY", null, companyValues);
                     db.close();
-                    Crouton.makeText(this, "Empresa ha sido Registrada correctamente!", Style.CONFIRM).show();
+
+                    Toast toast= Toast.makeText(getApplicationContext(),"Registro exitoso!", Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 70);
+                    toast.show();
+
                     TimerTask task = new TimerTask() {
                         @Override
                         public void run() {
