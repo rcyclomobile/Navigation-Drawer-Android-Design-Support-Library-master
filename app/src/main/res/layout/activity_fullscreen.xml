@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/md_green_700"
+    android:background="#2FCD81"
     tools:context=".TopLevelActivity">
 
     <!--    android:background="#0099cc"
@@ -16,7 +16,7 @@
         android:layout_height="match_parent"
         android:keepScreenOn="true"
         android:textColor="#ffffff"
-        android:background="@drawable/solid_color_shape2"
+        android:background="#b4eeb4"
         android:textStyle="bold"
         android:textSize="50sp"
         android:gravity="center"
@@ -24,7 +24,9 @@
 
 
     <!-- This FrameLayout insets its children based on system windows using
-         android:fitsSystemWindows. -->
+         android:fitsSystemWindows.47a61e @drawable/solid_color_shape2
+         a5d6a7
+         -->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -38,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
-            android:background="@color/black_overlay"
+            android:background="#b4eeb4"
             android:orientation="vertical"
             tools:ignore="UselessParent">
 
@@ -46,14 +48,17 @@
                 android:id="@+id/dummy_button2"
                 style="?metaButtonBarButtonStyle"
                 android:alpha="0.70"
-                android:background="@color/material_blue_grey_800"
+                android:background="#2FCD81"
                 android:layout_width="match_parent"
-                android:layout_height="72dp"
+                android:layout_marginBottom="6dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_height="48dp"
                 android:layout_gravity="bottom"
-                android:text="Soy una Empresa"
-                android:textSize="16dp"
+                android:text="Soy una empresa"
+                android:textSize="12dp"
                 android:onClick="companyRegister"
-                android:textColor="#d8e4af"/>
+                android:textColor="#ffffff"/>
 
             <Button
 
@@ -61,27 +66,27 @@
                 android:alpha="0.70"
                 style="?metaButtonBarButtonStyle"
                 android:layout_width="match_parent"
-                android:background="@color/material_blue_grey_800"
-                android:layout_height="72dp"
-                android:text="Soy una Fundacion"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:background="#2FCD81"
+                android:layout_height="48dp"
+                android:text="Soy una fundacion"
                 android:onClick="establishmentRegister"
-                android:textSize="16dp"
-                android:textColor="#d8e4af"/>
+                android:textSize="12dp"
+                android:textColor="#ffffff"/>
 
         </LinearLayout>
 
         <ImageView
-            android:layout_width="683dp"
-            android:layout_height="218dp"
-            android:layout_marginBottom="70dp"
+            android:layout_width="300dp"
+            android:layout_height="180dp"
+            android:layout_marginBottom="60dp"
             android:layout_gravity="center"
             android:layout_row="1"
             android:layout_columnSpan="2"
-            android:src="@drawable/logo6"
+            android:src="@drawable/intento"
             />
-
-
-
     </FrameLayout>
 
 </FrameLayout>

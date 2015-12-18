@@ -80,8 +80,6 @@
             android:text="Aceptar"
             android:onClick="aceptar"/>
 
-
-
     </GridLayout>
 
 

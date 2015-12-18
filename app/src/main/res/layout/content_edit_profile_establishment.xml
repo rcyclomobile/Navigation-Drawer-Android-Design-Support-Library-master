@@ -8,6 +8,6 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_edit_profile_establishment"
-    tools:context="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.EditProfileEstablishmentActivity">
+    tools:context="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIEditProfileEstablishmentActivity">
 
 </RelativeLayout>
