@@ -63,10 +63,10 @@ public class APISelectEstablishmentCompanyActivity extends ListActivity {
         //    String fundacion = listView.getItemAtPosition(position).toString();
         //   String fundacion = Integer.toString(position);
 
-        Intent intent = new Intent(APISelectEstablishmentCompanyActivity.this, SelectCoordinatesCompanyActivity.class);
-        intent.putExtra(SelectCoordinatesCompanyActivity.WASTE, waste);
-        intent.putExtra(SelectCoordinatesCompanyActivity.FUNDACION, fundacion);
-        intent.putExtra(SelectCoordinatesCompanyActivity.EMPRESA, empresa);
+        Intent intent = new Intent(APISelectEstablishmentCompanyActivity.this, SelectLatlongCompanyActivity.class);
+        intent.putExtra(SelectLatlongCompanyActivity.WASTE, waste);
+        intent.putExtra(SelectLatlongCompanyActivity.FUNDACION, fundacion);
+        intent.putExtra(SelectLatlongCompanyActivity.EMPRESA, empresa);
 
         startActivity(intent);
     }

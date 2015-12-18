@@ -67,7 +67,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".Company.SelectCoordinatesCompanyActivity"
+            android:name=".Company.SelectLatlongCompanyActivity"
             android:label="Mapa" >
         </activity>
         <activity

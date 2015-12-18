@@ -25,7 +25,7 @@ import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportl
 import java.io.IOException;
 import java.util.List;
 
-public class SelectCoordinatesCompanyActivity extends AppCompatActivity {
+public class SelectLatlongCompanyActivity extends AppCompatActivity {
 
     public static final String WASTE= "waste";
     public static final String FUNDACION= "fundacion";
@@ -108,14 +108,14 @@ public class SelectCoordinatesCompanyActivity extends AppCompatActivity {
                         double latitudeNew = Double.parseDouble(latlong[0]);
                         double longitudeNew = Double.parseDouble(latlong[1]);
 
-                        Geocoder geocoder = new Geocoder(SelectCoordinatesCompanyActivity.this);
+                        Geocoder geocoder = new Geocoder(SelectLatlongCompanyActivity.this);
                         List<Address> addresses;
 
                         try {
                             addresses = geocoder.getFromLocation(latitudeNew, longitudeNew, 1);
                             final String adddressNew = addresses.get(0).getAddressLine(0);
                             final String cityNew = addresses.get(0).getLocality();
-                            AlertDialog.Builder dialogo1 = new AlertDialog.Builder(SelectCoordinatesCompanyActivity.this);
+                            AlertDialog.Builder dialogo1 = new AlertDialog.Builder(SelectLatlongCompanyActivity.this);
                             dialogo1.setTitle("Direccion Contenedor");
                             dialogo1.setMessage("¿Es correcta esta direccion?" + "\n" + adddressNew + " ," + cityNew);
                             dialogo1.setCancelable(false);
@@ -125,7 +125,7 @@ public class SelectCoordinatesCompanyActivity extends AppCompatActivity {
                                     String fundacion = (String)getIntent().getExtras().get(FUNDACION);
                                     String empresa = (String)getIntent().getExtras().get(EMPRESA);
                                     String coordenadas = adddress + " ," + city;
-                                    Intent intent = new Intent(SelectCoordinatesCompanyActivity.this, APIFormContainerRequestCompanyActivity.class);
+                                    Intent intent = new Intent(SelectLatlongCompanyActivity.this, APIFormContainerRequestCompanyActivity.class);
                                     intent.putExtra(APIFormContainerRequestCompanyActivity.WASTE,waste);
                                     intent.putExtra(APIFormContainerRequestCompanyActivity.FUNDACION,fundacion);
                                     intent.putExtra(APIFormContainerRequestCompanyActivity.EMPRESA, empresa);
