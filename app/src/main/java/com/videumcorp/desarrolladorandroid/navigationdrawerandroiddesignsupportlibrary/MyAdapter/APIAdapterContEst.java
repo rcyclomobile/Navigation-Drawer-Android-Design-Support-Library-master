@@ -21,21 +21,21 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIAvailableContainer;
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIAvailableCont;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.NewDirection;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.DataBase.RcycloDatabaseHelper;
 
 import java.util.ArrayList;
 
-public class APIMyAdapterContainerEst extends ArrayAdapter<Container> {
+public class APIAdapterContEst extends ArrayAdapter<Container> {
 
     private final Context context;
     private final ArrayList<Container> itemsArrayList;
     private SQLiteDatabase db;
     ProgressBar progressBar;
 
-    public APIMyAdapterContainerEst(Context context, ArrayList<Container> itemsArrayList) {
+    public APIAdapterContEst(Context context, ArrayList<Container> itemsArrayList) {
         super(context, R.layout.item_list_container_establishment, itemsArrayList);
 
         this.context = context;
@@ -136,7 +136,7 @@ public class APIMyAdapterContainerEst extends ArrayAdapter<Container> {
                         db.close();
                         Toast.makeText(v.getContext(), "El nombre del contenedor ha sido cambiado.",
                                 Toast.LENGTH_SHORT).show();
-                        APIAvailableContainer activity = (APIAvailableContainer) context;
+                        APIAvailableCont activity = (APIAvailableCont) context;
                         activity.finish();
                         activity.startActivity(activity.getIntent());
                     }
@@ -211,7 +211,7 @@ public class APIMyAdapterContainerEst extends ArrayAdapter<Container> {
                             db.update("CONTAINER", containerValues, "NAME_CONTAINER = ? AND COMPANY = ?", new String[]{nameContainer, nameCompany});
                             Toast.makeText(v.getContext(), "El estado del contenedor ha sido cambiado.",
                                     Toast.LENGTH_SHORT).show();
-                            APIAvailableContainer activity = (APIAvailableContainer) context;
+                            APIAvailableCont activity = (APIAvailableCont) context;
                             activity.finish();
                             activity.startActivity(activity.getIntent());
                         }

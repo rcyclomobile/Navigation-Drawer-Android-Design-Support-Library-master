@@ -55,9 +55,9 @@ public class SelectWaste extends AppCompatActivity implements View.OnClickListen
                 break;
         }
         String empresa = (String)getIntent().getExtras().get(EMPRESA);
-        Intent intent = new Intent(this, APISelectEstablishment.class);
-        intent.putExtra(APISelectEstablishment.WASTE, waste);
-        intent.putExtra(APISelectEstablishment.EMPRESA, empresa);
+        Intent intent = new Intent(this, APISelectEst.class);
+        intent.putExtra(APISelectEst.WASTE, waste);
+        intent.putExtra(APISelectEst.EMPRESA, empresa);
         startActivity(intent);
     }
 }

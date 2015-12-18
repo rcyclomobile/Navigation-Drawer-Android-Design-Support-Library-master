@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.DataBase.RcycloDatabaseHelper;
 
-public class APIFormContainerRequest extends AppCompatActivity {
+public class APIFormContReq extends AppCompatActivity {
 
     private final int DURACION = 300;
 
@@ -69,13 +69,13 @@ public class APIFormContainerRequest extends AppCompatActivity {
                     etNombreContenedor.setError("El campo no puede quedar vacio.");
                 }
                 else {
-                    SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(APIFormContainerRequest.this);
+                    SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(APIFormContReq.this);
                     db = rcycloDatabaseHelper.getWritableDatabase();
                     insertContainer(db, nombre_contenedor, tvCoordenadas.getText().toString(), tvFundacion.getText().toString(), tvEmpresa.getText().toString(), "Vacio", "INACTIVO",tvWaste.getText().toString());
                     db.close();
                     Toast toast = Toast.makeText(getApplicationContext(), "Su solicitud ha sido enviada.", Toast.LENGTH_SHORT);
                     toast.show();
-                    Intent intent = new Intent().setClass(APIFormContainerRequest.this, APIMain.class);
+                    Intent intent = new Intent().setClass(APIFormContReq.this, APIMain.class);
                     intent.putExtra(APIMain.EMPRESA, empresa);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     startActivity(intent);

@@ -14,12 +14,12 @@ import android.widget.ListView;
 
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.DataBase.RcycloDatabaseHelper;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.Container;
-import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.APIMyAdapterContainerEst;
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.APIAdapterContEst;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
 
 import java.util.ArrayList;
 
-public class APIAvailableContainer extends AppCompatActivity {
+public class APIAvailableCont extends AppCompatActivity {
 
     public static String NAME= "name";
 
@@ -39,7 +39,7 @@ public class APIAvailableContainer extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         TypedValue typedValueColorPrimaryDark = new TypedValue();
-        APIAvailableContainer.this.getTheme().resolveAttribute(R.attr.colorPrimaryDark, typedValueColorPrimaryDark, true);
+        APIAvailableCont.this.getTheme().resolveAttribute(R.attr.colorPrimaryDark, typedValueColorPrimaryDark, true);
         final int colorPrimaryDark = typedValueColorPrimaryDark.data;
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setStatusBarColor(colorPrimaryDark);
@@ -58,7 +58,7 @@ public class APIAvailableContainer extends AppCompatActivity {
                 arrayList.add(container);
             }while (cursor.moveToNext()) ;
         }
-        APIMyAdapterContainerEst adapter = new APIMyAdapterContainerEst(this, arrayList);
+        APIAdapterContEst adapter = new APIAdapterContEst(this, arrayList);
         adapter.notifyDataSetChanged();
         listContainerCompany.setAdapter(adapter);
         adapter.notifyDataSetChanged();

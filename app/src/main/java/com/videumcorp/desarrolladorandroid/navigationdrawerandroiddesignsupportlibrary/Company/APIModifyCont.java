@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.DataBase.RcycloDatabaseHelper;
 
-public class APIModifyContainer extends Activity {
+public class APIModifyCont extends Activity {
 
     public static final String NAME_CONTAINER = "nameContainer";
     public static final String LATLONG = "latLong";

@@ -1,4 +1,4 @@
-package com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment;
+package com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company;
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -6,8 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.View;
@@ -21,36 +21,35 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class APIChangePassword extends AppCompatActivity {
+public class APIChangePass extends AppCompatActivity {
 
     Toolbar toolbar;
     String emailCompany,phoneCompany,addressCompany;
-    public static final String NAME= "empresa";
+    public static final String EMPRESA= "empresa";
     TextView nombreHeaderCo, correoHeaderCo, fechaHeaderCo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_change_password_establishment);
-
-        String empresa = (String)getIntent().getExtras().get(NAME);
+        setContentView(R.layout.activity_change_password);
+        String empresa = (String)getIntent().getExtras().get(EMPRESA);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         Date date = new Date();
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         TypedValue typedValueColorPrimaryDark = new TypedValue();
-        APIChangePassword.this.getTheme().resolveAttribute(R.attr.colorPrimaryDark, typedValueColorPrimaryDark, true);
+        APIChangePass.this.getTheme().resolveAttribute(R.attr.colorPrimaryDark, typedValueColorPrimaryDark, true);
         final int colorPrimaryDark = typedValueColorPrimaryDark.data;
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setStatusBarColor(colorPrimaryDark);
         }
 
+
         SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(this);
         SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
 
         //Implementar API Aqui!!
-        Cursor cursor = db.query("ESTABLISHMENT", new String[]{"EMAIL", "PHONE", "ADDRESS" }, "NAME = ? AND ACTIVO = ?", new String[]{empresa, "ACTIVO"}, null, null, null);
+        Cursor cursor = db.query("COMPANY", new String[]{"EMAIL", "PHONE", "ADDRESS" }, "NAME = ? AND ACTIVO = ?", new String[]{empresa, "ACTIVO"}, null, null, null);
 
         if(cursor.moveToFirst()){
             do {
@@ -61,16 +60,18 @@ public class APIChangePassword extends AppCompatActivity {
         }
 
         nombreHeaderCo = (TextView) findViewById(R.id.nombreHeaderCo);
-
+        correoHeaderCo = (TextView) findViewById(R.id.correoHeaderCo);
+        fechaHeaderCo = (TextView) findViewById(R.id.fechaHeaderCo);
 
         nombreHeaderCo.setText(empresa);
-
+        correoHeaderCo.setText(emailCompany);
+        fechaHeaderCo.setText(dateFormat.format(date));
 
     }
 
     public void change_password(View view) {
-        EditText etPasswordCo1 = (EditText) findViewById(R.id.nuevoCorreo1);
-        EditText etPasswordCo2 = (EditText) findViewById(R.id.nuevoCorreo2);
+        EditText etPasswordCo1 = (EditText) findViewById(R.id.passwordCo1);
+        EditText etPasswordCo2 = (EditText) findViewById(R.id.passwordCo2);
         String passwordCo1 = etPasswordCo1.getText().toString();
         String passwordCo2 = etPasswordCo2.getText().toString();
         if(passwordCo1.matches("")){
@@ -86,16 +87,17 @@ public class APIChangePassword extends AppCompatActivity {
         }
 
         else {
-            String empresa = (String)getIntent().getExtras().get(NAME);
+            String empresa = (String)getIntent().getExtras().get(EMPRESA);
             SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(this);
             SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
             ContentValues companyValues = new ContentValues();
             companyValues.put("PASSWORD", passwordCo1);
 
-            db.update("ESTABLISHMENT", companyValues, "NAME = ? ", new String[]{empresa});
+            //Implementar API Aqui!!
+            db.update("COMPANY", companyValues, "NAME = ? ", new String[]{empresa});
 
             Intent intent = new Intent(this, APISettings.class);
-            intent.putExtra(APISettings.NAME, empresa);
+            intent.putExtra(APISettings.EMPRESA, empresa);
             startActivity(intent);
             finish();
         }

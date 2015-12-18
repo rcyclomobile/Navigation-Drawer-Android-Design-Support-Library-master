@@ -13,13 +13,13 @@ import android.view.MenuItem;
 import android.widget.ListView;
 
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.Container;
-import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.APIMyAdapterDeleteEst;
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.APIAdapterDelEst;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.DataBase.RcycloDatabaseHelper;
 
 import java.util.ArrayList;
 
-public class APIDeleteContainer extends AppCompatActivity {
+public class APIDeleteCont extends AppCompatActivity {
 
     public static final String NAME= "name";
     Toolbar toolbar;
@@ -36,7 +36,7 @@ public class APIDeleteContainer extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         TypedValue typedValueColorPrimaryDark = new TypedValue();
-        APIDeleteContainer.this.getTheme().resolveAttribute(R.attr.colorPrimaryDark, typedValueColorPrimaryDark, true);
+        APIDeleteCont.this.getTheme().resolveAttribute(R.attr.colorPrimaryDark, typedValueColorPrimaryDark, true);
         final int colorPrimaryDark = typedValueColorPrimaryDark.data;
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setStatusBarColor(colorPrimaryDark);
@@ -55,7 +55,7 @@ public class APIDeleteContainer extends AppCompatActivity {
                 arrayList.add(container);
             }while (cursor.moveToNext()) ;
         }
-        APIMyAdapterDeleteEst adapter = new APIMyAdapterDeleteEst(this, arrayList);
+        APIAdapterDelEst adapter = new APIAdapterDelEst(this, arrayList);
         adapter.notifyDataSetChanged();
         listContainerCompany.setAdapter(adapter);
         adapter.notifyDataSetChanged();

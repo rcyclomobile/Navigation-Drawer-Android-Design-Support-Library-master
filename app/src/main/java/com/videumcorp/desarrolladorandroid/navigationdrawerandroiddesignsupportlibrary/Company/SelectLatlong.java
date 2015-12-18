@@ -125,11 +125,11 @@ public class SelectLatlong extends AppCompatActivity {
                                     String fundacion = (String)getIntent().getExtras().get(FUNDACION);
                                     String empresa = (String)getIntent().getExtras().get(EMPRESA);
                                     String coordenadas = adddress + " ," + city;
-                                    Intent intent = new Intent(SelectLatlong.this, APIFormContainerRequest.class);
-                                    intent.putExtra(APIFormContainerRequest.WASTE,waste);
-                                    intent.putExtra(APIFormContainerRequest.FUNDACION,fundacion);
-                                    intent.putExtra(APIFormContainerRequest.EMPRESA, empresa);
-                                    intent.putExtra(APIFormContainerRequest.COORDENADAS,coordenadas);
+                                    Intent intent = new Intent(SelectLatlong.this, APIFormContReq.class);
+                                    intent.putExtra(APIFormContReq.WASTE,waste);
+                                    intent.putExtra(APIFormContReq.FUNDACION,fundacion);
+                                    intent.putExtra(APIFormContReq.EMPRESA, empresa);
+                                    intent.putExtra(APIFormContReq.COORDENADAS,coordenadas);
                                     startActivity(intent);
 
                                 }

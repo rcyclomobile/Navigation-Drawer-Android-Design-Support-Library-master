@@ -88,7 +88,7 @@ public class APISettings extends AppCompatActivity {
 
     public void editar_contraseña(View view){
         String empresa = (String)getIntent().getExtras().get(EMPRESA);
-        Intent intent = new Intent(this, APIChangePassword.class);
+        Intent intent = new Intent(this, APIChangePass.class);
         intent.putExtra(APIEditProfile.EMPRESA, empresa);
         startActivity(intent);
     }

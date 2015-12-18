@@ -24,7 +24,7 @@ import android.widget.Toast;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APILogin;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.Container;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.FullscreenActivity;
-import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.APIMyAdapterEst;
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.APIAdapterEst;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.DataBase.RcycloDatabaseHelper;
 
@@ -66,7 +66,7 @@ public class APIMain extends AppCompatActivity {
                 arrayList.add(container);
             }while (cursor.moveToNext()) ;
         }
-        APIMyAdapterEst adapter = new APIMyAdapterEst(this, arrayList);
+        APIAdapterEst adapter = new APIAdapterEst(this, arrayList);
         adapter.notifyDataSetChanged();
         listContainerCompany.setAdapter(adapter);
         adapter.notifyDataSetChanged();
@@ -137,15 +137,15 @@ public class APIMain extends AppCompatActivity {
                             case R.id.item_navigation_drawer_inbox_es:
                                 menuItem.setChecked(true);
                                 drawerLayout.closeDrawer(GravityCompat.START);
-                                Intent intent = new Intent(APIMain.this, APIAvailableContainer.class);
+                                Intent intent = new Intent(APIMain.this, APIAvailableCont.class);
                                 intent.putExtra(APIMain.NAME, empresa);
                                 startActivity(intent);
                                 return true;
                             case R.id.item_navigation_drawer_starred_es:
                                 menuItem.setChecked(true);
                                 drawerLayout.closeDrawer(GravityCompat.START);
-                                intent = new Intent(APIMain.this, APIDeleteContainer.class);
-                                intent.putExtra(APIDeleteContainer.NAME, empresa);
+                                intent = new Intent(APIMain.this, APIDeleteCont.class);
+                                intent.putExtra(APIDeleteCont.NAME, empresa);
                                 startActivity(intent);
                                 return true;
                             case R.id.item_navigation_drawer_sent_mail_es:

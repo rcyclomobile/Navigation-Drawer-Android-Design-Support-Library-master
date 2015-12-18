@@ -13,7 +13,7 @@ import android.widget.SimpleCursorAdapter;
 
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.DataBase.RcycloDatabaseHelper;
 
-public class APISelectEstablishment extends ListActivity {
+public class APISelectEst extends ListActivity {
     private SQLiteDatabase db;
     private Cursor cursor;
     public static final String WASTE= "waste";
@@ -63,7 +63,7 @@ public class APISelectEstablishment extends ListActivity {
         //    String fundacion = listView.getItemAtPosition(position).toString();
         //   String fundacion = Integer.toString(position);
 
-        Intent intent = new Intent(APISelectEstablishment.this, SelectLatlong.class);
+        Intent intent = new Intent(APISelectEst.this, SelectLatlong.class);
         intent.putExtra(SelectLatlong.WASTE, waste);
         intent.putExtra(SelectLatlong.FUNDACION, fundacion);
         intent.putExtra(SelectLatlong.EMPRESA, empresa);
