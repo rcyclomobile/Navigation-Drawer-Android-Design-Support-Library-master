@@ -1,0 +1,92 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2FCD81"
+    tools:context=".TopLevelActivity">
+
+    <!--    android:background="#0099cc"
+    android:background="#4CAF50"
+    The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+    <TextView android:id="@+id/fullscreen_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:keepScreenOn="true"
+        android:textColor="#ffffff"
+        android:background="#b4eeb4"
+        android:textStyle="bold"
+        android:textSize="50sp"
+        android:gravity="center"
+        android:text="" />
+
+
+    <!-- This FrameLayout insets its children based on system windows using
+         android:fitsSystemWindows.47a61e @drawable/solid_color_shape2
+         a5d6a7
+         -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:layout_gravity="center_horizontal|top">
+
+
+        <LinearLayout
+            android:id="@+id/fullscreen_content_controls"
+            style="?metaButtonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:background="#b4eeb4"
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
+
+            <Button
+                android:id="@+id/dummy_button2"
+                style="?metaButtonBarButtonStyle"
+                android:alpha="0.70"
+                android:background="#2FCD81"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="6dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_height="48dp"
+                android:layout_gravity="bottom"
+                android:text="Soy una empresa"
+                android:textSize="12dp"
+                android:onClick="companyRegister"
+                android:textColor="#ffffff"/>
+
+            <Button
+
+                android:id="@+id/dummy_button"
+                android:alpha="0.70"
+                style="?metaButtonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:background="#2FCD81"
+                android:layout_height="48dp"
+                android:text="Soy una fundacion"
+                android:onClick="establishmentRegister"
+                android:textSize="12dp"
+                android:textColor="#ffffff"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="180dp"
+            android:layout_marginBottom="60dp"
+            android:layout_gravity="center"
+            android:layout_row="1"
+            android:layout_columnSpan="2"
+            android:src="@drawable/intento"
+            />
+    </FrameLayout>
+
+</FrameLayout><!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/layout/activity_fullscreen.xml -->

@@ -1,0 +1,154 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#e0e0e0">
+
+    <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
+        android:orientation="vertical"
+        android:background="#ffffff"
+        >
+
+        <EditText
+            android:id="@+id/Ename"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" android:layout_marginBottom="0dp"
+            android:layout_marginLeft="18dp" android:layout_marginRight="18dp"
+            android:textSize="12dp"
+            android:inputType="textPersonName"
+            android:hint="Nombre" />
+
+        <EditText
+            android:id="@+id/Eemail"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="5dp" android:layout_marginBottom="0dp"
+            android:layout_marginLeft="18dp" android:layout_marginRight="18dp"
+            android:textSize="12dp"
+            android:inputType="textEmailAddress"
+            android:hint="Correo electronico" />
+
+        <EditText
+            android:id="@+id/EPhone"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="5dp" android:layout_marginBottom="0dp"
+            android:layout_marginLeft="18dp" android:layout_marginRight="18dp"
+            android:textSize="12dp"
+            android:inputType="phone"
+            android:hint="Fono" />
+
+        <EditText
+            android:id="@+id/EAddress"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="5dp" android:layout_marginBottom="0dp"
+            android:layout_marginLeft="18dp" android:layout_marginRight="18dp"
+            android:textSize="12dp"
+            android:inputType="textCapSentences"
+            android:hint="Direccion" />
+
+        <EditText
+            android:id="@+id/EPassword"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="5dp" android:layout_marginBottom="0dp"
+            android:layout_marginLeft="18dp" android:layout_marginRight="18dp"
+            android:layout_row="5" android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:textSize="12dp"
+            android:inputType="textPassword"
+            android:hint="Contraseña" />
+
+
+        <TextView
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" android:layout_marginBottom="0dp"
+            android:layout_marginLeft="18dp" android:layout_marginRight="18dp"
+            android:gravity="center_horizontal"
+            android:layout_row="6"
+            android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:hint="Tipo de desecho"
+            android:textSize="17dp" />
+
+        <RadioGroup
+            android:id="@+id/waste"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_row="7" android:layout_column="0" android:layout_columnSpan="1"
+            android:gravity="left">
+
+            <RadioButton
+                android:id="@+id/radio_papel"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginTop="0dp" android:layout_marginBottom="0dp"
+                android:layout_marginLeft="18dp" android:layout_marginRight="18dp"
+                android:checked="true"
+                android:textSize="16dp"
+                android:textColor="#47a61e"
+                android:text="Papel"/>
+
+            <RadioButton
+                android:id="@+id/radio_plastico"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginTop="0dp" android:layout_marginBottom="0dp"
+                android:layout_marginLeft="18dp" android:layout_marginRight="18dp"
+                android:textSize="16dp"
+                android:textColor="#47a61e"
+                android:text="Plastico" />
+
+            <RadioButton
+                android:id="@+id/radio_vidrio"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginTop="0dp" android:layout_marginBottom="0dp"
+                android:layout_marginLeft="18dp" android:layout_marginRight="18dp"
+                android:textSize="16dp"
+                android:textColor="#47a61e"
+                android:text="Vidrio" />
+
+            <RadioButton
+                android:id="@+id/radio_lata"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginTop="0dp" android:layout_marginBottom="0dp"
+                android:layout_marginLeft="18dp" android:layout_marginRight="18dp"
+                android:textSize="16dp"
+                android:textColor="#47a61e"
+                android:text="Lata"/>
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/register"
+            android:layout_width="match_parent" android:layout_height="56dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="18dp" android:layout_marginRight="18dp"
+
+            android:layout_gravity="center_horizontal"
+            style="?android:textAppearanceSmall"
+            android:background="#2FCD81"
+            android:textColor="#ffffff"
+            android:text="Registrarse"
+            android:onClick="sendForm"/>
+
+        <TextView
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="5dp" android:layout_marginBottom="5dp"
+            android:layout_marginLeft="18dp" android:layout_marginRight="18dp"
+            android:textSize="9dp"
+            android:text="Al registrarte estas aceptando los Terminos de Uso y Condiciones."
+            />
+
+    </LinearLayout>
+
+    <android.support.v7.widget.Toolbar
+        android:layout_marginTop="@dimen/status_bar_margin_top"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent" android:layout_height="?actionBarSize"
+        android:background="#2FCD81"
+        android:elevation="4dp"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ToolbarTheme"
+        android:layout_gravity="center_horizontal|top" />
+
+</FrameLayout><!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/layout/activity_establishment_register.xml -->

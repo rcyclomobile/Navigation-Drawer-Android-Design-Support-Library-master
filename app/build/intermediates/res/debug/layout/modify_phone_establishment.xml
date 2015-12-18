@@ -1,0 +1,63 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:padding="5dp"
+    android:layout_margin="10dp"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Cambiar telefono"
+        android:layout_marginLeft="60dp"
+        android:gravity="center_horizontal"
+        android:id="@+id/textView3" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scrollView" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:weightSum="1">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Telefono actual:"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_marginTop="12dp"/>
+
+            <EditText
+                android:id="@+id/et_NombreActual"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primary_dark_material_dark"
+                android:hint=""
+                android:enabled="false">
+            </EditText>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nuevo telefono"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_marginTop="10dp" />
+
+            <EditText
+                android:id="@+id/et_NuevoNombre"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nuevo telefono a usar">
+            </EditText>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout><!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/layout/modify_phone_establishment.xml -->

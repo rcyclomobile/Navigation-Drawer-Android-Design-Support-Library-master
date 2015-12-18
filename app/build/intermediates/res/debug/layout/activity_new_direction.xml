@@ -1,0 +1,71 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#e0e0e0">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.Toolbar
+            android:layout_marginTop="@dimen/status_bar_margin_top"
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent" android:layout_height="?actionBarSize"
+            android:background="#2FCD81"
+            android:elevation="4dp"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/ToolbarTheme"
+            android:layout_gravity="center_horizontal|top" />
+
+        <fragment
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent" android:layout_height="match_parent"
+            android:id="@+id/map" tools:context=".MapsActivity"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+
+
+
+
+            android:layout_margin="4dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/toolbar"
+            android:layout_above="@+id/Bsearch" />
+
+
+        <EditText
+            android:id="@+id/TFaddress"
+            android:layout_width="250dp" android:layout_height="38dp"
+            android:background="#ffffff"
+            android:layout_marginBottom="12dp"
+            android:layout_marginLeft="6dp"
+            android:padding="4dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_toLeftOf="@+id/Bsearch"
+            android:layout_toStartOf="@+id/Bsearch" />
+
+        <Button
+            android:id="@+id/Bsearch"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+
+            android:textSize="12dp"
+            android:text="Buscar"
+
+            android:layout_margin="6dp"
+
+
+            android:onClick="onSearch"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+        />
+
+    </RelativeLayout>
+
+</FrameLayout>
+<!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/layout/activity_new_direction.xml -->
