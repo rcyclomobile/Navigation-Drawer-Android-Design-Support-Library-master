@@ -44,32 +44,32 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APISettingsCompanyActivity"
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APISettings"
             android:label="Mi Perfil"
-            android:parentActivityName="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APILoginCompanyActivity" >
+            android:parentActivityName="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APILogin" >
         </activity>
         <activity
-            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APILoginCompanyActivity"
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APILogin"
             android:label="Escoger actividad" >
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIMainCompanyActivity"
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIMain"
             android:label="Menu" >
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIRegisterCompanyActivity"
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIRegister"
             android:label="R-Cyclo"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.SelectWasteCompanyActivity"
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.SelectWaste"
             android:label="Seleccionar Desecho"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APISelectEstablishmentCompanyActivity"
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APISelectEstablishment"
             android:label="@string/app_name"
             android:theme="@style/AppTheme" >
         </activity>
@@ -87,75 +87,75 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.SelectCoordinatesCompanyActivity"
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.SelectLatlong"
             android:label="Mapa" >
         </activity>
         <activity
-            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIFormContainerRequestCompanyActivity"
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIFormContainerRequest"
             android:label="Formulario Contenedor"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIModifyContainerCompanyActivity"
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIModifyContainer"
             android:label="@string/title_activity_company_modify_container"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APILoginEstablishmentActivity"
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APILogin"
             android:label="@string/title_activity_establishment_login"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIRegisterEstablishmentActivity"
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIRegister"
             android:label="@string/title_activity_establishment_register"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIMainEstablishmentActivity"
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIMain"
             android:label="Menu"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIEditProfileCompanyActivity"
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIEditProfile"
             android:label="Editar perfil"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIChangePasswordCompanyActivity"
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIChangePassword"
             android:label="Cambiar contraseña"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIAvailableContainerEstablishmentActivity"
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIAvailableContainer"
             android:label="Mis Contenedores"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APISettingsEstablishmentActivity"
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APISettings"
             android:label="Mi perfil"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIEditProfileEstablishmentActivity"
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIEditProfile"
             android:label="Editar perfil"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIChangePasswordEstablishmentActivity"
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIChangePassword"
             android:label="Cambiar contraseña"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIDeleteContainerEstablishmentActivity"
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIDeleteContainer"
             android:label="Mis contenedores"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.NewDirectionEstablishmentActivity"
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.NewDirection"
             android:label="@string/title_activity_new_direction" >
         </activity>
         <activity
-            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIEditPhoneEstablishmentActivity"
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIEditPhone"
             android:label="@string/title_activity_edit_phone"
             android:theme="@style/AppTheme" >
         </activity>

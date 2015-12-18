@@ -19,7 +19,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIMainCompanyActivity;
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIMain;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.DataBase.RcycloDatabaseHelper;
 
@@ -168,7 +168,7 @@ public class APIMyAdapter extends ArrayAdapter<Container> {
                             db.update("CONTAINER", containerValues, "NAME_CONTAINER = ? AND COMPANY = ?", new String[]{nameContainer, nameCompany});
                             Toast.makeText(v.getContext(), "El estado del contenedor ha sido cambiado.",
                                     Toast.LENGTH_SHORT).show();
-                            APIMainCompanyActivity activity = (APIMainCompanyActivity) context;
+                            APIMain activity = (APIMain) context;
                             activity.finish();
                             activity.startActivity(activity.getIntent());
                         }
