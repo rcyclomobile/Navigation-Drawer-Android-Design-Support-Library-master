@@ -33,7 +33,7 @@ public class APIEditPhone extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_phone);
+        setContentView(R.layout.activity_edit_phone_establishment);
 
         String empresa = (String) getIntent().getExtras().get(NAME);
         toolbar = (Toolbar) findViewById(R.id.toolbar);

@@ -91,7 +91,7 @@
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name=".Company.APIEditProfile"
+            android:name=".Company.APIEditEmail"
             android:label="Editar perfil"
             android:theme="@style/AppTheme" >
         </activity>
@@ -111,7 +111,7 @@
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name=".Establishment.APIEditProfile"
+            android:name=".Establishment.APIEditEmail"
             android:label="Editar perfil"
             android:theme="@style/AppTheme" >
         </activity>
@@ -137,6 +137,11 @@
         <activity
             android:name=".Company.APISelectEst"
             android:label="Seleccionar Fundacion"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
+            android:name=".Company.APIEditPhone"
+            android:label="@string/title_activity_edit_phone"
             android:theme="@style/AppTheme" >
         </activity>
     </application>

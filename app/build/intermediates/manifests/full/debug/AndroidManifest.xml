@@ -111,7 +111,7 @@
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIEditProfile"
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIEditEmail"
             android:label="Editar perfil"
             android:theme="@style/AppTheme" >
         </activity>
@@ -131,7 +131,7 @@
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIEditProfile"
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIEditEmail"
             android:label="Editar perfil"
             android:theme="@style/AppTheme" >
         </activity>
@@ -157,6 +157,11 @@
         <activity
             android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APISelectEst"
             android:label="Seleccionar Fundacion"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIEditPhone"
+            android:label="@string/title_activity_edit_phone"
             android:theme="@style/AppTheme" >
         </activity>
         <!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->

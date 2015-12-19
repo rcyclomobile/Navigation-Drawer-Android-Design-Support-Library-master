@@ -232,7 +232,7 @@ ADDED from AndroidManifest.xml:88:9
 		ADDED from AndroidManifest.xml:91:13
 	android:name
 		ADDED from AndroidManifest.xml:89:13
-activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIEditProfile
+activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIEditEmail
 ADDED from AndroidManifest.xml:93:9
 	android:label
 		ADDED from AndroidManifest.xml:95:13
@@ -264,7 +264,7 @@ ADDED from AndroidManifest.xml:108:9
 		ADDED from AndroidManifest.xml:111:13
 	android:name
 		ADDED from AndroidManifest.xml:109:13
-activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIEditProfile
+activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIEditEmail
 ADDED from AndroidManifest.xml:113:9
 	android:label
 		ADDED from AndroidManifest.xml:115:13
@@ -310,6 +310,14 @@ ADDED from AndroidManifest.xml:137:9
 		ADDED from AndroidManifest.xml:140:13
 	android:name
 		ADDED from AndroidManifest.xml:138:13
+activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIEditPhone
+ADDED from AndroidManifest.xml:142:9
+	android:label
+		ADDED from AndroidManifest.xml:144:13
+	android:theme
+		ADDED from AndroidManifest.xml:145:13
+	android:name
+		ADDED from AndroidManifest.xml:143:13
 uses-sdk
 INJECTED from AndroidManifest.xml:0:0 reason: use-sdk injection requested
 MERGED from com.android.support:appcompat-v7:22.2.1:20:5
