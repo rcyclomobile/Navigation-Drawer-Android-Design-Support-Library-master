@@ -60,13 +60,22 @@
             android:textSize="12dp"
             android:inputType="textPassword"
             android:hint="Contraseña" />
+    </LinearLayout>
 
 
+
+    <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginTop="320dp"
+        android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
+        android:orientation="vertical"
+        android:background="#ffffff">
         <TextView
             android:layout_width="match_parent" android:layout_height="wrap_content"
             android:layout_marginTop="10dp" android:layout_marginBottom="0dp"
             android:layout_marginLeft="18dp" android:layout_marginRight="18dp"
-            android:gravity="center_horizontal"
+            android:gravity="left"
             android:layout_row="6"
             android:layout_column="0"
             android:layout_columnSpan="2"
@@ -77,7 +86,8 @@
             android:id="@+id/waste"
             android:layout_width="wrap_content" android:layout_height="wrap_content"
             android:layout_row="7" android:layout_column="0" android:layout_columnSpan="1"
-            android:gravity="left">
+            android:gravity="left"
+            android:layout_marginTop="10dp">
 
             <RadioButton
                 android:id="@+id/radio_papel"
@@ -120,15 +130,16 @@
 
         <Button
             android:id="@+id/register"
-            android:layout_width="match_parent" android:layout_height="56dp"
+            android:layout_width="match_parent" android:layout_height="66dp"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="18dp" android:layout_marginRight="18dp"
+            android:layout_marginLeft="9dp" android:layout_marginRight="9dp"
 
             android:layout_gravity="center_horizontal"
             style="?android:textAppearanceSmall"
             android:background="#2FCD81"
             android:textColor="#ffffff"
             android:text="Registrarse"
+            android:textSize="18sp"
             android:onClick="sendForm"/>
 
         <TextView
@@ -151,4 +162,4 @@
         app:theme="@style/ToolbarTheme"
         android:layout_gravity="center_horizontal|top" />
 
-</FrameLayout><!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/layout/activity_establishment_register.xml -->
+</FrameLayout><!-- From: file:/C:/Users/Carlos/AndroidStudioProjects/CARLOS/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/layout/activity_establishment_register.xml -->

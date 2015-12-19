@@ -3,9 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent" android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#e0e0e0"
-    >
+    android:background="#e0e0e0">
 
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/status_bar_kitkat_height"
+        android:background="#000"/>
+
+    <android.support.v7.widget.Toolbar
+        android:layout_marginTop="@dimen/status_bar_margin_top"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent" android:layout_height="?actionBarSize"
+        android:background="#2FCD81"
+        android:elevation="4dp"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ToolbarTheme"
+        android:layout_gravity="center_horizontal|top" />
 
     <LinearLayout
         xmlns:tools="http://schemas.android.com/tools"
@@ -86,19 +100,7 @@
 
     </LinearLayout>
 
-    <android.support.v7.widget.Toolbar
-        android:layout_marginTop="@dimen/status_bar_margin_top"
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent" android:layout_height="?actionBarSize"
-        android:background="#2FCD81"
-        android:elevation="4dp"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:theme="@style/ToolbarTheme"
-        android:layout_gravity="center_horizontal|top" />
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/status_bar_lollipop_height"
-        android:background="?colorPrimaryDark"/>
+
 
 </FrameLayout>

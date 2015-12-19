@@ -50,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
-        <android.support.v7.widget.Toolbar
+                <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar_es"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
@@ -69,8 +69,7 @@
         android:fitsSystemWindows="@bool/fitsSystemWindows"
         app:headerLayout="@layout/navigation_drawer_header"
         app:menu="@menu/navigation_drawer_menu_establishment"
-        app:theme="@style/NavigationViewTheme"
-        />
+        app:theme="@style/NavigationViewTheme"     />
 
 </android.support.v4.widget.DrawerLayout>
-<!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/layout/activity_main_establisment.xml -->
+<!-- From: file:/C:/Users/Carlos/AndroidStudioProjects/CARLOS/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/layout/activity_main_establisment.xml -->

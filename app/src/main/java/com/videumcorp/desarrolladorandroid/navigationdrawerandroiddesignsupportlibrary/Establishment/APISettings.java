@@ -72,8 +72,8 @@ public class APISettings extends AppCompatActivity {
         phoneHeaderCo = (TextView) findViewById(R.id.phoneHeaderCo);
         passwordCo = (TextView) findViewById(R.id.passwordCo);
 
-        emailCo.setText(emailCompany);
-        phoneCo.setText(phoneCompany);
+     /*   emailCo.setText(emailCompany);
+        phoneCo.setText(phoneCompany);*/
         adressCo.setText(addressCompany);
         nombreHeaderCo.setText(fundacion);
         correoHeaderCo.setText(emailCompany);
@@ -178,6 +178,4 @@ public class APISettings extends AppCompatActivity {
             return false;
         }
     }
-
-
 }

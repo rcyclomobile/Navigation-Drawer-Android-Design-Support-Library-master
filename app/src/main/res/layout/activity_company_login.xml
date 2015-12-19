@@ -91,7 +91,7 @@
                 android:textSize="12dp"
                 android:textColor="#ffffff"
                 android:background="#2FCD81"
-                android:onClick="sign_in" />
+                android:onClick="enter" />
         </LinearLayout>
 
         <TextView

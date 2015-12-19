@@ -108,7 +108,6 @@
         <activity
             android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIMain"
             android:label="Menu"
-            android:logo="@drawable/logo"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
