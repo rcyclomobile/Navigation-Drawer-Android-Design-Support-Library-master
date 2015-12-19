@@ -1,73 +1,65 @@
 package com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company;
 
-import android.app.ListActivity;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.CursorAdapter;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.DataBase.RcycloDatabaseHelper;
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.APIAdapterSelEst;
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.Establishment;
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
 
-public class APISelectEst extends ListActivity {
+import java.util.ArrayList;
+
+public class APISelectEst extends AppCompatActivity {
+
     private SQLiteDatabase db;
-    private Cursor cursor;
     public static final String WASTE= "waste";
     public static final String EMPRESA= "empresa";
+    ListView listEstablishmentCompany;
+    ArrayList<Establishment> arrayList = new ArrayList<>();
+    Establishment establishment;
+    Toolbar toolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ListView listEstablishment = getListView();
-
+        setContentView(R.layout.activity_apiselect_esta);
         String waste = (String)getIntent().getExtras().get(WASTE);
+        String empresa = (String)getIntent().getExtras().get(EMPRESA);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        listEstablishmentCompany = (ListView) findViewById(R.id.list_view_establishment);
 
         SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(this);
         db = rcycloDatabaseHelper.getReadableDatabase();
 
-        //Implementar API Aqui!!
-        cursor = db.query("ESTABLISHMENT",
-                new String[]{"_id", "NAME", "WASTE"},
-                "WASTE = ?",
-                new String[] {waste},
-                null, null, null);
+        Cursor cursor = db.query("ESTABLISHMENT", new String[]{"NAME", "EMAIL", "PASSWORD", "PHONE", "ADDRESS", "WASTE", "ACTIVO" }, "ACTIVO = ? AND WASTE = ?", new String[]{"ACTIVO",waste}, null, null, null);
 
+        if(cursor.moveToFirst()){
+            do {
+                establishment = new Establishment(cursor.getString(0), cursor.getString(1), cursor.getString(2),cursor.getString(3) , cursor.getString(4), cursor.getString(5),cursor.getString(6));
+                arrayList.add(establishment);
+            }while (cursor.moveToNext()) ;
+        }
 
-        CursorAdapter listAdapter = new SimpleCursorAdapter(this,android.R.layout.simple_list_item_2,
-                cursor,
-                new String[]{"NAME","WASTE"},
-                new int[]{android.R.id.text1,android.R.id.text2},
-                0);
-        listEstablishment.setAdapter(listAdapter);
+        if(arrayList.isEmpty()){
+            setContentView(R.layout.activity_select_establishment_empty);
+        }
+        else{
+            APIAdapterSelEst adapter = new APIAdapterSelEst(APISelectEst.this, arrayList,empresa);
+            adapter.notifyDataSetChanged();
+            listEstablishmentCompany.setAdapter(adapter);
+
+        }
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        cursor.close();
-        db.close();
-    }
-
-    @Override
-    public void onListItemClick(ListView listView, View itemView, int position, long id) {
-        cursor.moveToFirst();
-        cursor.move(position);
-
-        String fundacion = cursor.getString(1);
-        String waste = (String)getIntent().getExtras().get(WASTE);
-        String empresa = (String)getIntent().getExtras().get(EMPRESA);
-        //    String fundacion = listView.getItemAtPosition(position).toString();
-        //   String fundacion = Integer.toString(position);
-
-        Intent intent = new Intent(APISelectEst.this, SelectLatlong.class);
-        intent.putExtra(SelectLatlong.WASTE, waste);
-        intent.putExtra(SelectLatlong.FUNDACION, fundacion);
-        intent.putExtra(SelectLatlong.EMPRESA, empresa);
-
-        startActivity(intent);
-    }
 }

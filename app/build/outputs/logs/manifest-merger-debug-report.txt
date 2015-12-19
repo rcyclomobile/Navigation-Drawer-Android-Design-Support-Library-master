@@ -180,27 +180,27 @@ ADDED from AndroidManifest.xml:46:9
 		ADDED from AndroidManifest.xml:49:13
 	android:name
 		ADDED from AndroidManifest.xml:47:13
-activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APISelectEst
-ADDED from AndroidManifest.xml:51:9
-	android:label
-		ADDED from AndroidManifest.xml:53:13
-	android:theme
-		ADDED from AndroidManifest.xml:54:13
-	android:name
-		ADDED from AndroidManifest.xml:52:13
 meta-data#com.google.android.geo.API_KEY
-ADDED from AndroidManifest.xml:65:9
+ADDED from AndroidManifest.xml:60:9
 	android:value
-		ADDED from AndroidManifest.xml:67:13
+		ADDED from AndroidManifest.xml:62:13
 	android:name
-		ADDED from AndroidManifest.xml:66:13
+		ADDED from AndroidManifest.xml:61:13
 activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.SelectLatlong
-ADDED from AndroidManifest.xml:69:9
+ADDED from AndroidManifest.xml:64:9
 	android:label
+		ADDED from AndroidManifest.xml:66:13
+	android:name
+		ADDED from AndroidManifest.xml:65:13
+activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIFormContReq
+ADDED from AndroidManifest.xml:68:9
+	android:label
+		ADDED from AndroidManifest.xml:70:13
+	android:theme
 		ADDED from AndroidManifest.xml:71:13
 	android:name
-		ADDED from AndroidManifest.xml:70:13
-activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIFormContReq
+		ADDED from AndroidManifest.xml:69:13
+activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIModifyCont
 ADDED from AndroidManifest.xml:73:9
 	android:label
 		ADDED from AndroidManifest.xml:75:13
@@ -208,7 +208,7 @@ ADDED from AndroidManifest.xml:73:9
 		ADDED from AndroidManifest.xml:76:13
 	android:name
 		ADDED from AndroidManifest.xml:74:13
-activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIModifyCont
+activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APILogin
 ADDED from AndroidManifest.xml:78:9
 	android:label
 		ADDED from AndroidManifest.xml:80:13
@@ -216,7 +216,7 @@ ADDED from AndroidManifest.xml:78:9
 		ADDED from AndroidManifest.xml:81:13
 	android:name
 		ADDED from AndroidManifest.xml:79:13
-activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APILogin
+activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIRegister
 ADDED from AndroidManifest.xml:83:9
 	android:label
 		ADDED from AndroidManifest.xml:85:13
@@ -224,92 +224,94 @@ ADDED from AndroidManifest.xml:83:9
 		ADDED from AndroidManifest.xml:86:13
 	android:name
 		ADDED from AndroidManifest.xml:84:13
-activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIRegister
+activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIMain
 ADDED from AndroidManifest.xml:88:9
 	android:label
 		ADDED from AndroidManifest.xml:90:13
 	android:theme
+		ADDED from AndroidManifest.xml:92:13
+	android:logo
 		ADDED from AndroidManifest.xml:91:13
 	android:name
 		ADDED from AndroidManifest.xml:89:13
-activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIMain
-ADDED from AndroidManifest.xml:93:9
-	android:label
-		ADDED from AndroidManifest.xml:95:13
-	android:theme
-		ADDED from AndroidManifest.xml:96:13
-	android:name
-		ADDED from AndroidManifest.xml:94:13
 activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIEditProfile
-ADDED from AndroidManifest.xml:98:9
+ADDED from AndroidManifest.xml:94:9
 	android:label
-		ADDED from AndroidManifest.xml:100:13
+		ADDED from AndroidManifest.xml:96:13
 	android:theme
-		ADDED from AndroidManifest.xml:101:13
+		ADDED from AndroidManifest.xml:97:13
 	android:name
-		ADDED from AndroidManifest.xml:99:13
+		ADDED from AndroidManifest.xml:95:13
 activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIChangePass
-ADDED from AndroidManifest.xml:103:9
+ADDED from AndroidManifest.xml:99:9
 	android:label
-		ADDED from AndroidManifest.xml:105:13
+		ADDED from AndroidManifest.xml:101:13
 	android:theme
-		ADDED from AndroidManifest.xml:106:13
+		ADDED from AndroidManifest.xml:102:13
 	android:name
-		ADDED from AndroidManifest.xml:104:13
+		ADDED from AndroidManifest.xml:100:13
 activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIAvailableCont
-ADDED from AndroidManifest.xml:108:9
+ADDED from AndroidManifest.xml:104:9
 	android:label
-		ADDED from AndroidManifest.xml:110:13
+		ADDED from AndroidManifest.xml:106:13
 	android:theme
-		ADDED from AndroidManifest.xml:111:13
+		ADDED from AndroidManifest.xml:107:13
 	android:name
-		ADDED from AndroidManifest.xml:109:13
+		ADDED from AndroidManifest.xml:105:13
 activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APISettings
-ADDED from AndroidManifest.xml:113:9
+ADDED from AndroidManifest.xml:109:9
 	android:label
-		ADDED from AndroidManifest.xml:115:13
+		ADDED from AndroidManifest.xml:111:13
 	android:theme
-		ADDED from AndroidManifest.xml:116:13
+		ADDED from AndroidManifest.xml:112:13
 	android:name
-		ADDED from AndroidManifest.xml:114:13
+		ADDED from AndroidManifest.xml:110:13
 activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIEditProfile
-ADDED from AndroidManifest.xml:118:9
+ADDED from AndroidManifest.xml:114:9
 	android:label
-		ADDED from AndroidManifest.xml:120:13
+		ADDED from AndroidManifest.xml:116:13
 	android:theme
-		ADDED from AndroidManifest.xml:121:13
+		ADDED from AndroidManifest.xml:117:13
 	android:name
-		ADDED from AndroidManifest.xml:119:13
+		ADDED from AndroidManifest.xml:115:13
 activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIChangePass
-ADDED from AndroidManifest.xml:123:9
+ADDED from AndroidManifest.xml:119:9
 	android:label
-		ADDED from AndroidManifest.xml:125:13
+		ADDED from AndroidManifest.xml:121:13
 	android:theme
-		ADDED from AndroidManifest.xml:126:13
+		ADDED from AndroidManifest.xml:122:13
 	android:name
-		ADDED from AndroidManifest.xml:124:13
+		ADDED from AndroidManifest.xml:120:13
 activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIDeleteCont
-ADDED from AndroidManifest.xml:128:9
+ADDED from AndroidManifest.xml:124:9
 	android:label
-		ADDED from AndroidManifest.xml:130:13
+		ADDED from AndroidManifest.xml:126:13
 	android:theme
+		ADDED from AndroidManifest.xml:127:13
+	android:name
+		ADDED from AndroidManifest.xml:125:13
+activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.NewDirection
+ADDED from AndroidManifest.xml:129:9
+	android:label
 		ADDED from AndroidManifest.xml:131:13
 	android:name
-		ADDED from AndroidManifest.xml:129:13
-activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.NewDirection
+		ADDED from AndroidManifest.xml:130:13
+activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIEditPhone
 ADDED from AndroidManifest.xml:133:9
 	android:label
 		ADDED from AndroidManifest.xml:135:13
+	android:theme
+		ADDED from AndroidManifest.xml:136:13
 	android:name
 		ADDED from AndroidManifest.xml:134:13
-activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIEditPhone
-ADDED from AndroidManifest.xml:137:9
+activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APISelectEst
+ADDED from AndroidManifest.xml:138:9
 	android:label
-		ADDED from AndroidManifest.xml:139:13
-	android:theme
 		ADDED from AndroidManifest.xml:140:13
+	android:theme
+		ADDED from AndroidManifest.xml:141:13
 	android:name
-		ADDED from AndroidManifest.xml:138:13
+		ADDED from AndroidManifest.xml:139:13
 uses-sdk
 INJECTED from AndroidManifest.xml:0:0 reason: use-sdk injection requested
 MERGED from com.android.support:appcompat-v7:22.2.1:20:5

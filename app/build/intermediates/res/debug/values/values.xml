@@ -1130,6 +1130,7 @@
     <string name="store_picture_title">Save image</string>
     <!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/values/strings.xml -->
     <eat-comment/>
+    <string name="title_activity_apiselect_esta">APISelectEsta</string>
     <string name="title_activity_available_container">availableContainer</string>
     <string name="title_activity_change_password_establishment">
         ChangePasswordEstablishmentActivity
