@@ -72,4 +72,4 @@ android:layout_width="match_parent" android:layout_height="match_parent"
     android:layout_below="@+id/move_poster">
 </View>
 
-</RelativeLayout><!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/layout/item_list_delete_establishment.xml -->
+</RelativeLayout><!-- From: file:/C:/Users/Carlos/AndroidStudioProjects/CARLOS/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/layout/item_list_delete_establishment.xml -->
