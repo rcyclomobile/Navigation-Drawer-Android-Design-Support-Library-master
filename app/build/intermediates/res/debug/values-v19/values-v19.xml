@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/values-v19/attrs.xml -->
+    <!-- From: file:/C:/Users/Carlos/AndroidStudioProjects/CARLOS/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/values-v19/attrs.xml -->
     <eat-comment/>
     <bool name="fitsSystemWindows">false</bool>
     <dimen name="navigation_drawer_header_margin">41dp</dimen>
     <dimen name="status_bar_kitkat_height">25dp</dimen>
     <dimen name="status_bar_lollipop_height">0dp</dimen>
     <dimen name="status_bar_margin_top">25dp</dimen>
-    <!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/values-v19/styles.xml -->
+    <!-- From: file:/C:/Users/Carlos/AndroidStudioProjects/CARLOS/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/values-v19/styles.xml -->
     <eat-comment/>
     <style name="AppTheme" parent="Base.AppTheme">
         <item name="android:windowTranslucentStatus">true</item>
