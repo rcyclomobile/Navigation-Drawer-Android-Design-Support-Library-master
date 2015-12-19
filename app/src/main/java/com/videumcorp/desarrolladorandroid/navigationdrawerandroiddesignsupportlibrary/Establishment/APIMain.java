@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,6 +15,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -22,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APILogin;
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.APIAdapterContEst;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.Container;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.FullscreenActivity;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.APIAdapterEst;
@@ -32,25 +35,24 @@ import java.util.ArrayList;
 
 public class APIMain extends AppCompatActivity {
 
-    public static final String NAME= "name";
+    public static String NAME= "name";
 
-    DrawerLayout drawerLayout;
     Toolbar toolbar;
+    DrawerLayout drawerLayout;
     ActionBar actionBar;
     TextView nameCompany;
     ListView listContainerCompany;
     ArrayList<Container> arrayList = new ArrayList<>();
     Container container;
-    Button btCambiar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_establisment);
 
-        String empresa = (String)getIntent().getExtras().get(NAME);
-
-        btCambiar = (Button) findViewById(R.id.btCambiar);
+        String fundacion = (String)getIntent().getExtras().get(NAME);
+        toolbar = (Toolbar) findViewById(R.id.toolbar_es);
+        setSupportActionBar(toolbar);
 
         listContainerCompany = (ListView) findViewById(R.id.list_view_solicitudes);
 
@@ -58,29 +60,26 @@ public class APIMain extends AppCompatActivity {
         SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
 
         //Implementar API Aqui!!
-        Cursor cursor = db.query("CONTAINER", new String[]{"NAME_CONTAINER", "LATLONG", "COMPANY", "ESTADO", "WASTE", "ACTIVO" }, "ESTABLISHMENT = ? AND ACTIVO = ? AND ESTADO != ?" , new String[]{empresa,"INACTIVO","Congelado"}, null, null, null);
+        Cursor cursor = db.query("CONTAINER", new String[]{"NAME_CONTAINER", "LATLONG", "COMPANY", "ESTADO", "WASTE", "ACTIVO"}, "ESTABLISHMENT = ? AND ACTIVO = ?", new String[]{fundacion,"ACTIVO" }, null, null, null);
 
         if(cursor.moveToFirst()){
             do {
-                container = new Container(cursor.getString(0), cursor.getString(1),empresa,cursor.getString(2) , cursor.getString(3), cursor.getString(4),cursor.getString(5));
+                container = new Container(cursor.getString(0), cursor.getString(1),fundacion,cursor.getString(2) , cursor.getString(3), cursor.getString(4),cursor.getString(5));
                 arrayList.add(container);
             }while (cursor.moveToNext()) ;
         }
-        APIAdapterEst adapter = new APIAdapterEst(this, arrayList);
+        APIAdapterContEst adapter = new APIAdapterContEst(this, arrayList);
         adapter.notifyDataSetChanged();
         listContainerCompany.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
-
-        nameCompany = (TextView) findViewById(R.id.nameCompany);
-        nameCompany.setText(empresa);
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar_es);
-        setSupportActionBar(toolbar);
-
         actionBar = getSupportActionBar();
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+
+        nameCompany = (TextView) findViewById(R.id.nameCompany);
+        nameCompany.setText(fundacion);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.navigation_drawer_layout_es);
 

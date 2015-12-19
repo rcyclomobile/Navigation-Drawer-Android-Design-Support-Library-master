@@ -23,7 +23,7 @@
             android:background="?colorPrimaryDark"/>
 
         <TextView
-            android:text="Mis Solicitudes"
+            android:text="Mis Contenedores"
             android:textSize="25dp"
             android:gravity="center"
             android:layout_marginTop="75dp"
@@ -34,7 +34,7 @@
             android:id="@+id/list_view_solicitudes"
             android:layout_width="match_parent"
             android:layout_marginTop="25dp"
-            tools:listitem="@layout/item_list_establishment"
+            tools:listitem="@layout/item_list"
             android:layout_height="wrap_content">
         </ListView>
 

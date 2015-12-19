@@ -23,7 +23,7 @@
             android:background="?colorPrimaryDark"/>
 
         <TextView
-            android:text="Mis Solicitudes"
+            android:text="Mis Contenedores"
             android:textSize="25dp"
             android:gravity="center"
             android:layout_marginTop="75dp"
@@ -34,7 +34,7 @@
             android:id="@+id/list_view_solicitudes"
             android:layout_width="match_parent"
             android:layout_marginTop="25dp"
-            tools:listitem="@layout/item_list_establishment"
+            tools:listitem="@layout/item_list"
             android:layout_height="wrap_content">
         </ListView>
 
@@ -72,4 +72,4 @@
         app:theme="@style/NavigationViewTheme"     />
 
 </android.support.v4.widget.DrawerLayout>
-<!-- From: file:/C:/Users/Carlos/AndroidStudioProjects/CARLOS/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/layout/activity_main_establisment.xml -->
+<!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/layout/activity_main_establisment.xml -->
