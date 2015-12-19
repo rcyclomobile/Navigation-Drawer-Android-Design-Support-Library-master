@@ -28,7 +28,7 @@ import java.util.regex.Pattern;
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
 
-public class APIEditProfile extends AppCompatActivity {
+public class APIEditEmail extends AppCompatActivity {
 
     Toolbar toolbar;
     String emailCompany,phoneCompany,addressCompany;
@@ -43,11 +43,9 @@ public class APIEditProfile extends AppCompatActivity {
         String empresa = (String)getIntent().getExtras().get(NAME);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        Date date = new Date();
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        
         TypedValue typedValueColorPrimaryDark = new TypedValue();
-        APIEditProfile.this.getTheme().resolveAttribute(R.attr.colorPrimaryDark, typedValueColorPrimaryDark, true);
+        APIEditEmail.this.getTheme().resolveAttribute(R.attr.colorPrimaryDark, typedValueColorPrimaryDark, true);
         final int colorPrimaryDark = typedValueColorPrimaryDark.data;
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setStatusBarColor(colorPrimaryDark);
@@ -66,13 +64,8 @@ public class APIEditProfile extends AppCompatActivity {
                 addressCompany = cursor.getString(2);
             }while (cursor.moveToNext()) ;
         }
-
         nombreHeaderCo = (TextView) findViewById(R.id.nombreHeaderCo);
-
-
         nombreHeaderCo.setText(empresa);
-
-
     }
 
     @Override

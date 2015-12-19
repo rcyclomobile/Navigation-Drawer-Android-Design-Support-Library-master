@@ -62,13 +62,11 @@ public class APISettings extends AppCompatActivity {
             } while (cursor.moveToNext());
         }
 
-        nameCo = (TextView) findViewById(R.id.nameCo);
         emailCo = (TextView) findViewById(R.id.emailCo);
         phoneCo = (TextView) findViewById(R.id.phoneCo);
         adressCo = (TextView) findViewById(R.id.adressCo);
         nombreHeaderCo = (TextView) findViewById(R.id.nombreHeaderCo);
         correoHeaderCo = (TextView) findViewById(R.id.correoHeaderCo);
-        fechaHeaderCo = (TextView) findViewById(R.id.fechaHeaderCo);
         phoneHeaderCo = (TextView) findViewById(R.id.phoneHeaderCo);
         passwordCo = (TextView) findViewById(R.id.passwordCo);
 
@@ -105,8 +103,8 @@ public class APISettings extends AppCompatActivity {
 
     public void editar_perfil(View view){
         String empresa = (String)getIntent().getExtras().get(NAME);
-        Intent intent = new Intent(this, APIEditProfile.class);
-        intent.putExtra(APIEditProfile.NAME, empresa);
+        Intent intent = new Intent(this, APIEditEmail.class);
+        intent.putExtra(APIEditEmail.NAME, empresa);
 
         startActivity(intent);
         finish();

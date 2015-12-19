@@ -5,11 +5,11 @@
         <item
             android:checked="true"
             android:id="@+id/item_navigation_drawer_inbox_es"
-            android:icon="@drawable/ic_action_action_delete"
-            android:title="Contenedores Disponibles" />
+            android:icon="@drawable/ic_action_content_inbox"
+            android:title="Solicitudes pendientes" />
         <item
             android:id="@+id/item_navigation_drawer_starred_es"
-            android:icon="@drawable/ic_action_action_deleteee"
+            android:icon="@drawable/ic_action_action_delete"
             android:title="Eliminar contenedores" />
         <item
             android:id="@+id/item_navigation_drawer_sent_mail_es"
@@ -34,4 +34,4 @@
         </menu>
     </item>
 
-</menu><!-- From: file:/C:/Users/Carlos/AndroidStudioProjects/CARLOS/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/menu/navigation_drawer_menu_establishment.xml -->
+</menu><!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/menu/navigation_drawer_menu_establishment.xml -->

@@ -1,155 +1,164 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#e0e0e0">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/status_bar_kitkat_height"
-        android:background="?colorPrimary"/>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginTop="50dp"
-        android:scaleType="centerCrop"
-        android:background="@drawable/green" />
-
-    <TextView
-        android:id="@+id/nombreHeaderCo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:textColor="@color/md_white_1000"
-        android:layout_marginTop="200dp"
-        android:layout_gravity="center_horizontal"
-        android:text="Nombre" />
-
-    <TextView
-        android:id="@+id/correoHeaderCo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="17dp"
-        android:textColor="@color/md_white_1000"
-        android:layout_marginTop="230dp"
-        android:layout_gravity="center_horizontal"
-        android:text="Correo" />
-
-    <TextView
-        android:id="@+id/fechaHeaderCo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="17dp"
-        android:textColor="@color/md_white_1000"
-        android:layout_marginTop="250dp"
-        android:layout_gravity="center_horizontal"
-        android:text="Fecha" />
 
     <android.support.v7.widget.Toolbar
         android:layout_marginTop="@dimen/status_bar_margin_top"
         android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
+        android:layout_width="match_parent" android:layout_height="?actionBarSize"
         android:background="#2FCD81"
         android:elevation="4dp"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:theme="@style/ToolbarTheme" />
+        app:theme="@style/ToolbarTheme"
+        android:layout_gravity="center_horizontal|top" />
+
+    <RelativeLayout
+        android:layout_width="match_parent" android:layout_height="200dp"
+        android:background="@drawable/green9"
+        android:orientation="vertical"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:id="@+id/nombreHeaderCo"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:layout_above="@+id/correoHeaderCo"
+
+            android:gravity="center_horizontal"
+            android:textSize="26dp"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:text="Nombre"   />
+
+        <TextView
+            android:id="@+id/correoHeaderCo"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:layout_above="@+id/phoneHeaderCo"
+
+            android:gravity="center_horizontal"
+            android:textSize="22dp"
+            android:textColor="#fff"
+            android:text="Correo" />
+
+        <TextView
+            android:id="@+id/phoneHeaderCo"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:layout_above="@+id/adressCo"
+
+            android:gravity="center_horizontal"
+            android:textSize="20dp"
+            android:textColor="#fff"
+            android:text="telefono"
+            />
+
+        <TextView
+            android:id="@+id/adressCo"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_alignParentBottom="true"
+
+            android:gravity="center_horizontal"
+            android:textSize="20dp"
+            android:textColor="#fff"
+            android:text="direccion"
+            />
+    </RelativeLayout>
 
 
     <GridLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:rowCount="2"
-        android:columnCount="2"
-        android:layout_marginTop="310dp"
-        android:orientation="horizontal" >
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:rowCount="3" android:columnCount="3"
+        android:background="#fff"
+        android:layout_margin="10dp"
+        android:padding="18dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:layout_gravity="fill_horizontal"
-            android:text="Nombre" />
-        <TextView
-            android:layout_gravity="right"
-            android:textSize="20dp"
-            android:id="@+id/nameCo"
-            android:text="nombre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <ImageView
 
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_row="0" android:layout_column="0"
+            android:src="@drawable/email" />
         <TextView
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_gravity="fill_horizontal"
-            android:text="Email" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textSize="20dp"
+
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_row="0" android:layout_column="1"
+            android:layout_gravity="center_vertical|right"
+            android:textSize="12dp"
+            android:text="Cambiar Correo electronico" />
+        <Button
             android:id="@+id/emailCo"
-            android:layout_gravity="right"
-            android:text="Email" />
-        <TextView
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_gravity="fill_horizontal"
-            android:text="Teléfono" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:id="@+id/phoneCo"
-            android:textSize="20dp"
-            android:layout_gravity="right"
-            android:text="telefono" />
-
-        <TextView
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_gravity="fill_horizontal"
-            android:text="Dirección" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:id="@+id/adressCo"
-            android:textSize="20dp"
-            android:layout_gravity="right"
-            android:text="direccion" />
-
-        <TextView
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_gravity="fill_horizontal"
-            android:text="Contraseña"
+            android:layout_width="wrap_content" android:layout_height="30dp"
+            android:layout_gravity="center_vertical|right"
+            android:layout_row="0" android:layout_column="2"
+            android:textColor="#ffffff"
+            android:background="#2FCD81"
+            android:textSize="12sp"
+            android:text="cambiar"
             />
+
+
+        <ImageView
+
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_row="1" android:layout_column="0"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/phone" />
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_row="1" android:layout_column="1"
+            android:layout_gravity="center|left"
+
+            android:textSize="12dp"
+            android:text="Cambiar Telefono" />
+        <Button
+            android:id="@+id/phoneCo"
+            android:layout_width="wrap_content" android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center_vertical|right"
+            android:layout_row="1" android:layout_column="2"
+            android:textColor="#ffffff"
+            android:background="#2FCD81"
+            android:text="cambiar"
+            />
+
+        <ImageView
+
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_row="2" android:layout_column="0"
+            android:src="@drawable/password" />
+        <TextView
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_row="2" android:layout_column="1"
+            android:layout_gravity="center|left"
+            android:textSize="12dp"
+            android:text="Cambiar Contrasenna"  />
+
+        <Button
             android:id="@+id/passwordCo"
-            android:textSize="20dp"
-            android:inputType="textPassword"
-            android:layout_gravity="right"
-            android:text="telefono" />
+            android:layout_width="wrap_content" android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center_vertical|right"
+            android:layout_row="2" android:layout_column="2"
+            android:textColor="#ffffff"
+            android:background="#2FCD81"
+            android:text="cambiar"
+            />
+
 
     </GridLayout>
+
+
 
     <Button
         android:id="@+id/txtEditarPerfil"
@@ -181,5 +190,5 @@
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
 
-</FrameLayout>
-<!-- From: file:/C:/Users/Carlos/AndroidStudioProjects/CARLOS/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/layout/activity_settings.xml -->
+</LinearLayout>
+<!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/layout/activity_settings.xml -->
