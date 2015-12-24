@@ -36,8 +36,6 @@ import java.util.ArrayList;
 
 public class APIMain extends AppCompatActivity {
 
-    public static final String EMPRESA= "empresa";
-
     DrawerLayout drawerLayout;
     Toolbar toolbar;
     ActionBar actionBar;
@@ -52,7 +50,7 @@ public class APIMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String empresa = (String)getIntent().getExtras().get(EMPRESA);
+        String empresa = "jumbo";
 
         btCambiar = (Button) findViewById(R.id.btCambiar);
 
@@ -138,7 +136,7 @@ public class APIMain extends AppCompatActivity {
     public void borrar(){
         SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(this);
         SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
-        String nameCompany      = (String) getIntent().getExtras().get(EMPRESA);
+        String nameCompany      = "jumbo";
 
         ContentValues companyValues = new ContentValues();
 
@@ -163,7 +161,7 @@ public class APIMain extends AppCompatActivity {
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        String empresa = (String) getIntent().getExtras().get(EMPRESA);
+                        String empresa = "jumbo";
                         switch (menuItem.getItemId()) {
                             case R.id.item_navigation_drawer_inbox:
                                 menuItem.setChecked(true);

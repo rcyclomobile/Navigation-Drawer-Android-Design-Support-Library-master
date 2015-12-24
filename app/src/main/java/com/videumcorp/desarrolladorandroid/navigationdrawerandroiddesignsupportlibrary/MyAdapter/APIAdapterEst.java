@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIAvailableCont;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIMain;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.DataBase.RcycloDatabaseHelper;
@@ -95,7 +96,7 @@ public class APIAdapterEst extends ArrayAdapter<Container> {
                                 db.update("CONTAINER", containerValues, "NAME_CONTAINER = ? AND COMPANY = ?", new String[]{itemsArrayList.get(position).getNameContainer(), itemsArrayList.get(position).getCompany()});
                                 db.close();
                                 itemsArrayList.remove(itemsArrayList.get(position));
-                                APIMain activity = (APIMain)context;
+                                APIAvailableCont activity = (APIAvailableCont)context;
                                 activity.finish();
                                 activity.startActivity(activity.getIntent());
 

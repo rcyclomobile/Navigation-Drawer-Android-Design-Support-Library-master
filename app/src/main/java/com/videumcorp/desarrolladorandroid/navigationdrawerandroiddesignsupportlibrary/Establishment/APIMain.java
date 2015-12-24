@@ -69,7 +69,6 @@ public class APIMain extends AppCompatActivity {
             }while (cursor.moveToNext()) ;
         }
         APIAdapterContEst adapter = new APIAdapterContEst(this, arrayList);
-        adapter.notifyDataSetChanged();
         listContainerCompany.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 

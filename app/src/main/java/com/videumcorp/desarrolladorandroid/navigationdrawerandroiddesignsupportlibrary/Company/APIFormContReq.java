@@ -76,7 +76,6 @@ public class APIFormContReq extends AppCompatActivity {
                     Toast toast = Toast.makeText(getApplicationContext(), "Su solicitud ha sido enviada.", Toast.LENGTH_SHORT);
                     toast.show();
                     Intent intent = new Intent().setClass(APIFormContReq.this, APIMain.class);
-                    intent.putExtra(APIMain.EMPRESA, empresa);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     startActivity(intent);
 

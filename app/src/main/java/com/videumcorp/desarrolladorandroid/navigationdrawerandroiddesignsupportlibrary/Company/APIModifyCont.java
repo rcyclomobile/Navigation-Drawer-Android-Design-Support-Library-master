@@ -96,7 +96,6 @@ public class APIModifyCont extends Activity {
         db.update("CONTAINER", containerValues, "NAME_CONTAINER = ? AND COMPANY = ?", new String[]{nameContainer, nameCompany});
 
         Intent intent = new Intent(this, APIMain.class);
-        intent.putExtra(APIMain.EMPRESA, nameCompany);
         startActivity(intent);
         finish();
     }

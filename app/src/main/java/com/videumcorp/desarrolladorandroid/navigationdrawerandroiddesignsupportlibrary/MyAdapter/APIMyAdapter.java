@@ -122,19 +122,7 @@ public class APIMyAdapter extends ArrayAdapter<Container> {
 
                 final String nameContainer        = itemsArrayList.get(position).getNameContainer();
                 final String nameCompany          = itemsArrayList.get(position).getCompany();
-                String nameEstablishment    = itemsArrayList.get(position).getEstablishment();
                 String estado               = itemsArrayList.get(position).getStatus();
-                String waste                = itemsArrayList.get(position).getDesecho();
-
-                TextView tvNameContainer     = (TextView) dialoglayout.findViewById(R.id.nombre_contenedor);
-                TextView tvNameEstablishment = (TextView) dialoglayout.findViewById(R.id.fundacion);
-                TextView tvEstado            = (TextView) dialoglayout.findViewById(R.id.estado);
-                TextView tvWaste             = (TextView) dialoglayout.findViewById(R.id.tipo_desecho);
-
-                tvNameContainer.setText(nameContainer);
-                tvNameEstablishment.setText(nameEstablishment);
-                tvEstado.setText(estado);
-                tvWaste.setText(waste);
 
                 if("Vacio".equals(estado) ){
                     rbVacio.setChecked(true);        }

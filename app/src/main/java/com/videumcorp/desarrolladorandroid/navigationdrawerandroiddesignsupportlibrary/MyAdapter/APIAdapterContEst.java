@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIAvailableCont;
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIMain;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.NewDirection;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.DataBase.RcycloDatabaseHelper;
@@ -211,7 +212,7 @@ public class APIAdapterContEst extends ArrayAdapter<Container> {
                             db.update("CONTAINER", containerValues, "NAME_CONTAINER = ? AND COMPANY = ?", new String[]{nameContainer, nameCompany});
                             Toast.makeText(v.getContext(), "El estado del contenedor ha sido cambiado.",
                                     Toast.LENGTH_SHORT).show();
-                            APIAvailableCont activity = (APIAvailableCont) context;
+                            APIMain activity = (APIMain) context;
                             activity.finish();
                             activity.startActivity(activity.getIntent());
                         }
