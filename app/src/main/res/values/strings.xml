@@ -38,5 +38,6 @@
     <string name="title_activity_new_direction">Map</string>
     <string name="title_activity_edit_phone">EditPhoneActivity</string>
     <string name="title_activity_apiselect_esta">APISelectEsta</string>
+    <string name="title_activity_wait_cont">WaitCont</string>
 
 </resources>

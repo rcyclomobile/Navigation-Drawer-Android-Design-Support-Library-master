@@ -25,17 +25,17 @@ public class APIChangePass extends AppCompatActivity {
 
     Toolbar toolbar;
     String emailCompany,phoneCompany,addressCompany;
-    public static final String EMPRESA= "empresa";
+    public static final String COMPANY= "empresa";
     TextView nombreHeaderCo, correoHeaderCo, fechaHeaderCo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
-        String empresa = (String)getIntent().getExtras().get(EMPRESA);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Date date = new Date();
+        String Company = (String) getIntent().getExtras().get(COMPANY);
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         TypedValue typedValueColorPrimaryDark = new TypedValue();
         APIChangePass.this.getTheme().resolveAttribute(R.attr.colorPrimaryDark, typedValueColorPrimaryDark, true);
@@ -49,7 +49,7 @@ public class APIChangePass extends AppCompatActivity {
         SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
 
         //Implementar API Aqui!!
-        Cursor cursor = db.query("COMPANY", new String[]{"EMAIL", "PHONE", "ADDRESS" }, "NAME = ? AND ACTIVO = ?", new String[]{empresa, "ACTIVO"}, null, null, null);
+        Cursor cursor = db.query("COMPANY", new String[]{"EMAIL", "PHONE", "ADDRESS" }, "NAME = ? AND ACTIVO = ?", new String[]{Company, "ACTIVO"}, null, null, null);
 
         if(cursor.moveToFirst()){
             do {
@@ -62,7 +62,7 @@ public class APIChangePass extends AppCompatActivity {
         nombreHeaderCo = (TextView) findViewById(R.id.nombreHeaderCo);
         correoHeaderCo = (TextView) findViewById(R.id.correoHeaderCo);
 
-        nombreHeaderCo.setText(empresa);
+        nombreHeaderCo.setText(Company);
         correoHeaderCo.setText(emailCompany);
         fechaHeaderCo.setText(dateFormat.format(date));
 
@@ -86,7 +86,7 @@ public class APIChangePass extends AppCompatActivity {
         }
 
         else {
-            String empresa = (String)getIntent().getExtras().get(EMPRESA);
+            String empresa = "jumbo";
             SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(this);
             SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
             ContentValues companyValues = new ContentValues();
@@ -95,8 +95,7 @@ public class APIChangePass extends AppCompatActivity {
             //Implementar API Aqui!!
             db.update("COMPANY", companyValues, "NAME = ? ", new String[]{empresa});
 
-            Intent intent = new Intent(this, APISettings.class);
-            intent.putExtra(APISettings.EMPRESA, empresa);
+            Intent intent = new Intent(this, Settings.class);
             startActivity(intent);
             finish();
         }

@@ -9,8 +9,8 @@
             android:title="Solicitar contenedor" />
         <item
             android:id="@+id/item_navigation_drawer_starred"
-            android:icon="@drawable/ic_action_toggle_star"
-            android:title="Contenedores Llenos" />
+            android:icon="@drawable/ic_action_action_delete"
+            android:title="Contenedores en espera" />
         <item
             android:id="@+id/item_navigation_drawer_sent_mail"
             android:icon="@drawable/ic_action_content_send"

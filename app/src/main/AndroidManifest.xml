@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Company.APISettings"
+            android:name=".Company.Settings"
             android:label="Mi Perfil"
             android:parentActivityName=".Company.APILogin" >
         </activity>
@@ -140,8 +140,13 @@
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name=".Company.APIEditPhone"
+            android:name=".Company.APIEditAddress"
             android:label="@string/title_activity_edit_phone"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
+            android:name=".Company.WaitCont"
+            android:label="En espera"
             android:theme="@style/AppTheme" >
         </activity>
     </application>

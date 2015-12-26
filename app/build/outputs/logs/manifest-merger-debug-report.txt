@@ -310,7 +310,7 @@ ADDED from AndroidManifest.xml:137:9
 		ADDED from AndroidManifest.xml:140:13
 	android:name
 		ADDED from AndroidManifest.xml:138:13
-activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIEditPhone
+activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIEditAddress
 ADDED from AndroidManifest.xml:142:9
 	android:label
 		ADDED from AndroidManifest.xml:144:13
@@ -318,6 +318,14 @@ ADDED from AndroidManifest.xml:142:9
 		ADDED from AndroidManifest.xml:145:13
 	android:name
 		ADDED from AndroidManifest.xml:143:13
+activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.WaitCont
+ADDED from AndroidManifest.xml:147:9
+	android:label
+		ADDED from AndroidManifest.xml:149:13
+	android:theme
+		ADDED from AndroidManifest.xml:150:13
+	android:name
+		ADDED from AndroidManifest.xml:148:13
 uses-sdk
 INJECTED from AndroidManifest.xml:0:0 reason: use-sdk injection requested
 MERGED from com.android.support:appcompat-v7:22.2.1:20:5

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_marginTop="25dp"
+    >
+
+
+    <TextView
+        android:id="@+id/ContainerName"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:layout_marginRight="10dp"
+        android:text="Nombre Contenedor"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="120dp"
+        />
+
+
+<ImageButton
+    android:id="@+id/move_poster"
+    android:layout_width="100dp"
+    android:layout_height="75dp"
+    android:background="@null"
+    android:layout_marginTop="25dp"
+    android:layout_marginLeft="135dp"
+    />
+
+    <TextView
+        android:id="@+id/ContainerStatus"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:text="Ver Contenedor"
+        android:layout_marginTop="100dp"
+        android:gravity="center"
+        android:layout_marginLeft="135dp"
+        />
+
+
+
+<View
+    android:layout_marginTop="25dp"
+    android:layout_width="match_parent"
+    android:layout_height="20dp"
+    android:background="#FFFFFF"
+    android:layout_below="@+id/move_poster">
+</View>
+
+</RelativeLayout>

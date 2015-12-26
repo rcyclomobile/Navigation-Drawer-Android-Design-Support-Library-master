@@ -5,9 +5,9 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -32,6 +32,16 @@ import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportl
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.DataBase.RcycloDatabaseHelper;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class APIMain extends AppCompatActivity {
@@ -45,59 +55,30 @@ public class APIMain extends AppCompatActivity {
     Container container;
     Button btCambiar;
 
+    private String access_token;
+    private String client;
+    private String uid;
+    private String Company;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String empresa = "jumbo";
-
         btCambiar = (Button) findViewById(R.id.btCambiar);
 
-        listContainerCompany = (ListView) findViewById(R.id.list_view_containers);
+        Intent intent = getIntent();
 
+        access_token = intent.getStringExtra("access-token");
+        client = intent.getStringExtra("client");
+        uid = intent.getStringExtra("uid");
+        Company = intent.getStringExtra("name");
 
-        SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(this);
-        SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
-
-        //Implementar API Aqui!!
-        Cursor cursor = db.query("CONTAINER", new String[]{"NAME_CONTAINER", "LATLONG", "ESTABLISHMENT", "ESTADO", "WASTE" }, "COMPANY = ? AND ACTIVO = ?", new String[]{empresa, "ACTIVO"}, null, null, null);
-
-        if(cursor.moveToFirst()){
-            do {
-                container = new Container(cursor.getString(0), cursor.getString(1), cursor.getString(2),empresa , cursor.getString(3), cursor.getString(4),"ACTIVO");
-                arrayList.add(container);
-                }while (cursor.moveToNext()) ;
-        }
-
-        if(arrayList.isEmpty()){
-            setContentView(R.layout.activity_main_empty);
-            Context context = getApplicationContext();
-            CharSequence text = "¿Deseas agregar un contenedor? Puedes hacerlo desde aqui!";
-            int duration = Toast.LENGTH_SHORT;
-
-            LayoutInflater inflater = getLayoutInflater();
-            View layout = inflater.inflate(R.layout.toast_layout,
-                    (ViewGroup) findViewById(R.id.toast_layout_root));
-
-            TextView textToast = (TextView) layout.findViewById(R.id.text_toast);
-            textToast.setText(text);
-
-            Toast toast = new Toast(context);
-            toast.setDuration(duration);
-            toast.setView(layout);
-            toast.setGravity(Gravity.TOP|Gravity.LEFT, 150, 0);
-            toast.show();
-        }
-        else{
-            APIMyAdapter adapter = new APIMyAdapter(this, arrayList);
-            adapter.notifyDataSetChanged();
-            listContainerCompany.setAdapter(adapter);
-
-        }
+        GetContainers g = new GetContainers();
+        g.execute();
 
         nameCompany = (TextView) findViewById(R.id.nameCompany);
-        nameCompany.setText(empresa);
+        nameCompany.setText(Company);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -133,22 +114,138 @@ public class APIMain extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    //API
+    public class GetContainers extends AsyncTask<URL, String, String> {
+
+
+        public String name;
+        @Override
+        protected String doInBackground(URL... params) {
+
+            listContainerCompany = (ListView) findViewById(R.id.list_view_containers);
+
+            try {
+                URL url = new URL("https://api-rcyclo.herokuapp.com/companies/containers");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+                conn.setRequestProperty("access-token", access_token);
+                conn.setRequestProperty("client", client);
+                conn.setRequestProperty("uid", uid);
+
+                try {
+                    BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    StringBuilder sb = new StringBuilder();
+
+                    String line;
+
+                    while ((line = in.readLine()) != null) {
+                        sb.append(line + "\n");
+                    }
+
+                    in.close();
+
+                    int largo = sb.toString().length();
+                    String sb1 = sb.toString().substring(19, largo - 64);
+
+                    JSONObject mJsonObject = new JSONObject(sb.toString());
+
+                    //String aid = mJsonObject2.getString("id");
+                    //String name = mJsonObject.getString("name");
+                    //String email = mJsonObject.getString("email");
+                    //String aaddress = mJsonObject.getString("address");
+
+                    JSONArray mJsonArrayProperty = mJsonObject.getJSONArray("containers");
+                    for (int i = 0; i < mJsonArrayProperty.length(); i++) {
+                        JSONObject mJsonObjectProperty = mJsonArrayProperty.getJSONObject(i);
+
+                        String[] parts = mJsonObjectProperty.getString("title").split("-");
+                        String establishment = parts[0];
+                        String waste = parts[1];
+
+                        container = new Container(mJsonObjectProperty.getString("id"),
+                                                  mJsonObjectProperty.getString("title"),
+                                                  mJsonObjectProperty.getString("address"),
+                                                  establishment,
+                                                  name ,
+                                                  mJsonObjectProperty.getString("status_id"),
+                                                  waste,
+                                                  mJsonObjectProperty.getString("active"),
+                                                  mJsonObjectProperty.getString("description"));
+
+                        arrayList.add(container);
+                    }
+
+                    return "success";
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return "failed";
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            if(result.equals("success")) {
+                if (arrayList.isEmpty()) {
+                    setContentView(R.layout.activity_main_empty);
+                    Context context = getApplicationContext();
+                    CharSequence text = "¿Deseas agregar un contenedor? Puedes hacerlo desde aqui!";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    LayoutInflater inflater = getLayoutInflater();
+                    View layout = inflater.inflate(R.layout.toast_layout,
+                            (ViewGroup) findViewById(R.id.toast_layout_root));
+
+                    TextView textToast = (TextView) layout.findViewById(R.id.text_toast);
+                    textToast.setText(text);
+
+                    Toast toast = new Toast(context);
+                    toast.setDuration(duration);
+                    toast.setView(layout);
+                    toast.setGravity(Gravity.TOP | Gravity.LEFT, 150, 0);
+                    toast.show();
+                } else {
+                    APIMyAdapter adapter = new APIMyAdapter(APIMain.this, arrayList);
+                    adapter.notifyDataSetChanged();
+                    listContainerCompany.setAdapter(adapter);
+                }
+            }
+            else{
+                Toast toast1 =
+                        Toast.makeText(getApplicationContext(),
+                                "No hay conexion a internet.", Toast.LENGTH_SHORT);
+
+                toast1.show();
+            }
+
+        }
+    }
+
+
+
     public void borrar(){
+        //FALTA API AQUI
         SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(this);
         SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
-        String nameCompany      = "jumbo";
 
         ContentValues companyValues = new ContentValues();
 
         companyValues.put("ACTIVO", "INNACTIVO");
 
-        db.update("COMPANY", companyValues, "NAME = ?", new String[]{nameCompany});
+        db.update("COMPANY", companyValues, "NAME = ?", new String[]{Company});
 
         ContentValues containerValues = new ContentValues();
 
         containerValues.put("ESTADO", "Congelado");
 
-        db.update("CONTAINER", containerValues, "COMPANY = ?", new String[]{nameCompany});
+        db.update("CONTAINER", containerValues, "COMPANY = ?", new String[]{Company});
 
         Intent intent = new Intent(APIMain.this, APILogin.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -161,18 +258,24 @@ public class APIMain extends AppCompatActivity {
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        String empresa = "jumbo";
                         switch (menuItem.getItemId()) {
                             case R.id.item_navigation_drawer_inbox:
                                 menuItem.setChecked(true);
                                 drawerLayout.closeDrawer(GravityCompat.START);
                                 Intent intent = new Intent(APIMain.this, SelectWaste.class);
-                                intent.putExtra(SelectWaste.EMPRESA, empresa);
+                                intent.putExtra(SelectWaste.EMPRESA, Company);
                                 startActivity(intent);
                                 return true;
                             case R.id.item_navigation_drawer_starred:
                                 menuItem.setChecked(true);
                                 drawerLayout.closeDrawer(GravityCompat.START);
+                                intent = new Intent(APIMain.this, WaitCont.class);
+                                intent.putExtra("access-token", access_token);
+                                intent.putExtra("client", client);
+                                intent.putExtra("uid", uid);
+                                intent.putExtra("name", Company);
+
+                                startActivity(intent);
                                 return true;
                             case R.id.item_navigation_drawer_sent_mail:
                                 menuItem.setChecked(true);
@@ -206,8 +309,11 @@ public class APIMain extends AppCompatActivity {
                             case R.id.item_navigation_drawer_settings:
                                 menuItem.setChecked(true);
                                 drawerLayout.closeDrawer(GravityCompat.START);
-                                intent = new Intent(APIMain.this, APISettings.class);
-                                intent.putExtra(APISettings.EMPRESA, empresa);
+                                intent = new Intent(APIMain.this, Settings.class);
+                                intent.putExtra("access-token", access_token);
+                                intent.putExtra("client", client);
+                                intent.putExtra("uid", uid);
+                                intent.putExtra("name",Company);
                                 startActivity(intent);
                                 return true;
                             case R.id.item_navigation_drawer_help_and_feedback:

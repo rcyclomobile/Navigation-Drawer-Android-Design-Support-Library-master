@@ -1157,6 +1157,7 @@
     <string name="title_activity_settings_establishment">SettingsEstablishmentActivity</string>
     <string name="title_activity_solicitud_pendiente">SolicitudPendiente</string>
     <string name="title_activity_top_level">TopLevelActivity</string>
+    <string name="title_activity_wait_cont">WaitCont</string>
     <!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/8.3.0/res/values/wallet_strings.xml -->
     <eat-comment/>
     <string name="wallet_buy_button_place_holder">Buy with Google</string>

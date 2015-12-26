@@ -64,7 +64,7 @@ public class APIMain extends AppCompatActivity {
 
         if(cursor.moveToFirst()){
             do {
-                container = new Container(cursor.getString(0), cursor.getString(1),fundacion,cursor.getString(2) , cursor.getString(3), cursor.getString(4),cursor.getString(5));
+                container = new Container(cursor.getString(0), cursor.getString(1),fundacion,cursor.getString(2) , cursor.getString(3), cursor.getString(4),cursor.getString(5),"asdf","asdf");
                 arrayList.add(container);
             }while (cursor.moveToNext()) ;
         }

@@ -211,6 +211,7 @@ public class APILogin extends Activity {
                         intent.putExtra("access-token", access_token);
                         intent.putExtra("client", client);
                         intent.putExtra("uid", uid);
+                        intent.putExtra("name",name);
 
                         startActivity(intent);
                     }

@@ -22,7 +22,7 @@ public class APIFormContReq extends AppCompatActivity {
 
     public static final String WASTE = "waste";
     public static final String FUNDACION = "fundacion";
-    public static final String COORDENADAS = "coordenadas";
+    public static final String ADDRESS = "coordenadas";
     public static final String EMPRESA= "empresa";
     Toolbar toolbar;
 
@@ -41,7 +41,7 @@ public class APIFormContReq extends AppCompatActivity {
 
         String waste       = (String) getIntent().getExtras().get(WASTE);
         String fundacion   = (String) getIntent().getExtras().get(FUNDACION);
-        String coordenadas = (String) getIntent().getExtras().get(COORDENADAS);
+        String coordenadas = (String) getIntent().getExtras().get(ADDRESS);
         String empresa     = (String) getIntent().getExtras().get(EMPRESA);
 
             tvWaste            = (TextView) findViewById(R.id.waste);

@@ -32,14 +32,14 @@ public class APIEditEmail extends AppCompatActivity {
 
         Toolbar toolbar;
         String emailCompany,phoneCompany,addressCompany;
-        public static final String EMPRESA= "empresa";
+        public static final String COMPANY= "empresa";
         TextView nombreHeaderCo, correoHeaderCo, fechaHeaderCo;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_edit_profile);
 
-            String empresa = (String)getIntent().getExtras().get(EMPRESA);
+            String empresa = (String)getIntent().getExtras().get(COMPANY);
             toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
 
@@ -102,7 +102,7 @@ public class APIEditEmail extends AppCompatActivity {
                 if (isEmailUsed(email) && (!email.equals(emailCompany))) {
                     Crouton.makeText(this, "El Email ya existe!!", Style.ALERT).show();
                 } else {
-                    String empresa = (String)getIntent().getExtras().get(EMPRESA);
+                    String empresa = (String)getIntent().getExtras().get(COMPANY);
                     SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(this);
                     SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
                     ContentValues companyValues = new ContentValues();

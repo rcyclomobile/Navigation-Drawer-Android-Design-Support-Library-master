@@ -39,19 +39,19 @@ public class SelectWaste extends AppCompatActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.paper:
-                waste = "papel";
+                waste = "Papel";
                 break;
 
             case R.id.plastic:
-                waste = "plastico";
+                waste = "Plastico";
                 break;
 
             case R.id.glass:
-                waste = "vidrio";
+                waste = "Vidrio";
                 break;
 
             case R.id.tin:
-                waste = "lata";
+                waste = "Lata";
                 break;
         }
         String empresa = (String)getIntent().getExtras().get(EMPRESA);

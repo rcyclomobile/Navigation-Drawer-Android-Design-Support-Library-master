@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIFormContReq;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.SelectLatlong;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
 
@@ -79,14 +80,16 @@ public class APIAdapterSelEst extends ArrayAdapter<Establishment> {
             public void onClick(final View v) {
                 String nombre = itemsArrayList.get(position).getName();
                 String waste = itemsArrayList.get(position).getWaste();
+                String address = itemsArrayList.get(position).getAddress();
                 String empresa = name;
                 //    String fundacion = listView.getItemAtPosition(position).toString();
                 //   String fundacion = Integer.toString(position);
 
-                Intent intent = new Intent(v.getContext(), SelectLatlong.class);
-                intent.putExtra(SelectLatlong.WASTE, waste);
-                intent.putExtra(SelectLatlong.FUNDACION, nombre);
-                intent.putExtra(SelectLatlong.EMPRESA, empresa);
+                Intent intent = new Intent(v.getContext(), APIFormContReq.class);
+                intent.putExtra(APIFormContReq.WASTE, waste);
+                intent.putExtra(APIFormContReq.FUNDACION, nombre);
+                intent.putExtra(APIFormContReq.EMPRESA, empresa);
+                intent.putExtra(APIFormContReq.ADDRESS, address);
 
                 v.getContext().startActivity(intent);
             }

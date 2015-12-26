@@ -62,7 +62,7 @@
                     android:textSize="20dp"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:text="jumbo@gmail.com"/>
+                    android:text="aleccapetillo@gmail.com"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -80,7 +80,7 @@
                     android:textColor="#ffffff"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:text="admin"/>
+                    android:text="Niacaniaca"/>
 
             </android.support.design.widget.TextInputLayout>
 

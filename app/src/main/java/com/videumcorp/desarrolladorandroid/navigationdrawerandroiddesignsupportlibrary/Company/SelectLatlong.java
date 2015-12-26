@@ -129,7 +129,6 @@ public class SelectLatlong extends AppCompatActivity {
                                     intent.putExtra(APIFormContReq.WASTE,waste);
                                     intent.putExtra(APIFormContReq.FUNDACION,fundacion);
                                     intent.putExtra(APIFormContReq.EMPRESA, empresa);
-                                    intent.putExtra(APIFormContReq.COORDENADAS,coordenadas);
                                     startActivity(intent);
 
                                 }
