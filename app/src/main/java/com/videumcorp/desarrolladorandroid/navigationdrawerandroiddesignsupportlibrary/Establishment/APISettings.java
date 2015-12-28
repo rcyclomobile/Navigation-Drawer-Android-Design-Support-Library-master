@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,9 +15,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.*;
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIEditAddress;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.DataBase.RcycloDatabaseHelper;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,7 +39,10 @@ public class APISettings extends AppCompatActivity {
 
     Toolbar toolbar;
     String emailCompany, phoneCompany, addressCompany;
-    public static final String NAME = "fundacion";
+    private String access_token;
+    private String client;
+    private String uid;
+    private String Company;
     TextView nameCo, emailCo, phoneCo, adressCo, nombreHeaderCo, correoHeaderCo, fechaHeaderCo, phoneHeaderCo, passwordCo;
 
     @Override
@@ -35,31 +50,27 @@ public class APISettings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings_establishment);
 
-        String fundacion = (String) getIntent().getExtras().get(NAME);
+        Intent intent = getIntent();
+
+        access_token = intent.getStringExtra("access-token");
+        client = intent.getStringExtra("client");
+        uid = intent.getStringExtra("uid");
+        Company = intent.getStringExtra("name");
+
+        GetContainers g = new GetContainers();
+        g.execute();
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         Date date = new Date();
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
         TypedValue typedValueColorPrimaryDark = new TypedValue();
         APISettings.this.getTheme().resolveAttribute(R.attr.colorPrimaryDark, typedValueColorPrimaryDark, true);
         final int colorPrimaryDark = typedValueColorPrimaryDark.data;
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setStatusBarColor(colorPrimaryDark);
-        }
-
-        SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(this);
-        SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
-
-        //Implementar API Aqui!!
-        Cursor cursor = db.query("ESTABLISHMENT", new String[]{"EMAIL", "PHONE", "ADDRESS"}, "NAME = ? AND ACTIVO = ?", new String[]{fundacion, "ACTIVO"}, null, null, null);
-
-        if (cursor.moveToFirst()) {
-            do {
-                emailCompany = cursor.getString(0);
-                phoneCompany = cursor.getString(1);
-                addressCompany = cursor.getString(2);
-            } while (cursor.moveToNext());
         }
 
         emailCo = (TextView) findViewById(R.id.emailCo);
@@ -70,12 +81,9 @@ public class APISettings extends AppCompatActivity {
         phoneHeaderCo = (TextView) findViewById(R.id.phoneHeaderCo);
         passwordCo = (TextView) findViewById(R.id.passwordCo);
 
-     /*   emailCo.setText(emailCompany);
-        phoneCo.setText(phoneCompany);*/
-        adressCo.setText(addressCompany);
-        nombreHeaderCo.setText(fundacion);
-        correoHeaderCo.setText(emailCompany);
-        phoneHeaderCo.setText(phoneCompany);
+        nombreHeaderCo.setText(Company);
+        phoneHeaderCo.setText(dateFormat.format(date));
+        adressCo.setText("");
 
         emailCo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,45 +95,92 @@ public class APISettings extends AppCompatActivity {
         passwordCo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            editar_contraseña(v);
+                editar_contraseña(v);
             }
         });
 
         phoneCo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editar_telefono(v);
+                editar_direccion(v);
             }
         });
 
     }
 
-
     public void editar_perfil(View view){
-        String empresa = (String)getIntent().getExtras().get(NAME);
-        Intent intent = new Intent(this, APIEditEmail.class);
-        intent.putExtra(APIEditEmail.NAME, empresa);
-
+        Intent intent = new Intent(this, com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIEditEmail.class);
+        intent.putExtra(com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIEditEmail.COMPANY, Company);
         startActivity(intent);
         finish();
     }
 
     public void editar_contraseña(View view){
-        String empresa1 = (String)getIntent().getExtras().get(NAME);
-        Intent intent = new Intent(this, APIChangePass.class);
-        intent.putExtra(APIChangePass.NAME, empresa1);
+        Intent intent = new Intent(this, com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIChangePass.class);
+        intent.putExtra(com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIChangePass.COMPANY, Company);
         startActivity(intent);
         finish();
     }
 
-    public void editar_telefono(View view){
-        String empresa1 = (String)getIntent().getExtras().get(NAME);
-        //cambiar
-        Intent intent = new Intent(this, APIEditPhone.class);
-        intent.putExtra(APIEditPhone.NAME, empresa1);
+    public void editar_direccion(View view){
+        Intent intent = new Intent(this, com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIEditAddress.class);
+        intent.putExtra(APIEditAddress.COMPANY, Company);
         startActivity(intent);
         finish();
     }
+
+    public class GetContainers extends AsyncTask<URL, String, String> {
+
+
+        public String name;
+        @Override
+        protected String doInBackground(URL... params) {
+
+            try {
+                URL url = new URL("https://api-rcyclo.herokuapp.com/establishments/index");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+                conn.setRequestProperty("access-token", access_token);
+                conn.setRequestProperty("client", client);
+                conn.setRequestProperty("uid", uid);
+
+                try {
+                    BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    StringBuilder sb = new StringBuilder();
+
+                    String line;
+
+                    while ((line = in.readLine()) != null) {
+                        sb.append(line + "\n");
+                    }
+
+                    in.close();
+
+                    JSONObject mJsonObject = new JSONObject(sb.toString());
+
+                    String email = mJsonObject.getString("email");
+
+                    return email;
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            correoHeaderCo.setText(result);
+        }
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

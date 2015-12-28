@@ -59,7 +59,6 @@ public class APIAdapterSelEst extends ArrayAdapter<Establishment> {
                     builder.setMessage(
                             "Nombre de la fundacion: " + "\n" + itemsArrayList.get(position).getName() + "\n" +
                                     "\n" + "Ubicacion: " + "\n" + itemsArrayList.get(position).getAddress() + "\n" +
-                                    "\n" + "Telefono: " + "\n" + itemsArrayList.get(position).getPhone() + "\n" +
                                     "\n" + "Correo: " + "\n" + itemsArrayList.get(position).getEmail() + "\n" +
                                     "\n" + "Tipo de desecho: " + "\n" + itemsArrayList.get(position).getWaste() + "\n");
                     builder.setTitle("Datos de la fundacion");
@@ -79,6 +78,7 @@ public class APIAdapterSelEst extends ArrayAdapter<Establishment> {
             @Override
             public void onClick(final View v) {
                 String nombre = itemsArrayList.get(position).getName();
+                String id = itemsArrayList.get(position).getId();
                 String waste = itemsArrayList.get(position).getWaste();
                 String address = itemsArrayList.get(position).getAddress();
                 String empresa = name;
@@ -87,6 +87,7 @@ public class APIAdapterSelEst extends ArrayAdapter<Establishment> {
 
                 Intent intent = new Intent(v.getContext(), APIFormContReq.class);
                 intent.putExtra(APIFormContReq.WASTE, waste);
+                intent.putExtra(APIFormContReq.ESTABLISHMENT_ID, id);
                 intent.putExtra(APIFormContReq.FUNDACION, nombre);
                 intent.putExtra(APIFormContReq.EMPRESA, empresa);
                 intent.putExtra(APIFormContReq.ADDRESS, address);

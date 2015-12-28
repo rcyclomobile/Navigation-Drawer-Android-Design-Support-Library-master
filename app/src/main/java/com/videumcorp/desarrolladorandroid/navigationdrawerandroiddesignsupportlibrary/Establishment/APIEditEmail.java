@@ -111,7 +111,6 @@ public class APIEditEmail extends AppCompatActivity {
                     //Implementar API Aqui!!
                         db.update("ESTABLISHMENT", companyValues, "NAME = ? ", new String[]{empresa});
                         Intent intent = new Intent(this, APISettings.class);
-                        intent.putExtra(APISettings.NAME, empresa);
                         startActivity(intent);
                         finish();
 

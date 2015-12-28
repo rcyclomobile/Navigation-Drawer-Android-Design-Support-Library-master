@@ -23,7 +23,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class APIEditPhone extends AppCompatActivity {
+public class APIEditAddress extends AppCompatActivity {
 
     Toolbar toolbar;
     String emailCompany, phoneCompany, addressCompany;
@@ -42,7 +42,7 @@ public class APIEditPhone extends AppCompatActivity {
         Date date = new Date();
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         TypedValue typedValueColorPrimaryDark = new TypedValue();
-        APIEditPhone.this.getTheme().resolveAttribute(R.attr.colorPrimaryDark, typedValueColorPrimaryDark, true);
+        APIEditAddress.this.getTheme().resolveAttribute(R.attr.colorPrimaryDark, typedValueColorPrimaryDark, true);
         final int colorPrimaryDark = typedValueColorPrimaryDark.data;
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setStatusBarColor(colorPrimaryDark);
@@ -107,7 +107,6 @@ public class APIEditPhone extends AppCompatActivity {
                         companyValues.put("PHONE", phone);
                         db.update("ESTABLISHMENT", companyValues, "NAME = ? ", new String[]{empresa});
                         Intent intent = new Intent(this, APISettings.class);
-                        intent.putExtra(APISettings.NAME, empresa);
                         startActivity(intent);
                         finish();
 

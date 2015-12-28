@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -43,6 +44,8 @@ public class WaitCont extends AppCompatActivity {
     ListView listContainerCompany;
     ArrayList<Container> arrayList = new ArrayList<>();
     Container container;
+    private SwipeRefreshLayout swipeContainer;
+
 
     private String access_token;
     private String client;
@@ -60,8 +63,25 @@ public class WaitCont extends AppCompatActivity {
         uid = intent.getStringExtra("uid");
         Company = intent.getStringExtra("name");
 
-        GetContainers g = new GetContainers();
+        final GetContainers g = new GetContainers();
         g.execute();
+
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        // Setup refresh listener which triggers new data loading
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                arrayList.clear();
+                Intent refresh = new Intent(WaitCont.this, WaitCont.class);
+                refresh.putExtra("access-token", access_token);
+                refresh.putExtra("client", client);
+                refresh.putExtra("uid", uid);
+                refresh.putExtra("name",Company);
+                startActivity(refresh);//Start the same Activity
+                finish(); //finish Activity.
+            }
+        });
+
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -97,6 +117,7 @@ public class WaitCont extends AppCompatActivity {
                     in.close();
 
                     int largo = sb.toString().length();
+
                     String sb1 = sb.toString().substring(19, largo - 64);
 
                     JSONObject mJsonObject = new JSONObject(sb.toString());
@@ -179,6 +200,5 @@ public class WaitCont extends AppCompatActivity {
 
         }
     }
-
 
 }

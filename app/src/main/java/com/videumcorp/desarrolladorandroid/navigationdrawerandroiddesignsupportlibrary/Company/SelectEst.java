@@ -1,32 +1,23 @@
-package com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment;
+package com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.APIAdapterContEst;
-import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.Container;
-import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.APIAdapterDelEst;
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.APIAdapterSelEst;
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.Establishment;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
-import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.DataBase.RcycloDatabaseHelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,12 +31,15 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class APIDeleteCont extends AppCompatActivity {
+public class SelectEst extends AppCompatActivity {
 
+    public static final String WASTE= "waste";
+    ListView listEstablishmentCompany;
+    ArrayList<Establishment> arrayList = new ArrayList<>();
+    Establishment establishment;
     Toolbar toolbar;
-    ListView listContainerCompany;
-    ArrayList<Container> arrayList = new ArrayList<>();
-    Container container;
+    String waste;
+    String estado;
 
     private SwipeRefreshLayout swipeContainer;
 
@@ -57,23 +51,38 @@ public class APIDeleteCont extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_delete_container_establishment);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        TypedValue typedValueColorPrimaryDark = new TypedValue();
-        APIDeleteCont.this.getTheme().resolveAttribute(R.attr.colorPrimaryDark, typedValueColorPrimaryDark, true);
-        final int colorPrimaryDark = typedValueColorPrimaryDark.data;
-        if (Build.VERSION.SDK_INT >= 21) {
-            getWindow().setStatusBarColor(colorPrimaryDark);
-        }
+        setContentView(R.layout.activity_apiselect_esta);
 
         Intent intent = getIntent();
 
+        waste = (String)getIntent().getExtras().get(WASTE);
         access_token = intent.getStringExtra("access-token");
         client = intent.getStringExtra("client");
         uid = intent.getStringExtra("uid");
         Company = intent.getStringExtra("name");
+
+        switch (waste) {
+            case "1":
+                estado = "Papel";
+                break;
+
+            case "2":
+                estado = "Plastico";
+                break;
+
+            case "3":
+                estado = "Vidrio";
+                break;
+
+            case "4":
+                estado = "Lata";
+                break;
+        }
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        listEstablishmentCompany = (ListView) findViewById(R.id.list_view_establishment);
 
         GetContainers g = new GetContainers();
         g.execute();
@@ -84,33 +93,34 @@ public class APIDeleteCont extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 arrayList.clear();
-                Intent refresh = new Intent(APIDeleteCont.this, APIDeleteCont.class);
+                Intent refresh = new Intent(SelectEst.this, SelectEst.class);
                 refresh.putExtra("access-token", access_token);
                 refresh.putExtra("client", client);
                 refresh.putExtra("uid", uid);
-                refresh.putExtra("name", Company);
+                refresh.putExtra("name",Company);
+                refresh.putExtra(SelectEst.WASTE, waste);
+
                 startActivity(refresh);//Start the same Activity
                 finish(); //finish Activity.
             }
         });
-
     }
 
     public class GetContainers extends AsyncTask<URL, String, String> {
+
 
         public String name;
         @Override
         protected String doInBackground(URL... params) {
 
-            listContainerCompany = (ListView) findViewById(R.id.list_view_delete);
-
             try {
-                URL url = new URL("https://api-rcyclo.herokuapp.com/establishments/containers");
+                URL url = new URL("https://api-rcyclo.herokuapp.com/companies/establishments_by_waste_type?waste_type_id="+waste);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
                 conn.setRequestProperty("access-token", access_token);
                 conn.setRequestProperty("client", client);
                 conn.setRequestProperty("uid", uid);
+                conn.setRequestMethod("GET");
 
                 try {
                     BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -134,28 +144,20 @@ public class APIDeleteCont extends AppCompatActivity {
                     //String email = mJsonObject.getString("email");
                     //String aaddress = mJsonObject.getString("address");
 
-                    JSONArray mJsonArrayProperty = mJsonObject.getJSONArray("containers");
+                    JSONArray mJsonArrayProperty = mJsonObject.getJSONArray("establishments");
                     for (int i = 0; i < mJsonArrayProperty.length(); i++) {
                         JSONObject mJsonObjectProperty = mJsonArrayProperty.getJSONObject(i);
 
-                        String[] parts = mJsonObjectProperty.getString("title").split("-");
-                        String establishment = parts[0];
-                        String waste = parts[1];
-                        String[] parts2 = waste.split("\\|");
-                        String empresa = parts2[0];
-                        String desecho = parts2[1];
 
-                        container = new Container(mJsonObjectProperty.getString("id"),
-                                mJsonObjectProperty.getString("title"),
+
+                        establishment = new Establishment(mJsonObjectProperty.getString("name"),
+                                mJsonObjectProperty.getString("uid"),
                                 mJsonObjectProperty.getString("address"),
-                                establishment,
-                                empresa ,
-                                mJsonObjectProperty.getString("status_id"),
-                                desecho,
+                                estado,
                                 mJsonObjectProperty.getString("active"),
-                                mJsonObjectProperty.getString("description"));
+                                mJsonObjectProperty.getString("id"));
 
-                        arrayList.add(container);
+                        if(mJsonObjectProperty.getString("active").equals("true")){arrayList.add(establishment);}
                     }
 
                     return "success";
@@ -195,9 +197,9 @@ public class APIDeleteCont extends AppCompatActivity {
                     toast.setGravity(Gravity.TOP | Gravity.LEFT, 150, 0);
                     toast.show();
                 } else {
-                    APIAdapterDelEst adapter = new APIAdapterDelEst(APIDeleteCont.this, arrayList);
+                    APIAdapterSelEst adapter = new APIAdapterSelEst(SelectEst.this, arrayList,Company);
                     adapter.notifyDataSetChanged();
-                    listContainerCompany.setAdapter(adapter);
+                    listEstablishmentCompany.setAdapter(adapter);
                 }
             }
             else{
@@ -212,25 +214,4 @@ public class APIDeleteCont extends AppCompatActivity {
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_inbox, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }

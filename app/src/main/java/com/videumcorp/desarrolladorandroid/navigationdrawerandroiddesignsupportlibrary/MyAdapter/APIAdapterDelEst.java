@@ -63,32 +63,45 @@ public class APIAdapterDelEst extends ArrayAdapter<Container> {
 
         // 4. Set the text for textView
         ContainerName.setText(itemsArrayList.get(position).getNameContainer());
-        if(itemsArrayList.get(position).getStatus().equals("Vacio")) {
+        if(itemsArrayList.get(position).getStatus().equals("1")) {
             imContenedor.setImageResource(R.drawable.vacio);
             progressBar.setProgress(2);
         }
-        else if(itemsArrayList.get(position).getStatus().equals("Lleno")){
+        else if(itemsArrayList.get(position).getStatus().equals("3")){
             imContenedor.setImageResource(R.drawable.lleno);
             progressBar.getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
             progressBar.setProgress(100);
         }
-        else if(itemsArrayList.get(position).getStatus().equals("Medio")){
+        else if(itemsArrayList.get(position).getStatus().equals("2")){
             imContenedor.setImageResource(R.drawable.medio);
             progressBar.setProgress(50);
         }
-        else if(itemsArrayList.get(position).getStatus().equals("Congelado")){
+        else if(itemsArrayList.get(position).getStatus().equals("4")){
             imContenedor.setImageResource(R.drawable.congelado);
         }
 
             imContenedor.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View v) {
+                    String estado;
+                    if(itemsArrayList.get(position).getStatus().equals("1")){
+                        estado = "Vacio";
+                    }
+                    else if(itemsArrayList.get(position).getStatus().equals("2")){
+                        estado = "Medio";
+                    }
+                    else if(itemsArrayList.get(position).getStatus().equals("1") ){
+                        estado = "Lleno";
+                    }
+                    else{
+                        estado = "Sin estado";
+                    }
                     AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
                     builder.setMessage(
                             "Nombre del contenedor: " + "\n" + itemsArrayList.get(position).getNameContainer() + "\n" +
                                     "\n" + "Ubicacion: " + "\n" + itemsArrayList.get(position).getLatlong() + "\n" +
                                     "\n" + "Fundacion Asociada: " + "\n" + itemsArrayList.get(position).getEstablishment() + "\n" +
-                                    "\n" + "Estado del contenedor: " + "\n" + itemsArrayList.get(position).getStatus() + "\n" +
+                                    "\n" + "Estado del contenedor: " + "\n" + estado + "\n" +
                                     "\n" + "Tipo de desecho: " + "\n" + itemsArrayList.get(position).getDesecho() + "\n");
                     builder.setTitle("Datos del contenedor");
                     builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {

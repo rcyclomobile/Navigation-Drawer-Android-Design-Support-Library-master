@@ -110,7 +110,6 @@ public class APIEditEmail extends AppCompatActivity {
                     //Implementar API Aqui!!
                     db.update("ESTABLISHMENT", companyValues, "NAME = ? ", new String[]{empresa});
                     Intent intent = new Intent(this, com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APISettings.class);
-                    intent.putExtra(com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APISettings.NAME, empresa);
                     startActivity(intent);
                     finish();
 

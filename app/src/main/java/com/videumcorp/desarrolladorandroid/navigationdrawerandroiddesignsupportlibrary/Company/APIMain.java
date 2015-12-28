@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -54,6 +55,9 @@ public class APIMain extends AppCompatActivity {
     ArrayList<Container> arrayList = new ArrayList<>();
     Container container;
     Button btCambiar;
+    private SwipeRefreshLayout swipeContainer;
+
+
 
     private String access_token;
     private String client;
@@ -79,6 +83,23 @@ public class APIMain extends AppCompatActivity {
 
         nameCompany = (TextView) findViewById(R.id.nameCompany);
         nameCompany.setText(Company);
+
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        // Setup refresh listener which triggers new data loading
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                arrayList.clear();
+                Intent refresh = new Intent(APIMain.this, APIMain.class);
+                refresh.putExtra("access-token", access_token);
+                refresh.putExtra("client", client);
+                refresh.putExtra("uid", uid);
+                refresh.putExtra("name",Company);
+                startActivity(refresh);//Start the same Activity
+                finish(); //finish Activity.
+            }
+        });
+
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -263,7 +284,10 @@ public class APIMain extends AppCompatActivity {
                                 menuItem.setChecked(true);
                                 drawerLayout.closeDrawer(GravityCompat.START);
                                 Intent intent = new Intent(APIMain.this, SelectWaste.class);
-                                intent.putExtra(SelectWaste.EMPRESA, Company);
+                                intent.putExtra("access-token", access_token);
+                                intent.putExtra("client", client);
+                                intent.putExtra("uid", uid);
+                                intent.putExtra("name", Company);
                                 startActivity(intent);
                                 return true;
                             case R.id.item_navigation_drawer_starred:

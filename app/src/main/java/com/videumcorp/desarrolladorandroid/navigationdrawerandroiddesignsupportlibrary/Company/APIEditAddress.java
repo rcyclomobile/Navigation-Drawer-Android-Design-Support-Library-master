@@ -48,7 +48,7 @@ public class APIEditAddress extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_phone);
+        setContentView(R.layout.activity_select_coordinates);
         setUpMapIfNeeded();
         mMap.setMyLocationEnabled(true);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -140,7 +140,6 @@ public class APIEditAddress extends AppCompatActivity {
                                     companyValues.put("ADDRESS", coordenadas);
                                     db.update("COMPANY", companyValues, "NAME = ? ", new String[]{empresa});
                                     Intent intent = new Intent(APIEditAddress.this, com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APISettings.class);
-                                    intent.putExtra(APISettings.NAME, empresa);
                                     startActivity(intent);
                                     finish();
 
@@ -197,7 +196,6 @@ public class APIEditAddress extends AppCompatActivity {
             companyValues.put("PHONE", phone);
             db.update("COMPANY", companyValues, "NAME = ? ", new String[]{empresa});
             Intent intent = new Intent(this, com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APISettings.class);
-            intent.putExtra(APISettings.NAME, empresa);
             startActivity(intent);
             finish();
 

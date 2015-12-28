@@ -1,20 +1,29 @@
 package com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment;
 
+import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.DataBase.RcycloDatabaseHelper;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.APIAdapterEst;
@@ -22,6 +31,16 @@ import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportl
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.APIAdapterContEst;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class APIAvailableCont extends AppCompatActivity {
@@ -35,39 +54,169 @@ public class APIAvailableCont extends AppCompatActivity {
     Container container;
     Button btCambiar;
 
+    private SwipeRefreshLayout swipeContainer;
+
+    private String access_token;
+    private String client;
+    private String uid;
+    private String Company;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_available_container);
 
-        String empresa = (String)getIntent().getExtras().get(NAME);
-
-        btCambiar = (Button) findViewById(R.id.btCambiar);
-
         listContainerCompany = (ListView) findViewById(R.id.list_view_solicitudes);
 
-        SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(this);
-        SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
+        Intent intent = getIntent();
 
-        //Implementar API Aqui!!
-        Cursor cursor = db.query("CONTAINER", new String[]{"NAME_CONTAINER", "LATLONG", "COMPANY", "ESTADO", "WASTE", "ACTIVO" }, "ESTABLISHMENT = ? AND ACTIVO = ? AND ESTADO != ?" , new String[]{empresa,"INACTIVO","Congelado"}, null, null, null);
+        access_token = intent.getStringExtra("access-token");
+        client = intent.getStringExtra("client");
+        uid = intent.getStringExtra("uid");
+        Company = intent.getStringExtra("name");
 
-        if(cursor.moveToFirst()){
-            do {
-                container = new Container(cursor.getString(0), cursor.getString(1),empresa,cursor.getString(2) , cursor.getString(3), cursor.getString(4),cursor.getString(5),"asdf","asdf");
-                arrayList.add(container);
-            }while (cursor.moveToNext()) ;
-        }
-        APIAdapterEst adapter = new APIAdapterEst(this, arrayList);
-        adapter.notifyDataSetChanged();
-        listContainerCompany.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        GetContainers g = new GetContainers();
+        g.execute();
+
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        // Setup refresh listener which triggers new data loading
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                arrayList.clear();
+                Intent refresh = new Intent(APIAvailableCont.this, APIAvailableCont.class);
+                refresh.putExtra("access-token", access_token);
+                refresh.putExtra("client", client);
+                refresh.putExtra("uid", uid);
+                refresh.putExtra("name", Company);
+                startActivity(refresh);//Start the same Activity
+                finish(); //finish Activity.
+            }
+        });
+
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
     }
+
+    public class GetContainers extends AsyncTask<URL, String, String> {
+
+
+        public String name;
+        @Override
+        protected String doInBackground(URL... params) {
+
+            listContainerCompany = (ListView) findViewById(R.id.list_view_solicitudes);
+
+            try {
+                URL url = new URL("https://api-rcyclo.herokuapp.com/establishments/containers");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+                conn.setRequestProperty("access-token", access_token);
+                conn.setRequestProperty("client", client);
+                conn.setRequestProperty("uid", uid);
+
+                try {
+                    BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    StringBuilder sb = new StringBuilder();
+
+                    String line;
+
+                    while ((line = in.readLine()) != null) {
+                        sb.append(line + "\n");
+                    }
+
+                    in.close();
+
+                    int largo = sb.toString().length();
+                    String sb1 = sb.toString().substring(19, largo - 64);
+
+                    JSONObject mJsonObject = new JSONObject(sb.toString());
+
+                    //String aid = mJsonObject2.getString("id");
+                    //String name = mJsonObject.getString("name");
+                    //String email = mJsonObject.getString("email");
+                    //String aaddress = mJsonObject.getString("address");
+
+                    JSONArray mJsonArrayProperty = mJsonObject.getJSONArray("containers_request");
+                    for (int i = 0; i < mJsonArrayProperty.length(); i++) {
+                        JSONObject mJsonObjectProperty = mJsonArrayProperty.getJSONObject(i);
+
+                        String[] parts = mJsonObjectProperty.getString("title").split("-");
+                        String establishment = parts[0];
+                        String waste = parts[1];
+                        String[] parts2 = waste.split("\\|");
+                        String empresa = parts2[0];
+                        String desecho = parts2[1];
+
+                        container = new Container(mJsonObjectProperty.getString("id"),
+                                mJsonObjectProperty.getString("title"),
+                                mJsonObjectProperty.getString("address"),
+                                establishment,
+                                empresa ,
+                                mJsonObjectProperty.getString("status_id"),
+                                desecho,
+                                mJsonObjectProperty.getString("active"),
+                                mJsonObjectProperty.getString("description"));
+
+                        arrayList.add(container);
+                    }
+
+                    return "success";
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return "failed";
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            if(result.equals("success")) {
+                if (arrayList.isEmpty()) {
+                    setContentView(R.layout.activity_main_empty);
+                    Context context = getApplicationContext();
+                    CharSequence text = "¿Deseas agregar un contenedor? Puedes hacerlo desde aqui!";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    LayoutInflater inflater = getLayoutInflater();
+                    View layout = inflater.inflate(R.layout.toast_layout,
+                            (ViewGroup) findViewById(R.id.toast_layout_root));
+
+                    TextView textToast = (TextView) layout.findViewById(R.id.text_toast);
+                    textToast.setText(text);
+
+                    Toast toast = new Toast(context);
+                    toast.setDuration(duration);
+                    toast.setView(layout);
+                    toast.setGravity(Gravity.TOP | Gravity.LEFT, 150, 0);
+                    toast.show();
+                } else {
+                    APIAdapterEst adapter = new APIAdapterEst(APIAvailableCont.this, arrayList);
+                    adapter.notifyDataSetChanged();
+                    listContainerCompany.setAdapter(adapter);
+                }
+            }
+            else{
+                Toast toast1 =
+                        Toast.makeText(getApplicationContext(),
+                                "No hay conexion a internet.", Toast.LENGTH_SHORT);
+
+                toast1.show();
+            }
+
+        }
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

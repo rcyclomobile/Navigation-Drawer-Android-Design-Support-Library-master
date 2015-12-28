@@ -22,6 +22,7 @@ public class APIFormContReq extends AppCompatActivity {
 
     public static final String WASTE = "waste";
     public static final String FUNDACION = "fundacion";
+    public static final String ESTABLISHMENT_ID = "id";
     public static final String ADDRESS = "coordenadas";
     public static final String EMPRESA= "empresa";
     Toolbar toolbar;

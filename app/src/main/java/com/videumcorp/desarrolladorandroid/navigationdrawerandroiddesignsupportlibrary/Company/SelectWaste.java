@@ -13,7 +13,10 @@ public class SelectWaste extends AppCompatActivity implements View.OnClickListen
 
     public String waste;
     ImageButton paper, plastic, glass, tin;
-    public static final String EMPRESA= "empresa";
+    private String access_token;
+    private String client;
+    private String uid;
+    private String Company;
     Toolbar toolbar;
 
 
@@ -24,6 +27,13 @@ public class SelectWaste extends AppCompatActivity implements View.OnClickListen
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Intent intent = getIntent();
+
+        access_token = intent.getStringExtra("access-token");
+        client = intent.getStringExtra("client");
+        uid = intent.getStringExtra("uid");
+        Company = intent.getStringExtra("name");
 
         paper   = (ImageButton) findViewById(R.id.paper);
         plastic = (ImageButton) findViewById(R.id.plastic);
@@ -39,36 +49,28 @@ public class SelectWaste extends AppCompatActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.paper:
-                waste = "Papel";
+                waste = "1";
                 break;
 
             case R.id.plastic:
-                waste = "Plastico";
+                waste = "2";
                 break;
 
             case R.id.glass:
-                waste = "Vidrio";
+                waste = "3";
                 break;
 
             case R.id.tin:
-                waste = "Lata";
+                waste = "4";
                 break;
         }
-        String empresa = (String)getIntent().getExtras().get(EMPRESA);
-        Intent intent = new Intent(this, APISelectEst.class);
-        intent.putExtra(APISelectEst.WASTE, waste);
-        intent.putExtra(APISelectEst.EMPRESA, empresa);
+        Intent intent = new Intent(this, SelectEst.class);
+        intent.putExtra(SelectEst.WASTE, waste);
+        intent.putExtra("access-token", access_token);
+        intent.putExtra("client", client);
+        intent.putExtra("uid", uid);
+        intent.putExtra("name", Company);
         startActivity(intent);
     }
 }
-/*public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.bRegisterEmpresa:
-                startActivity(new Intent(this, FormularioEmpresa.class));
-                break;
 
-            case R.id.bLoginEmpresa:
-                startActivity(new Intent(this, MenuEmpresa.class));
-                break;
-        }
-    }*/

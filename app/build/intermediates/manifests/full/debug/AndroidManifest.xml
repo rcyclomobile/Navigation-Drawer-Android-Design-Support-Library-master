@@ -44,7 +44,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APISettings"
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.Settings"
             android:label="Mi Perfil"
             android:parentActivityName="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APILogin" >
         </activity>
@@ -150,7 +150,7 @@
             android:label="@string/title_activity_new_direction" >
         </activity>
         <activity
-            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIEditPhone"
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIEditAddress"
             android:label="@string/title_activity_edit_phone"
             android:theme="@style/AppTheme" >
         </activity>
@@ -161,7 +161,7 @@
         </activity>
         <activity
             android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIEditAddress"
-            android:label="@string/title_activity_edit_phone"
+            android:label="Cambiar Direccion"
             android:theme="@style/AppTheme" >
         </activity>
         <activity

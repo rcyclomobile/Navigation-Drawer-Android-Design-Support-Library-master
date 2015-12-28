@@ -59,12 +59,14 @@ public class APIAdapterEst extends ArrayAdapter<Container> {
             imContenedor.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View v) {
+                    String estado = "Sin estado";
+
                     AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
                     builder.setMessage(
                             "Nombre del contenedor: " + "\n" + itemsArrayList.get(position).getNameContainer() + "\n" +
                                     "\n" + "Ubicacion: " + "\n" + itemsArrayList.get(position).getLatlong() + "\n" +
                                     "\n" + "Empresa Asociada: " + "\n" + itemsArrayList.get(position).getCompany() + "\n" +
-                                    "\n" + "Estado del contenedor: " + "\n" + itemsArrayList.get(position).getStatus() + "\n" +
+                                    "\n" + "Estado del contenedor: " + "\n" + estado + "\n" +
                                     "\n" + "Tipo de desecho: " + "\n" + itemsArrayList.get(position).getDesecho() + "\n");
                     builder.setTitle("Datos del contenedor");
                     builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {

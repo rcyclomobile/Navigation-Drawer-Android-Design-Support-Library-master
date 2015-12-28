@@ -144,7 +144,7 @@ category#android.intent.category.LAUNCHER
 ADDED from AndroidManifest.xml:23:17
 	android:name
 		ADDED from AndroidManifest.xml:23:27
-activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APISettings
+activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.Settings
 ADDED from AndroidManifest.xml:26:9
 	android:label
 		ADDED from AndroidManifest.xml:28:13
@@ -294,7 +294,7 @@ ADDED from AndroidManifest.xml:128:9
 		ADDED from AndroidManifest.xml:130:13
 	android:name
 		ADDED from AndroidManifest.xml:129:13
-activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIEditPhone
+activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIEditAddress
 ADDED from AndroidManifest.xml:132:9
 	android:label
 		ADDED from AndroidManifest.xml:134:13

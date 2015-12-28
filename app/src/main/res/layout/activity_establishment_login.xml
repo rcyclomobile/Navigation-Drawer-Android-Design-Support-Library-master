@@ -60,7 +60,7 @@
                     android:maxLines="1"
                     android:singleLine="true"
 
-                    android:text="sanJose@gmail.com"
+                    android:text="coaniquem@gmail.com"
                     />
 
             </android.support.design.widget.TextInputLayout>
@@ -80,7 +80,7 @@
                     android:maxLines="1"
                     android:singleLine="true"
 
-                    android:text="admin"
+                    android:text="Niacaniaca"
                     />
 
             </android.support.design.widget.TextInputLayout>

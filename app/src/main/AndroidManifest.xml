@@ -130,18 +130,18 @@
             android:label="@string/title_activity_new_direction" >
         </activity>
         <activity
-            android:name=".Establishment.APIEditPhone"
+            android:name=".Establishment.APIEditAddress"
             android:label="@string/title_activity_edit_phone"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name=".Company.APISelectEst"
+            android:name=".Company.SelectEst"
             android:label="Seleccionar Fundacion"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
             android:name=".Company.APIEditAddress"
-            android:label="@string/title_activity_edit_phone"
+            android:label="Cambiar Direccion"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
