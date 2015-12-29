@@ -148,8 +148,6 @@ public class SelectEst extends AppCompatActivity {
                     for (int i = 0; i < mJsonArrayProperty.length(); i++) {
                         JSONObject mJsonObjectProperty = mJsonArrayProperty.getJSONObject(i);
 
-
-
                         establishment = new Establishment(mJsonObjectProperty.getString("name"),
                                 mJsonObjectProperty.getString("uid"),
                                 mJsonObjectProperty.getString("address"),
@@ -197,7 +195,7 @@ public class SelectEst extends AppCompatActivity {
                     toast.setGravity(Gravity.TOP | Gravity.LEFT, 150, 0);
                     toast.show();
                 } else {
-                    APIAdapterSelEst adapter = new APIAdapterSelEst(SelectEst.this, arrayList,Company);
+                    APIAdapterSelEst adapter = new APIAdapterSelEst(SelectEst.this, arrayList,Company,access_token,client,uid);
                     adapter.notifyDataSetChanged();
                     listEstablishmentCompany.setAdapter(adapter);
                 }

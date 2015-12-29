@@ -1,34 +1,21 @@
 package com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment;
 
-import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.TypedValue;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.DataBase.RcycloDatabaseHelper;
-import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.APIAdapterEst;
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.AdapterEst;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.Container;
-import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.APIAdapterContEst;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
 
 import org.json.JSONArray;
@@ -184,24 +171,8 @@ public class APIAvailableCont extends AppCompatActivity {
             if(result.equals("success")) {
                 if (arrayList.isEmpty()) {
                     setContentView(R.layout.activity_main_empty);
-                    Context context = getApplicationContext();
-                    CharSequence text = "¿Deseas agregar un contenedor? Puedes hacerlo desde aqui!";
-                    int duration = Toast.LENGTH_SHORT;
-
-                    LayoutInflater inflater = getLayoutInflater();
-                    View layout = inflater.inflate(R.layout.toast_layout,
-                            (ViewGroup) findViewById(R.id.toast_layout_root));
-
-                    TextView textToast = (TextView) layout.findViewById(R.id.text_toast);
-                    textToast.setText(text);
-
-                    Toast toast = new Toast(context);
-                    toast.setDuration(duration);
-                    toast.setView(layout);
-                    toast.setGravity(Gravity.TOP | Gravity.LEFT, 150, 0);
-                    toast.show();
                 } else {
-                    APIAdapterEst adapter = new APIAdapterEst(APIAvailableCont.this, arrayList);
+                    AdapterEst adapter = new AdapterEst(APIAvailableCont.this, arrayList,access_token,client,uid);
                     adapter.notifyDataSetChanged();
                     listContainerCompany.setAdapter(adapter);
                 }

@@ -233,7 +233,7 @@ public class APIMain extends AppCompatActivity {
                     toast.setGravity(Gravity.TOP | Gravity.LEFT, 150, 0);
                     toast.show();
                 } else {
-                    APIMyAdapter adapter = new APIMyAdapter(APIMain.this, arrayList);
+                    APIMyAdapter adapter = new APIMyAdapter(APIMain.this, arrayList,access_token,client,uid);
                     adapter.notifyDataSetChanged();
                     listContainerCompany.setAdapter(adapter);
                 }

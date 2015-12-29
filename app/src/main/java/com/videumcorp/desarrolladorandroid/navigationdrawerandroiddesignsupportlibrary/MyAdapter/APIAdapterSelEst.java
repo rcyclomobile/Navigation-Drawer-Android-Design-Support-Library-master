@@ -12,8 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIFormContReq;
-import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.SelectLatlong;
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.FormContReq;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
 
 import java.util.ArrayList;
@@ -23,14 +22,20 @@ public class APIAdapterSelEst extends ArrayAdapter<Establishment> {
     private final Context context;
     private final String name;
     private final ArrayList<Establishment> itemsArrayList;
+    private String access_token;
+    private String client;
+    private String uid;
 
-    public APIAdapterSelEst(Context context, ArrayList<Establishment> itemsArrayList,String empresa) {
+    public APIAdapterSelEst(Context context, ArrayList<Establishment> itemsArrayList,String empresa,String access_token,String client,String uid) {
 
         super(context, R.layout.item_list_establishment_container, itemsArrayList);
 
         this.context = context;
         this.itemsArrayList = itemsArrayList;
         this.name = empresa;
+        this.access_token = access_token;
+        this.client = client;
+        this.uid = uid;
     }
 
     @Override
@@ -60,7 +65,8 @@ public class APIAdapterSelEst extends ArrayAdapter<Establishment> {
                             "Nombre de la fundacion: " + "\n" + itemsArrayList.get(position).getName() + "\n" +
                                     "\n" + "Ubicacion: " + "\n" + itemsArrayList.get(position).getAddress() + "\n" +
                                     "\n" + "Correo: " + "\n" + itemsArrayList.get(position).getEmail() + "\n" +
-                                    "\n" + "Tipo de desecho: " + "\n" + itemsArrayList.get(position).getWaste() + "\n");
+                                    "\n" + "Tipo de desecho: " + "\n" + itemsArrayList.get(position).getWaste() + "\n"
+                    );
                     builder.setTitle("Datos de la fundacion");
                     builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         @Override
@@ -78,19 +84,45 @@ public class APIAdapterSelEst extends ArrayAdapter<Establishment> {
             @Override
             public void onClick(final View v) {
                 String nombre = itemsArrayList.get(position).getName();
-                String id = itemsArrayList.get(position).getId();
+                String establishment_id = itemsArrayList.get(position).getId();
                 String waste = itemsArrayList.get(position).getWaste();
                 String address = itemsArrayList.get(position).getAddress();
                 String empresa = name;
+                String desecho;
+
+                switch (waste) {
+                    case "Papel":
+                        desecho = "1";
+                        break;
+
+                    case "Plastico":
+                        desecho = "2";
+                        break;
+
+                    case "Vidrio":
+                        desecho = "3";
+                        break;
+
+                    case "Lata":
+                        desecho = "4";
+                        break;
+
+                    default:
+                        desecho = "Otro desecho";
+                        break;
+                }
                 //    String fundacion = listView.getItemAtPosition(position).toString();
                 //   String fundacion = Integer.toString(position);
 
-                Intent intent = new Intent(v.getContext(), APIFormContReq.class);
-                intent.putExtra(APIFormContReq.WASTE, waste);
-                intent.putExtra(APIFormContReq.ESTABLISHMENT_ID, id);
-                intent.putExtra(APIFormContReq.FUNDACION, nombre);
-                intent.putExtra(APIFormContReq.EMPRESA, empresa);
-                intent.putExtra(APIFormContReq.ADDRESS, address);
+                Intent intent = new Intent(v.getContext(), FormContReq.class);
+                intent.putExtra(FormContReq.WASTE, desecho);
+                intent.putExtra(FormContReq.ESTABLISHMENT_ID, establishment_id);
+                intent.putExtra(FormContReq.FUNDACION, nombre);
+                intent.putExtra(FormContReq.EMPRESA, empresa);
+                intent.putExtra(FormContReq.ADDRESS, address);
+                intent.putExtra("access-token", access_token);
+                intent.putExtra("client", client);
+                intent.putExtra("uid", uid);
 
                 v.getContext().startActivity(intent);
             }

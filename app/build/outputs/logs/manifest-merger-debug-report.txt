@@ -192,7 +192,7 @@ ADDED from AndroidManifest.xml:64:9
 		ADDED from AndroidManifest.xml:66:13
 	android:name
 		ADDED from AndroidManifest.xml:65:13
-activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIFormContReq
+activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.FormContReq
 ADDED from AndroidManifest.xml:68:9
 	android:label
 		ADDED from AndroidManifest.xml:70:13
@@ -302,7 +302,7 @@ ADDED from AndroidManifest.xml:132:9
 		ADDED from AndroidManifest.xml:135:13
 	android:name
 		ADDED from AndroidManifest.xml:133:13
-activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APISelectEst
+activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.SelectEst
 ADDED from AndroidManifest.xml:137:9
 	android:label
 		ADDED from AndroidManifest.xml:139:13

@@ -86,7 +86,7 @@
             android:label="Mapa" >
         </activity>
         <activity
-            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIFormContReq"
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.FormContReq"
             android:label="Formulario Contenedor"
             android:theme="@style/AppTheme" >
         </activity>
@@ -155,7 +155,7 @@
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APISelectEst"
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.SelectEst"
             android:label="Seleccionar Fundacion"
             android:theme="@style/AppTheme" >
         </activity>

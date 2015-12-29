@@ -10,6 +10,7 @@ public class Establishment {
     String address;
     String waste;
     String activo;
+
     String id;
 
     //Constructor
@@ -62,7 +63,6 @@ public class Establishment {
     public void setActivo(String activo) {
         this.activo = activo;
     }
-
     public String getId() {
         return id;
     }
@@ -70,6 +70,7 @@ public class Establishment {
     public void setId(String id) {
         this.id = id;
     }
+
 
 
 }

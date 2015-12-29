@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,9 +21,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIMain;
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIAvailableCont;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.DataBase.RcycloDatabaseHelper;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class APIMyAdapter extends ArrayAdapter<Container> {
@@ -31,16 +39,22 @@ public class APIMyAdapter extends ArrayAdapter<Container> {
     private final ArrayList<Container> itemsArrayList;
     ProgressBar progressBar;
 
-    public APIMyAdapter(Context context, ArrayList<Container> itemsArrayList) {
+    private String access_token;
+    private String client;
+    private String uid;
+
+    public String container_id;
+    public String status_id;
+
+    public APIMyAdapter(Context context, ArrayList<Container> itemsArrayList, String access_token, String client, String uid) {
 
         super(context, R.layout.item_list, itemsArrayList);
 
         this.context = context;
         this.itemsArrayList = itemsArrayList;
-    }
-
-    public void notifyDataSetChanged(){
-
+        this.access_token = access_token;
+        this.client = client;
+        this.uid = uid;
     }
 
     @Override
@@ -81,6 +95,8 @@ public class APIMyAdapter extends ArrayAdapter<Container> {
         else if(itemsArrayList.get(position).getStatus().equals("Congelado")){
             imContenedor.setImageResource(R.drawable.congelado);
         }
+
+        container_id = itemsArrayList.get(position).getId();
 
             imContenedor.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -133,45 +149,36 @@ public class APIMyAdapter extends ArrayAdapter<Container> {
                 final RadioButton rbMitad         = (RadioButton) dialoglayout.findViewById(R.id.mitad);
                 final RadioButton rbLLeno         = (RadioButton) dialoglayout.findViewById(R.id.lleno);
 
-                final String nameContainer        = itemsArrayList.get(position).getNameContainer();
-                final String nameCompany          = itemsArrayList.get(position).getCompany();
-                String estado               = itemsArrayList.get(position).getStatus();
+                String estado                     = itemsArrayList.get(position).getStatus();
 
-                if("Vacio".equals(estado) ){
-                    rbVacio.setChecked(true);        }
+                if("1".equals(estado) ){
+                    rbVacio.setChecked(true);
+                }
 
-                else if("Medio".equals(estado)){
-                    rbVacio.setEnabled(false);
-                    rbMitad.setChecked(true);        }
+                else if("2".equals(estado)){
+                    rbMitad.setChecked(true);
+                }
 
-                else if("Lleno".equals(estado)){
-                    rbVacio.setEnabled(false);
-                    rbMitad.setEnabled(false);
-                    rbLLeno.setChecked(true);        }
+                else if("3".equals(estado)){
+                    rbLLeno.setChecked(true);
+                }
 
-                if(!itemsArrayList.get(position).getStatus().equals("Lleno")) {
-                    builder.setPositiveButton("Cambiar", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("Cambiar", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
-                            SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(v.getContext());
-                            SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
-
-                            ContentValues containerValues = new ContentValues();
-
-                            if (rbMitad.isChecked()) {
-                                containerValues.put("ESTADO", "Medio");
-                            } else if (rbLLeno.isChecked()) {
-                                containerValues.put("ESTADO", "Lleno");
+                            if (rbVacio.isChecked()) {
+                                status_id = "1";
+                            }
+                            else if (rbMitad.isChecked()) {
+                                status_id = "2";
+                            }
+                            else if (rbLLeno.isChecked()) {
+                                status_id = "3";
                             }
 
-                            //Implementar API Aqui!!
-                            db.update("CONTAINER", containerValues, "NAME_CONTAINER = ? AND COMPANY = ?", new String[]{nameContainer, nameCompany});
-                            Toast.makeText(v.getContext(), "El estado del contenedor ha sido cambiado.",
-                                    Toast.LENGTH_SHORT).show();
-                            APIMain activity = (APIMain) context;
-                            activity.finish();
-                            activity.startActivity(activity.getIntent());
+                            GetContainers g = new GetContainers();
+                            g.execute();
                         }
                     });
 
@@ -181,15 +188,7 @@ public class APIMyAdapter extends ArrayAdapter<Container> {
 
                         }
                     });
-                }
-                else{
-                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
 
-                        }
-                    });
-                }
                 builder.setView(dialoglayout);
                 builder.show();
             }
@@ -198,6 +197,67 @@ public class APIMyAdapter extends ArrayAdapter<Container> {
 
         // 5. retrn rowView
         return rowView;
+    }
+
+    public class GetContainers extends AsyncTask<URL, String, String> {
+
+
+        public String name;
+
+        @Override
+        protected String doInBackground(URL... params) {
+
+            try {
+                URL url = new URL("https://api-rcyclo.herokuapp.com/companies/update_state_container?container_id="+container_id+"&status_id="+status_id);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+                conn.setRequestProperty("access-token", access_token);
+                conn.setRequestProperty("client", client);
+                conn.setRequestProperty("uid", uid);
+                conn.setRequestMethod("GET");
+
+                try {
+                    BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    StringBuilder sb = new StringBuilder();
+
+                    String line;
+
+                    while ((line = in.readLine()) != null) {
+                        sb.append(line + "\n");
+                    }
+
+                    in.close();
+
+                    return "success";
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return "failed";
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            if (result.equals("success")) {
+                Toast.makeText(context, "El estado del contenedor ha sido cambiado.",
+                        Toast.LENGTH_SHORT).show();
+                APIMain activity = (APIMain) context;
+                activity.finish();
+                activity.startActivity(activity.getIntent());
+            } else {
+                Toast toast1 =
+                        Toast.makeText(context,
+                                "Lo sentimos, algo ha ido mal.", Toast.LENGTH_SHORT);
+
+                toast1.show();
+            }
+
+        }
     }
 
 }
