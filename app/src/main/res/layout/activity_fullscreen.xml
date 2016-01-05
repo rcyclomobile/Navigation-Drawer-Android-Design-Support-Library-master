@@ -1,6 +1,6 @@
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#2FCD81"
@@ -27,9 +27,10 @@
          android:fitsSystemWindows.47a61e @drawable/solid_color_shape2
          a5d6a7
          -->
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="10dp"
         android:fitsSystemWindows="true"
         android:layout_gravity="center_horizontal|top">
 
@@ -37,56 +38,68 @@
         <LinearLayout
             android:id="@+id/fullscreen_content_controls"
             style="?metaButtonBarStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
             android:background="#b4eeb4"
             android:orientation="vertical"
             tools:ignore="UselessParent">
 
-            <Button
-                android:id="@+id/dummy_button2"
-                style="?metaButtonBarButtonStyle"
-                android:alpha="0.70"
-                android:background="#2FCD81"
-                android:layout_width="match_parent"
-                android:layout_marginBottom="6dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_height="48dp"
-                android:layout_gravity="bottom"
-                android:text="Soy una empresa"
-                android:textSize="12dp"
-                android:onClick="companyRegister"
-                android:textColor="#ffffff"/>
-
-            <Button
-
-                android:id="@+id/dummy_button"
-                android:alpha="0.70"
-                style="?metaButtonBarButtonStyle"
-                android:layout_width="match_parent"
-                android:layout_marginBottom="16dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:background="#2FCD81"
-                android:layout_height="48dp"
-                android:text="Soy una fundacion"
-                android:onClick="establishmentRegister"
-                android:textSize="12dp"
-                android:textColor="#ffffff"/>
-
         </LinearLayout>
 
         <ImageView
-            android:layout_width="300dp"
-            android:layout_height="180dp"
-            android:layout_marginBottom="60dp"
+            android:layout_width="wrap_content" android:layout_height="140dp"
             android:layout_gravity="center"
             android:layout_row="1"
             android:layout_columnSpan="2"
-            android:src="@drawable/intento"
-            />
-    </FrameLayout>
+            android:src="@drawable/logotipo"
+            android:layout_marginTop="144dp"
+            android:layout_below="@+id/fullscreen_content_controls"
+            android:layout_centerHorizontal="true" />
+
+        <info.hoang8f.widget.FButton
+            android:id="@+id/dummy_button"
+            android:onClick="establishmentRegister"
+
+            style="?metaButtonBarButtonStyle"
+            android:layout_width="match_parent" android:layout_height="48dp"
+            android:layout_gravity="bottom"
+            android:layout_marginRight="6dp"
+            android:layout_marginBottom="6dp"
+
+            android:alpha="0.70"
+            fbutton:buttonColor="#2FCD81"
+            fbutton:shadowEnabled="true"
+
+            android:text="Soy una fundacion"
+            android:textSize="18sp"
+            android:textColor="#ffffff"
+            android:layout_alignParentBottom="true"
+            android:layout_alignLeft="@+id/dummy_button2"
+            android:layout_alignStart="@+id/dummy_button2" />
+
+        <info.hoang8f.widget.FButton
+            android:id="@+id/dummy_button2"
+            android:onClick="companyRegister"
+
+            style="?metaButtonBarButtonStyle"
+            android:layout_width="match_parent" android:layout_height="48dp"
+            android:layout_gravity="bottom"
+            android:layout_margin="6dp"
+
+
+            android:alpha="0.70"
+            fbutton:buttonColor="#2FCD81"
+            fbutton:shadowEnabled="true"
+
+
+            android:text="Soy una empresa"
+            android:textSize="18sp"
+            android:textColor="#ffffff"
+            android:layout_above="@+id/dummy_button"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+
+    </RelativeLayout>
 
 </FrameLayout>
