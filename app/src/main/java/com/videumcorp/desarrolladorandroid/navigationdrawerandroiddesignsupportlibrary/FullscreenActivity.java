@@ -63,8 +63,8 @@ public class FullscreenActivity extends AppCompatActivity {
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
-        findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
-        Toast toast= Toast.makeText(getApplicationContext(),"Toque en la pantalla para iniciar.", Toast.LENGTH_LONG);
+       // findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+        Toast toast= Toast.makeText(getApplicationContext(),"Bienvenido!", Toast.LENGTH_LONG);
         toast.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL, 0, 70);
         toast.show();
     }

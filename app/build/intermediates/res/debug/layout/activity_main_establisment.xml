@@ -1,53 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_drawer_layout_es"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="@bool/fitsSystemWindows">
+    android:fitsSystemWindows="@bool/fitsSystemWindows"
+    android:background="#e0e0e0"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/status_bar_kitkat_height"
-            android:background="?colorPrimary"/>
+            android:id="@+id/fragment"
+            android:layout_width="match_parent" android:layout_height="25dp"
+            android:background="#000"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/status_bar_lollipop_height"
-            android:background="?colorPrimaryDark"/>
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_es"
+            android:layout_width="match_parent" android:layout_height="?actionBarSize"
+            android:layout_below="@+id/fragment"
+
+            android:background="#2FCD81"
+            android:elevation="4dp"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/ToolbarTheme"
+            android:layout_gravity="center_horizontal|top" />
+
 
         <TextView
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:id="@+id/title"
             android:text="Mis Contenedores"
             android:textSize="25dp"
             android:gravity="center"
-            android:layout_marginTop="75dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/toolbar_es"/>
+
 
         <android.support.v4.widget.SwipeRefreshLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/swipeContainer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent" android:layout_height="400dp"
+            android:layout_margin="10dp"
+            android:layout_below="@+id/title"
+            android:background="#fff">
 
             <ListView
                 android:id="@+id/list_view_solicitudes"
-                android:layout_width="match_parent"
-                android:layout_marginTop="25dp"
-                tools:listitem="@layout/item_list"
-                android:layout_height="wrap_content">
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                tools:listitem="@layout/item_list">
             </ListView>
 
         </android.support.v4.widget.SwipeRefreshLayout>
 
-    </LinearLayout>
 
+
+
+
+
+    </RelativeLayout>
+
+
+    <!--
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -66,8 +87,8 @@
             android:elevation="4dp"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:theme="@style/ToolbarTheme" />
-
     </FrameLayout>
+-->
 
     <android.support.design.widget.NavigationView
         android:id="@+id/navigation_view_es"
@@ -80,4 +101,4 @@
         app:theme="@style/NavigationViewTheme"     />
 
 </android.support.v4.widget.DrawerLayout>
-<!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/layout/activity_main_establisment.xml -->
+<!-- From: file:/C:/Users/Carlos/AndroidStudioProjects/ANDROX/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/layout/activity_main_establisment.xml -->

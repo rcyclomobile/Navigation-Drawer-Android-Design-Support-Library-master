@@ -3,9 +3,107 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent" android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
     android:background="#e0e0e0">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+
+        <FrameLayout
+            android:id="@+id/barrita"
+            android:layout_width="match_parent" android:layout_height="25dp"
+            android:background="#000"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent" android:layout_height="?actionBarSize"
+
+            android:background="#2FCD81"
+            android:elevation="4dp"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/ToolbarTheme"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_below="@+id/barrita"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <LinearLayout
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar"
+
+            android:layout_marginTop="10dp"
+
+            android:background="#fff"
+            android:orientation="vertical"
+            android:layout_centerHorizontal="true">
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/paper"
+                android:layout_width="match_parent" android:layout_height="110dp"
+                android:layout_margin="10dp"
+
+                android:drawableLeft="@drawable/select_papel"
+                android:paddingLeft="10dp"
+                fbutton:shadowEnabled="true"
+
+                android:text="Papel"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:textSize="24dp" />
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/plastic"
+                android:layout_width="match_parent" android:layout_height="110dp"
+                android:layout_margin="10dp"
+
+                android:drawableLeft="@drawable/select_plastico"
+                android:paddingLeft="10dp"
+                fbutton:shadowEnabled="true"
+
+                android:text="Plastico"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:textSize="24dp"
+                />
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/glass"
+                android:layout_width="match_parent" android:layout_height="110dp"
+                android:layout_margin="10dp"
+
+                android:drawableLeft="@drawable/select_plastico"
+                android:paddingLeft="10dp"
+                fbutton:shadowEnabled="true"
+
+                android:text="Vidrio"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:textSize="24dp"
+                />
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/tin"
+                android:layout_width="match_parent" android:layout_height="110dp"
+                android:layout_margin="10dp"
+
+                android:drawableLeft="@drawable/select_plastico"
+                android:paddingLeft="10dp"
+                fbutton:shadowEnabled="true"
+
+                android:text="Vidrio"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:textSize="24dp"  />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+<!--
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/status_bar_kitkat_height"
@@ -21,38 +119,7 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:theme="@style/ToolbarTheme"
         android:layout_gravity="center_horizontal|top" />
+-->
 
-    <LinearLayout
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:padding="5dp"
-        android:layout_marginTop="90dp"
-        android:background="#fff"
-        android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/paper"
-            android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/papel1" />
-
-        <ImageButton
-            android:id="@+id/plastic"
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/plastico1"/>
-
-        <ImageButton
-            android:id="@+id/glass"
-            android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/vidrio1"/>
-
-        <ImageButton
-            android:id="@+id/tin"
-            android:layout_width="wrap_content" android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/lata1"   />
-    </LinearLayout>
-
-</FrameLayout><!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/layout/activity_select_waste.xml -->
+</FrameLayout><!-- From: file:/C:/Users/Carlos/AndroidStudioProjects/ANDROX/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/layout/activity_select_waste.xml -->

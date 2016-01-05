@@ -7,7 +7,9 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="izzi.r_cyclo.Company.CompanyLogin"
-    android:background="#b4eeb4">
+    android:background="#b4eeb4"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+    >
 
     <!-- Login progressa5d6a7 b4eeb4-->
     <ProgressBar android:id="@+id/login_progress"
@@ -23,12 +25,12 @@
         android:layout_width="match_parent" android:layout_height="match_parent">
 
         <ImageView
-            android:layout_width="120dp"
-            android:layout_height="100dp"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
             android:layout_gravity="center"
             android:layout_row="1"
             android:layout_columnSpan="2"
-            android:src="@drawable/intento"
+            android:src="@drawable/logotipo"
             android:id="@+id/imageView"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
@@ -84,46 +86,58 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <Button android:id="@+id/sign_in_button" style="?android:textAppearanceSmall"
+            <info.hoang8f.widget.FButton
+                android:id="@+id/sign_in_button"
+                android:onClick="enter"
+
                 android:layout_width="match_parent" android:layout_height="36dp"
                 android:layout_marginTop="12dp"
+
+                fbutton:buttonColor="#2FCD81"
+                fbutton:shadowEnabled="true"
+
                 android:text="Iniciar sesión"
-                android:textSize="12dp"
-                android:textColor="#ffffff"
-                android:background="#2FCD81"
-                android:onClick="enter" />
+                android:textSize="18sp"
+                android:textColor="#ffffff" />
+
+
         </LinearLayout>
 
-        <TextView
-            style="?android:textAppearanceSmall"
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="Registrate en R-Cyclo"
-            android:textColor="#ffffff"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            android:gravity="center_horizontal"
-            android:layout_gravity="end"
+        <info.hoang8f.widget.FButton
             android:id="@+id/register"
-            android:layout_above="@+id/textView"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="30dp" />
+            android:layout_width="180dp" android:layout_height="28dp"
+            android:layout_marginTop="100dp"
+            android:layout_below="@+id/email_login_form"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="end"
+
+            fbutton:buttonColor="@color/fbutton_color_alizarin"
+            fbutton:shadowEnabled="true"
+
+            android:textStyle="bold"
+            android:gravity="center_horizontal"
+            android:textSize="16sp"
+            android:textColor="#ffffff"
+            android:textAllCaps="false"
+            android:text="Registrate en R-Cyclo" />
 
         <TextView
-            style="?android:textAppearanceSmall"
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:text="¿Olvidaste tu contraseña? "
-            android:textColor="#ffffff"
+            android:id="@+id/textView"
+
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_gravity="center_horizontal"
+
 
             android:gravity="center_horizontal"
-            android:layout_gravity="end"
             android:textStyle="bold"
-            android:layout_marginBottom="50dp"
-            android:id="@+id/textView"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:textColor="#ffffff"
+
+            android:text="¿Olvidaste tu contraseña? "
+
+            android:layout_below="@+id/register"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 
-</LinearLayout><!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/layout/activity_company_login.xml -->
+</LinearLayout><!-- From: file:/C:/Users/Carlos/AndroidStudioProjects/ANDROX/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/layout/activity_company_login.xml -->
