@@ -160,7 +160,7 @@
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIEditAddress"
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.EditAddress"
             android:label="Cambiar Direccion"
             android:theme="@style/AppTheme" >
         </activity>

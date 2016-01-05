@@ -310,7 +310,7 @@ ADDED from AndroidManifest.xml:137:9
 		ADDED from AndroidManifest.xml:140:13
 	android:name
 		ADDED from AndroidManifest.xml:138:13
-activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIEditAddress
+activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.EditAddress
 ADDED from AndroidManifest.xml:142:9
 	android:label
 		ADDED from AndroidManifest.xml:144:13
