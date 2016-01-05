@@ -1,5 +1,6 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+<<<<<<< Updated upstream
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -9,9 +10,17 @@
     android:rowCount="3"
     android:columnCount="3"
     android:background="#4CAF50"
+=======
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#e0e0e0"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+    >
+>>>>>>> Stashed changes
 
     >
 
+<<<<<<< Updated upstream
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -103,9 +112,76 @@
             android:hint="Plastico"
              />
 
+=======
+    <FrameLayout
+        android:layout_width="match_parent" android:layout_height="@dimen/status_bar_kitkat_height"
+        android:background="#000"/>
 
-        <ImageButton
+
+    <android.support.v7.widget.Toolbar
+        android:layout_marginTop="@dimen/status_bar_margin_top"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent" android:layout_height="?actionBarSize"
+        android:background="#2FCD81"
+        android:elevation="4dp"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ToolbarTheme"
+        android:layout_gravity="center_horizontal|top" />
+
+    <LinearLayout
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:padding="5dp"
+        android:layout_marginTop="90dp"
+        android:background="#fff"
+        android:orientation="vertical">
+
+        <info.hoang8f.widget.FButton
+            android:id="@+id/paper"
+            android:layout_width="match_parent" android:layout_height="110dp"
+            android:layout_margin="10dp"
+            android:gravity="center"
+
+            android:drawableLeft="@drawable/testpapel"
+            fbutton:shadowEnabled="true"
+            fbutton:shadowHeight="6dp"
+
+            android:drawablePadding="10dp"
+            android:paddingLeft="6dp"
+            android:paddingRight="30dp"
+
+            android:textStyle="bold"
+            android:text="Papel"
+            android:textColor="#fff"
+            android:textSize="24sp"
+            />
+
+        <info.hoang8f.widget.FButton
+            android:id="@+id/plastic"
+            android:layout_width="match_parent" android:layout_height="110dp"
+            android:layout_margin="10dp"
+            android:gravity="center"
+
+            android:drawableLeft="@drawable/testplatico"
+            fbutton:buttonColor="#F3DF66"
+            fbutton:shadowEnabled="true"
+            fbutton:shadowHeight="6dp"
+>>>>>>> Stashed changes
+
+            android:drawablePadding="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="5dp"
+
+            android:textStyle="bold"
+            android:text="Plastico"
+            android:textColor="#fff"
+            android:textSize="22sp"
+            />
+
+
+        <info.hoang8f.widget.FButton
             android:id="@+id/glass"
+<<<<<<< Updated upstream
             android:theme="@android:style/Theme.Light"
             android:background="@drawable/states_solid_color_shape"
             android:layout_width="wrap_content"
@@ -133,9 +209,33 @@
             android:layout_columnSpan="3"
             android:hint="Vidrio" />
 
+=======
+            android:layout_width="match_parent" android:layout_height="110dp"
+            android:layout_margin="10dp"
+            android:gravity="center"
 
-        <ImageButton
+            android:drawableLeft="@drawable/testvidrio"
+            fbutton:buttonColor="#52ad6a"
+            fbutton:shadowEnabled="true"
+            fbutton:shadowHeight="6dp"
+>>>>>>> Stashed changes
+
+            android:drawablePadding="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="5dp"
+
+            android:textStyle="bold"
+            android:text="Vidrio"
+            android:textColor="#fff"
+            android:textSize="32sp"
+            />
+
+
+
+
+        <info.hoang8f.widget.FButton
             android:id="@+id/tin"
+<<<<<<< Updated upstream
             android:theme="@android:style/Theme.Light"
             android:background="@drawable/states_solid_color_shape"
             android:layout_width="wrap_content"
@@ -165,5 +265,26 @@
             />
 
     </GridLayout>
+=======
+            android:layout_width="match_parent" android:layout_height="110dp"
+            android:layout_margin="10dp"
+            android:gravity="center"
 
-</ScrollView><!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/layout/activity_select_waste.xml -->
+            android:drawableLeft="@drawable/testlata"
+            fbutton:buttonColor="#e75e3e"
+            fbutton:shadowEnabled="true"
+            fbutton:shadowHeight="6dp"
+
+            android:drawablePadding="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="5dp"
+
+            android:textStyle="bold"
+            android:text="Lata"
+            android:textColor="#fff"
+            android:textSize="32sp"/>
+    </LinearLayout>
+>>>>>>> Stashed changes
+
+</ScrollView>
+<!-- From: file:/C:/Users/Carlos/AndroidStudioProjects/CARLOS/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/layout/activity_select_waste.xml -->

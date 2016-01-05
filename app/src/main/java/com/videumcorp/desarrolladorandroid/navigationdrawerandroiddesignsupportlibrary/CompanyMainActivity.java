@@ -148,6 +148,13 @@ public class CompanyMainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void primerContenedor(View view){
+        String empresa = "jumbo";
+
+        Intent intent = new Intent(APIMain.this, SelectWaste.class);
+        intent.putExtra(SelectWaste.EMPRESA, empresa);
+        startActivity(intent);
+    }
 
     private void setupNavigationDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(

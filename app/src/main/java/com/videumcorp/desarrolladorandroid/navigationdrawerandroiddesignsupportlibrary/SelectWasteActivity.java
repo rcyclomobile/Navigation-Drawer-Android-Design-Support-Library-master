@@ -6,12 +6,14 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 public class SelectWasteActivity extends Activity implements View.OnClickListener{
 
     public String waste;
-    ImageButton paper, plastic, glass, tin;
+
+    Button plastic, paper, tin, glass;
     public static final String EMPRESA= "empresa";
 
 
@@ -19,10 +21,21 @@ public class SelectWasteActivity extends Activity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_waste);
+<<<<<<< Updated upstream:app/src/main/java/com/videumcorp/desarrolladorandroid/navigationdrawerandroiddesignsupportlibrary/SelectWasteActivity.java
         paper   = (ImageButton) findViewById(R.id.paper);
         plastic = (ImageButton) findViewById(R.id.plastic);
         glass   = (ImageButton) findViewById(R.id.glass);
         tin     = (ImageButton) findViewById(R.id.tin);
+=======
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        paper   = (Button) findViewById(R.id.paper);
+        plastic = (Button) findViewById(R.id.plastic);
+        glass   = (Button) findViewById(R.id.glass);
+        tin     = (Button) findViewById(R.id.tin);
+>>>>>>> Stashed changes:app/src/main/java/com/videumcorp/desarrolladorandroid/navigationdrawerandroiddesignsupportlibrary/Company/SelectWaste.java
 
         paper.setOnClickListener(this);
         plastic.setOnClickListener(this);

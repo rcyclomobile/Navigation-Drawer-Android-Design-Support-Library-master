@@ -4,4 +4,4 @@
     android:layout_height="match_parent" android:id="@+id/map"
     tools:context="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.SelectCoordinatesActivity"
     android:name="com.google.android.gms.maps.SupportMapFragment" />
-<!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/layout/activity_select_coordinates.xml -->
+<!-- From: file:/C:/Users/Carlos/AndroidStudioProjects/CARLOS/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/layout/activity_select_coordinates.xml -->

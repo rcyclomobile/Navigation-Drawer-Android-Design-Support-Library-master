@@ -1,5 +1,6 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+<<<<<<< Updated upstream
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -12,6 +13,13 @@
     tools:context="com.hfad.carlostest.formularioActivity">
 
     <GridLayout
+=======
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+    android:background="#e0e0e0">
+
+
+    <FrameLayout
+>>>>>>> Stashed changes
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -108,7 +116,7 @@
         </android.support.design.widget.TextInputLayout>
 
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -116,6 +124,7 @@
             android:layout_marginLeft="18dp"
             android:layout_marginRight="18dp"
             android:layout_gravity="center_horizontal"
+<<<<<<< Updated upstream
             android:gravity="center_horizontal"
             android:layout_row="12"
             android:theme="@android:style/Theme.Light"
@@ -124,6 +133,16 @@
             android:layout_columnSpan="2"
             android:textColor="#d8e4af"
             android:text="Registrarme"
+=======
+            style="?android:textAppearanceSmall"
+
+            fbutton:buttonColor="@color/fbutton_color_alizarin"
+            fbutton:shadowEnabled="true"
+
+
+            android:textColor="#ffffff"
+            android:text="Registrarse"
+>>>>>>> Stashed changes
             android:onClick="sendForm"/>
 
         <ImageView
@@ -140,4 +159,4 @@
 
 </ScrollView>
 
-<!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/layout/activity_company_register.xml -->
+<!-- From: file:/C:/Users/Carlos/AndroidStudioProjects/CARLOS/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/layout/activity_company_register.xml -->

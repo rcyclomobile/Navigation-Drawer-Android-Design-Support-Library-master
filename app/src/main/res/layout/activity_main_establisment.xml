@@ -17,10 +17,17 @@
             android:layout_height="@dimen/status_bar_kitkat_height"
             android:background="?colorPrimary"/>
 
+<<<<<<< Updated upstream
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/status_bar_lollipop_height"
             android:background="?colorPrimaryDark"/>
+=======
+            <FrameLayout
+            android:id="@+id/barrita"
+            android:layout_width="match_parent" android:layout_height="@dimen/status_bar_kitkat_height"
+            android:background="#000"/>
+>>>>>>> Stashed changes
 
         <TextView
             android:text="Mis Solicitudes"
