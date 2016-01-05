@@ -135,7 +135,6 @@ public class AdapterEst extends ArrayAdapter<Container> {
 
     public class GetContainers extends AsyncTask<URL, String, String> {
 
-
         public String name;
 
         @Override

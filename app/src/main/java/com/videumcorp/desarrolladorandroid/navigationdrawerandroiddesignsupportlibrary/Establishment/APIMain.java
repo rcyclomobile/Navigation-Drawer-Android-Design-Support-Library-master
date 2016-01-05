@@ -2,7 +2,6 @@ package com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupport
 
 import android.app.AlertDialog;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -16,18 +15,14 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APILogin;
-import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.APIAdapterContEst;
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.Login;
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.AdapterContEst;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.Container;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.FullscreenActivity;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
@@ -193,7 +188,7 @@ public class APIMain extends AppCompatActivity {
                                 mJsonObjectProperty.getString("active"),
                                 mJsonObjectProperty.getString("description"));
 
-                        arrayList.add(container);
+                        if(mJsonObjectProperty.getString("erased").equals("false")&&mJsonObjectProperty.getString("active").equals("true")){arrayList.add(container);}
                     }
 
                     return "success";
@@ -214,29 +209,33 @@ public class APIMain extends AppCompatActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             if(result.equals("success")) {
-                if (arrayList.isEmpty()) {
-                    setContentView(R.layout.activity_main_empty);
-                    Context context = getApplicationContext();
-                    CharSequence text = "¿Deseas agregar un contenedor? Puedes hacerlo desde aqui!";
-                    int duration = Toast.LENGTH_SHORT;
+                /*if (arrayList.isEmpty()) {
+                    setContentView(R.layout.activity_main_est_empty);
 
-                    LayoutInflater inflater = getLayoutInflater();
-                    View layout = inflater.inflate(R.layout.toast_layout,
-                            (ViewGroup) findViewById(R.id.toast_layout_root));
+                    toolbar = (Toolbar) findViewById(R.id.toolbar_es);
+                    setSupportActionBar(toolbar);
 
-                    TextView textToast = (TextView) layout.findViewById(R.id.text_toast);
-                    textToast.setText(text);
+                    nameCompany = (TextView) findViewById(R.id.nameCompany);
+                    nameCompany.setText(Company);
 
-                    Toast toast = new Toast(context);
-                    toast.setDuration(duration);
-                    toast.setView(layout);
-                    toast.setGravity(Gravity.TOP | Gravity.LEFT, 150, 0);
-                    toast.show();
-                } else {
-                    APIAdapterContEst adapter = new APIAdapterContEst(APIMain.this, arrayList);
+                    actionBar = getSupportActionBar();
+                    actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
+                    actionBar.setDisplayHomeAsUpEnabled(true);
+
+                    drawerLayout = (DrawerLayout) findViewById(R.id.navigation_drawer_layout_es);
+
+                    NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view_es);
+                    if (navigationView != null) {
+                        setupNavigationDrawerContent(navigationView);
+                    }
+
+                    setupNavigationDrawerContent(navigationView);*/
+
+                //} else {
+                    AdapterContEst adapter = new AdapterContEst(APIMain.this, arrayList,access_token,client,uid);
                     adapter.notifyDataSetChanged();
                     listContainerCompany.setAdapter(adapter);
-                }
+                //}
             }
             else{
                 Toast toast1 =
@@ -263,7 +262,7 @@ public class APIMain extends AppCompatActivity {
         //Implementar API Aqui!!
         db.update("COMPANY", companyValues, "NAME = ?", new String[]{nameCompany});
 
-        Intent intent = new Intent(APIMain.this, APILogin.class);
+        Intent intent = new Intent(APIMain.this, Login.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         startActivity(intent);
     }

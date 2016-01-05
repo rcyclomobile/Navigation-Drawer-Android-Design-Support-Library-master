@@ -35,8 +35,6 @@ public class Settings extends AppCompatActivity {
     private String Company;
 
     Toolbar toolbar;
-    String emailCompany,phoneCompany;
-    TextView emailCo, phoneCo, adressCo, nombreHeaderCo, correoHeaderCo, phoneHeaderCo, passwordCo;;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,76 +54,57 @@ public class Settings extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Date date = new Date();
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-
         TypedValue typedValueColorPrimaryDark = new TypedValue();
         Settings.this.getTheme().resolveAttribute(R.attr.colorPrimaryDark, typedValueColorPrimaryDark, true);
         final int colorPrimaryDark = typedValueColorPrimaryDark.data;
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setStatusBarColor(colorPrimaryDark);
         }
-
-        emailCo = (TextView) findViewById(R.id.emailCo);
-        phoneCo = (TextView) findViewById(R.id.phoneCo);
-        adressCo = (TextView) findViewById(R.id.adressCo);
-        nombreHeaderCo = (TextView) findViewById(R.id.nombreHeaderCo);
-        correoHeaderCo = (TextView) findViewById(R.id.correoHeaderCo);
-        phoneHeaderCo = (TextView) findViewById(R.id.phoneHeaderCo);
-        passwordCo = (TextView) findViewById(R.id.passwordCo);
-
-        nombreHeaderCo.setText(Company);
-        phoneHeaderCo.setText(dateFormat.format(date));
-        adressCo.setText("");
-
-        emailCo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                editar_perfil(v);
-            }
-        });
-
-        passwordCo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editar_contraseña(v);
-            }
-        });
-
-        phoneCo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                editar_direccion(v);
-            }
-        });
-
     }
 
-    public void editar_perfil(View view){
-        Intent intent = new Intent(this, com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIEditEmail.class);
-        intent.putExtra(APIEditEmail.COMPANY, Company);
+    public void editar_mail(View view, String nameCompany, String addressCompany, String emailCompany){
+        Intent intent = new Intent(view.getContext(), EditEmail.class);
+        intent.putExtra(EditEmail.COMPANY, Company);
+        intent.putExtra(EditEmail.NAME, nameCompany);
+        intent.putExtra(EditEmail.ADDRESS, addressCompany);
+        intent.putExtra(EditEmail.EMAIL, emailCompany);
+        intent.putExtra("access-token", access_token);
+        intent.putExtra("client", client);
+        intent.putExtra("uid", uid);
+        intent.putExtra("name", Company);
+
         startActivity(intent);
-        finish();
     }
 
-    public void editar_contraseña(View view){
-        Intent intent = new Intent(this, com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIChangePass.class);
+    public void editar_contraseña(View view, String nameCompany ,String addressCompany ,String emailCompany){
+        Intent intent = new Intent(view.getContext(), com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIChangePass.class);
         intent.putExtra(com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIChangePass.COMPANY, Company);
         startActivity(intent);
-        finish();
     }
 
-    public void editar_direccion(View view){
-        Intent intent = new Intent(this, APIEditAddress.class);
-        intent.putExtra(APIEditAddress.COMPANY, Company);
+    public void editar_direccion(View view, String nameCompany ,String addressCompany ,String emailCompany){
+        Intent intent = new Intent(view.getContext(), EditAddress.class);
+        intent.putExtra(EditEmail.COMPANY, Company);
+        intent.putExtra(EditEmail.NAME, nameCompany);
+        intent.putExtra(EditEmail.ADDRESS, addressCompany);
+        intent.putExtra(EditEmail.EMAIL, emailCompany);
+        intent.putExtra("access-token", access_token);
+        intent.putExtra("client", client);
+        intent.putExtra("uid", uid);
+        intent.putExtra("name", Company);
         startActivity(intent);
-        finish();
     }
 
     public class GetContainers extends AsyncTask<URL, String, String> {
 
-
         public String name;
+
+        public String nameCompany;
+        public String emailCompany;
+        public String addressCompany;
+
+        TextView emailCo, phoneCo, adressCo, nombreHeaderCo, correoHeaderCo, phoneHeaderCo, passwordCo;
+
         @Override
         protected String doInBackground(URL... params) {
 
@@ -153,6 +132,10 @@ public class Settings extends AppCompatActivity {
 
                     String email = mJsonObject.getString("email");
 
+                    nameCompany = mJsonObject.getString("name");
+                    emailCompany = mJsonObject.getString("email");
+                    addressCompany = mJsonObject.getString("address");
+
                     return email;
 
                 } catch (MalformedURLException e) {
@@ -170,7 +153,44 @@ public class Settings extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
+
+            adressCo = (TextView) findViewById(R.id.adressCo);
+            nombreHeaderCo = (TextView) findViewById(R.id.nombreHeaderCo);
+            correoHeaderCo = (TextView) findViewById(R.id.correoHeaderCo);
+            phoneHeaderCo = (TextView) findViewById(R.id.phoneHeaderCo);
+
+            Date date = new Date();
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+            nombreHeaderCo.setText(Company);
+            phoneHeaderCo.setText(dateFormat.format(date));
             correoHeaderCo.setText(result);
+            adressCo.setText(addressCompany);
+
+            emailCo = (TextView) findViewById(R.id.emailCo);
+            phoneCo = (TextView) findViewById(R.id.phoneCo);
+            passwordCo = (TextView) findViewById(R.id.passwordCo);
+
+            emailCo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(final View v) {
+                    editar_mail(v, nameCompany, addressCompany, emailCompany);
+                }
+            });
+
+            passwordCo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    editar_contraseña(v,nameCompany,addressCompany,emailCompany);
+                }
+            });
+
+            phoneCo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    editar_direccion(v,nameCompany,addressCompany,emailCompany);
+                }
+            });
         }
     }
 

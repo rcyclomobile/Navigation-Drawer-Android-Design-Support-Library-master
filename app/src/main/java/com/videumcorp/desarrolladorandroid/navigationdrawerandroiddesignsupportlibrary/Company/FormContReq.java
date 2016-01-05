@@ -168,7 +168,7 @@ public class FormContReq extends AppCompatActivity {
             if(result.equals("success")) {
                 Toast toast = Toast.makeText(getApplicationContext(), "Su solicitud ha sido enviada.", Toast.LENGTH_SHORT);
                 toast.show();
-                Intent intent = new Intent().setClass(FormContReq.this, APIMain.class);
+                Intent intent = new Intent().setClass(FormContReq.this, Main.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 } else {

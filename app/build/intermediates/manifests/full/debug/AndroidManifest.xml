@@ -46,15 +46,15 @@
         <activity
             android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.Settings"
             android:label="Mi Perfil"
-            android:parentActivityName="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APILogin" >
+            android:parentActivityName="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.Login" >
         </activity>
         <activity
-            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APILogin"
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.Login"
             android:label="Escoger actividad" >
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIMain"
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.Main"
             android:label="Menu" >
             android:theme="@style/AppTheme" >
         </activity>
@@ -111,7 +111,7 @@
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIEditEmail"
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.EditEmail"
             android:label="Editar perfil"
             android:theme="@style/AppTheme" >
         </activity>

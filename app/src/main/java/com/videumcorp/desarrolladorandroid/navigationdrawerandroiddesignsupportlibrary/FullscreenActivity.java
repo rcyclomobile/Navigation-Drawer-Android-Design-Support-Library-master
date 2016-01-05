@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.Login;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APILogin;
 
 /**
@@ -78,7 +79,7 @@ public class FullscreenActivity extends AppCompatActivity {
     }
 
     public void companyRegister(View view){
-        Intent intent = new Intent(this, com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APILogin.class);
+        Intent intent = new Intent(this, Login.class);
         startActivity(intent);
     }
 

@@ -15,7 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.APIAdapterSelEst;
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.AdapterSelEst;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.Establishment;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
 
@@ -195,7 +195,7 @@ public class SelectEst extends AppCompatActivity {
                     toast.setGravity(Gravity.TOP | Gravity.LEFT, 150, 0);
                     toast.show();
                 } else {
-                    APIAdapterSelEst adapter = new APIAdapterSelEst(SelectEst.this, arrayList,Company,access_token,client,uid);
+                    AdapterSelEst adapter = new AdapterSelEst(SelectEst.this, arrayList,Company,access_token,client,uid);
                     adapter.notifyDataSetChanged();
                     listEstablishmentCompany.setAdapter(adapter);
                 }

@@ -95,7 +95,7 @@ public class APIModifyCont extends Activity {
         //Implementar API Aqui!!
         db.update("CONTAINER", containerValues, "NAME_CONTAINER = ? AND COMPANY = ?", new String[]{nameContainer, nameCompany});
 
-        Intent intent = new Intent(this, APIMain.class);
+        Intent intent = new Intent(this, Main.class);
         startActivity(intent);
         finish();
     }

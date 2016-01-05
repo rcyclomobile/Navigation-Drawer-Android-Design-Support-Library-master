@@ -60,7 +60,7 @@
                     android:maxLines="1"
                     android:singleLine="true"
 
-                    android:text="coaniquem@gmail.com"
+                    android:text="patriciosard@gmail.com"
                     />
 
             </android.support.design.widget.TextInputLayout>

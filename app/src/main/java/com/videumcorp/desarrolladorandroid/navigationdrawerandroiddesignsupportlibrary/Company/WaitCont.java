@@ -139,7 +139,7 @@ public class WaitCont extends AppCompatActivity {
                                 mJsonObjectProperty.getString("active"),
                                 mJsonObjectProperty.getString("description"));
 
-                        arrayList.add(container);
+                        if(mJsonObjectProperty.getString("erased").equals("false")){arrayList.add(container);}
                     }
 
                     return "success";

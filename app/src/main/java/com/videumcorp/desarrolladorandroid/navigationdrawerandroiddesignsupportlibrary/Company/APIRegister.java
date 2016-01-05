@@ -92,7 +92,7 @@ public class APIRegister extends AppCompatActivity {
                     TimerTask task = new TimerTask() {
                         @Override
                         public void run() {
-                            Intent intent = new Intent().setClass(APIRegister.this, APILogin.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            Intent intent = new Intent().setClass(APIRegister.this, Login.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                             startActivity(intent);
                         }
                     };

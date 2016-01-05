@@ -2,9 +2,6 @@ package com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupport
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,11 +19,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.APIAdapterContEst;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.Container;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.APIAdapterDelEst;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
-import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.DataBase.RcycloDatabaseHelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -155,7 +150,7 @@ public class APIDeleteCont extends AppCompatActivity {
                                 mJsonObjectProperty.getString("active"),
                                 mJsonObjectProperty.getString("description"));
 
-                        arrayList.add(container);
+                        if(mJsonObjectProperty.getString("erased").equals("true")){arrayList.add(container);}
                     }
 
                     return "success";

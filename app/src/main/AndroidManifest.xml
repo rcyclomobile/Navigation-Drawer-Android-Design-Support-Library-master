@@ -26,15 +26,15 @@
         <activity
             android:name=".Company.Settings"
             android:label="Mi Perfil"
-            android:parentActivityName=".Company.APILogin" >
+            android:parentActivityName=".Company.Login" >
         </activity>
         <activity
-            android:name=".Company.APILogin"
+            android:name=".Company.Login"
             android:label="Escoger actividad" >
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name=".Company.APIMain"
+            android:name=".Company.Main"
             android:label="Menu" >
             android:theme="@style/AppTheme" >
         </activity>
@@ -91,7 +91,7 @@
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name=".Company.APIEditEmail"
+            android:name=".Company.EditEmail"
             android:label="Editar perfil"
             android:theme="@style/AppTheme" >
         </activity>
@@ -140,7 +140,7 @@
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name=".Company.APIEditAddress"
+            android:name=".Company.EditAddress"
             android:label="Cambiar Direccion"
             android:theme="@style/AppTheme" >
         </activity>

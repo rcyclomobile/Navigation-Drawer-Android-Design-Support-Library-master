@@ -1,9 +1,6 @@
 package com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,9 +13,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.*;
-import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIEditAddress;
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.EditAddress;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
-import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.DataBase.RcycloDatabaseHelper;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,8 +28,6 @@ import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class APISettings extends AppCompatActivity {
 
@@ -109,8 +103,8 @@ public class APISettings extends AppCompatActivity {
     }
 
     public void editar_perfil(View view){
-        Intent intent = new Intent(this, com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIEditEmail.class);
-        intent.putExtra(com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIEditEmail.COMPANY, Company);
+        Intent intent = new Intent(this, EditEmail.class);
+        intent.putExtra(EditEmail.COMPANY, Company);
         startActivity(intent);
         finish();
     }
@@ -123,8 +117,8 @@ public class APISettings extends AppCompatActivity {
     }
 
     public void editar_direccion(View view){
-        Intent intent = new Intent(this, com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIEditAddress.class);
-        intent.putExtra(APIEditAddress.COMPANY, Company);
+        Intent intent = new Intent(this, EditAddress.class);
+        intent.putExtra(EditAddress.COMPANY, Company);
         startActivity(intent);
         finish();
     }
@@ -204,31 +198,5 @@ public class APISettings extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public static boolean isEmailValid(String email) {
-        boolean isValid = false;
-
-        String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
-        CharSequence inputStr = email;
-
-        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(inputStr);
-        if (matcher.matches()) {
-            isValid = true;
-        }
-        return isValid;
-    }
-
-    public boolean isEmailUsed(String email) {
-        SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(this);
-        SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
-        Cursor cursor = db.query("ESTABLISHMENT", new String[]{"EMAIL"}, "EMAIL = ?", new String[]{email}, null, null, null);
-        if (cursor.moveToFirst()){
-            return true;
-        }
-        else {
-            return false;
-        }
     }
 }
