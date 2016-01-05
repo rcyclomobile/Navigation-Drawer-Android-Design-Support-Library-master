@@ -112,7 +112,7 @@ public class FullscreenActivity extends AppCompatActivity {
             return false;
         }
     };
-
+//
     private void toggle() {
         if (mVisible) {
             hide();
