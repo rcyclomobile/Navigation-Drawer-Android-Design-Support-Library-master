@@ -60,8 +60,7 @@ public class AdapterContEst extends ArrayAdapter<Container> {
         this.itemsArrayList = itemsArrayList;
         this.access_token = access_token;
         this.client = client;
-        this.uid = uid;
-    }
+        this.uid = uid;}
 
 
     @Override
@@ -86,18 +85,18 @@ public class AdapterContEst extends ArrayAdapter<Container> {
 
         // 4. Set the text for textView
         ContainerName.setText(itemsArrayList.get(position).getNameContainer());
-        ContainerStatus.setText("Ver contenedor");
+        //ContainerStatus.setText("Ver contenedor");
         if(itemsArrayList.get(position).getStatus().equals("1")) {
-            imContenedor.setImageResource(R.drawable.vacio);
+            imContenedor.setImageResource(R.drawable.icon_container_vacio);
             progressBar.setProgress(2);
         }
         else if(itemsArrayList.get(position).getStatus().equals("3")){
-            imContenedor.setImageResource(R.drawable.lleno);
+            imContenedor.setImageResource(R.drawable.icon_container_lleno);
             progressBar.getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
             progressBar.setProgress(100);
         }
         else if(itemsArrayList.get(position).getStatus().equals("2")){
-            imContenedor.setImageResource(R.drawable.medio);
+            imContenedor.setImageResource(R.drawable.icon_container_mitad);
             progressBar.setProgress(50);
         }
         else if(itemsArrayList.get(position).getStatus().equals("4")){

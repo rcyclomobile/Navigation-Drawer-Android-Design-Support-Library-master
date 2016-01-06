@@ -49,6 +49,7 @@
 
                 android:drawableLeft="@drawable/select_papel"
                 android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 fbutton:shadowEnabled="true"
 
                 android:text="Papel"
@@ -63,6 +64,9 @@
 
                 android:drawableLeft="@drawable/select_plastico"
                 android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+
+                fbutton:buttonColor="#F9DF66"
                 fbutton:shadowEnabled="true"
 
                 android:text="Plastico"
@@ -76,8 +80,10 @@
                 android:layout_width="match_parent" android:layout_height="110dp"
                 android:layout_margin="10dp"
 
-                android:drawableLeft="@drawable/select_plastico"
+                android:drawableLeft="@drawable/select_vidrio"
                 android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                fbutton:buttonColor="@color/fbutton_color_emerald"
                 fbutton:shadowEnabled="true"
 
                 android:text="Vidrio"
@@ -89,13 +95,15 @@
             <info.hoang8f.widget.FButton
                 android:id="@+id/tin"
                 android:layout_width="match_parent" android:layout_height="110dp"
-                android:layout_margin="10dp"
+                android:layout_margin="8dp"
 
-                android:drawableLeft="@drawable/select_plastico"
+                android:drawableLeft="@drawable/select_lata"
                 android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                fbutton:buttonColor="#E64E37"
                 fbutton:shadowEnabled="true"
 
-                android:text="Vidrio"
+                android:text="Lata"
                 android:textColor="#fff"
                 android:textStyle="bold"
                 android:textSize="24dp"  />

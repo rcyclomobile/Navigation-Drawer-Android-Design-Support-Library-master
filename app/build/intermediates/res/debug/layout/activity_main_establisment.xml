@@ -44,12 +44,24 @@
             android:layout_below="@+id/toolbar_es"/>
 
 
+        <fragment
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent" android:layout_height="150dp"
+            android:id="@+id/map" tools:context=".MapsActivity"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+
+
+            android:layout_below="@+id/toolbar_es"
+            android:layout_centerHorizontal="true" />
+
+
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipeContainer"
             xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent" android:layout_height="400dp"
-            android:layout_margin="10dp"
-            android:layout_below="@+id/title"
+            android:layout_width="match_parent" android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:layout_below="@+id/map"
             android:background="#fff">
 
             <ListView
@@ -59,10 +71,6 @@
             </ListView>
 
         </android.support.v4.widget.SwipeRefreshLayout>
-
-
-
-
 
 
     </RelativeLayout>
