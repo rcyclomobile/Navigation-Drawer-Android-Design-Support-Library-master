@@ -51,7 +51,7 @@ public class Main extends AppCompatActivity {
     ListView listContainerCompany;
     ArrayList<Container> arrayList = new ArrayList<>();
     Container container;
-    Button btCambiar;
+    Button btCambiar, ayudar, correo;
     private SwipeRefreshLayout swipeContainer;
 
     private String access_token;
@@ -232,6 +232,31 @@ public class Main extends AppCompatActivity {
 
                     nameCompany = (TextView) findViewById(R.id.nameCompany);
                     nameCompany.setText(Company);
+
+                    ayudar = (Button) findViewById(R.id.ayudar);
+                    correo = (Button) findViewById(R.id.correo);
+
+                    ayudar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(Main.this, SelectWaste.class);
+                            intent.putExtra("access-token", access_token);
+                            intent.putExtra("client", client);
+                            intent.putExtra("uid", uid);
+                            intent.putExtra("name", Company);
+                            startActivity(intent);
+                        }
+                    });
+
+                    correo.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            String[] to = { "" };
+                            String[] cc = { "" };
+                            enviar(to, cc, "",
+                                    "");
+                        }
+                    });
 
                     actionBar = getSupportActionBar();
                     actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
