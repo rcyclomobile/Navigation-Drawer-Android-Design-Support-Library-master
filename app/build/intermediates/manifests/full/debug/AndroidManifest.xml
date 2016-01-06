@@ -136,12 +136,12 @@
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIChangePass"
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.ChangePass"
             android:label="Cambiar contraseña"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIDeleteCont"
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.DeleteCont"
             android:label="Mis contenedores"
             android:theme="@style/AppTheme" >
         </activity>

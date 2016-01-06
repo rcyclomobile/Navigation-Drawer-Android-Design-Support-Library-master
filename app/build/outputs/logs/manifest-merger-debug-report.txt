@@ -272,7 +272,7 @@ ADDED from AndroidManifest.xml:113:9
 		ADDED from AndroidManifest.xml:116:13
 	android:name
 		ADDED from AndroidManifest.xml:114:13
-activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIChangePass
+activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.ChangePass
 ADDED from AndroidManifest.xml:118:9
 	android:label
 		ADDED from AndroidManifest.xml:120:13
@@ -280,7 +280,7 @@ ADDED from AndroidManifest.xml:118:9
 		ADDED from AndroidManifest.xml:121:13
 	android:name
 		ADDED from AndroidManifest.xml:119:13
-activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIDeleteCont
+activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.DeleteCont
 ADDED from AndroidManifest.xml:123:9
 	android:label
 		ADDED from AndroidManifest.xml:125:13

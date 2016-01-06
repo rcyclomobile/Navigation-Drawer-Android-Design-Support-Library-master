@@ -1,6 +1,5 @@
 package com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -9,18 +8,12 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.Container;
-import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.APIAdapterDelEst;
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.AdapterDelEst;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
 
 import org.json.JSONArray;
@@ -35,7 +28,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class APIDeleteCont extends AppCompatActivity {
+public class DeleteCont extends AppCompatActivity {
 
     Toolbar toolbar;
     ListView listContainerCompany;
@@ -57,7 +50,7 @@ public class APIDeleteCont extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         TypedValue typedValueColorPrimaryDark = new TypedValue();
-        APIDeleteCont.this.getTheme().resolveAttribute(R.attr.colorPrimaryDark, typedValueColorPrimaryDark, true);
+        DeleteCont.this.getTheme().resolveAttribute(R.attr.colorPrimaryDark, typedValueColorPrimaryDark, true);
         final int colorPrimaryDark = typedValueColorPrimaryDark.data;
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setStatusBarColor(colorPrimaryDark);
@@ -79,7 +72,7 @@ public class APIDeleteCont extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 arrayList.clear();
-                Intent refresh = new Intent(APIDeleteCont.this, APIDeleteCont.class);
+                Intent refresh = new Intent(DeleteCont.this, DeleteCont.class);
                 refresh.putExtra("access-token", access_token);
                 refresh.putExtra("client", client);
                 refresh.putExtra("uid", uid);
@@ -150,7 +143,7 @@ public class APIDeleteCont extends AppCompatActivity {
                                 mJsonObjectProperty.getString("active"),
                                 mJsonObjectProperty.getString("description"));
 
-                        if(mJsonObjectProperty.getString("erased").equals("true")){arrayList.add(container);}
+                        if(mJsonObjectProperty.getString("erased").equals("false")&&mJsonObjectProperty.getString("active").equals("true")){arrayList.add(container);}
                     }
 
                     return "success";
@@ -170,7 +163,7 @@ public class APIDeleteCont extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            if(result.equals("success")) {
+           /* if(result.equals("success")) {
                 if (arrayList.isEmpty()) {
                     setContentView(R.layout.activity_main_empty);
                     Context context = getApplicationContext();
@@ -189,11 +182,11 @@ public class APIDeleteCont extends AppCompatActivity {
                     toast.setView(layout);
                     toast.setGravity(Gravity.TOP | Gravity.LEFT, 150, 0);
                     toast.show();
-                } else {
-                    APIAdapterDelEst adapter = new APIAdapterDelEst(APIDeleteCont.this, arrayList);
+                } else {*/
+                    AdapterDelEst adapter = new AdapterDelEst(DeleteCont.this, arrayList, access_token, client, uid);
                     adapter.notifyDataSetChanged();
                     listContainerCompany.setAdapter(adapter);
-                }
+                /*
             }
             else{
                 Toast toast1 =
@@ -201,7 +194,7 @@ public class APIDeleteCont extends AppCompatActivity {
                                 "No hay conexion a internet.", Toast.LENGTH_SHORT);
 
                 toast1.show();
-            }
+            }*/
 
         }
     }

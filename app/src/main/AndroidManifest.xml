@@ -116,12 +116,12 @@
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name=".Establishment.APIChangePass"
+            android:name=".Establishment.ChangePass"
             android:label="Cambiar contraseña"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name=".Establishment.APIDeleteCont"
+            android:name=".Establishment.DeleteCont"
             android:label="Mis contenedores"
             android:theme="@style/AppTheme" >
         </activity>

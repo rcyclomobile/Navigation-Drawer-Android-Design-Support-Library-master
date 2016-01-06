@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="match_parent" android:layout_height="match_parent"
-    android:layout_marginTop="25dp"
-    >
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
 
-<ImageButton
-    android:id="@+id/move_poster"
-    android:background="@null"
-    android:layout_width="75dp"
-    android:layout_height="75dp"
-    android:layout_marginLeft="10dp"
-    />
+    <ImageButton
+        android:id="@+id/move_poster"
+        android:background="@null"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginLeft="10dp" />
 
     <TextView
         android:id="@+id/ContainerStatus"
@@ -21,16 +19,16 @@ android:layout_width="match_parent" android:layout_height="match_parent"
         android:text="Ver contenedor"
         />
 
-<TextView
-    android:id="@+id/ContainerName"
-    android:layout_width="130dp"
-    android:layout_height="75dp"
-    android:layout_marginRight="10dp"
-    android:layout_toRightOf="@+id/move_poster"
-    android:text="Nombre Contenedor"
-    android:textStyle="bold"
-    android:gravity="center"
-    />
+    <TextView
+        android:id="@+id/ContainerName"
+        android:layout_width="130dp"
+        android:layout_height="75dp"
+        android:layout_marginRight="10dp"
+        android:layout_toRightOf="@+id/move_poster"
+        android:text="Nombre Contenedor"
+        android:textStyle="bold"
+        android:gravity="center" />
+
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
@@ -61,13 +59,13 @@ android:layout_width="match_parent" android:layout_height="match_parent"
         android:gravity="center"
         android:layout_toRightOf="@+id/ContainerName"
         />
-
-<View
-    android:layout_marginTop="85dp"
-    android:layout_width="match_parent"
-    android:layout_height="20dp"
-    android:background="#FFFFFF"
-    android:layout_below="@+id/move_poster">
-</View>
-
+    <!--
+    <View
+        android:layout_marginTop="85dp"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="#FFFFFF"
+        android:layout_below="@+id/move_poster">
+    </View>
+    -->
 </RelativeLayout>

@@ -15,10 +15,6 @@
             android:id="@+id/item_navigation_drawer_sent_mail"
             android:icon="@drawable/ic_action_content_send"
             android:title="Enviar mail" />
-        <item
-            android:id="@+id/item_navigation_drawer_drafts"
-            android:icon="@drawable/ic_action_content_report"
-            android:title="Salirme" />
     </group>
 
     <item android:title="Mi cuenta">

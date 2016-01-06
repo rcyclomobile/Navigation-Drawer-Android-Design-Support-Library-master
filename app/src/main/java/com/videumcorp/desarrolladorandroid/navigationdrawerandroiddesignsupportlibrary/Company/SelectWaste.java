@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
@@ -12,7 +13,7 @@ import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportl
 public class SelectWaste extends AppCompatActivity implements View.OnClickListener{
 
     public String waste;
-    ImageButton paper, plastic, glass, tin;
+    Button paper, plastic, glass, tin;
     private String access_token;
     private String client;
     private String uid;
@@ -35,10 +36,10 @@ public class SelectWaste extends AppCompatActivity implements View.OnClickListen
         uid = intent.getStringExtra("uid");
         Company = intent.getStringExtra("name");
 
-        paper   = (ImageButton) findViewById(R.id.paper);
-        plastic = (ImageButton) findViewById(R.id.plastic);
-        glass   = (ImageButton) findViewById(R.id.glass);
-        tin     = (ImageButton) findViewById(R.id.tin);
+        paper   = (Button) findViewById(R.id.paper);
+        plastic = (Button) findViewById(R.id.plastic);
+        glass   = (Button) findViewById(R.id.glass);
+        tin     = (Button) findViewById(R.id.tin);
 
         paper.setOnClickListener(this);
         plastic.setOnClickListener(this);

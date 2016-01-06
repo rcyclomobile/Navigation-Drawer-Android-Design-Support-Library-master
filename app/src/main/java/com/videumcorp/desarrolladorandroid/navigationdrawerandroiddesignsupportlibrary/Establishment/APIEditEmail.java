@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,10 +16,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.DataBase.RcycloDatabaseHelper;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -31,19 +43,48 @@ import de.keyboardsurfer.android.widget.crouton.Style;
 public class APIEditEmail extends AppCompatActivity {
 
     Toolbar toolbar;
-    String emailCompany,phoneCompany,addressCompany;
-    public static final String NAME= "empresa";
-    TextView nombreHeaderCo, correoHeaderCo, fechaHeaderCo;
+
+    public static final String COMPANY = "empresa";
+    public static final String NAME = "empresa";
+    public static final String ADDRESS = "direccion";
+    public static final String EMAIL = "email";
+
+    TextView nombreHeaderCo;
+
+    private String access_token;
+    private String client;
+    private String uid;
+    private String Company;
+
+    public String nameCompany;
+    public String addressCompany;
+    public String emailCompany;
+    public String newEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile_establishment);
 
-        String empresa = (String)getIntent().getExtras().get(NAME);
+        String empresa = (String) getIntent().getExtras().get(COMPANY);
+
+        nameCompany = (String) getIntent().getExtras().get(NAME);
+        addressCompany = (String) getIntent().getExtras().get(ADDRESS);
+        emailCompany = (String) getIntent().getExtras().get(EMAIL);
+
+        Intent intent = getIntent();
+
+        access_token = intent.getStringExtra("access-token");
+        client = intent.getStringExtra("client");
+        uid = intent.getStringExtra("uid");
+        Company = intent.getStringExtra("name");
+
+        EditText etEmail = (EditText) findViewById(R.id.emailCo);
+        etEmail.setText(emailCompany);
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        
+
         TypedValue typedValueColorPrimaryDark = new TypedValue();
         APIEditEmail.this.getTheme().resolveAttribute(R.attr.colorPrimaryDark, typedValueColorPrimaryDark, true);
         final int colorPrimaryDark = typedValueColorPrimaryDark.data;
@@ -51,19 +92,6 @@ public class APIEditEmail extends AppCompatActivity {
             getWindow().setStatusBarColor(colorPrimaryDark);
         }
 
-        SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(this);
-        SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
-
-        //Implementar API Aqui!!
-        Cursor cursor = db.query("ESTABLISHMENT", new String[]{"EMAIL", "PHONE", "ADDRESS" }, "NAME = ? AND ACTIVO = ?", new String[]{empresa, "ACTIVO"}, null, null, null);
-
-        if(cursor.moveToFirst()){
-            do {
-                emailCompany = cursor.getString(0);
-                phoneCompany = cursor.getString(1);
-                addressCompany = cursor.getString(2);
-            }while (cursor.moveToNext()) ;
-        }
         nombreHeaderCo = (TextView) findViewById(R.id.nombreHeaderCo);
         nombreHeaderCo.setText(empresa);
     }
@@ -90,40 +118,21 @@ public class APIEditEmail extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void aceptar(View view){
+    public void aceptar(View view) {
         EditText etEmail = (EditText) findViewById(R.id.emailCo);
-        String email =  etEmail.getText().toString();
+        String email = etEmail.getText().toString();
+        newEmail = etEmail.getText().toString();
 
- /*     if (email.matches("") || phone.matches("")) {
-            Crouton.makeText(this, "Se deben llenar todos los campos!", Style.ALERT).show();        }
-*/
-   /*     else {*/
-        if(!email.matches("")) {
+        if (!email.matches("")) {
             if (isEmailValid(email)) {
-                if (isEmailUsed(email) && (!email.equals(emailCompany))) {
-                    Crouton.makeText(this, "El Email ya existe!!", Style.ALERT).show();
-                } else {
-                        String empresa = (String)getIntent().getExtras().get(NAME);
-                        SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(this);
-                        SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
-                        ContentValues companyValues = new ContentValues();
-                        companyValues.put("EMAIL", email);
-                    //Implementar API Aqui!!
-                        db.update("ESTABLISHMENT", companyValues, "NAME = ? ", new String[]{empresa});
-                        Intent intent = new Intent(this, APISettings.class);
-                        startActivity(intent);
-                        finish();
-
-                }
+                GetContainers g = new GetContainers();
+                g.execute();
             } else {
-
                 etEmail.setError("El mail debe ser valido!");
             }
-        }
-        else{
+        } else {
             etEmail.setError("No se puede dejar el mail en blanco.");
         }
-      /*  }*/
 
     }
 
@@ -141,18 +150,77 @@ public class APIEditEmail extends AppCompatActivity {
         return isValid;
     }
 
-    public boolean isEmailUsed(String email) {
-        SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(this);
-        SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
-        //Implementar API Aqui!!
-        Cursor cursor = db.query("ESTABLISHMENT", new String[]{"EMAIL"}, "EMAIL = ?", new String[]{email}, null, null, null);
-        if (cursor.moveToFirst()){
-            return true;
+    public class GetContainers extends AsyncTask<URL, String, String> {
+
+        public String name;
+
+        @Override
+        protected String doInBackground(URL... params) {
+            //ACENTOOOOO
+
+            String hola = nameCompany.replace("ó","%c3%b3").replace(" ","%20");
+
+            try {
+                URL url = new URL("https://api-rcyclo.herokuapp.com/establishments/update?name="+nameCompany.replace("ó","%c3%b3").replace(" ","%20").replace("\b","%20")+"&email="+newEmail+"&address="+addressCompany.replace(" ","%20").replace("\b","%20"));
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+                conn.setRequestProperty("access-token", access_token);
+                conn.setRequestProperty("client", client);
+                conn.setRequestProperty("uid", uid);
+                conn.setRequestMethod("GET");
+
+                try {
+                    BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(),"UTF-8"));
+                    StringBuilder sb = new StringBuilder();
+
+                    String line;
+
+                    while ((line = in.readLine()) != null) {
+                        sb.append(line + "\n");
+                    }
+
+                    in.close();
+
+                    return "success";
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return "failed";
         }
-        else {
-            return false;
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            if(result.equals("success")) {
+                Toast toast1 =
+                        Toast.makeText(getApplicationContext(),
+                                "La solicitud de cambio de email ha sido enviada.", Toast.LENGTH_SHORT);
+                toast1.show();
+
+                Intent intent = new Intent(APIEditEmail.this, com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APISettings.class);
+                intent.putExtra("access-token", access_token);
+                intent.putExtra("client", client);
+                intent.putExtra("uid", uid);
+                intent.putExtra("name", Company);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+                finish();
+            }
+            else{
+                Toast toast1 =
+                        Toast.makeText(getApplicationContext(),
+                                "Lo sentimos, algo ha ido mal.", Toast.LENGTH_SHORT);
+
+                toast1.show();
+            }
+
         }
     }
-
 }
 

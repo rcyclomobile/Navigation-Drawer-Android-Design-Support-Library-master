@@ -288,7 +288,7 @@ public class APIMain extends AppCompatActivity {
                             case R.id.item_navigation_drawer_starred_es:
                                 menuItem.setChecked(true);
                                 drawerLayout.closeDrawer(GravityCompat.START);
-                                intent = new Intent(APIMain.this, APIDeleteCont.class);
+                                intent = new Intent(APIMain.this, DeleteCont.class);
                                 intent.putExtra("access-token", access_token);
                                 intent.putExtra("client", client);
                                 intent.putExtra("uid", uid);

@@ -1,5 +1,7 @@
 package com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -10,7 +12,9 @@ import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
 
@@ -26,6 +30,7 @@ import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Set;
 
 public class Settings extends AppCompatActivity {
 
@@ -33,6 +38,8 @@ public class Settings extends AppCompatActivity {
     private String client;
     private String uid;
     private String Company;
+
+    TextView salirse;
 
     Toolbar toolbar;
 
@@ -60,6 +67,32 @@ public class Settings extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setStatusBarColor(colorPrimaryDark);
         }
+
+        salirse = (TextView) findViewById(R.id.salirse);
+
+        salirse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(Settings.this);
+                builder.setMessage("¿Quieres eliminar la empresa de la aplicación?");
+                builder.setTitle("Eliminar empresa");
+                builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        DeleteAccount d = new DeleteAccount();
+                        d.execute();
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
     }
 
     public void editar_mail(View view, String nameCompany, String addressCompany, String emailCompany){
@@ -214,5 +247,68 @@ public class Settings extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public class DeleteAccount extends AsyncTask<URL, String, String> {
+
+
+        public String name;
+        @Override
+        protected String doInBackground(URL... params) {
+
+            try {
+                URL url = new URL("https://api-rcyclo.herokuapp.com/companies/drop_out");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+                conn.setRequestProperty("access-token", access_token);
+                conn.setRequestProperty("client", client);
+                conn.setRequestProperty("uid", uid);
+
+                try {
+                    BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    StringBuilder sb = new StringBuilder();
+
+                    String line;
+
+                    while ((line = in.readLine()) != null) {
+                        sb.append(line + "\n");
+                    }
+
+                    in.close();
+
+                    return "success";
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return "failed";
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            if(result.equals("success")) {
+                Toast toast1 =
+                        Toast.makeText(getApplicationContext(),
+                                "Te has desvinculado de R-cyclo con exito.", Toast.LENGTH_SHORT);
+
+                toast1.show();
+                Intent intent = new Intent(Settings.this, Login.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+            }
+            else{
+                Toast toast1 =
+                        Toast.makeText(getApplicationContext(),
+                                "Lo sentimos, algo ha ido mal.", Toast.LENGTH_SHORT);
+
+                toast1.show();
+            }
+
+        }
     }
 }

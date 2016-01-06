@@ -148,7 +148,7 @@ public class APIAvailableCont extends AppCompatActivity {
                                 mJsonObjectProperty.getString("active"),
                                 mJsonObjectProperty.getString("description"));
 
-                        if(mJsonObjectProperty.getString("erased").equals("false")){arrayList.add(container);}
+                        if(mJsonObjectProperty.getString("erased").equals("false")&&mJsonObjectProperty.getString("active").equals("false")){arrayList.add(container);}
                     }
 
                     return "success";
@@ -169,13 +169,9 @@ public class APIAvailableCont extends AppCompatActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             if(result.equals("success")) {
-                if (arrayList.isEmpty()) {
-                    setContentView(R.layout.activity_main_empty);
-                } else {
                     AdapterEst adapter = new AdapterEst(APIAvailableCont.this, arrayList,access_token,client,uid);
                     adapter.notifyDataSetChanged();
                     listContainerCompany.setAdapter(adapter);
-                }
             }
             else{
                 Toast toast1 =

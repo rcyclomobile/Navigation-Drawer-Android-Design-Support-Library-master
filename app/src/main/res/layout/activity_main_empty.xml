@@ -4,63 +4,135 @@
     android:id="@+id/navigation_drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="@bool/fitsSystemWindows">
+    android:fitsSystemWindows="@bool/fitsSystemWindows"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+    android:background="#e0e0e0">
 
-    <LinearLayout
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/status_bar_kitkat_height"
-            android:background="?colorPrimary"/>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/status_bar_lollipop_height"
-            android:background="?colorPrimaryDark"/>
-
-        <TextView
-            android:text="Mis Contenedores"
-            android:textSize="25dp"
-            android:gravity="center"
-            android:layout_marginTop="75dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:text="No existen contenedores disponibles."
-            android:textSize="20dp"
-            android:gravity="center"
-            android:layout_marginTop="50dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-
-    </LinearLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/status_bar_margin_top">
-
-        <FrameLayout
-            android:id="@+id/fragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:id="@+id/barrita"
+            android:layout_width="match_parent" android:layout_height="25dp"
+            android:background="#000"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
+            android:layout_width="match_parent" android:layout_height="?actionBarSize"
+
             android:background="#2FCD81"
             android:elevation="4dp"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:theme="@style/ToolbarTheme" />
+            app:theme="@style/ToolbarTheme"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_below="@+id/barrita"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
-    </FrameLayout>
 
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:padding="6dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="28dp" android:layout_marginRight="28dp"
+            android:background="#fff"
+
+            android:drawableBottom="@drawable/bolsa_kokoro"
+
+            android:gravity="center"
+            android:text=" Aun no tienes contenedores habilitados :C\n\n Puedes Solicitar un nuevo contenedor con el boton o bien dirigiendote a'Menu', y luego 'Solicitar contenedor'\n"
+            android:layout_below="@+id/toolbar"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <info.hoang8f.widget.FButton
+            android:id="@+id/ayudar"
+
+            android:layout_width="match_parent" android:layout_height="56dp"
+            android:layout_below="@+id/textView1"
+
+            android:layout_marginLeft="16dp" android:layout_marginRight="16dp"
+
+            fbutton:shadowEnabled="true"
+
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:text="Solicitar nuevo contenedor"/>
+
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_below="@+id/ayudar"
+            android:padding="6dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="28dp" android:layout_marginRight="28dp"
+            android:background="#fff"
+
+            android:drawableBottom="@drawable/camion_cocoro"
+
+            android:gravity="center"
+            android:text="Si ya solicitaste un contenedor, solo debes esperar que la funcionacion te visite (app7 dias habiles).
+            \n En caso de cualquier duda, problema o consulta no dudes en comunicarte con nosotros, puedes enviarnos un correo con el boton de abajo"
+
+            />
+
+        <info.hoang8f.widget.FButton
+            android:id="@+id/correo"
+
+            android:layout_width="match_parent" android:layout_height="56dp"
+            android:layout_below="@+id/textView2"
+
+            android:layout_marginLeft="16dp" android:layout_marginRight="16dp"
+
+            fbutton:shadowEnabled="true"
+            fbutton:buttonColor="#E64E37"
+
+            android:textStyle="bold"
+            android:textColor="#fff"
+            android:text="Enviar un correo"/>
+
+
+    </RelativeLayout>
+    <!--
+       <LinearLayout
+           xmlns:tools="http://schemas.android.com/tools"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="vertical">
+           <FrameLayout
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/status_bar_kitkat_height"
+               android:background="?colorPrimary"/>
+           <FrameLayout
+               android:layout_width="match_parent"
+               android:layout_height="@dimen/status_bar_lollipop_height"
+               android:background="?colorPrimaryDark"/>
+       </LinearLayout> -->
+    <!--
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/status_bar_margin_top">
+            <FrameLayout
+                android:id="@+id/fragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:background="#2FCD81"
+                android:elevation="4dp"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:theme="@style/ToolbarTheme" />
+        </FrameLayout>
+    -->
     <android.support.design.widget.NavigationView
         android:id="@+id/navigation_view"
         android:layout_width="wrap_content"

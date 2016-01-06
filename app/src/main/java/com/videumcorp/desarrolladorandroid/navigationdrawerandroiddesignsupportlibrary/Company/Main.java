@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -327,6 +328,21 @@ public class Main extends AppCompatActivity {
         }
     }
 
+    private void enviar(String[] to, String[] cc,
+                        String asunto, String mensaje) {
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.createChooser(emailIntent, "aleccapetillo@gmail.com");
+        emailIntent.setData(Uri.parse("mailto:"));
+        //String[] to = direccionesEmail;
+        //String[] cc = copias;
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, to);
+        emailIntent.putExtra(Intent.EXTRA_CC, cc);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, asunto);
+        emailIntent.putExtra(Intent.EXTRA_TEXT, mensaje);
+        emailIntent.setType("message/rfc822");
+        startActivity(Intent.createChooser(emailIntent, "Email "));
+    }
+
     private void setupNavigationDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
@@ -357,30 +373,12 @@ public class Main extends AppCompatActivity {
                             case R.id.item_navigation_drawer_sent_mail:
                                 menuItem.setChecked(true);
                                 drawerLayout.closeDrawer(GravityCompat.START);
+                                String[] to = { "" };
+                                String[] cc = { "" };
+                                enviar(to, cc, "",
+                                        "");
                                 return true;
-                            case R.id.item_navigation_drawer_drafts:
-                                menuItem.setChecked(true);
-                                drawerLayout.closeDrawer(GravityCompat.START);
-                                AlertDialog.Builder builder = new AlertDialog.Builder(Main.this);
-                                builder.setMessage("¿Quieres eliminar la empresa de la aplicación?");
-                                builder.setTitle("Eliminar empresa");
-                                builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        DeleteAccount d = new DeleteAccount();
-                                        d.execute();
-                                    }
-                                });
 
-                                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-
-                                    }
-                                });
-                                AlertDialog dialog = builder.create();
-                                dialog.show();
-                                return true;
                             case R.id.item_navigation_drawer_settings:
                                 menuItem.setChecked(true);
                                 drawerLayout.closeDrawer(GravityCompat.START);
