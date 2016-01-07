@@ -73,7 +73,7 @@
                 android:layout_width="match_parent" android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
 
-                android:drawableLeft="@drawable/icon_phone32"
+                android:drawableLeft="@drawable/icon_user32"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
 
@@ -101,7 +101,7 @@
                 android:textAllCaps="true"
                 android:textStyle="bold"
                 android:textColor="#ffffff"
-                android:text="Cambiar telefono"
+                android:text="Cambiar Nombre"
                 />
 
         </LinearLayout>
@@ -112,5 +112,4 @@
 
 
 
-</FrameLayout>
-<!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/layout/activity_edit_phone.xml -->
+</FrameLayout><!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/layout/activity_edit_phone.xml -->

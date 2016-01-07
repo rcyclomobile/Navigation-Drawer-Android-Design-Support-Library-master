@@ -71,7 +71,7 @@
                 android:layout_marginTop="10dp"
 
 
-                android:drawableLeft="@drawable/icono_mail32"
+                android:drawableLeft="@drawable/icon_user32"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
 

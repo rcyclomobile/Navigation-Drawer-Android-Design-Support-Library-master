@@ -113,7 +113,7 @@
                 fbutton:buttonColor="#E64E37"
                 fbutton:shadowEnabled="true"
 
-                android:drawableLeft="@drawable/icono_mail32_blanco"
+                android:drawableLeft="@drawable/icono_user32_blanco"
                 android:paddingLeft="24dp"
                 android:paddingRight="24dp"
 
