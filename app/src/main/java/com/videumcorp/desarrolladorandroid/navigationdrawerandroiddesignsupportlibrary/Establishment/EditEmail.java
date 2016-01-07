@@ -1,10 +1,6 @@
 package com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment;
 
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,28 +15,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
-import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.DataBase.RcycloDatabaseHelper;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import de.keyboardsurfer.android.widget.crouton.Crouton;
-import de.keyboardsurfer.android.widget.crouton.Style;
-
-public class APIEditEmail extends AppCompatActivity {
+public class EditEmail extends AppCompatActivity {
 
     Toolbar toolbar;
 
@@ -86,7 +71,7 @@ public class APIEditEmail extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         TypedValue typedValueColorPrimaryDark = new TypedValue();
-        APIEditEmail.this.getTheme().resolveAttribute(R.attr.colorPrimaryDark, typedValueColorPrimaryDark, true);
+        EditEmail.this.getTheme().resolveAttribute(R.attr.colorPrimaryDark, typedValueColorPrimaryDark, true);
         final int colorPrimaryDark = typedValueColorPrimaryDark.data;
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setStatusBarColor(colorPrimaryDark);
@@ -203,7 +188,7 @@ public class APIEditEmail extends AppCompatActivity {
                                 "La solicitud de cambio de email ha sido enviada.", Toast.LENGTH_SHORT);
                 toast1.show();
 
-                Intent intent = new Intent(APIEditEmail.this, com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APISettings.class);
+                Intent intent = new Intent(EditEmail.this, Login.class);
                 intent.putExtra("access-token", access_token);
                 intent.putExtra("client", client);
                 intent.putExtra("uid", uid);

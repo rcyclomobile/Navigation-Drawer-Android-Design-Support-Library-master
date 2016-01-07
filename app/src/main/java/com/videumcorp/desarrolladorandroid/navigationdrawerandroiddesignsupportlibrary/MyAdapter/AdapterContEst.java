@@ -1,13 +1,9 @@
 package com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter;
 
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.AsyncTask;
@@ -16,18 +12,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIAvailableCont;
-import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APIMain;
-import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.NewDirection;
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.Main;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
-import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.DataBase.RcycloDatabaseHelper;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -86,18 +78,17 @@ public class AdapterContEst extends ArrayAdapter<Container> {
 
         // 4. Set the text for textView
         ContainerName.setText(itemsArrayList.get(position).getNameContainer());
-        ContainerStatus.setText("Ver contenedor");
         if(itemsArrayList.get(position).getStatus().equals("1")) {
-            imContenedor.setImageResource(R.drawable.vacio);
+            imContenedor.setImageResource(R.drawable.icon_container_vacio);
             progressBar.setProgress(2);
         }
         else if(itemsArrayList.get(position).getStatus().equals("3")){
-            imContenedor.setImageResource(R.drawable.lleno);
+            imContenedor.setImageResource(R.drawable.icon_container_lleno);
             progressBar.getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
             progressBar.setProgress(100);
         }
         else if(itemsArrayList.get(position).getStatus().equals("2")){
-            imContenedor.setImageResource(R.drawable.medio);
+            imContenedor.setImageResource(R.drawable.icon_container_mitad);
             progressBar.setProgress(50);
         }
         else if(itemsArrayList.get(position).getStatus().equals("4")){
@@ -236,7 +227,7 @@ public class AdapterContEst extends ArrayAdapter<Container> {
                                 id + " " + new_status, Toast.LENGTH_SHORT);
 
                 toast1.show();
-                APIMain activity = (APIMain) context;
+                Main activity = (Main) context;
                 activity.finish();
                 activity.startActivity(activity.getIntent());
             } else {

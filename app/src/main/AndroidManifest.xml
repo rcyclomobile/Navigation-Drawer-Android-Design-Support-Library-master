@@ -76,7 +76,7 @@
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name=".Establishment.APILogin"
+            android:name=".Establishment.Login"
             android:label="@string/title_activity_establishment_login"
             android:theme="@style/AppTheme" >
         </activity>
@@ -86,7 +86,7 @@
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name=".Establishment.APIMain"
+            android:name=".Establishment.Main"
             android:label="Menu"
             android:theme="@style/AppTheme" >
         </activity>
@@ -101,17 +101,17 @@
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name=".Establishment.APIAvailableCont"
+            android:name=".Establishment.AvailableCont"
             android:label="Mis Contenedores"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name=".Establishment.APISettings"
+            android:name=".Establishment.Settings"
             android:label="Mi perfil"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name=".Establishment.APIEditEmail"
+            android:name=".Establishment.EditEmail"
             android:label="Editar perfil"
             android:theme="@style/AppTheme" >
         </activity>
@@ -130,7 +130,7 @@
             android:label="@string/title_activity_new_direction" >
         </activity>
         <activity
-            android:name=".Establishment.APIEditAddress"
+            android:name=".Establishment.EditAddress"
             android:label="@string/title_activity_edit_phone"
             android:theme="@style/AppTheme" >
         </activity>
@@ -148,6 +148,10 @@
             android:name=".Company.WaitCont"
             android:label="En espera"
             android:theme="@style/AppTheme" >
+        </activity>
+        <activity android:name=".Company.EditName" >
+        </activity>
+        <activity android:name=".Establishment.EditName" >
         </activity>
     </application>
 

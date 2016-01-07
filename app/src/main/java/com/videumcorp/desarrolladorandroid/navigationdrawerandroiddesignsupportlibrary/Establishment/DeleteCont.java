@@ -140,8 +140,7 @@ public class DeleteCont extends AppCompatActivity {
                                 empresa ,
                                 mJsonObjectProperty.getString("status_id"),
                                 desecho,
-                                mJsonObjectProperty.getString("active"),
-                                mJsonObjectProperty.getString("description"));
+                                mJsonObjectProperty.getString("active"));
 
                         if(mJsonObjectProperty.getString("erased").equals("false")&&mJsonObjectProperty.getString("active").equals("true")){arrayList.add(container);}
                     }

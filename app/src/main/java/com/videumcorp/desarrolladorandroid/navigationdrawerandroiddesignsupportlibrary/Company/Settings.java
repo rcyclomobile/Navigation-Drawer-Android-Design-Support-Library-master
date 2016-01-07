@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.ChangePass;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
 
 import org.json.JSONException;
@@ -109,14 +110,30 @@ public class Settings extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void editar_contraseña(View view, String nameCompany ,String addressCompany ,String emailCompany){
-        Intent intent = new Intent(view.getContext(), com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIChangePass.class);
-        intent.putExtra(com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIChangePass.COMPANY, Company);
+    public void editar_contraseña(View view){
+        Intent intent = new Intent(view.getContext(), APIChangePass.class);
+        intent.putExtra("access-token", access_token);
+        intent.putExtra("client", client);
+        intent.putExtra("uid", uid);
+        intent.putExtra("name", Company);
         startActivity(intent);
     }
 
     public void editar_direccion(View view, String nameCompany ,String addressCompany ,String emailCompany){
         Intent intent = new Intent(view.getContext(), EditAddress.class);
+        intent.putExtra(EditEmail.COMPANY, Company);
+        intent.putExtra(EditEmail.NAME, nameCompany);
+        intent.putExtra(EditEmail.ADDRESS, addressCompany);
+        intent.putExtra(EditEmail.EMAIL, emailCompany);
+        intent.putExtra("access-token", access_token);
+        intent.putExtra("client", client);
+        intent.putExtra("uid", uid);
+        intent.putExtra("name", Company);
+        startActivity(intent);
+    }
+
+    public void editar_nombre(View view, String nameCompany ,String addressCompany ,String emailCompany){
+        Intent intent = new Intent(view.getContext(), EditName.class);
         intent.putExtra(EditEmail.COMPANY, Company);
         intent.putExtra(EditEmail.NAME, nameCompany);
         intent.putExtra(EditEmail.ADDRESS, addressCompany);
@@ -136,7 +153,7 @@ public class Settings extends AppCompatActivity {
         public String emailCompany;
         public String addressCompany;
 
-        TextView emailCo, phoneCo, adressCo, nombreHeaderCo, correoHeaderCo, phoneHeaderCo, passwordCo;
+        TextView emailCo, phoneCo, adressCo, nombreHeaderCo, correoHeaderCo, phoneHeaderCo, passwordCo, nameCo;
 
         @Override
         protected String doInBackground(URL... params) {
@@ -203,6 +220,15 @@ public class Settings extends AppCompatActivity {
             emailCo = (TextView) findViewById(R.id.emailCo);
             phoneCo = (TextView) findViewById(R.id.phoneCo);
             passwordCo = (TextView) findViewById(R.id.passwordCo);
+            nameCo = (TextView) findViewById(R.id.nameCo);
+
+
+            nameCo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(final View v) {
+                    editar_nombre(v, nameCompany, addressCompany, emailCompany);
+                }
+            });
 
             emailCo.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -214,7 +240,7 @@ public class Settings extends AppCompatActivity {
             passwordCo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    editar_contraseña(v,nameCompany,addressCompany,emailCompany);
+                    editar_contraseña(v);
                 }
             });
 
@@ -225,6 +251,14 @@ public class Settings extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    @Override
+    public void onRestart()
+    {
+        super.onRestart();
+        finish();
+        startActivity(getIntent());
     }
 
     @Override

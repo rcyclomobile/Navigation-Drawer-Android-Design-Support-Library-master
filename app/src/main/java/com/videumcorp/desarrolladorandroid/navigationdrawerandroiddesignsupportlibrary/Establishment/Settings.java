@@ -1,5 +1,7 @@
 package com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -14,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.*;
-import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.EditAddress;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
 
 import org.json.JSONException;
@@ -30,13 +31,15 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class APISettings extends AppCompatActivity {
+public class Settings extends AppCompatActivity {
 
     Toolbar toolbar;
     private String access_token;
     private String client;
     private String uid;
     private String Company;
+
+    TextView salirse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,13 +60,13 @@ public class APISettings extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         TypedValue typedValueColorPrimaryDark = new TypedValue();
-        APISettings.this.getTheme().resolveAttribute(R.attr.colorPrimaryDark, typedValueColorPrimaryDark, true);
+        Settings.this.getTheme().resolveAttribute(R.attr.colorPrimaryDark, typedValueColorPrimaryDark, true);
         final int colorPrimaryDark = typedValueColorPrimaryDark.data;
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setStatusBarColor(colorPrimaryDark);
         }
 
-        /*salirse = (TextView) findViewById(R.id.salirse);
+        salirse = (TextView) findViewById(R.id.salirse);
 
         salirse.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,25 +90,19 @@ public class APISettings extends AppCompatActivity {
                 AlertDialog dialog = builder.create();
                 dialog.show();
             }
-        });*/
+        });
+    }
+
+    @Override
+    public void onRestart()
+    {
+        super.onRestart();
+        finish();
+        startActivity(getIntent());
     }
 
     public void editar_mail(View view, String nameCompany, String addressCompany, String emailCompany){
-        Intent intent = new Intent(view.getContext(), APIEditEmail.class);
-        intent.putExtra(APIEditEmail.COMPANY, Company);
-        intent.putExtra(APIEditEmail.NAME, nameCompany);
-        intent.putExtra(APIEditEmail.ADDRESS, addressCompany);
-        intent.putExtra(APIEditEmail.EMAIL, emailCompany);
-        intent.putExtra("access-token", access_token);
-        intent.putExtra("client", client);
-        intent.putExtra("uid", uid);
-        intent.putExtra("name", Company);
-
-        startActivity(intent);
-    }
-
-    public void editar_contraseña(View view, String nameCompany ,String addressCompany ,String emailCompany){
-        Intent intent = new Intent(view.getContext(), ChangePass.class);
+        Intent intent = new Intent(view.getContext(), EditEmail.class);
         intent.putExtra(EditEmail.COMPANY, Company);
         intent.putExtra(EditEmail.NAME, nameCompany);
         intent.putExtra(EditEmail.ADDRESS, addressCompany);
@@ -115,15 +112,37 @@ public class APISettings extends AppCompatActivity {
         intent.putExtra("uid", uid);
         intent.putExtra("name", Company);
         startActivity(intent);
+    }
+
+    public void editar_contraseña(View view, String nameCompany){
+        Intent intent = new Intent(view.getContext(), ChangePass.class);
+        intent.putExtra(com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.ChangePass.NAME, nameCompany);
+        intent.putExtra("access-token", access_token);
+        intent.putExtra("client", client);
+        intent.putExtra("uid", uid);
+        intent.putExtra("name", Company);
         startActivity(intent);
     }
 
     public void editar_direccion(View view, String nameCompany ,String addressCompany ,String emailCompany){
         Intent intent = new Intent(view.getContext(), EditAddress.class);
-        intent.putExtra(EditEmail.COMPANY, Company);
-        intent.putExtra(EditEmail.NAME, nameCompany);
-        intent.putExtra(EditEmail.ADDRESS, addressCompany);
-        intent.putExtra(EditEmail.EMAIL, emailCompany);
+        intent.putExtra(com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.EditAddress.COMPANY, Company);
+        intent.putExtra(com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.EditAddress.NAME, nameCompany);
+        intent.putExtra(com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.EditAddress.ADDRESS, addressCompany);
+        intent.putExtra(com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.EditAddress.EMAIL, emailCompany);
+        intent.putExtra("access-token", access_token);
+        intent.putExtra("client", client);
+        intent.putExtra("uid", uid);
+        intent.putExtra("name", Company);
+        startActivity(intent);
+    }
+
+    public void editar_nombre(View view, String nameCompany ,String addressCompany ,String emailCompany){
+        Intent intent = new Intent(view.getContext(), EditName.class);
+        intent.putExtra(com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.EditName.COMPANY, Company);
+        intent.putExtra(com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.EditName.NAME, nameCompany);
+        intent.putExtra(com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.EditName.ADDRESS, addressCompany);
+        intent.putExtra(com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.EditName.EMAIL, emailCompany);
         intent.putExtra("access-token", access_token);
         intent.putExtra("client", client);
         intent.putExtra("uid", uid);
@@ -139,7 +158,7 @@ public class APISettings extends AppCompatActivity {
         public String emailCompany;
         public String addressCompany;
 
-        TextView emailCo, phoneCo, adressCo, nombreHeaderCo, correoHeaderCo, phoneHeaderCo, passwordCo;
+        TextView emailCo, phoneCo, adressCo, nombreHeaderCo, correoHeaderCo, phoneHeaderCo, passwordCo, nameCo;
 
         @Override
         protected String doInBackground(URL... params) {
@@ -206,6 +225,15 @@ public class APISettings extends AppCompatActivity {
             emailCo = (TextView) findViewById(R.id.emailCo);
             phoneCo = (TextView) findViewById(R.id.phoneCo);
             passwordCo = (TextView) findViewById(R.id.passwordCo);
+            nameCo = (TextView) findViewById(R.id.nameCo);
+
+
+            nameCo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(final View v) {
+                    editar_nombre(v, nameCompany, addressCompany, emailCompany);
+                }
+            });
 
             emailCo.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -217,7 +245,7 @@ public class APISettings extends AppCompatActivity {
             passwordCo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    editar_contraseña(v,nameCompany,addressCompany,emailCompany);
+                    editar_contraseña(v,nameCompany);
                 }
             });
 
@@ -260,7 +288,7 @@ public class APISettings extends AppCompatActivity {
         protected String doInBackground(URL... params) {
 
             try {
-                URL url = new URL("https://api-rcyclo.herokuapp.com/companies/drop_out");
+                URL url = new URL("https://api-rcyclo.herokuapp.com/establishments/drop_out");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
                 conn.setRequestProperty("access-token", access_token);
@@ -300,7 +328,7 @@ public class APISettings extends AppCompatActivity {
                                 "Te has desvinculado de R-cyclo con exito.", Toast.LENGTH_SHORT);
 
                 toast1.show();
-                Intent intent = new Intent(APISettings.this, Login.class);
+                Intent intent = new Intent(Settings.this, Login.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
             }

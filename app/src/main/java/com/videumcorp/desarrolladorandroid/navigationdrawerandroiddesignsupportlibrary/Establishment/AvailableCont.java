@@ -30,7 +30,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class APIAvailableCont extends AppCompatActivity {
+public class AvailableCont extends AppCompatActivity {
 
     public static final String NAME= "name";
     DrawerLayout drawerLayout;
@@ -72,7 +72,7 @@ public class APIAvailableCont extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 arrayList.clear();
-                Intent refresh = new Intent(APIAvailableCont.this, APIAvailableCont.class);
+                Intent refresh = new Intent(AvailableCont.this, AvailableCont.class);
                 refresh.putExtra("access-token", access_token);
                 refresh.putExtra("client", client);
                 refresh.putExtra("uid", uid);
@@ -145,8 +145,7 @@ public class APIAvailableCont extends AppCompatActivity {
                                 empresa ,
                                 mJsonObjectProperty.getString("status_id"),
                                 desecho,
-                                mJsonObjectProperty.getString("active"),
-                                mJsonObjectProperty.getString("description"));
+                                mJsonObjectProperty.getString("active"));
 
                         if(mJsonObjectProperty.getString("erased").equals("false")&&mJsonObjectProperty.getString("active").equals("false")){arrayList.add(container);}
                     }
@@ -169,7 +168,7 @@ public class APIAvailableCont extends AppCompatActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             if(result.equals("success")) {
-                    AdapterEst adapter = new AdapterEst(APIAvailableCont.this, arrayList,access_token,client,uid);
+                    AdapterEst adapter = new AdapterEst(AvailableCont.this, arrayList,access_token,client,uid);
                     adapter.notifyDataSetChanged();
                     listContainerCompany.setAdapter(adapter);
             }

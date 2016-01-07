@@ -185,8 +185,7 @@ public class Main extends AppCompatActivity {
                                                   name ,
                                                   mJsonObjectProperty.getString("status_id"),
                                                   waste,
-                                                  mJsonObjectProperty.getString("active"),
-                                                  mJsonObjectProperty.getString("description"));
+                                                  mJsonObjectProperty.getString("active"));
 
                         if(mJsonObjectProperty.getString("erased").equals("false")&&mJsonObjectProperty.getString("active").equals("true")){arrayList.add(container);}
                     }

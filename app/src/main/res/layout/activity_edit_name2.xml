@@ -1,0 +1,109 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="#e0e0e0"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <FrameLayout
+            android:id="@+id/barrita"
+            android:layout_width="match_parent" android:layout_height="25dp"
+            android:background="#000"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent" android:layout_height="?actionBarSize"
+
+            android:background="#2FCD81"
+            android:elevation="4dp"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/ToolbarTheme"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_below="@+id/barrita"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content" android:layout_height="200dp"
+            android:background="@drawable/green9"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_below="@+id/toolbar"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/relativeLayout3">
+
+            <TextView
+                android:id="@+id/nombreHeaderCo"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginBottom="22dp"
+                android:layout_alignParentBottom="true"
+
+                android:gravity="center_horizontal"
+                android:textSize="26dp"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:text="Nombre"   />
+        </RelativeLayout>
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#fff"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:layout_gravity="center"
+            android:layout_below="@+id/relativeLayout3"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <TextView
+                android:id="@+id/emailCoooo"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+
+
+                android:drawableLeft="@drawable/icono_mail32"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+
+                android:gravity="center"
+                android:textSize="20sp"
+                android:text="A continuación ingrese su nuevo nombre" />
+
+            <EditText
+                android:id="@+id/emailCo"
+                android:layout_width="match_parent" android:layout_height="52dp"
+                android:layout_marginTop="10dp"
+
+                android:textSize="24sp"
+                android:inputType="textEmailAddress"/>
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/aceptar"
+                android:onClick="aceptar"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+
+                fbutton:buttonColor="#E64E37"
+                fbutton:shadowEnabled="true"
+
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:text="Cambiar nombre"/>
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</FrameLayout>

@@ -127,8 +127,8 @@ public class NewDirection extends AppCompatActivity {
                                 db.close();
                                 Toast.makeText(getApplicationContext(), "La direccion del contenedor ha sido cambiada.",
                                         Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(NewDirection.this, APIAvailableCont.class);
-                                intent.putExtra(APIAvailableCont.NAME, fundacion);
+                                Intent intent = new Intent(NewDirection.this, AvailableCont.class);
+                                intent.putExtra(AvailableCont.NAME, fundacion);
                                 startActivity(intent);
                                 finish();
                             }

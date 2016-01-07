@@ -49,14 +49,6 @@ public class Container {
 
     private String nameContainer;
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getId() {
         return id;
     }
@@ -66,7 +58,6 @@ public class Container {
     }
 
     private String id;
-    private String description;
     private String status;
     private String latlong;
     private String establishment;
@@ -91,7 +82,7 @@ public class Container {
         this.company = company;
     }
 
-    public Container(String id, String nameContainer, String latlong, String establishment , String company ,String status, String desecho, String activo, String descripcion) {
+    public Container(String id, String nameContainer, String latlong, String establishment , String company ,String status, String desecho, String activo) {
         this.nameContainer = nameContainer;
         this.latlong = latlong;
         this.establishment = establishment;
@@ -99,7 +90,6 @@ public class Container {
         this.desecho = desecho;
         this.company = company;
         this.activo = activo;
-        this.description = descripcion;
         this.id = id;
     }
 

@@ -169,7 +169,7 @@ public class ChangePass extends AppCompatActivity {
                                 "La contraseña ha sido cambiada.", Toast.LENGTH_SHORT);
                 toast1.show();
 
-                Intent intent = new Intent(ChangePass.this, com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APISettings.class);
+                Intent intent = new Intent(ChangePass.this, Settings.class);
                 intent.putExtra("access-token", access_token);
                 intent.putExtra("client", client);
                 intent.putExtra("uid", uid);

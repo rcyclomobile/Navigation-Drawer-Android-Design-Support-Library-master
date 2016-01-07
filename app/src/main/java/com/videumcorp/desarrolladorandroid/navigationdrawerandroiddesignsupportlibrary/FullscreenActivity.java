@@ -11,8 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
-import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.Login;
-import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.APILogin;
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.Login;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -79,12 +78,12 @@ public class FullscreenActivity extends AppCompatActivity {
     }
 
     public void companyRegister(View view){
-        Intent intent = new Intent(this, Login.class);
+        Intent intent = new Intent(this, com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.Login.class);
         startActivity(intent);
     }
 
     public void establishmentRegister(View view){
-        Intent intent = new Intent(this, APILogin.class);
+        Intent intent = new Intent(this, Login.class);
         startActivity(intent);
     }
 
