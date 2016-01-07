@@ -44,8 +44,8 @@
 
             android:drawableBottom="@drawable/bolsa_kokoro"
 
-            android:gravity="center"
-            android:text=" Aun no tienes contenedores habilitados :C\n\n Puedes Solicitar un nuevo contenedor con el boton o bien dirigiendote a'Menu', y luego 'Solicitar contenedor'\n"
+            android:gravity="center_horizontal"
+            android:text="Aun no tienes contenedores habilitados :(\n\nPuedes Solicitar un nuevo contenedor con el boton o bien dirigiendote a'Menu'->'Solicitar contenedor'\n"
             android:layout_below="@+id/toolbar"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
@@ -53,13 +53,14 @@
         <info.hoang8f.widget.FButton
             android:id="@+id/ayudar"
 
-            android:layout_width="match_parent" android:layout_height="56dp"
+            android:layout_width="match_parent" android:layout_height="48dp"
             android:layout_below="@+id/textView1"
 
             android:layout_marginLeft="16dp" android:layout_marginRight="16dp"
 
             fbutton:shadowEnabled="true"
 
+            android:textAllCaps="true"
             android:textStyle="bold"
             android:textColor="#ffffff"
             android:text="Solicitar nuevo contenedor"/>
@@ -77,25 +78,44 @@
             android:drawableBottom="@drawable/camion_cocoro"
 
             android:gravity="center"
-            android:text="Si ya solicitaste un contenedor, solo debes esperar que la funcionacion te visite (app7 dias habiles).
-            \n En caso de cualquier duda, problema o consulta no dudes en comunicarte con nosotros, puedes enviarnos un correo con el boton de abajo"
+            android:text="Si ya solicitaste un contenedor, solo debes esperar que la funcionacion te visite.
+            \n\nPuedes revisar tus contenedores en espera en 'Menu'->'Contenedores en espera'.
+            \n \nEn caso de cualquier duda, problema o consulta no dudes en comunicarte con nosotros." />
 
-            />
+
+        <info.hoang8f.widget.FButton
+            android:id="@+id/pendientes"
+
+            android:layout_width="match_parent" android:layout_height="48dp"
+            android:layout_below="@+id/textView2"
+
+            android:layout_marginLeft="16dp" android:layout_marginRight="16dp"
+
+            fbutton:shadowEnabled="true"
+            fbutton:buttonColor="#ffa700"
+
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textColor="#fff"
+            android:text="Revisar contenedores pendientes"/>
+
 
         <info.hoang8f.widget.FButton
             android:id="@+id/correo"
 
-            android:layout_width="match_parent" android:layout_height="56dp"
-            android:layout_below="@+id/textView2"
+            android:layout_width="match_parent" android:layout_height="48dp"
+            android:layout_below="@+id/pendientes"
 
             android:layout_marginLeft="16dp" android:layout_marginRight="16dp"
 
             fbutton:shadowEnabled="true"
             fbutton:buttonColor="#E64E37"
 
+            android:textAllCaps="true"
             android:textStyle="bold"
             android:textColor="#fff"
             android:text="Enviar un correo"/>
+
 
 
     </RelativeLayout>

@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent" android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#e0e0e0">
+    android:background="#e0e0e0"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+    >
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -143,15 +145,21 @@
 
         </RadioGroup>
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/register"
             android:layout_width="match_parent" android:layout_height="66dp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="9dp" android:layout_marginRight="9dp"
 
+            fbutton:buttonColor="#E64E37"
+            fbutton:shadowEnabled="true"
+
+
             android:layout_gravity="center_horizontal"
             style="?android:textAppearanceSmall"
-            android:background="#2FCD81"
+
+            android:textStyle="bold"
+            android:textAllCaps="true"
             android:textColor="#ffffff"
             android:text="Registrarse"
             android:textSize="18sp"

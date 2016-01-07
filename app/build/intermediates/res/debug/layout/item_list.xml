@@ -1,77 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="match_parent" android:layout_height="match_parent"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
     android:layout_marginTop="25dp"
-    >
+    android:padding="4dp"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto">
 
-<ImageButton
-    android:id="@+id/move_poster"
-    android:layout_width="100dp"
-    android:layout_height="75dp"
-    android:background="@null"
-    android:layout_marginLeft="15dp"
-    />
+    <ImageButton
+        android:id="@+id/move_poster"
+        android:background="@null"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" android:layout_marginBottom="4dp"
+        android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
 
-    <TextView
-        android:id="@+id/ContainerStatus"
-        android:layout_width="100dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginLeft="25dp"
-        android:text="Ver Contenedor"
-        />
-
-<TextView
-    android:id="@+id/ContainerName"
-    android:layout_width="150dp"
-    android:layout_height="75dp"
-    android:layout_marginRight="10dp"
-    android:layout_toRightOf="@+id/move_poster"
-    android:text="Nombre Contenedor"
-    android:textStyle="bold"
-    android:gravity="center"
-    />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="130dp"
-        android:layout_height="15dp"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="130dp"
+        android:layout_width="50dp" android:layout_height="15dp"
+        android:layout_marginBottom="4dp"
+        android:layout_below="@+id/move_poster"
+        android:layout_alignLeft="@+id/move_poster"
+        android:layout_alignStart="@+id/move_poster"></ProgressBar>
 
-        />
 
     <TextView
-        android:id="@+id/Estado"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="25dp"
-        android:text="Estado: "
+        android:id="@+id/ContainerName"
+        android:layout_width="160dp" android:layout_height="wrap_content"
+        android:text="Nombre Contenedor"
+        android:textStyle="bold"
         android:gravity="center"
-        android:layout_toRightOf="@+id/ContainerName"
-        />
-    <Button
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp" />
+
+    <info.hoang8f.widget.FButton
+        android:id="@+id/ContainerStatus"
+        android:layout_width="120dp" android:layout_height="24dp"
+        android:layout_below="@+id/ContainerName"
+        android:layout_marginTop="14dp"
+        android:layout_centerHorizontal="true"
+
+        fbutton:buttonColor="@color/fbutton_color_turquoise"
+        fbutton:shadowEnabled="true"
+
+        android:textAllCaps="false"
+        android:gravity="center"
+        android:text="Detalle del Contenedor"
+        android:textColor="#fff"
+        android:textSize="14sp"/>
+
+<!--
+        <TextView
+            android:id="@+id/Estado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="25dp"
+            android:text="Estado: "
+            android:gravity="center"
+            android:layout_toRightOf="@+id/ContainerName"
+            /> -->
+
+    <info.hoang8f.widget.FButton
         android:id="@+id/btCambiar"
-        android:layout_width="60dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="25dp"
-        android:text="Cambiar"
-        android:textSize="11dp"
+        android:layout_width="72dp" android:layout_height="36dp"
+
         android:background="@drawable/list_selector"
         android:gravity="center"
-        android:layout_toRightOf="@+id/ContainerName"
-        />
 
-<View
-    android:layout_marginTop="25dp"
-    android:layout_width="match_parent"
-    android:layout_height="20dp"
-    android:background="#FFFFFF"
-    android:layout_below="@+id/move_poster">
-</View>
+        fbutton:buttonColor="@color/fbutton_color_alizarin"
+        fbutton:shadowEnabled="true"
+
+        android:text="Cambiar\n estado"
+        android:textSize="14sp"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:textAllCaps="false"
+
+        android:layout_alignTop="@+id/ContainerName"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp" />
 
 </RelativeLayout><!-- From: file:/C:/Users/Carlos/AndroidStudioProjects/ANDROX/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/layout/item_list.xml -->

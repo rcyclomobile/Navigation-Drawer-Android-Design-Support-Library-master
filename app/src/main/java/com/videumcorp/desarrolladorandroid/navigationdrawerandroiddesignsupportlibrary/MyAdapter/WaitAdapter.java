@@ -49,7 +49,7 @@ public class WaitAdapter extends ArrayAdapter<Container> {
         // 4. Set the text for textView
         ContainerName.setText(itemsArrayList.get(position).getNameContainer());
         if(itemsArrayList.get(position).getStatus().equals("1")) {
-            imContenedor.setImageResource(R.drawable.vacio);
+            imContenedor.setImageResource(R.drawable.icon_container_wait);
         }
         else if(itemsArrayList.get(position).getStatus().equals("3")){
             imContenedor.setImageResource(R.drawable.lleno);
@@ -62,7 +62,7 @@ public class WaitAdapter extends ArrayAdapter<Container> {
             imContenedor.setImageResource(R.drawable.congelado);
         }
         else if(itemsArrayList.get(position).getStatus().equals("null")){
-            imContenedor.setImageResource(R.drawable.vacio);
+            imContenedor.setImageResource(R.drawable.icon_container_wait);
         }
 
             imContenedor.setOnClickListener(new View.OnClickListener() {

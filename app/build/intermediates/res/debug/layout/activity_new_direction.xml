@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent" android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#e0e0e0">
+    android:background="#e0e0e0"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -49,11 +50,14 @@
             android:layout_toLeftOf="@+id/Bsearch"
             android:layout_toStartOf="@+id/Bsearch" />
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/Bsearch"
             android:layout_width="wrap_content" android:layout_height="wrap_content"
 
-            android:textSize="12dp"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:textSize="12sp"
+            android:textColor="#fff"
             android:text="Buscar"
 
             android:layout_margin="6dp"

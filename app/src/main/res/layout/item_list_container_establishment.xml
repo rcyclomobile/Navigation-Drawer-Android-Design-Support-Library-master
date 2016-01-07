@@ -24,7 +24,8 @@
         android:layout_marginBottom="4dp"
         android:layout_below="@+id/move_poster"
         android:layout_alignLeft="@+id/move_poster"
-        android:layout_alignStart="@+id/move_poster"></ProgressBar>
+        android:layout_alignStart="@+id/move_poster">
+    </ProgressBar>
 
 
     <TextView
@@ -73,9 +74,7 @@
         fbutton:buttonColor="@color/fbutton_color_alizarin"
         fbutton:shadowEnabled="true"
 
-        android:drawableRight="@drawable/icon_checked_blanco"
-        android:paddingLeft="4dp"
-        android:paddingRight="0dp"
+
 
         android:text="Cambiar\nEstado"
         android:textSize="14sp"
