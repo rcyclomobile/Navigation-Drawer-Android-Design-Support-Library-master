@@ -11,6 +11,7 @@ import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.Container;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.AdapterDelEst;
@@ -162,30 +163,18 @@ public class DeleteCont extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-           /* if(result.equals("success")) {
+            if(result.equals("success")) {
                 if (arrayList.isEmpty()) {
-                    setContentView(R.layout.activity_main_empty);
-                    Context context = getApplicationContext();
-                    CharSequence text = "¿Deseas agregar un contenedor? Puedes hacerlo desde aqui!";
-                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast1 =
+                            Toast.makeText(getApplicationContext(),
+                                    "No hay contenedores a eliminar.", Toast.LENGTH_SHORT);
 
-                    LayoutInflater inflater = getLayoutInflater();
-                    View layout = inflater.inflate(R.layout.toast_layout,
-                            (ViewGroup) findViewById(R.id.toast_layout_root));
-
-                    TextView textToast = (TextView) layout.findViewById(R.id.text_toast);
-                    textToast.setText(text);
-
-                    Toast toast = new Toast(context);
-                    toast.setDuration(duration);
-                    toast.setView(layout);
-                    toast.setGravity(Gravity.TOP | Gravity.LEFT, 150, 0);
-                    toast.show();
-                } else {*/
+                    toast1.show();
+                } else {
                     AdapterDelEst adapter = new AdapterDelEst(DeleteCont.this, arrayList, access_token, client, uid);
                     adapter.notifyDataSetChanged();
                     listContainerCompany.setAdapter(adapter);
-                /*
+                }
             }
             else{
                 Toast toast1 =
@@ -193,17 +182,9 @@ public class DeleteCont extends AppCompatActivity {
                                 "No hay conexion a internet.", Toast.LENGTH_SHORT);
 
                 toast1.show();
-            }*/
+            }
 
         }
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_inbox, menu);
-        return true;
     }
 
     @Override

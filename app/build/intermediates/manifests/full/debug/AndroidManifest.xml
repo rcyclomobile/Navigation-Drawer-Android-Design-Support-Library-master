@@ -59,7 +59,7 @@
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIRegister"
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.Register"
             android:label="R-Cyclo"
             android:theme="@style/AppTheme" >
         </activity>
@@ -116,7 +116,7 @@
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIChangePass"
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.ChangePass"
             android:label="Cambiar contraseña"
             android:theme="@style/AppTheme" >
         </activity>

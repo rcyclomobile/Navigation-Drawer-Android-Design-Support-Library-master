@@ -51,7 +51,7 @@ public class Main extends AppCompatActivity {
     ListView listContainerCompany;
     ArrayList<Container> arrayList = new ArrayList<>();
     Container container;
-    Button btCambiar, ayudar, correo;
+    Button btCambiar, ayudar, correo, pendientes;
     private SwipeRefreshLayout swipeContainer;
 
     private String access_token;
@@ -115,13 +115,6 @@ public class Main extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
@@ -177,6 +170,9 @@ public class Main extends AppCompatActivity {
                         String[] parts = mJsonObjectProperty.getString("title").split("-");
                         String establishment = parts[0];
                         String waste = parts[1];
+                        String[] parts2 = waste.split("\\|");
+                        String empresa = parts2[0];
+                        String desecho = parts2[1];
 
                         container = new Container(mJsonObjectProperty.getString("id"),
                                                   mJsonObjectProperty.getString("title"),
@@ -184,7 +180,7 @@ public class Main extends AppCompatActivity {
                                                   establishment,
                                                   name ,
                                                   mJsonObjectProperty.getString("status_id"),
-                                                  waste,
+                                                  desecho,
                                                   mJsonObjectProperty.getString("active"));
 
                         if(mJsonObjectProperty.getString("erased").equals("false")&&mJsonObjectProperty.getString("active").equals("true")){arrayList.add(container);}
@@ -210,22 +206,6 @@ public class Main extends AppCompatActivity {
             if(result.equals("success")) {
                 if (arrayList.isEmpty()) {
                     setContentView(R.layout.activity_main_empty);
-                    Context context = getApplicationContext();
-                    CharSequence text = "¿Deseas agregar un contenedor? Puedes hacerlo desde aqui!";
-                    int duration = Toast.LENGTH_SHORT;
-
-                    LayoutInflater inflater = getLayoutInflater();
-                    View layout = inflater.inflate(R.layout.toast_layout,
-                            (ViewGroup) findViewById(R.id.toast_layout_root));
-
-                    TextView textToast = (TextView) layout.findViewById(R.id.text_toast);
-                    textToast.setText(text);
-
-                    Toast toast = new Toast(context);
-                    toast.setDuration(duration);
-                    toast.setView(layout);
-                    toast.setGravity(Gravity.TOP | Gravity.LEFT, 150, 0);
-                    toast.show();
                     toolbar = (Toolbar) findViewById(R.id.toolbar);
                     setSupportActionBar(toolbar);
 
@@ -234,6 +214,7 @@ public class Main extends AppCompatActivity {
 
                     ayudar = (Button) findViewById(R.id.ayudar);
                     correo = (Button) findViewById(R.id.correo);
+                    pendientes = (Button) findViewById(R.id.pendientes);
 
                     ayudar.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -254,6 +235,18 @@ public class Main extends AppCompatActivity {
                             String[] cc = { "" };
                             enviar(to, cc, "",
                                     "");
+                        }
+                    });
+
+                    pendientes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(Main.this, WaitCont.class);
+                            intent.putExtra("access-token", access_token);
+                            intent.putExtra("client", client);
+                            intent.putExtra("uid", uid);
+                            intent.putExtra("name", Company);
+                            startActivity(intent);
                         }
                     });
 

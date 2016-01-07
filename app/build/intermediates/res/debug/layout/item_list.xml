@@ -24,7 +24,9 @@
         android:layout_marginBottom="4dp"
         android:layout_below="@+id/move_poster"
         android:layout_alignLeft="@+id/move_poster"
-        android:layout_alignStart="@+id/move_poster"></ProgressBar>
+        android:layout_alignStart="@+id/move_poster">
+
+    </ProgressBar>
 
 
     <TextView

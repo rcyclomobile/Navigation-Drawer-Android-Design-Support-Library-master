@@ -4,10 +4,10 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:background="#e0e0e0"
     xmlns:fbutton="http://schemas.android.com/apk/res-auto">
-<ScrollView
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -97,18 +97,17 @@
             android:orientation="vertical"
 
 
-            android:layout_marginLeft="30dp" android:layout_marginRight="30dp"
-            android:layout_marginTop="20dp" android:layout_marginBottom="10dp"
+            android:layout_marginLeft="40dp" android:layout_marginRight="40dp"
+            android:layout_marginTop="10dp" android:layout_marginBottom="10dp"
             android:padding="10dp"
 
             android:rowCount="5" android:columnCount="2"
             android:background="#ffffff">
 
-
             <info.hoang8f.widget.FButton
                 android:id="@+id/nameCo"
-                android:layout_width="280dp" android:layout_height="60dp"
-                android:layout_marginTop="10dp"
+                android:layout_width="match_parent" android:layout_height="50dp"
+                android:layout_marginTop="0dp"
                 android:layout_gravity="center_horizontal|bottom"
                 fbutton:buttonColor="#E64E37"
                 fbutton:shadowEnabled="true"
@@ -124,7 +123,7 @@
 
             <info.hoang8f.widget.FButton
                 android:id="@+id/emailCo"
-                android:layout_width="280dp" android:layout_height="60dp"
+                android:layout_width="match_parent" android:layout_height="50dp"
                 android:layout_marginTop="10dp"
                 android:layout_gravity="center_horizontal|bottom"
                 fbutton:buttonColor="#E64E37"
@@ -137,12 +136,12 @@
                 android:textStyle="bold"
                 android:textAllCaps="false"
                 android:textColor="#ffffff"
-                android:text="Cambiar Correo electronico"/>
+                android:text="Cambiar Correo Electronico"/>
 
             <info.hoang8f.widget.FButton
                 android:id="@+id/phoneCo"
-                android:layout_width="280dp" android:layout_height="60dp"
-                android:layout_marginTop="18dp"
+                android:layout_width="match_parent" android:layout_height="50dp"
+                android:layout_marginTop="10dp"
                 android:layout_gravity="center_horizontal|bottom"
                 fbutton:buttonColor="#E64E37"
                 fbutton:shadowEnabled="true"
@@ -159,8 +158,8 @@
 
             <info.hoang8f.widget.FButton
                 android:id="@+id/passwordCo"
-                android:layout_width="280dp" android:layout_height="60dp"
-                android:layout_marginTop="18dp"
+                android:layout_width="match_parent" android:layout_height="50dp"
+                android:layout_marginTop="10dp"
                 android:layout_gravity="center_horizontal|bottom"
                 fbutton:buttonColor="#E64E37"
                 fbutton:shadowEnabled="true"
@@ -176,8 +175,8 @@
 
             <info.hoang8f.widget.FButton
                 android:id="@+id/salirse"
-                android:layout_width="280dp" android:layout_height="60dp"
-                android:layout_marginTop="18dp"
+                android:layout_width="match_parent" android:layout_height="50dp"
+                android:layout_marginTop="20dp"
                 android:layout_gravity="center_horizontal|bottom"
 
                 fbutton:buttonColor="#943123"
@@ -196,5 +195,4 @@
 
     </RelativeLayout>
 </ScrollView>
-
 </FrameLayout>

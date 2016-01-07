@@ -168,9 +168,18 @@ public class AvailableCont extends AppCompatActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             if(result.equals("success")) {
-                    AdapterEst adapter = new AdapterEst(AvailableCont.this, arrayList,access_token,client,uid);
-                    adapter.notifyDataSetChanged();
-                    listContainerCompany.setAdapter(adapter);
+                    if(arrayList.isEmpty()) {
+                        AdapterEst adapter = new AdapterEst(AvailableCont.this, arrayList, access_token, client, uid);
+                        adapter.notifyDataSetChanged();
+                        listContainerCompany.setAdapter(adapter);
+                    }
+                else {
+                        Toast toast1 =
+                                Toast.makeText(getApplicationContext(),
+                                        "No hay solicitudes disponibles", Toast.LENGTH_SHORT);
+
+                        toast1.show();
+                    }
             }
             else{
                 Toast toast1 =
@@ -181,14 +190,6 @@ public class AvailableCont extends AppCompatActivity {
             }
 
         }
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_inbox, menu);
-        return true;
     }
 
     @Override

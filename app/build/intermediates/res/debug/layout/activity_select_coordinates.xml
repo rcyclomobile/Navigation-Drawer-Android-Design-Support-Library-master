@@ -9,15 +9,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <FrameLayout
+            android:id="@+id/fragment"
+            android:layout_width="match_parent" android:layout_height="25dp"
+            android:background="#000"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
         <android.support.v7.widget.Toolbar
-            android:layout_marginTop="@dimen/status_bar_margin_top"
             android:id="@+id/toolbar"
             android:layout_width="match_parent" android:layout_height="?actionBarSize"
+            android:layout_below="@+id/fragment"
+
             android:background="#2FCD81"
             android:elevation="4dp"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:theme="@style/ToolbarTheme"
             android:layout_gravity="center_horizontal|top" />
+
+
 
         <fragment
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -49,13 +60,15 @@
             android:layout_toLeftOf="@+id/Bsearch"
             android:layout_toStartOf="@+id/Bsearch" />
 
-        <Button
+        <info.hoang8f.widget.FButton
             android:id="@+id/Bsearch"
             android:layout_width="wrap_content" android:layout_height="wrap_content"
 
-            android:textSize="12dp"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:textSize="12sp"
+            android:textColor="#fff"
             android:text="Buscar"
-
             android:layout_margin="6dp"
 
 

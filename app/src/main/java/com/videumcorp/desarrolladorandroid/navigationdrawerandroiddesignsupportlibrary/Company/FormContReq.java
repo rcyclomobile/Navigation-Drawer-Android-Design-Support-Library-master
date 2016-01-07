@@ -23,8 +23,6 @@ import java.net.URL;
 
 public class FormContReq extends AppCompatActivity {
 
-    private final int DURACION = 300;
-
     public static final String WASTE = "waste";
     public static final String FUNDACION = "fundacion";
     public static final String ESTABLISHMENT_ID = "id";
@@ -109,15 +107,9 @@ public class FormContReq extends AppCompatActivity {
         btConfirmar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String nombre_contenedor = etNombreContenedor.getText().toString();
 
-                if(nombre_contenedor.matches("")){
-                    etNombreContenedor.setError("El campo no puede quedar vacio.");
-                }
-                else {
                     GetContainers g = new GetContainers();
                     g.execute();
-                }
             }
         });
     }

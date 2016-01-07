@@ -65,6 +65,7 @@ public class MyAdapter extends ArrayAdapter<Container> {
         // 3. Get the two text view from the rowView
         TextView ContainerName = (TextView) rowView.findViewById(R.id.ContainerName);
         TextView ContainerStatus = (TextView) rowView.findViewById(R.id.ContainerStatus);
+        Button mostrar = (Button) rowView.findViewById(R.id.ContainerStatus);
         final Button btCambiar = (Button) rowView.findViewById(R.id.btCambiar);
         ImageView imContenedor = (ImageView) rowView.findViewById(R.id.move_poster);
 
@@ -75,23 +76,23 @@ public class MyAdapter extends ArrayAdapter<Container> {
         // 4. Set the text for textView
         ContainerName.setText(itemsArrayList.get(position).getNameContainer());
         if(itemsArrayList.get(position).getStatus().equals("1")) {
-            imContenedor.setImageResource(R.drawable.vacio);
+            imContenedor.setImageResource(R.drawable.icon_container_vacio);
             progressBar.setProgress(2);
         }
         else if(itemsArrayList.get(position).getStatus().equals("3")){
-            imContenedor.setImageResource(R.drawable.lleno);
+            imContenedor.setImageResource(R.drawable.icon_container_lleno);
             progressBar.getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
             progressBar.setProgress(100);
         }
         else if(itemsArrayList.get(position).getStatus().equals("2")){
-            imContenedor.setImageResource(R.drawable.medio);
+            imContenedor.setImageResource(R.drawable.icon_container_mitad);
             progressBar.setProgress(50);
         }
         else if(itemsArrayList.get(position).getStatus().equals("Congelado")){
             imContenedor.setImageResource(R.drawable.congelado);
         }
 
-            imContenedor.setOnClickListener(new View.OnClickListener() {
+            mostrar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View v) {
                     String estado;

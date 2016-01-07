@@ -160,23 +160,11 @@ public class WaitCont extends AppCompatActivity {
             super.onPostExecute(result);
             if(result.equals("success")) {
                 if (arrayList.isEmpty()) {
-                    setContentView(R.layout.activity_main_empty);
-                    Context context = getApplicationContext();
-                    CharSequence text = "¿Deseas agregar un contenedor? Puedes hacerlo desde aqui!";
-                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast1 =
+                            Toast.makeText(getApplicationContext(),
+                                    "No existen contenedores en espera.", Toast.LENGTH_SHORT);
 
-                    LayoutInflater inflater = getLayoutInflater();
-                    View layout = inflater.inflate(R.layout.toast_layout,
-                            (ViewGroup) findViewById(R.id.toast_layout_root));
-
-                    TextView textToast = (TextView) layout.findViewById(R.id.text_toast);
-                    textToast.setText(text);
-
-                    Toast toast = new Toast(context);
-                    toast.setDuration(duration);
-                    toast.setView(layout);
-                    toast.setGravity(Gravity.TOP | Gravity.LEFT, 150, 0);
-                    toast.show();
+                    toast1.show();
                 } else {
                     WaitAdapter adapter = new WaitAdapter(WaitCont.this, arrayList);
                     adapter.notifyDataSetChanged();

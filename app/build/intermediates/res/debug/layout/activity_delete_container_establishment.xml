@@ -2,7 +2,54 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#e0e0e0"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/fragment"
+            android:layout_width="match_parent" android:layout_height="25dp"
+            android:background="#000"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent" android:layout_height="?actionBarSize"
+            android:layout_below="@+id/fragment"
+
+            android:background="#2FCD81"
+            android:elevation="4dp"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/ToolbarTheme"
+            android:layout_gravity="center_horizontal|top" />
+
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/swipeContainer"
+            android:layout_width="match_parent" android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar"
+            android:layout_marginTop="8dp" android:layout_marginBottom="4dp"
+            android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
+            android:background="#fff"
+            >
+
+            <ListView
+                android:id="@+id/list_view_delete"
+                android:layout_width="match_parent"
+                android:layout_marginTop="25dp"
+                tools:listitem="@layout/item_list_delete_establishment"
+                android:layout_height="wrap_content">
+            </ListView>
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+    </RelativeLayout>
 
     <LinearLayout
         xmlns:tools="http://schemas.android.com/tools"
@@ -20,41 +67,10 @@
             android:layout_height="@dimen/status_bar_lollipop_height"
             android:background="?colorPrimaryDark"/>
 
-        <TextView
-            android:text="Mis Contenedores"
-            android:textSize="25dp"
-            android:gravity="center"
-            android:layout_marginTop="75dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
-        <android.support.v4.widget.SwipeRefreshLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/swipeContainer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
-            <ListView
-                android:id="@+id/list_view_delete"
-                android:layout_width="match_parent"
-                android:layout_marginTop="25dp"
-                tools:listitem="@layout/item_list_delete_establishment"
-                android:layout_height="wrap_content">
-            </ListView>
-
-        </android.support.v4.widget.SwipeRefreshLayout>
 
     </LinearLayout>
-
-    <android.support.v7.widget.Toolbar
-        android:layout_marginTop="@dimen/status_bar_margin_top"
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:background="#2FCD81"
-        android:elevation="4dp"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:theme="@style/ToolbarTheme" />
 
 
 

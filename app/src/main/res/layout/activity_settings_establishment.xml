@@ -4,197 +4,195 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:background="#e0e0e0"
     xmlns:fbutton="http://schemas.android.com/apk/res-auto">
-    <ScrollView
-        android:layout_width="wrap_content"
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <FrameLayout
+            android:id="@+id/barrita"
+            android:layout_width="match_parent" android:layout_height="25dp"
+            android:background="#000"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent" android:layout_height="?actionBarSize"
+            android:layout_below="@+id/barrita"
+
+            android:background="#2FCD81"
+            android:elevation="4dp"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/ToolbarTheme"
+            android:layout_gravity="center_horizontal|top" />
+
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:id="@+id/relativeLayout"
+            android:layout_width="wrap_content" android:layout_height="200dp"
+            android:background="@drawable/green10"
 
-            <FrameLayout
-                android:id="@+id/barrita"
-                android:layout_width="match_parent" android:layout_height="25dp"
-                android:background="#000"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+            android:layout_below="@+id/toolbar"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent" android:layout_height="?actionBarSize"
-                android:layout_below="@+id/barrita"
-
-                android:background="#2FCD81"
-                android:elevation="4dp"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:theme="@style/ToolbarTheme"
-                android:layout_gravity="center_horizontal|top" />
-
-            <RelativeLayout
-                android:id="@+id/relativeLayout"
-                android:layout_width="wrap_content" android:layout_height="200dp"
-                android:background="@drawable/green10"
-
-                android:layout_below="@+id/toolbar"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true">
-
-                <TextView
-                    android:id="@+id/nombreHeaderCo"
-                    android:layout_width="match_parent" android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:layout_above="@+id/correoHeaderCo"
-
-                    android:gravity="center_horizontal"
-                    android:textSize="28sp"
-                    android:textColor="#fff"
-                    android:textStyle="bold"
-                    android:text="Nombre"   />
-
-                <TextView
-                    android:id="@+id/correoHeaderCo"
-                    android:layout_width="match_parent" android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:layout_above="@+id/phoneHeaderCo"
-
-                    android:gravity="center_horizontal"
-                    android:textSize="22dp"
-                    android:textColor="#fff"
-                    android:text="Correo" />
-
-                <TextView
-                    android:id="@+id/phoneHeaderCo"
-                    android:layout_width="match_parent" android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:layout_above="@+id/adressCo"
-
-                    android:gravity="center_horizontal"
-                    android:textSize="20dp"
-                    android:textColor="#fff"
-                    android:text="telefono"
-                    />
-
-                <TextView
-                    android:id="@+id/adressCo"
-                    android:layout_width="match_parent" android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_alignParentBottom="true"
-
-                    android:gravity="center_horizontal"
-                    android:textSize="20dp"
-                    android:textColor="#fff"
-                    android:text="direccion" />
-
-            </RelativeLayout>
-
-
-            <LinearLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
+            <TextView
+                android:id="@+id/nombreHeaderCo"
                 android:layout_width="match_parent" android:layout_height="wrap_content"
-                android:layout_below="@+id/relativeLayout"
+                android:layout_marginBottom="2dp"
+                android:layout_above="@+id/correoHeaderCo"
 
-                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:textSize="28sp"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:text="Nombre"   />
 
+            <TextView
+                android:id="@+id/correoHeaderCo"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_above="@+id/phoneHeaderCo"
 
-                android:layout_marginLeft="30dp" android:layout_marginRight="30dp"
-                android:layout_marginTop="20dp" android:layout_marginBottom="10dp"
-                android:padding="10dp"
+                android:gravity="center_horizontal"
+                android:textSize="22dp"
+                android:textColor="#fff"
+                android:text="Correo" />
 
-                android:rowCount="5" android:columnCount="2"
-                android:background="#ffffff">
+            <TextView
+                android:id="@+id/phoneHeaderCo"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:layout_above="@+id/adressCo"
 
-                <info.hoang8f.widget.FButton
-                    android:id="@+id/nameCo"
-                    android:layout_width="280dp" android:layout_height="60dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_gravity="center_horizontal|bottom"
-                    fbutton:buttonColor="#E64E37"
-                    fbutton:shadowEnabled="true"
+                android:gravity="center_horizontal"
+                android:textSize="20dp"
+                android:textColor="#fff"
+                android:text="telefono"
+                />
 
-                    android:drawableLeft="@drawable/icono_user32_blanco"
-                    android:paddingLeft="24dp"
-                    android:paddingRight="24dp"
+            <TextView
+                android:id="@+id/adressCo"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_alignParentBottom="true"
 
-                    android:textStyle="bold"
-                    android:textAllCaps="false"
-                    android:textColor="#ffffff"
-                    android:text="Cambiar Nombre"/>
-
-
-                <info.hoang8f.widget.FButton
-                    android:id="@+id/emailCo"
-                    android:layout_width="280dp" android:layout_height="60dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_gravity="center_horizontal|bottom"
-                    fbutton:buttonColor="#E64E37"
-                    fbutton:shadowEnabled="true"
-
-                    android:drawableLeft="@drawable/icono_mail32_blanco"
-                    android:paddingLeft="24dp"
-                    android:paddingRight="24dp"
-
-                    android:textStyle="bold"
-                    android:textAllCaps="false"
-                    android:textColor="#ffffff"
-                    android:text="Cambiar Correo electronico"/>
-
-                <info.hoang8f.widget.FButton
-                    android:id="@+id/phoneCo"
-                    android:layout_width="280dp" android:layout_height="60dp"
-                    android:layout_marginTop="18dp"
-                    android:layout_gravity="center_horizontal|bottom"
-                    fbutton:buttonColor="#E64E37"
-                    fbutton:shadowEnabled="true"
-
-                    android:drawableLeft="@drawable/icono_marker32_blanco"
-                    android:paddingLeft="24dp"
-                    android:paddingRight="24dp"
-
-                    android:textStyle="bold"
-                    android:textAllCaps="false"
-                    android:textColor="#ffffff"
-                    android:text="Cambiar Direccion"/>
-
-
-                <info.hoang8f.widget.FButton
-                    android:id="@+id/passwordCo"
-                    android:layout_width="280dp" android:layout_height="60dp"
-                    android:layout_marginTop="18dp"
-                    android:layout_gravity="center_horizontal|bottom"
-                    fbutton:buttonColor="#E64E37"
-                    fbutton:shadowEnabled="true"
-
-                    android:drawableLeft="@drawable/icono_key32_blanco"
-                    android:paddingLeft="24dp"
-                    android:paddingRight="24dp"
-
-                    android:textStyle="bold"
-                    android:textAllCaps="false"
-                    android:textColor="#ffffff"
-                    android:text="Cambiar Contraseña"/>
-
-                <info.hoang8f.widget.FButton
-                    android:id="@+id/salirse"
-                    android:layout_width="280dp" android:layout_height="60dp"
-                    android:layout_marginTop="18dp"
-                    android:layout_gravity="center_horizontal|bottom"
-
-                    fbutton:buttonColor="#943123"
-                    fbutton:shadowEnabled="true"
-
-                    android:drawableLeft="@drawable/icono_delete32_blanco"
-                    android:paddingLeft="24dp"
-                    android:paddingRight="24dp"
-
-                    android:textStyle="bold"
-                    android:textAllCaps="false"
-                    android:textColor="#ffffff"
-                    android:text="Dar de baja esta Cuenta"/>
-
-            </LinearLayout>
+                android:gravity="center_horizontal"
+                android:textSize="20dp"
+                android:textColor="#fff"
+                android:text="direccion" />
 
         </RelativeLayout>
-    </ScrollView>
 
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_below="@+id/relativeLayout"
+
+            android:orientation="vertical"
+
+
+            android:layout_marginLeft="40dp" android:layout_marginRight="40dp"
+            android:layout_marginTop="10dp" android:layout_marginBottom="10dp"
+            android:padding="10dp"
+
+            android:rowCount="5" android:columnCount="2"
+            android:background="#ffffff">
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/nameCo"
+                android:layout_width="match_parent" android:layout_height="50dp"
+                android:layout_marginTop="0dp"
+                android:layout_gravity="center_horizontal|bottom"
+                fbutton:buttonColor="#E64E37"
+                fbutton:shadowEnabled="true"
+
+                android:drawableLeft="@drawable/icono_user32_blanco"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:textColor="#ffffff"
+                android:text="Cambiar Nombre"/>
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/emailCo"
+                android:layout_width="match_parent" android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal|bottom"
+                fbutton:buttonColor="#E64E37"
+                fbutton:shadowEnabled="true"
+
+                android:drawableLeft="@drawable/icono_mail32_blanco"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:textColor="#ffffff"
+                android:text="Cambiar Correo Electronico"/>
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/phoneCo"
+                android:layout_width="match_parent" android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal|bottom"
+                fbutton:buttonColor="#E64E37"
+                fbutton:shadowEnabled="true"
+
+                android:drawableLeft="@drawable/icono_marker32_blanco"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:textColor="#ffffff"
+                android:text="Cambiar Direccion"/>
+
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/passwordCo"
+                android:layout_width="match_parent" android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal|bottom"
+                fbutton:buttonColor="#E64E37"
+                fbutton:shadowEnabled="true"
+
+                android:drawableLeft="@drawable/icono_key32_blanco"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:textColor="#ffffff"
+                android:text="Cambiar Contraseña"/>
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/salirse"
+                android:layout_width="match_parent" android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center_horizontal|bottom"
+
+                fbutton:buttonColor="#943123"
+                fbutton:shadowEnabled="true"
+
+                android:drawableLeft="@drawable/icono_delete32_blanco"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp"
+
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:textColor="#ffffff"
+                android:text="Dar de baja esta Cuenta"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</ScrollView>
 </FrameLayout>

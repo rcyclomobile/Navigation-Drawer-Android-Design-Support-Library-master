@@ -39,7 +39,7 @@
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name=".Company.APIRegister"
+            android:name=".Company.Register"
             android:label="R-Cyclo"
             android:theme="@style/AppTheme" >
         </activity>
@@ -96,7 +96,7 @@
             android:theme="@style/AppTheme" >
         </activity>
         <activity
-            android:name=".Company.APIChangePass"
+            android:name=".Company.ChangePass"
             android:label="Cambiar contraseña"
             android:theme="@style/AppTheme" >
         </activity>

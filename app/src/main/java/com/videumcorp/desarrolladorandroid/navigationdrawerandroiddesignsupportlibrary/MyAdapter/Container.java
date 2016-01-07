@@ -64,14 +64,6 @@ public class Container {
     private String desecho ;
     private String company;
 
-    public String getActivo() {
-        return activo;
-    }
-
-    public void setActivo(String activo) {
-        this.activo = activo;
-    }
-
     private String activo;
 
     public String getCompany() {

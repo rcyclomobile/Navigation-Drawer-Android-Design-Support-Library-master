@@ -139,13 +139,6 @@ public class Main extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
@@ -233,8 +226,12 @@ public class Main extends AppCompatActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             if(result.equals("success")) {
-                /*if (arrayList.isEmpty()) {
-                    setContentView(R.layout.activity_main_est_empty);
+                if (arrayList.isEmpty()) {
+                    Toast toast1 =
+                            Toast.makeText(getApplicationContext(),
+                                    "No existen contenedores a mostrar.", Toast.LENGTH_SHORT);
+
+                    toast1.show();
 
                     toolbar = (Toolbar) findViewById(R.id.toolbar_es);
                     setSupportActionBar(toolbar);
@@ -253,13 +250,13 @@ public class Main extends AppCompatActivity {
                         setupNavigationDrawerContent(navigationView);
                     }
 
-                    setupNavigationDrawerContent(navigationView);*/
+                    setupNavigationDrawerContent(navigationView);
 
-                //} else {
+                } else {
                     AdapterContEst adapter = new AdapterContEst(Main.this, arrayList,access_token,client,uid);
                     adapter.notifyDataSetChanged();
                     listContainerCompany.setAdapter(adapter);
-                //}
+                }
             }
             else{
                 Toast toast1 =
@@ -342,11 +339,7 @@ public class Main extends AppCompatActivity {
             if (result.equals("success")) {
                 setUpMapIfNeeded();
                 mMap.setMyLocationEnabled(true);
-                Toast toast1 =
-                        Toast.makeText(getApplicationContext(),
-                                Lat + " " + Lng, Toast.LENGTH_SHORT);
 
-                toast1.show();
             }
 
             else{
@@ -374,11 +367,6 @@ public class Main extends AppCompatActivity {
         private void setUpMap() {
             GetDirection g = new GetDirection();
             g.execute();
-            Toast toast1 =
-                    Toast.makeText(getApplicationContext(),
-                            Lat + " " + Lng, Toast.LENGTH_SHORT);
-
-            toast1.show();
             Double Latitude = Double.parseDouble(Lat);
             Double Longitude = Double.parseDouble(Lng);
             LatLng sanjose = new LatLng(Latitude, Longitude);

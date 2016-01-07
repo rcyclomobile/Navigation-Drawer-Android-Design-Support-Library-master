@@ -51,7 +51,7 @@ public class AdapterDelEst extends ArrayAdapter<Container> {
 
     public AdapterDelEst(Context context, ArrayList<Container> itemsArrayList, String access_token, String client, String uid) {
 
-        super(context, R.layout.item_list, itemsArrayList);
+        super(context, R.layout.item_list_delete_establishment, itemsArrayList);
 
         this.context = context;
         this.itemsArrayList = itemsArrayList;
@@ -78,65 +78,66 @@ public class AdapterDelEst extends ArrayAdapter<Container> {
         TextView ContainerName = (TextView) rowView.findViewById(R.id.ContainerName);
         TextView ContainerStatus = (TextView) rowView.findViewById(R.id.ContainerStatus);
         final Button btCambiar = (Button) rowView.findViewById(R.id.btCambiar);
+        Button mostrar = (Button) rowView.findViewById(R.id.ContainerStatus);
         ImageView imContenedor = (ImageView) rowView.findViewById(R.id.move_poster);
 
-        progressBar = (ProgressBar) rowView.findViewById(R.id.progressBar);
-        progressBar.setVisibility(View.VISIBLE);
-        progressBar.setProgressDrawable(rowView.getResources().getDrawable(android.R.drawable.progress_horizontal));
+        //progressBar = (ProgressBar) rowView.findViewById(R.id.progressBar);
+        //progressBar.setVisibility(View.VISIBLE);
+        //progressBar.setProgressDrawable(rowView.getResources().getDrawable(android.R.drawable.progress_horizontal));
 
         // 4. Set the text for textView
         ContainerName.setText(itemsArrayList.get(position).getNameContainer());
         if(itemsArrayList.get(position).getStatus().equals("1")) {
-            imContenedor.setImageResource(R.drawable.vacio);
-            progressBar.setProgress(2);
+            imContenedor.setImageResource(R.drawable.icon_container_vacio);
+//            progressBar.setProgress(2);
         }
         else if(itemsArrayList.get(position).getStatus().equals("3")){
-            imContenedor.setImageResource(R.drawable.lleno);
-            progressBar.getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
-            progressBar.setProgress(100);
+            imContenedor.setImageResource(R.drawable.icon_container_lleno);
+//            progressBar.getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+//            progressBar.setProgress(100);
         }
         else if(itemsArrayList.get(position).getStatus().equals("2")){
-            imContenedor.setImageResource(R.drawable.medio);
-            progressBar.setProgress(50);
+            imContenedor.setImageResource(R.drawable.icon_container_mitad);
+//            progressBar.setProgress(50);
         }
         else if(itemsArrayList.get(position).getStatus().equals("4")){
             imContenedor.setImageResource(R.drawable.congelado);
         }
 
-            imContenedor.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(final View v) {
-                    String estado;
-                    if(itemsArrayList.get(position).getStatus().equals("1")){
-                        estado = "Vacio";
-                    }
-                    else if(itemsArrayList.get(position).getStatus().equals("2")){
-                        estado = "Medio";
-                    }
-                    else if(itemsArrayList.get(position).getStatus().equals("1") ){
-                        estado = "Lleno";
-                    }
-                    else{
-                        estado = "Sin estado";
-                    }
-                    AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-                    builder.setMessage(
-                            "Nombre del contenedor: " + "\n" + itemsArrayList.get(position).getNameContainer() + "\n" +
-                                    "\n" + "Ubicacion: " + "\n" + itemsArrayList.get(position).getLatlong() + "\n" +
-                                    "\n" + "Fundacion Asociada: " + "\n" + itemsArrayList.get(position).getEstablishment() + "\n" +
-                                    "\n" + "Estado del contenedor: " + "\n" + estado + "\n" +
-                                    "\n" + "Tipo de desecho: " + "\n" + itemsArrayList.get(position).getDesecho() + "\n");
-                    builder.setTitle("Datos del contenedor");
-                    builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                        }
-                    });
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
+        mostrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                String estado;
+                if(itemsArrayList.get(position).getStatus().equals("1")){
+                    estado = "Vacio";
                 }
-            });
+                else if(itemsArrayList.get(position).getStatus().equals("2")){
+                    estado = "Medio";
+                }
+                else if(itemsArrayList.get(position).getStatus().equals("1") ){
+                    estado = "Lleno";
+                }
+                else{
+                    estado = "Sin estado";
+                }
+                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                builder.setMessage(
+                        "Nombre del contenedor: " + "\n" + itemsArrayList.get(position).getNameContainer() + "\n" +
+                                "\n" + "Ubicacion: " + "\n" + itemsArrayList.get(position).getLatlong() + "\n" +
+                                "\n" + "Fundacion Asociada: " + "\n" + itemsArrayList.get(position).getEstablishment() + "\n" +
+                                "\n" + "Estado del contenedor: " + "\n" + estado + "\n" +
+                                "\n" + "Tipo de desecho: " + "\n" + itemsArrayList.get(position).getDesecho() + "\n");
+                builder.setTitle("Datos del contenedor");
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
 
 
         btCambiar.setOnClickListener(new View.OnClickListener() {

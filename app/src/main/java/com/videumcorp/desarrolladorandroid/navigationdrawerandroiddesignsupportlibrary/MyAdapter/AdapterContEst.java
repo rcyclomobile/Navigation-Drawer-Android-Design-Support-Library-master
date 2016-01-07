@@ -69,6 +69,7 @@ public class AdapterContEst extends ArrayAdapter<Container> {
         // 3. Get the two text view from the rowView
         TextView ContainerName = (TextView) rowView.findViewById(R.id.ContainerName);
         TextView ContainerStatus = (TextView) rowView.findViewById(R.id.ContainerStatus);
+        Button mostrar = (Button) rowView.findViewById(R.id.ContainerStatus);
         final Button btCambiar = (Button) rowView.findViewById(R.id.btCambiar);
         ImageView imContenedor = (ImageView) rowView.findViewById(R.id.move_poster);
 
@@ -95,7 +96,7 @@ public class AdapterContEst extends ArrayAdapter<Container> {
             imContenedor.setImageResource(R.drawable.congelado);
         }
 
-            imContenedor.setOnClickListener(new View.OnClickListener() {
+            mostrar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View v) {
                     String estado;
@@ -224,7 +225,7 @@ public class AdapterContEst extends ArrayAdapter<Container> {
             if (result.equals("success")) {
                 Toast toast1 =
                         Toast.makeText(context,
-                                id + " " + new_status, Toast.LENGTH_SHORT);
+                                "El estado del contenedor ha sido cambiado.", Toast.LENGTH_SHORT);
 
                 toast1.show();
                 Main activity = (Main) context;

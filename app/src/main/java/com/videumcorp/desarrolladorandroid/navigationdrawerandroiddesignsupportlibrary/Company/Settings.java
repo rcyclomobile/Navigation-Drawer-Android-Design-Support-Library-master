@@ -12,11 +12,9 @@ import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.ChangePass;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
 
 import org.json.JSONException;
@@ -31,7 +29,6 @@ import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Set;
 
 public class Settings extends AppCompatActivity {
 
@@ -111,7 +108,7 @@ public class Settings extends AppCompatActivity {
     }
 
     public void editar_contraseña(View view){
-        Intent intent = new Intent(view.getContext(), APIChangePass.class);
+        Intent intent = new Intent(view.getContext(), ChangePass.class);
         intent.putExtra("access-token", access_token);
         intent.putExtra("client", client);
         intent.putExtra("uid", uid);
@@ -259,13 +256,6 @@ public class Settings extends AppCompatActivity {
         super.onRestart();
         finish();
         startActivity(getIntent());
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_inbox, menu);
-        return true;
     }
 
     @Override

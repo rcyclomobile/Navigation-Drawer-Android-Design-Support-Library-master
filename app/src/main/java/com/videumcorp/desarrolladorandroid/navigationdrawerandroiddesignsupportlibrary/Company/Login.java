@@ -36,7 +36,7 @@ public class Login extends Activity {
     private String client;
     private String uid;
 
-    public String active;
+    public String errased;
     public String name;
 
     @Override
@@ -61,7 +61,7 @@ public class Login extends Activity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), APIRegister.class);
+                Intent intent = new Intent(v.getContext(), Register.class);
                 startActivity(intent);
             }
         });
@@ -199,7 +199,7 @@ public class Login extends Activity {
                         JSONObject mJsonObject = mJsonArray.getJSONObject(0);
 
 
-                        active = mJsonObject.getString("active");
+                        errased = mJsonObject.getString("erased");
                         name = mJsonObject.getString("name");
 
 
@@ -226,7 +226,7 @@ public class Login extends Activity {
                 //La cuenta se encontro en la API
                 if(result.equals("success")){
                     //La cuenta esta innactiva? preguntar si desea activarla
-                    if(active.equals("false")){
+                    if(errased.equals("true")){
                         AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
                         builder.setMessage("Su cuenta actualmente esta inactiva. ¿Desea volver a activarla?");
                         builder.setTitle("Activacion de cuenta");

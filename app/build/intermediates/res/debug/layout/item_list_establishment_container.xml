@@ -2,57 +2,59 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:layout_marginTop="25dp"
-    >
+    android:padding="4dp"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto">
 
     <ImageButton
         android:id="@+id/move_poster"
-        android:layout_width="100dp"
-        android:layout_height="75dp"
         android:background="@null"
-        android:layout_marginLeft="15dp"
-        />
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" android:layout_marginBottom="4dp"
+        android:layout_marginLeft="10dp" android:layout_marginRight="10dp"
 
-    <TextView
-        android:id="@+id/ContainerStatus"
-        android:layout_width="100dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginLeft="25dp"
-        android:text="Ver Fundacion"
-        />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/ContainerName"
-        android:layout_width="150dp"
-        android:layout_height="75dp"
-        android:layout_marginRight="10dp"
-        android:layout_toRightOf="@+id/move_poster"
-        android:text="Nombre fundacion"
+        android:layout_width="160dp" android:layout_height="wrap_content"
+        android:text="Nombre Fundacion"
         android:textStyle="bold"
         android:gravity="center"
-        />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp" />
 
-    <TextView
-        android:id="@+id/Estado"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="25dp"
-        android:text="Fundacion: "
+    <info.hoang8f.widget.FButton
+        android:id="@+id/ContainerStatus"
+        android:layout_width="120dp" android:layout_height="24dp"
+        android:layout_below="@+id/ContainerName"
+        android:layout_marginTop="14dp"
+        android:layout_centerHorizontal="true"
+
+        fbutton:buttonColor="@color/fbutton_color_turquoise"
+        fbutton:shadowEnabled="true"
+
+        android:textAllCaps="false"
         android:gravity="center"
-        android:layout_toRightOf="@+id/ContainerName"
-        />
-    <Button
+        android:text="Detalle de la Fundacion"
+        android:textColor="#fff"
+        android:textSize="14sp"/>
+
+    <info.hoang8f.widget.FButton
         android:id="@+id/btCambiar"
-        android:layout_width="60dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="25dp"
+        android:layout_width="72dp" android:layout_height="36dp"
+        android:layout_marginRight="15dp"
+
         android:text="Aceptar"
-        android:textSize="11dp"
-        android:background="@drawable/list_selector"
+        android:textSize="14sp"
+        android:textColor="#ffffff"
+        android:textStyle="bold"
+        android:textAllCaps="false"
         android:gravity="center"
-        android:layout_toRightOf="@+id/ContainerName"
-        />
+
+        android:layout_alignTop="@+id/ContainerName"
+        android:layout_alignParentRight="true" />
 
 </RelativeLayout><!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/layout/item_list_establishment_container.xml -->

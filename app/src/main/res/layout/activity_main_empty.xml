@@ -8,6 +8,10 @@
     xmlns:fbutton="http://schemas.android.com/apk/res-auto"
     android:background="#e0e0e0">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -45,7 +49,7 @@
             android:drawableBottom="@drawable/bolsa_kokoro"
 
             android:gravity="center_horizontal"
-            android:text="Aun no tienes contenedores habilitados :(\n\nPuedes Solicitar un nuevo contenedor con el boton o bien dirigiendote a'Menu'->'Solicitar contenedor'\n"
+            android:text="Aun no tienes contenedores habilitados :(\n\nPuedes Solicitar un nuevo contenedor con el boton o bien dirigiendote a 'Menu'->'Solicitar contenedor'\n"
             android:layout_below="@+id/toolbar"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
@@ -63,6 +67,7 @@
             android:textAllCaps="true"
             android:textStyle="bold"
             android:textColor="#ffffff"
+            android:textSize="12dp"
             android:text="Solicitar nuevo contenedor"/>
 
 
@@ -97,6 +102,7 @@
             android:textAllCaps="true"
             android:textStyle="bold"
             android:textColor="#fff"
+            android:textSize="12dp"
             android:text="Revisar contenedores pendientes"/>
 
 
@@ -114,11 +120,13 @@
             android:textAllCaps="true"
             android:textStyle="bold"
             android:textColor="#fff"
+            android:textSize="12dp"
             android:text="Enviar un correo"/>
 
 
 
     </RelativeLayout>
+    </ScrollView>
     <!--
        <LinearLayout
            xmlns:tools="http://schemas.android.com/tools"

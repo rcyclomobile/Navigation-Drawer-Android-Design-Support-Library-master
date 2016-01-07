@@ -51,13 +51,14 @@ public class AdapterSelEst extends ArrayAdapter<Establishment> {
         // 3. Get the two text view from the rowView
         TextView EstablishmentName = (TextView) rowView.findViewById(R.id.ContainerName);
         final Button btCambiar = (Button) rowView.findViewById(R.id.btCambiar);
+        Button mostrar = (Button) rowView.findViewById(R.id.ContainerStatus);
         ImageView imContenedor = (ImageView) rowView.findViewById(R.id.move_poster);
 
         // 4. Set the text for textView
         EstablishmentName.setText(itemsArrayList.get(position).getName());
         imContenedor.setImageResource(R.drawable.fundacion);
 
-            imContenedor.setOnClickListener(new View.OnClickListener() {
+            mostrar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View v) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());

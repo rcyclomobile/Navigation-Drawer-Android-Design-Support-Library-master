@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -44,19 +45,20 @@ public class WaitAdapter extends ArrayAdapter<Container> {
         // 3. Get the two text view from the rowView
         TextView ContainerName = (TextView) rowView.findViewById(R.id.ContainerName);
         TextView ContainerStatus = (TextView) rowView.findViewById(R.id.ContainerStatus);
+        Button mostrar = (Button) rowView.findViewById(R.id.ContainerStatus);
         ImageView imContenedor = (ImageView) rowView.findViewById(R.id.move_poster);
 
         // 4. Set the text for textView
         ContainerName.setText(itemsArrayList.get(position).getNameContainer());
         if(itemsArrayList.get(position).getStatus().equals("1")) {
-            imContenedor.setImageResource(R.drawable.vacio);
+            imContenedor.setImageResource(R.drawable.icon_container_vacio);
         }
         else if(itemsArrayList.get(position).getStatus().equals("3")){
-            imContenedor.setImageResource(R.drawable.lleno);
+            imContenedor.setImageResource(R.drawable.icon_container_lleno);
 
         }
         else if(itemsArrayList.get(position).getStatus().equals("2")){
-            imContenedor.setImageResource(R.drawable.medio);
+            imContenedor.setImageResource(R.drawable.icon_container_mitad);
         }
         else if(itemsArrayList.get(position).getStatus().equals("Congelado")){
             imContenedor.setImageResource(R.drawable.congelado);
@@ -65,7 +67,7 @@ public class WaitAdapter extends ArrayAdapter<Container> {
             imContenedor.setImageResource(R.drawable.vacio);
         }
 
-            imContenedor.setOnClickListener(new View.OnClickListener() {
+            mostrar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View v) {
                     String estado = "Sin estado";
@@ -95,4 +97,3 @@ public class WaitAdapter extends ArrayAdapter<Container> {
     }
 
 }
-

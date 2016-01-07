@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -18,6 +19,16 @@ import android.widget.Toast;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.DataBase.RcycloDatabaseHelper;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.regex.Matcher;
@@ -34,6 +45,7 @@ public class APIRegister extends AppCompatActivity {
     RadioGroup rgWaste;
     private RadioButton rbPapel, rbPlastico, rbVidrio, rbLata;
     Toolbar toolbar;
+    String name, email, password, phone, address, desecho;
 
 
 
@@ -53,72 +65,51 @@ public class APIRegister extends AppCompatActivity {
 
 
     public void sendForm(View view){
-        String name     = etName.getText().toString();
-        String email    = etEmail.getText().toString();
-        String password = etPassword.getText().toString();
-        String phone    = etPhone.getText().toString();
-        String address  = etAddress.getText().toString();
+        name     = etName.getText().toString();
+        email    = etEmail.getText().toString();
+        password = etPassword.getText().toString();
+        phone    = etPhone.getText().toString();
+        address  = etAddress.getText().toString();
 
         rbPapel     = (RadioButton) findViewById(R.id.radio_papel);
         rbVidrio    = (RadioButton) findViewById(R.id.radio_vidrio);
         rbPlastico  = (RadioButton) findViewById(R.id.radio_plastico);
         rbLata      = (RadioButton) findViewById(R.id.radio_lata);
 
-        if (name.matches("") || email.matches("") || password.matches("") || phone.matches("") || address.matches("")) {
-            Crouton.makeText(this, "Se deben llenar todos los campos!", Style.ALERT).show();
+        if (rbPapel.isChecked()) {
+            desecho = "papel";
+        } else if (rbPlastico.isChecked()) {
+            desecho = "´plastico";
+        } else if (rbVidrio.isChecked()) {
+            desecho = "vidrio";
+        } else if (rbLata.isChecked()) {
+            desecho = "lata";
         }
-
+        if (name.equals("")) {
+            etName.setError("Debe llenar este campo!");
+        }
+        else if(email.equals("")){
+            etEmail.setError("Debe llenar este campo!");
+        }
+        else if(address.equals("")){
+            etAddress.setError("Debe llenar este campo!");
+        }
+        else if(password.equals("")){
+            etPassword.setError("Debe llenar este campo!");
+        }
+        else if(phone.equals("")){
+            etPhone.setError("Debe llenar este campo!");
+        }
         else {
             if (isEmailValid(email)) {
-
-                if( isEmailUsed(email)){
-                    Crouton.makeText(this, "El Email ya existe!!", Style.ALERT).show();
-                }
-
-                else {
-                    ContentValues establishmentValues = new ContentValues();
-                    establishmentValues.put("NAME", name);
-                    establishmentValues.put("EMAIL", email);
-                    establishmentValues.put("PASSWORD", password);
-                    establishmentValues.put("PHONE", phone);
-                    establishmentValues.put("ADDRESS", address);
-                    establishmentValues.put("ACTIVO", "ACTIVO");
-
-                    SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(this);
-                    SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
-
-                    if (rbPapel.isChecked()) {
-                        establishmentValues.put("WASTE", "papel");
-                    } else if (rbPlastico.isChecked()) {
-                        establishmentValues.put("WASTE", "plastico");
-                    } else if (rbVidrio.isChecked()) {
-                        establishmentValues.put("WASTE", "vidrio");
-                    } else if (rbLata.isChecked()) {
-                        establishmentValues.put("WASTE", "lata");
-                    }
-
-                    //Implementar API Aqui!!
-                    db.insert("ESTABLISHMENT", null, establishmentValues);
-                    db.close();
-
-                    Toast toast= Toast.makeText(getApplicationContext(),"Registro exitoso!", Toast.LENGTH_LONG);
-                    toast.setGravity(Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 70);
-                    toast.show();
-                    TimerTask task = new TimerTask() {
-                        @Override
-                        public void run() {
-                            Intent intent = new Intent().setClass(APIRegister.this, Login.class);
-                            startActivity(intent);
-                        }
-                    };
-                    Timer timer = new Timer();
-                    timer.schedule(task, DURACION);
+                if (change_password(view)) {
+                    GetContainers g = new GetContainers();
+                    g.execute();
                 }
             }
 
             else {
-                Crouton.makeText(this, "El mail debe ser valido!!", Style.ALERT).show();
-                etEmail.setText("");
+                etEmail.setError("¡El mail debe ser valido!");
             }
         }
     }
@@ -137,18 +128,92 @@ public class APIRegister extends AppCompatActivity {
         return isValid;
     }
 
-    public boolean isEmailUsed(String email) {
-        SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(this);
-        SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
-        //Implementar API Aqui!!
-        Cursor cursor = db.query("ESTABLISHMENT", new String[]{"EMAIL"}, "EMAIL = ?", new String[]{email}, null, null, null);
-        if (cursor.moveToFirst()){
-            return true;
-        }
-        else {
+    public boolean change_password(View view) {
+        if(!password.equals(phone)){
+            etPassword.setError("Las contraseñas no coinciden.");
             return false;
         }
+        else{
+            return true;
+        }
+
     }
 
+    public class GetContainers extends AsyncTask<URL, String, String> {
+
+        @Override
+        protected String doInBackground(URL... params) {
+
+            try {
+                URL url = new URL("https://api-rcyclo.herokuapp.com/establishments/new");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+                conn.setDoInput(true);
+                conn.setDoOutput(true);
+
+                conn.setRequestProperty("Content-Type", "application/json");
+                conn.setRequestProperty("Accept", "application/json");
+
+                JSONObject jsonParam = new JSONObject();
+
+                jsonParam.put("name", name);
+                jsonParam.put("address", address);
+                jsonParam.put("email", email);
+                jsonParam.put("password", password);
+                jsonParam.put("password_confirmation", phone);
+
+
+                OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream());
+                out.write(jsonParam.toString());
+                out.close();
+
+
+                try {
+                    BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    StringBuilder sb = new StringBuilder();
+
+                    String line;
+
+                    while ((line = in.readLine()) != null) {
+                        sb.append(line + "\n");
+                    }
+
+                    in.close();
+
+                    return "success";
+
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return "failed";
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            if(result.equals("success")) {
+                Toast toast = Toast.makeText(getApplicationContext(), "Registro exitoso!", Toast.LENGTH_LONG);
+                toast.show();
+                Intent intent = new Intent(APIRegister.this, Login.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+                finish();
+            }
+            else{
+                Toast toast1 =
+                        Toast.makeText(getApplicationContext(),
+                                "Lo sentimos, algo ha ido mal.", Toast.LENGTH_SHORT);
+
+                toast1.show();
+            }
+
+        }
+    }
 
 }

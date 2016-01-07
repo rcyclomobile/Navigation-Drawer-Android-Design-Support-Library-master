@@ -1,42 +1,83 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#e0e0e0">
 
-    <LinearLayout
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
+
 
         <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/status_bar_kitkat_height"
-            android:background="?colorPrimary"/>
+            android:id="@+id/fragment"
+            android:layout_width="match_parent" android:layout_height="25dp"
+            android:background="#000"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/status_bar_lollipop_height"
-            android:background="?colorPrimaryDark"/>
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent" android:layout_height="?actionBarSize"
+            android:layout_below="@+id/fragment"
+
+            android:background="#2FCD81"
+            android:elevation="4dp"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:theme="@style/ToolbarTheme"
+            android:layout_gravity="center_horizontal|top" />
+
+        <!--
+                <ListView
+                    android:id="@+id/list_view_establishment"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_below="@+id/toolbar"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:background="#fff"
+                    android:layout_margin="10dp"
+                    tools:listitem="@layout/item_list_establishment_container">
+                </ListView>
+        -->
 
         <TextView
-            android:text="Mis Contenedores"
-            android:textSize="25dp"
+            android:id="@+id/textView1"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar"
+            android:layout_marginTop="10dp"
+            android:padding="4dp"
+            android:layout_marginLeft="8dp" android:layout_marginRight="8dp"
+            android:background="#fff"
+
             android:gravity="center"
-            android:layout_marginTop="75dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:text="Fundaciones disponibles"
+            android:textSize="25sp" />
 
-        <ListView
-            android:id="@+id/list_view_establishment"
-            android:layout_width="match_parent"
-            android:layout_marginTop="25dp"
-            tools:listitem="@layout/item_list_establishment_container"
-            android:layout_height="wrap_content">
-        </ListView>
 
-    </LinearLayout>
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeEstablishment"
+            android:layout_width="match_parent" android:layout_height="match_parent"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_marginLeft="8dp" android:layout_marginRight="8dp"
+            android:layout_marginBottom="10dp"
+            android:layout_below="@+id/textView1"
+            android:background="#fff"
+            android:padding="4dp">
+
+            <ListView
+                android:id="@+id/list_view_establishment"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                tools:listitem="@layout/item_list_establishment_container"
+                >
+            </ListView>
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+
+
+    </RelativeLayout>
+
 
 
 

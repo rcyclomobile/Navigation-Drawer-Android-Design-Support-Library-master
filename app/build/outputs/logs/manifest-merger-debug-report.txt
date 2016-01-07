@@ -164,7 +164,7 @@ ADDED from AndroidManifest.xml:36:9
 		ADDED from AndroidManifest.xml:38:13
 	android:name
 		ADDED from AndroidManifest.xml:37:13
-activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIRegister
+activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.Register
 ADDED from AndroidManifest.xml:41:9
 	android:label
 		ADDED from AndroidManifest.xml:43:13
@@ -240,7 +240,7 @@ ADDED from AndroidManifest.xml:93:9
 		ADDED from AndroidManifest.xml:96:13
 	android:name
 		ADDED from AndroidManifest.xml:94:13
-activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.APIChangePass
+activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.ChangePass
 ADDED from AndroidManifest.xml:98:9
 	android:label
 		ADDED from AndroidManifest.xml:100:13
