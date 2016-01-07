@@ -24,7 +24,9 @@
         android:layout_marginBottom="4dp"
         android:layout_below="@+id/move_poster"
         android:layout_alignLeft="@+id/move_poster"
-        android:layout_alignStart="@+id/move_poster"></ProgressBar>
+        android:layout_alignStart="@+id/move_poster">
+
+    </ProgressBar>
 
 
     <TextView
@@ -67,15 +69,16 @@
 
     <info.hoang8f.widget.FButton
         android:id="@+id/btCambiar"
-        android:layout_width="72dp" android:layout_height="36dp"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
 
-        android:background="@drawable/list_selector"
         android:gravity="center"
 
         fbutton:buttonColor="@color/fbutton_color_alizarin"
         fbutton:shadowEnabled="true"
 
-        android:text="Cambiar\n estado"
+        android:drawableTop="@drawable/icon_update16_blanco"
+
+        android:text="Actualizar\n estado"
         android:textSize="14sp"
         android:textColor="#ffffff"
         android:textStyle="bold"

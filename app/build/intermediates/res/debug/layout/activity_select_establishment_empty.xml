@@ -71,4 +71,4 @@
         app:menu="@menu/navigation_drawer_menu"
         app:theme="@style/NavigationViewTheme" />
 
-</android.support.v4.widget.DrawerLayout><!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/layout/activity_select_establishment_empty.xml -->
+</android.support.v4.widget.DrawerLayout><!-- From: file:/C:/Users/Carlos/AndroidStudioProjects/ANDROX/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/layout/activity_select_establishment_empty.xml -->

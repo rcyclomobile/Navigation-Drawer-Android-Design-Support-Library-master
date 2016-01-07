@@ -80,15 +80,15 @@ public class AdapterDelEst extends ArrayAdapter<Container> {
         final Button btCambiar = (Button) rowView.findViewById(R.id.btCambiar);
         ImageView imContenedor = (ImageView) rowView.findViewById(R.id.move_poster);
 
-        progressBar = (ProgressBar) rowView.findViewById(R.id.progressBar);
-        progressBar.setVisibility(View.VISIBLE);
-        progressBar.setProgressDrawable(rowView.getResources().getDrawable(android.R.drawable.progress_horizontal));
+ //       progressBar = (ProgressBar) rowView.findViewById(R.id.progressBar);
+   //     progressBar.setVisibility(View.VISIBLE);
+//        progressBar.setProgressDrawable(rowView.getResources().getDrawable(android.R.drawable.progress_horizontal));
 
         // 4. Set the text for textView
         ContainerName.setText(itemsArrayList.get(position).getNameContainer());
         if(itemsArrayList.get(position).getStatus().equals("1")) {
-            imContenedor.setImageResource(R.drawable.vacio);
-            progressBar.setProgress(2);
+            imContenedor.setImageResource(R.drawable.icon_container_wait);
+//            progressBar.setProgress(2);
         }
         else if(itemsArrayList.get(position).getStatus().equals("3")){
             imContenedor.setImageResource(R.drawable.lleno);

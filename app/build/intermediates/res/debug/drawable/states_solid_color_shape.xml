@@ -8,4 +8,4 @@
         android:state_enabled="true"
         android:drawable="@drawable/solid_color_shape" />
 
-</selector><!-- From: file:/C:/Users/Roberto/Desktop/Cosas/isw/10/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/drawable/states_solid_color_shape.xml -->
+</selector><!-- From: file:/C:/Users/Carlos/AndroidStudioProjects/ANDROX/Navigation-Drawer-Android-Design-Support-Library-master/app/src/main/res/drawable/states_solid_color_shape.xml -->
