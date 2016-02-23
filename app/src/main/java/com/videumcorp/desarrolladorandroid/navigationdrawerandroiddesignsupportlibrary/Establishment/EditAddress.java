@@ -265,7 +265,7 @@ public class EditAddress extends AppCompatActivity {
                                 "La solicitud de cambio de email ha sido enviada.", Toast.LENGTH_SHORT);
                 toast1.show();
 
-                Intent intent = new Intent(EditAddress.this, Settings.class);
+                Intent intent = new Intent(EditAddress.this, Login.class);
                 intent.putExtra("access-token", access_token);
                 intent.putExtra("client", client);
                 intent.putExtra("uid", uid);

@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.location.Address;
 import android.location.Geocoder;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -269,6 +270,22 @@ public class Main extends AppCompatActivity {
         }
     }
 
+    private void enviar(String[] to, String[] cc,
+                        String asunto, String mensaje) {
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.createChooser(emailIntent, "aleccapetillo@gmail.com");
+        emailIntent.setData(Uri.parse("mailto:"));
+        //String[] to = direccionesEmail;
+        //String[] cc = copias;
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, to);
+        emailIntent.putExtra(Intent.EXTRA_CC, cc);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, asunto);
+        emailIntent.putExtra(Intent.EXTRA_TEXT, mensaje);
+        emailIntent.setType("message/rfc822");
+        startActivity(Intent.createChooser(emailIntent, "Email "));
+    }
+
+
     public class GetDirection extends AsyncTask<URL, String, String> {
 
         public String Lat;
@@ -337,8 +354,8 @@ public class Main extends AppCompatActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             if (result.equals("success")) {
-                setUpMapIfNeeded();
-                mMap.setMyLocationEnabled(true);
+                //setUpMapIfNeeded();
+                //mMap.setMyLocationEnabled(true);
 
             }
 
@@ -350,7 +367,7 @@ public class Main extends AppCompatActivity {
                 toast1.show();
             }
         }
-
+        /*
         private void setUpMapIfNeeded() {
             // Do a null check to confirm that we have not already instantiated the map.
             if (mMap == null) {
@@ -363,7 +380,8 @@ public class Main extends AppCompatActivity {
                 }
             }
         }
-
+        */
+        /*
         private void setUpMap() {
             GetDirection g = new GetDirection();
             g.execute();
@@ -382,6 +400,7 @@ public class Main extends AppCompatActivity {
             mMap.animateCamera(camUpd3);
             mMap.addMarker(new MarkerOptions().position(latLng).title("Actualmente usted tiene "+largo+" contenedores"));
         }
+        */
     }
 
     private void setupNavigationDrawerContent(NavigationView navigationView) {
@@ -414,6 +433,10 @@ public class Main extends AppCompatActivity {
                             case R.id.item_navigation_drawer_sent_mail_es:
                                 menuItem.setChecked(true);
                                 drawerLayout.closeDrawer(GravityCompat.START);
+                                String[] to = { "" };
+                                String[] cc = { "" };
+                                enviar(to, cc, "",
+                                        "");
                                 return true;
 
                             case R.id.item_navigation_drawer_settings_es:
