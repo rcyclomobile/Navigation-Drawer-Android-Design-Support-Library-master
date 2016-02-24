@@ -67,6 +67,8 @@ public class WaitAdapter extends ArrayAdapter<Container> {
             imContenedor.setImageResource(R.drawable.vacio);
         }
 
+        final String[] desecho = itemsArrayList.get(position).getDesecho().split("\\|");
+
             mostrar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View v) {
@@ -78,7 +80,7 @@ public class WaitAdapter extends ArrayAdapter<Container> {
                                     "\n" + "Ubicacion: " + "\n" + itemsArrayList.get(position).getLatlong() + "\n" +
                                     "\n" + "Fundacion Asociada: " + "\n" + itemsArrayList.get(position).getEstablishment() + "\n" +
                                     "\n" + "Estado del contenedor: " + "\n" + estado + "\n" +
-                                    "\n" + "Tipo de desecho: " + "\n" + itemsArrayList.get(position).getDesecho() + "\n");
+                                    "\n" + "Tipo de desecho: " + "\n" + desecho[1] + "\n");
                     builder.setTitle("Datos del contenedor");
                     builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         @Override

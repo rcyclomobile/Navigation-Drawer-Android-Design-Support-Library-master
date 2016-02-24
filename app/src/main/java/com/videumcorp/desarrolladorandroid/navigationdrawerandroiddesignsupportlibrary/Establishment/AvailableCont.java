@@ -168,7 +168,7 @@ public class AvailableCont extends AppCompatActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             if(result.equals("success")) {
-                    if(arrayList.isEmpty()) {
+                    if(!arrayList.isEmpty()) {
                         AdapterEst adapter = new AdapterEst(AvailableCont.this, arrayList, access_token, client, uid);
                         adapter.notifyDataSetChanged();
                         listContainerCompany.setAdapter(adapter);

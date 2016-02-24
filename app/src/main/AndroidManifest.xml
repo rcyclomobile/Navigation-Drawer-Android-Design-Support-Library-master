@@ -92,7 +92,7 @@
         </activity>
         <activity
             android:name=".Company.EditEmail"
-            android:label="Editar perfil"
+            android:label="Editar mail"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
@@ -112,7 +112,7 @@
         </activity>
         <activity
             android:name=".Establishment.EditEmail"
-            android:label="Editar perfil"
+            android:label="Editar mail"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
@@ -127,11 +127,11 @@
         </activity>
         <activity
             android:name=".Establishment.NewDirection"
-            android:label="@string/title_activity_new_direction" >
+            android:label="Nueva direccion" >
         </activity>
         <activity
             android:name=".Establishment.EditAddress"
-            android:label="@string/title_activity_edit_phone"
+            android:label="Editar direccion"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
@@ -149,9 +149,13 @@
             android:label="En espera"
             android:theme="@style/AppTheme" >
         </activity>
-        <activity android:name=".Company.EditName" >
+        <activity android:name=".Company.EditName"
+            android:label="Nuevo nombre"
+            android:theme="@style/AppTheme" >
         </activity>
-        <activity android:name=".Establishment.EditName" >
+        <activity android:name=".Establishment.EditName"
+            android:label="Nuevo nombre"
+            android:theme="@style/AppTheme" >
         </activity>
     </application>
 

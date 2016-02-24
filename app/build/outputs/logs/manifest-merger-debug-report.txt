@@ -328,12 +328,20 @@ ADDED from AndroidManifest.xml:147:9
 		ADDED from AndroidManifest.xml:148:13
 activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.EditName
 ADDED from AndroidManifest.xml:152:9
+	android:label
+		ADDED from AndroidManifest.xml:153:13
+	android:theme
+		ADDED from AndroidManifest.xml:154:13
 	android:name
 		ADDED from AndroidManifest.xml:152:19
 activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.EditName
-ADDED from AndroidManifest.xml:154:9
+ADDED from AndroidManifest.xml:156:9
+	android:label
+		ADDED from AndroidManifest.xml:157:13
+	android:theme
+		ADDED from AndroidManifest.xml:158:13
 	android:name
-		ADDED from AndroidManifest.xml:154:19
+		ADDED from AndroidManifest.xml:156:19
 uses-sdk
 INJECTED from AndroidManifest.xml:0:0 reason: use-sdk injection requested
 MERGED from com.android.support:appcompat-v7:22.2.1:20:5

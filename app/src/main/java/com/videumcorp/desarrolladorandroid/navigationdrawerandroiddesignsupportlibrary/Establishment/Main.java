@@ -354,8 +354,8 @@ public class Main extends AppCompatActivity {
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             if (result.equals("success")) {
-                //setUpMapIfNeeded();
-                //mMap.setMyLocationEnabled(true);
+                setUpMapIfNeeded();
+                mMap.setMyLocationEnabled(true);
 
             }
 
@@ -367,7 +367,6 @@ public class Main extends AppCompatActivity {
                 toast1.show();
             }
         }
-        /*
         private void setUpMapIfNeeded() {
             // Do a null check to confirm that we have not already instantiated the map.
             if (mMap == null) {
@@ -380,8 +379,7 @@ public class Main extends AppCompatActivity {
                 }
             }
         }
-        */
-        /*
+
         private void setUpMap() {
             GetDirection g = new GetDirection();
             g.execute();
@@ -400,7 +398,6 @@ public class Main extends AppCompatActivity {
             mMap.animateCamera(camUpd3);
             mMap.addMarker(new MarkerOptions().position(latLng).title("Actualmente usted tiene "+largo+" contenedores"));
         }
-        */
     }
 
     private void setupNavigationDrawerContent(NavigationView navigationView) {

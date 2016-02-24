@@ -112,7 +112,7 @@
         </activity>
         <activity
             android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.EditEmail"
-            android:label="Editar perfil"
+            android:label="Editar mail"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
@@ -132,7 +132,7 @@
         </activity>
         <activity
             android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.EditEmail"
-            android:label="Editar perfil"
+            android:label="Editar mail"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
@@ -147,11 +147,11 @@
         </activity>
         <activity
             android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.NewDirection"
-            android:label="@string/title_activity_new_direction" >
+            android:label="Nueva direccion" >
         </activity>
         <activity
             android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.EditAddress"
-            android:label="@string/title_activity_edit_phone"
+            android:label="Editar direccion"
             android:theme="@style/AppTheme" >
         </activity>
         <activity
@@ -169,9 +169,15 @@
             android:label="En espera"
             android:theme="@style/AppTheme" >
         </activity>
-        <activity android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.EditName" >
+        <activity
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.EditName"
+            android:label="Nuevo nombre"
+            android:theme="@style/AppTheme" >
         </activity>
-        <activity android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.EditName" >
+        <activity
+            android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.EditName"
+            android:label="Nuevo nombre"
+            android:theme="@style/AppTheme" >
         </activity>
         <!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->
         <activity
