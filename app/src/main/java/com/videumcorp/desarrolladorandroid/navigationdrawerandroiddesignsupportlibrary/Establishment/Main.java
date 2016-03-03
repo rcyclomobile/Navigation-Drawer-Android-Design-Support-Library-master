@@ -1,13 +1,8 @@
 package com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment;
 
 import android.app.AlertDialog;
-import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.location.Address;
-import android.location.Geocoder;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -18,11 +13,11 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Menu;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,29 +26,24 @@ import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.Login;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.AdapterContEst;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.Container;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.FullscreenActivity;
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.Info_company;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
-import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.DataBase.RcycloDatabaseHelper;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -70,6 +60,10 @@ public class Main extends AppCompatActivity {
     ListView listContainerCompany;
     ArrayList<Container> arrayList = new ArrayList<>();
     Container container;
+    Info_company info_company;
+    ArrayList<Info_company> arrayInfoList = new ArrayList<>();
+    List<String> nombreEmpresa = new ArrayList<>();
+
 
     private SwipeRefreshLayout swipeContainer;
 
@@ -204,9 +198,61 @@ public class Main extends AppCompatActivity {
                                 empresa ,
                                 mJsonObjectProperty.getString("status_id"),
                                 desecho,
-                                mJsonObjectProperty.getString("active"));
+                                mJsonObjectProperty.getString("active"),
+                                mJsonObjectProperty.getString("latitude"),
+                                mJsonObjectProperty.getString("longitude"));
 
                         if(mJsonObjectProperty.getString("erased").equals("false")&&mJsonObjectProperty.getString("active").equals("true")){arrayList.add(container);}
+
+                        if(mJsonObjectProperty.getString("status_id").equals("1")) {
+                            info_company = new Info_company(empresa,
+                                    mJsonObjectProperty.getString("address"),
+                                    mJsonObjectProperty.getString("latitude"),
+                                    mJsonObjectProperty.getString("longitude"),
+                                    1,
+                                    0,
+                                    0,
+                                    1);
+                        }
+                        else if(mJsonObjectProperty.getString("status_id").equals("2")) {
+                            info_company = new Info_company(empresa,
+                                    mJsonObjectProperty.getString("address"),
+                                    mJsonObjectProperty.getString("latitude"),
+                                    mJsonObjectProperty.getString("longitude"),
+                                    1,
+                                    0,
+                                    1,
+                                    0);
+                        }
+                        else if(mJsonObjectProperty.getString("status_id").equals("3")) {
+                            info_company = new Info_company(empresa,
+                                    mJsonObjectProperty.getString("address"),
+                                    mJsonObjectProperty.getString("latitude"),
+                                    mJsonObjectProperty.getString("longitude"),
+                                    1,
+                                    1,
+                                    0,
+                                    0);
+                        }
+                        boolean cont = false;
+                        if(arrayInfoList.isEmpty()) {
+                            arrayInfoList.add(info_company);
+                        }
+                        else{
+                            for(int j = 0;j < arrayInfoList.size();j++){
+                                if(arrayInfoList.get(j).getNameCompany().equals(empresa)){
+                                    arrayInfoList.get(j).setCantidad_contenedores(arrayInfoList.get(j).getCantidad_contenedores() + 1);
+                                    arrayInfoList.get(j).setLlenos(arrayInfoList.get(j).getLlenos() + info_company.getLlenos());
+                                    arrayInfoList.get(j).setMedios(arrayInfoList.get(j).getMedios() + info_company.getMedios());
+                                    arrayInfoList.get(j).setVacios(arrayInfoList.get(j).getVacios() + info_company.getVacios());
+                                    cont = true;
+                                }
+                            }
+                            if(cont == false){
+                                arrayInfoList.add(info_company);
+                            }
+                        }
+
                     }
 
                     return "success";
@@ -254,9 +300,10 @@ public class Main extends AppCompatActivity {
                     setupNavigationDrawerContent(navigationView);
 
                 } else {
-                    AdapterContEst adapter = new AdapterContEst(Main.this, arrayList,access_token,client,uid);
+                    AdapterContEst adapter = new AdapterContEst(Main.this, arrayList,access_token,client,uid,mMap);
                     adapter.notifyDataSetChanged();
                     listContainerCompany.setAdapter(adapter);
+
                 }
             }
             else{
@@ -302,23 +349,6 @@ public class Main extends AppCompatActivity {
                 conn.setRequestProperty("client", client);
                 conn.setRequestProperty("uid", uid);
 
-                /*conn.setDoInput(true);
-                conn.setDoOutput(true);
-
-                conn.setRequestProperty("Content-Type", "application/json");
-                conn.setRequestProperty("Accept", "application/json");
-
-                JSONObject jsonParam = new JSONObject();
-
-                jsonParam.put("name", "KITEKNOLOGY");
-                jsonParam.put("address", "UTFSM, Valparaiso, Chile");
-                jsonParam.put("email", "aleccapetillo1@gmail.com");
-
-                OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream());
-                out.write(jsonParam.toString());
-                out.close();
-
-*/
                 try {
                     BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
                     StringBuilder sb = new StringBuilder();
@@ -356,6 +386,60 @@ public class Main extends AppCompatActivity {
             if (result.equals("success")) {
                 setUpMapIfNeeded();
                 mMap.setMyLocationEnabled(true);
+                Button Empresas = (Button) findViewById(R.id.Empresas);
+                Button Fundacion = (Button) findViewById(R.id.fundacionn);
+                final CharSequence[] charSequenceItems = nombreEmpresa.toArray(new CharSequence[nombreEmpresa.size()]);
+                Fundacion.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Double Latitude = Double.parseDouble(Lat);
+                        Double Longitude = Double.parseDouble(Lng);
+                        LatLng sanjose = new LatLng(Latitude, Longitude);
+                        CameraPosition camPos = new CameraPosition.Builder()
+                                .target(sanjose)   //Centramos el mapa en sanJose
+                                .zoom(16)         //Establecemos el zoom en 16
+                                .build();
+
+                        CameraUpdate camUpd3 =
+                                CameraUpdateFactory.newCameraPosition(camPos);
+
+                        mMap.animateCamera(camUpd3);
+                    }
+                });
+                Empresas.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(Main.this);
+                        builder.setTitle("Empresas asociadas");
+                        builder.setItems(charSequenceItems, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int item) {
+                                String la = arrayInfoList.get(item).getLat();
+                                String lo = arrayInfoList.get(item).getLng();
+                                Double Latitude = Double.parseDouble(la);
+                                Double Longitude = Double.parseDouble(lo);
+                                LatLng sanjose = new LatLng(Latitude, Longitude);
+                                CameraPosition camPos = new CameraPosition.Builder()
+                                        .target(sanjose)   //Centramos el mapa en sanJose
+                                        .zoom(16)         //Establecemos el zoom en 16
+                                        .build();
+
+                                CameraUpdate camUpd3 =
+                                        CameraUpdateFactory.newCameraPosition(camPos);
+
+                                mMap.animateCamera(camUpd3);
+
+                            }
+                        });
+                        builder.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                    }
+                });
 
             }
 
@@ -396,7 +480,45 @@ public class Main extends AppCompatActivity {
 
             final LatLng latLng = new LatLng(Latitude, Longitude);
             mMap.animateCamera(camUpd3);
-            mMap.addMarker(new MarkerOptions().position(latLng).title("Actualmente usted tiene "+largo+" contenedores"));
+            mMap.addMarker(new MarkerOptions().position(latLng).title("Actualmente usted tiene " + largo + " contenedores").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+
+            for(int i= 0;i < arrayInfoList.size();i++){
+                Double Latt = Double.parseDouble(arrayInfoList.get(i).getLat());
+                Double Lngg = Double.parseDouble(arrayInfoList.get(i).getLng());
+
+                final LatLng latLngg = new LatLng(Latt, Lngg);
+                float total_contenedores = arrayInfoList.get(i).getCantidad_contenedores();
+                float llenos = arrayInfoList.get(i).getLlenos();
+                float medios = arrayInfoList.get(i).getMedios();
+                if((total_contenedores)*(0.5) <= medios) {
+                    mMap.addMarker(new MarkerOptions().position(latLngg)
+                            .title(arrayInfoList.get(i).getNameCompany() + ", " + arrayInfoList.get(i).getAddressCompany())
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW))
+                            .snippet(arrayInfoList.get(i).getLlenos() + " Contenedores llenos, " +
+                                    arrayInfoList.get(i).getMedios() + " medios, " +
+                                    arrayInfoList.get(i).getVacios() + " vacios."));
+
+                }
+                else if((total_contenedores)*(0.8) <= llenos) {
+                    mMap.addMarker(new MarkerOptions().position(latLngg)
+                            .title(arrayInfoList.get(i).getNameCompany() + ", " + arrayInfoList.get(i).getAddressCompany())
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+                            .snippet(arrayInfoList.get(i).getLlenos() + " Contenedores llenos, " +
+                                    arrayInfoList.get(i).getMedios() + " medios, " +
+                                    arrayInfoList.get(i).getVacios() + " vacios."));
+                }
+                else{
+                    mMap.addMarker(new MarkerOptions().position(latLngg)
+                            .title(arrayInfoList.get(i).getNameCompany() + ", " + arrayInfoList.get(i).getAddressCompany())
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
+                            .snippet(arrayInfoList.get(i).getLlenos() + " Contenedores llenos, " +
+                                    arrayInfoList.get(i).getMedios() + " medios, " +
+                                    arrayInfoList.get(i).getVacios() + " vacios."));
+
+                }
+                nombreEmpresa.add(arrayInfoList.get(i).getNameCompany());
+
+            }
         }
     }
 

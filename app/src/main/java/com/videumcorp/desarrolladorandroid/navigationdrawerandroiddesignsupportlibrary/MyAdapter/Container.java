@@ -64,6 +64,24 @@ public class Container {
     private String desecho ;
     private String company;
 
+    public String getLat() {
+        return Lat;
+    }
+
+    public void setLat(String lat) {
+        Lat = lat;
+    }
+
+    public String getLng() {
+        return Lng;
+    }
+
+    public void setLng(String lng) {
+        Lng = lng;
+    }
+
+    private String Lat;
+    private String Lng;
     private String activo;
 
     public String getCompany() {
@@ -74,7 +92,7 @@ public class Container {
         this.company = company;
     }
 
-    public Container(String id, String nameContainer, String latlong, String establishment , String company ,String status, String desecho, String activo) {
+    public Container(String id, String nameContainer, String latlong, String establishment , String company ,String status, String desecho, String activo, String Lat, String Lng) {
         this.nameContainer = nameContainer;
         this.latlong = latlong;
         this.establishment = establishment;
@@ -83,6 +101,8 @@ public class Container {
         this.company = company;
         this.activo = activo;
         this.id = id;
+        this.Lat = Lat;
+        this.Lng = Lng;
     }
 
 

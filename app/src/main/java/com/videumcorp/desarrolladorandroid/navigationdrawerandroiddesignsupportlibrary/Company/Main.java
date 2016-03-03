@@ -181,7 +181,9 @@ public class Main extends AppCompatActivity {
                                                   name ,
                                                   mJsonObjectProperty.getString("status_id"),
                                                   desecho,
-                                                  mJsonObjectProperty.getString("active"));
+                                                  mJsonObjectProperty.getString("active"),
+                                                  mJsonObjectProperty.getString("latitude"),
+                                                  mJsonObjectProperty.getString("longitude"));
 
                         if(mJsonObjectProperty.getString("erased").equals("false")&&mJsonObjectProperty.getString("active").equals("true")){arrayList.add(container);}
                     }

@@ -18,6 +18,13 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.Main;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
 
@@ -33,7 +40,6 @@ public class AdapterContEst extends ArrayAdapter<Container> {
 
     private final Context context;
     private final ArrayList<Container> itemsArrayList;
-    private SQLiteDatabase db;
     ProgressBar progressBar;
 
     private String access_token;
@@ -44,8 +50,9 @@ public class AdapterContEst extends ArrayAdapter<Container> {
 
     public String id;
     public String new_status;
+    private GoogleMap mMap;
 
-    public AdapterContEst(Context context, ArrayList<Container> itemsArrayList, String access_token, String client, String uid) {
+    public AdapterContEst(Context context, ArrayList<Container> itemsArrayList, String access_token, String client, String uid, GoogleMap mMap) {
         super(context, R.layout.item_list_container_establishment, itemsArrayList);
 
         this.context = context;
@@ -53,6 +60,7 @@ public class AdapterContEst extends ArrayAdapter<Container> {
         this.access_token = access_token;
         this.client = client;
         this.uid = uid;
+        this.mMap = mMap;
     }
 
 
