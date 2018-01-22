@@ -1,6 +1,9 @@
 package com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +15,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.DataBase.RcycloDatabaseHelper;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
 
 import org.json.JSONException;
@@ -34,10 +38,8 @@ public class ChangePass extends AppCompatActivity {
     public static final String NAME= "empresa";
     TextView nombreHeaderCo;
 
-    private String access_token;
-    private String client;
-    private String uid;
     private String Company;
+    private String Email;
 
     String passwordCo1;
     String passwordCo2;
@@ -48,10 +50,8 @@ public class ChangePass extends AppCompatActivity {
         setContentView(R.layout.activity_change_password);
         Intent intent = getIntent();
 
-        access_token = intent.getStringExtra("access-token");
-        client = intent.getStringExtra("client");
-        uid = intent.getStringExtra("uid");
         Company = intent.getStringExtra("name");
+        Email = intent.getStringExtra("email");
 
         String empresa = (String)getIntent().getExtras().get(NAME);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -92,8 +92,25 @@ public class ChangePass extends AppCompatActivity {
         }
 
         else {
-            GetContainers g = new GetContainers();
-            g.execute();
+            SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(this);
+            SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
+
+            ContentValues containerValues = new ContentValues();
+            containerValues.put("PASSWORD", passwordCo1);
+
+            db.update("COMPANY", containerValues, "EMAIL = ?", new String[]{Email});
+
+            Toast toast1 =
+                    Toast.makeText(getApplicationContext(),
+                            "La contraseña ha sido cambiada.", Toast.LENGTH_SHORT);
+            toast1.show();
+
+            Intent intent = new Intent(ChangePass.this, Login.class);
+            intent.putExtra("name", Company);
+            intent.putExtra("email", Email);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+            finish();
 
         }
 
@@ -109,10 +126,6 @@ public class ChangePass extends AppCompatActivity {
             try {
                 URL url = new URL("https://api-rcyclo.herokuapp.com/company_auth/");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-                conn.setRequestProperty("access-token", access_token);
-                conn.setRequestProperty("client", client);
-                conn.setRequestProperty("uid", uid);
 
                 conn.setDoInput(true);
                 conn.setDoOutput(true);
@@ -167,9 +180,6 @@ public class ChangePass extends AppCompatActivity {
                 toast1.show();
 
                 Intent intent = new Intent(ChangePass.this, com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.Settings.class);
-                intent.putExtra("access-token", access_token);
-                intent.putExtra("client", client);
-                intent.putExtra("uid", uid);
                 intent.putExtra("name", Company);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);

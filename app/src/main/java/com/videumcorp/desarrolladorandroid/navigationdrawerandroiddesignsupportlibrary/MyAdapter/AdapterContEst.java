@@ -1,9 +1,11 @@
 package com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter;
 
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.AsyncTask;
@@ -25,6 +27,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.DataBase.RcycloDatabaseHelper;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.Main;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
 
@@ -42,24 +45,17 @@ public class AdapterContEst extends ArrayAdapter<Container> {
     private final ArrayList<Container> itemsArrayList;
     ProgressBar progressBar;
 
-    private String access_token;
-    private String client;
-    private String uid;
-
     private RadioButton rbVacio, rbMedio, rbLleno;
 
     public String id;
     public String new_status;
     private GoogleMap mMap;
 
-    public AdapterContEst(Context context, ArrayList<Container> itemsArrayList, String access_token, String client, String uid, GoogleMap mMap) {
+    public AdapterContEst(Context context, ArrayList<Container> itemsArrayList, GoogleMap mMap) {
         super(context, R.layout.item_list_container_establishment, itemsArrayList);
 
         this.context = context;
         this.itemsArrayList = itemsArrayList;
-        this.access_token = access_token;
-        this.client = client;
-        this.uid = uid;
         this.mMap = mMap;
     }
 
@@ -86,17 +82,17 @@ public class AdapterContEst extends ArrayAdapter<Container> {
         progressBar.setProgressDrawable(rowView.getResources().getDrawable(android.R.drawable.progress_horizontal));
 
         // 4. Set the text for textView
-        ContainerName.setText(itemsArrayList.get(position).getNameContainer());
-        if(itemsArrayList.get(position).getStatus().equals("1")) {
+        ContainerName.setText(itemsArrayList.get(position).getCompany() + " - " + itemsArrayList.get(position).getDesecho() + " - " + itemsArrayList.get(position).getId());
+        if(itemsArrayList.get(position).getStatus().equals("Vacio")) {
             imContenedor.setImageResource(R.drawable.icon_container_vacio);
             progressBar.setProgress(2);
         }
-        else if(itemsArrayList.get(position).getStatus().equals("3")){
+        else if(itemsArrayList.get(position).getStatus().equals("Lleno")){
             imContenedor.setImageResource(R.drawable.icon_container_lleno);
             progressBar.getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
             progressBar.setProgress(100);
         }
-        else if(itemsArrayList.get(position).getStatus().equals("2")){
+        else if(itemsArrayList.get(position).getStatus().equals("Medio")){
             imContenedor.setImageResource(R.drawable.icon_container_mitad);
             progressBar.setProgress(50);
         }
@@ -108,13 +104,13 @@ public class AdapterContEst extends ArrayAdapter<Container> {
                 @Override
                 public void onClick(final View v) {
                     String estado;
-                    if(itemsArrayList.get(position).getStatus().equals("1")){
+                    if(itemsArrayList.get(position).getStatus().equals("Vacio")){
                         estado = "Vacio";
                     }
-                    else if(itemsArrayList.get(position).getStatus().equals("2")){
+                    else if(itemsArrayList.get(position).getStatus().equals("Medio")){
                         estado = "Medio";
                     }
-                    else if(itemsArrayList.get(position).getStatus().equals("1") ){
+                    else if(itemsArrayList.get(position).getStatus().equals("Lleno") ){
                         estado = "Lleno";
                     }
                     else{
@@ -122,7 +118,7 @@ public class AdapterContEst extends ArrayAdapter<Container> {
                     }
                     AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
                     builder.setMessage(
-                            "Nombre del contenedor: " + "\n" + itemsArrayList.get(position).getNameContainer() + "\n" +
+                            "Nombre del contenedor: " + "\n" + itemsArrayList.get(position).getCompany() + " - " + itemsArrayList.get(position).getDesecho() + " - " + itemsArrayList.get(position).getId() + "\n" +
                                     "\n" + "Ubicacion: " + "\n" + itemsArrayList.get(position).getLatlong() + "\n" +
                                     "\n" + "Empresa Asociada: " + "\n" + itemsArrayList.get(position).getCompany() + "\n" +
                                     "\n" + "Estado del contenedor: " + "\n" + estado + "\n" +
@@ -159,18 +155,34 @@ public class AdapterContEst extends ArrayAdapter<Container> {
                 builder.setPositiveButton("Cambiar", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                        if (rbLleno.isChecked()) {
-                            new_status = "3";
-                        } else if (rbMedio.isChecked()) {
-                            new_status = "2";
-                        } else if (rbVacio.isChecked()) {
-                            new_status = "1";
-                        }
 
-                        id = itemsArrayList.get(position).getId();
+                            id = itemsArrayList.get(position).getId();
 
-                        GetStatus g = new GetStatus();
-                        g.execute();
+                            String nameContainer_to_Change = itemsArrayList.get(position).getNameContainer();
+                            String nameCompany_to_Change = itemsArrayList.get(position).getCompany();
+
+                            SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(context);
+                            SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
+
+                            ContentValues containerValues = new ContentValues();
+
+                            if(rbVacio.isChecked()){
+                                containerValues.put("ESTADO", "Vacio");
+                            }
+
+                            else if(rbMedio.isChecked()){
+                                containerValues.put("ESTADO", "Medio");
+                            }
+
+                            else if(rbLleno.isChecked()){
+                                containerValues.put("ESTADO", "Lleno");
+                            }
+                            db.update("CONTAINER", containerValues, "_id = ? AND NAME_CONTAINER = ? AND COMPANY = ?", new String[]{id,nameContainer_to_Change, nameCompany_to_Change});
+                            Toast.makeText(context, "El estado del contenedor ha sido cambiado.",
+                                    Toast.LENGTH_SHORT).show();
+                            com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.Main activity = (com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.Main) context;
+                            activity.finish();
+                            activity.startActivity(activity.getIntent());
                         }
                     });
 
@@ -198,9 +210,6 @@ public class AdapterContEst extends ArrayAdapter<Container> {
                 URL url = new URL("https://api-rcyclo.herokuapp.com/establishments/update_state_container?container_id="+id+"&status_id="+new_status);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
-                conn.setRequestProperty("access-token", access_token);
-                conn.setRequestProperty("client", client);
-                conn.setRequestProperty("uid", uid);
                 conn.setRequestMethod("GET");
 
                 try {

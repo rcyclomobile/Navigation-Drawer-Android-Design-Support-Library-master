@@ -2,6 +2,11 @@ package com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupport
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -15,7 +20,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.DataBase.RcycloDatabaseHelper;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.AdapterSelEst;
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.Container;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter.Establishment;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
 
@@ -30,6 +37,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class SelectEst extends AppCompatActivity {
 
@@ -40,13 +49,14 @@ public class SelectEst extends AppCompatActivity {
     Toolbar toolbar;
     String waste;
     String estado;
+    private SQLiteDatabase db;
+    private Cursor cursor;
 
     private SwipeRefreshLayout swipeContainer;
 
-    private String access_token;
-    private String client;
-    private String uid;
     private String Company;
+    private String Email;
+    private String Address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,25 +66,24 @@ public class SelectEst extends AppCompatActivity {
         Intent intent = getIntent();
 
         waste = (String)getIntent().getExtras().get(WASTE);
-        access_token = intent.getStringExtra("access-token");
-        client = intent.getStringExtra("client");
-        uid = intent.getStringExtra("uid");
         Company = intent.getStringExtra("name");
+        Email = intent.getStringExtra("email");
+        Address = intent.getStringExtra("address");
 
         switch (waste) {
-            case "1":
+            case "Papel":
                 estado = "Papel";
                 break;
 
-            case "2":
+            case "Plastico":
                 estado = "Plastico";
                 break;
 
-            case "3":
+            case "Vidrio":
                 estado = "Vidrio";
                 break;
 
-            case "4":
+            case "Lata":
                 estado = "Lata";
                 break;
         }
@@ -84,26 +93,101 @@ public class SelectEst extends AppCompatActivity {
 
         listEstablishmentCompany = (ListView) findViewById(R.id.list_view_establishment);
 
-        GetContainers g = new GetContainers();
-        g.execute();
+        SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(this);
+        db = rcycloDatabaseHelper.getReadableDatabase();
 
-        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
-        // Setup refresh listener which triggers new data loading
-        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                arrayList.clear();
-                Intent refresh = new Intent(SelectEst.this, SelectEst.class);
-                refresh.putExtra("access-token", access_token);
-                refresh.putExtra("client", client);
-                refresh.putExtra("uid", uid);
-                refresh.putExtra("name",Company);
-                refresh.putExtra(SelectEst.WASTE, waste);
+        cursor = db.query("ESTABLISHMENT",
+                new String[]{"_id", "NAME", "EMAIL", "ADDRESS", "WASTE", "ACTIVE"},
+                "WASTE = ? AND ACTIVE = ?",
+                new String[]{waste, "ACTIVO"},
+                null, null, null);
 
-                startActivity(refresh);//Start the same Activity
-                finish(); //finish Activity.
+        if (cursor.getCount() > 0) {
+            for (int i = 0; i < cursor.getCount(); i++) {
+                cursor.moveToNext();
+                String[] direccion = cursor.getString(3).split(":");
+                String[] direccion1 = direccion[1].split("\\(");
+                String[] direccion2 = direccion1[1].split("\\)");
+                String[] direccion3 = direccion2[0].split(",");
+                Double latAddress = Double.parseDouble(direccion3[0]);
+                Double lngAddress = Double.parseDouble(direccion3[1]);
+                String addressShow = getCompleteAddressString(latAddress, lngAddress);
+                establishment = new Establishment(cursor.getString(1),
+                        cursor.getString(2),
+                        addressShow,
+                        cursor.getString(4),
+                        cursor.getString(5),
+                        cursor.getString(0));
+                arrayList.add(establishment);
             }
-        });
+        }
+
+        if (arrayList.isEmpty()) {
+            setContentView(R.layout.activity_main_empty);
+            Context context = getApplicationContext();
+            CharSequence text = "¿Deseas agregar un contenedor? Puedes hacerlo desde aqui!";
+            int duration = Toast.LENGTH_SHORT;
+
+            LayoutInflater inflater = getLayoutInflater();
+            View layout = inflater.inflate(R.layout.toast_layout,
+                    (ViewGroup) findViewById(R.id.toast_layout_root));
+
+            TextView textToast = (TextView) layout.findViewById(R.id.text_toast);
+            textToast.setText(text);
+
+            Toast toast = new Toast(context);
+            toast.setDuration(duration);
+            toast.setView(layout);
+            toast.setGravity(Gravity.TOP | Gravity.LEFT, 150, 0);
+            toast.show();
+        } else {
+            AdapterSelEst adapter = new AdapterSelEst(SelectEst.this, arrayList,Company,Email,Address);
+            adapter.notifyDataSetChanged();
+            listEstablishmentCompany.setAdapter(adapter);
+            swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+            // Setup refresh listener which triggers new data loading
+            swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    arrayList.clear();
+                    Intent refresh = new Intent(SelectEst.this, SelectEst.class);
+                    refresh.putExtra("name", Company);
+                    refresh.putExtra("email", Email);
+                    refresh.putExtra("address", Address);
+                    refresh.putExtra(SelectEst.WASTE, waste);
+
+                    startActivity(refresh);//Start the same Activity
+                    finish(); //finish Activity.
+                }
+            });
+        }
+    }
+
+    private String getCompleteAddressString(double LATITUDE, double LONGITUDE) {
+        String strAdd = "";
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+        try {
+            List<Address> addresses = geocoder.getFromLocation(LATITUDE, LONGITUDE, 1);
+            if (addresses != null) {
+                Address returnedAddress = addresses.get(0);
+                StringBuilder strReturnedAddress = new StringBuilder("");
+
+                for (int i = 0; i <= returnedAddress.getMaxAddressLineIndex(); i++) {
+                    strReturnedAddress.append(returnedAddress.getAddressLine(i)).append("\n");
+                }
+                strAdd = strReturnedAddress.toString();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return strAdd;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        cursor.close();
+        db.close();
     }
 
     public class GetContainers extends AsyncTask<URL, String, String> {
@@ -117,9 +201,6 @@ public class SelectEst extends AppCompatActivity {
                 URL url = new URL("https://api-rcyclo.herokuapp.com/companies/establishments_by_waste_type?waste_type_id="+waste);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
-                conn.setRequestProperty("access-token", access_token);
-                conn.setRequestProperty("client", client);
-                conn.setRequestProperty("uid", uid);
                 conn.setRequestMethod("GET");
 
                 try {
@@ -195,7 +276,7 @@ public class SelectEst extends AppCompatActivity {
                     toast.setGravity(Gravity.TOP | Gravity.LEFT, 150, 0);
                     toast.show();
                 } else {
-                    AdapterSelEst adapter = new AdapterSelEst(SelectEst.this, arrayList,Company,access_token,client,uid);
+                    AdapterSelEst adapter = new AdapterSelEst(SelectEst.this, arrayList,Company, Email, Address);
                     adapter.notifyDataSetChanged();
                     listEstablishmentCompany.setAdapter(adapter);
                 }

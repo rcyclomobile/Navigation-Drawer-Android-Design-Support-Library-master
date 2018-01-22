@@ -50,15 +50,6 @@
             android:hint="Correo electronico" />
 
         <EditText
-            android:id="@+id/CAddress"
-            android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:layout_marginTop="5dp" android:layout_marginBottom="0dp"
-            android:layout_marginLeft="18dp" android:layout_marginRight="18dp"
-            android:textSize="12dp"
-            android:inputType="textCapSentences"
-            android:hint="Direccion" />
-
-        <EditText
             android:id="@+id/CPassword"
             android:layout_width="match_parent" android:layout_height="wrap_content"
             android:layout_marginTop="5dp" android:layout_marginBottom="0dp"
@@ -77,6 +68,32 @@
             android:textSize="12dp"
             android:inputType="textPassword"
             android:hint="Repetir contraseña" />
+
+        <EditText
+            android:id="@+id/CAddress"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="5dp" android:layout_marginBottom="0dp"
+            android:layout_marginLeft="18dp" android:layout_marginRight="18dp"
+            android:textSize="12dp"
+            android:inputType="textPassword" />
+
+        <info.hoang8f.widget.FButton
+            android:id="@+id/EscogerDireccion"
+            android:layout_width="120dp" android:layout_height="24dp"
+            android:layout_below="@+id/ContainerName"
+            android:layout_marginTop="14dp"
+            android:layout_marginLeft="22dp"
+            android:layout_centerHorizontal="true"
+
+            fbutton:buttonColor="@color/fbutton_color_turquoise"
+            fbutton:shadowEnabled="true"
+
+            android:textAllCaps="false"
+            android:gravity="center"
+            android:text="Mapa"
+            android:textColor="#fff"
+            android:textSize="14sp"
+            android:onClick="sendToMap"/>
 
 
         <info.hoang8f.widget.FButton

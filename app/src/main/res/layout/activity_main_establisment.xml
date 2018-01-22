@@ -47,13 +47,13 @@
         <fragment
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent" android:layout_height="150dp"
+            android:layout_width="match_parent" android:layout_height="180dp"
             android:id="@+id/map" tools:context=".MapsActivity"
             android:name="com.google.android.gms.maps.SupportMapFragment"
-
-
             android:layout_below="@+id/toolbar_es"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true">
+
+        </fragment>
 
 
         <info.hoang8f.widget.FButton
@@ -105,6 +105,16 @@
 
         </android.support.v4.widget.SwipeRefreshLayout>
 
+        <ImageButton
+            android:layout_width="44dp"
+            android:layout_height="48dp"
+            android:id="@+id/button2"
+            android:layout_marginRight="10dp"
+            android:layout_alignBottom="@+id/map"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/bigger"
+            android:alpha="0.7" />
 
     </RelativeLayout>
 

@@ -2,8 +2,12 @@ package com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupport
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +16,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.Main;
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.DataBase.RcycloDatabaseHelper;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
 
 import org.json.JSONArray;
@@ -25,19 +31,15 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
 
 public class Login extends Activity {
 
     EditText etEmail, etPassword;
-    TextView register;
-    Button sign_in_button;
-
-    private String access_token;
-    private String client;
-    private String uid;
-
-    public String errased;
-    public String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,30 +49,12 @@ public class Login extends Activity {
         etEmail = (EditText) findViewById(R.id.email);
         etPassword = (EditText) findViewById(R.id.password);
 
-        register = (TextView) findViewById(R.id.register);
-        sign_in_button = (Button) findViewById(R.id.sign_in_button);
-
-        sign_in_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                GetWasteTypes g = new GetWasteTypes();
-                g.execute();
-            }
-        });
-
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), Register.class);
-                startActivity(intent);
-            }
-        });
     }
 
     public boolean validate() {
         boolean valid = true;
 
-        String email    = etEmail.getText().toString();
+        String email = etEmail.getText().toString();
         String password = etPassword.getText().toString();
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
@@ -90,194 +74,84 @@ public class Login extends Activity {
         return valid;
     }
 
-    public class ReactiveAccount extends AsyncTask<URL, String, String> {
+    public void enter(View view) {
+        final String email = etEmail.getText().toString();
+        final String activo = "ACTIVO";
+        String inactivo = "INACTIVE";
+        String password = etPassword.getText().toString();
+        if(validate()) {
 
+            SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(this);
+            SQLiteDatabase db = rcycloDatabaseHelper.getReadableDatabase();
+            Cursor cursor = db.query("COMPANY", new String[]{"NAME", "EMAIL", "PASSWORD", "ADDRESS", "ACTIVE"}, "EMAIL = ? AND PASSWORD = ? AND ACTIVE = ?", new String[]{email, password, activo}, null, null, null);
+            Cursor cursor2 = db.query("COMPANY", new String[]{"NAME", "EMAIL", "PASSWORD", "ADDRESS", "ACTIVE"}, "EMAIL = ? AND PASSWORD = ? AND ACTIVE = ?", new String[]{email, password, inactivo}, null, null, null);
 
-        public String name;
-        @Override
-        protected String doInBackground(URL... params) {
+            if (cursor.moveToFirst()) {
+                final String name_to_send = cursor.getString(0);
+                final String email_to_send = cursor.getString(1);
+                final String address_to_send = cursor.getString(3);
 
-            try {
-                URL url = new URL("https://api-rcyclo.herokuapp.com/companies/return_to_rcyclo");
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-                conn.setRequestProperty("access-token", access_token);
-                conn.setRequestProperty("client", client);
-                conn.setRequestProperty("uid", uid);
-
-                try {
-                    BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                    StringBuilder sb = new StringBuilder();
-
-                    String line;
-
-                    while ((line = in.readLine()) != null) {
-                        sb.append(line + "\n");
-                    }
-
-                    in.close();
-
-
-
-                    return "success";
-
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            return "failed";
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-            if(result.equals("success")) {
-            }
-            else{
-                Toast toast1 =
-                        Toast.makeText(getApplicationContext(),
-                                "Lo sentimos, algo ha ido mal.", Toast.LENGTH_SHORT);
-
+                cursor.close();
+                db.close();
+                Toast toast1 = Toast.makeText(getApplicationContext(), "Bienvenido a Rcyclo " + name_to_send + "!", Toast.LENGTH_SHORT);
                 toast1.show();
-            }
+                Intent intent = new Intent(Login.this, com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.Main.class);
+                intent.putExtra("name", name_to_send);
+                intent.putExtra("email", email_to_send);
+                intent.putExtra("address", address_to_send);
+                startActivity(intent);
+            } else {
+                if(cursor2.moveToFirst()){
+                    final String name_to_send_inactive = cursor2.getString(0);
+                    final String email_to_send_inactive = cursor2.getString(1);
+                    final String address_to_send_inactive = cursor2.getString(3);
 
+                    cursor.close();
+                    db.close();
+
+                    AlertDialog.Builder dialogo1 = new AlertDialog.Builder(this);
+                    dialogo1.setTitle("Reactivar cuenta");
+                    dialogo1.setMessage("¿Deseas reactivar tu cuenta?");
+                    dialogo1.setCancelable(false);
+                    dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialogo1, int id) {
+
+                            SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(getApplicationContext());
+                            SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
+
+                            ContentValues containerValues = new ContentValues();
+                            containerValues.put("ACTIVE", activo);
+
+                            db.update("COMPANY", containerValues, "EMAIL = ?", new String[]{email_to_send_inactive});
+
+                            Toast toast1 = Toast.makeText(getApplicationContext(), "Tu cuenta ha sido reactivada. Bienvenido a Rcyclo " + name_to_send_inactive + "!", Toast.LENGTH_SHORT);
+                            toast1.show();
+
+                            Intent intent = new Intent(Login.this, Main.class);
+                            intent.putExtra("name", name_to_send_inactive);
+                            intent.putExtra("email", email_to_send_inactive);
+                            intent.putExtra("address", address_to_send_inactive);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                            startActivity(intent);
+                            finish();
+
+                        }
+                    });
+                    dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialogo1, int id) {
+                        }
+                    });
+                    dialogo1.show();
+                }
+                else{
+                    Crouton.makeText(this, "Este usuario no existe", Style.ALERT).show();
+                }
+            }
         }
     }
 
-
-    public class GetWasteTypes extends AsyncTask<URL, String, String> {
-
-        @Override
-        protected String doInBackground(URL... params) {
-
-            try {
-                URL url = new URL("https://api-rcyclo.herokuapp.com/company_auth/sign_in");
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-                conn.setDoInput(true);
-                conn.setDoOutput(true);
-
-                conn.setRequestProperty("Content-Type", "application/json");
-                conn.setRequestProperty("Accept", "application/json");
-
-                JSONObject jsonParam = new JSONObject();
-
-                String email    = etEmail.getText().toString();
-                String password = etPassword.getText().toString();
-
-                jsonParam.put("email", email);
-                jsonParam.put("password", password);
-
-                OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream());
-                out.write(jsonParam.toString());
-                out.close();
-
-                try {
-                    if(conn.getResponseCode() == 200) {
-                        BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                        StringBuilder sb = new StringBuilder();
-
-                        String line;
-
-                        while ((line = in.readLine()) != null) {
-                            sb.append(line + "\n");
-                        }
-
-                        in.close();
-
-                        access_token = conn.getHeaderField("access-token");
-                        client = conn.getHeaderField("client");
-                        uid = conn.getHeaderField("uid");
-
-                        int largo = sb.toString().length();
-                        String sb1 = sb.toString().substring(8, largo - 2);
-
-                        JSONArray mJsonArray = new JSONArray("[" + sb1 + "]");
-                        JSONObject mJsonObject = mJsonArray.getJSONObject(0);
-
-
-                        errased = mJsonObject.getString("erased");
-                        name = mJsonObject.getString("name");
-
-
-                        return "success";
-                    }
-
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            return "failed";
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-
-            //email y pass son validos?
-            if (validate()) {
-                //La cuenta se encontro en la API
-                if(result.equals("success")){
-                    //La cuenta esta innactiva? preguntar si desea activarla
-                    if(errased.equals("true")){
-                        AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
-                        builder.setMessage("Su cuenta actualmente esta inactiva. ¿Desea volver a activarla?");
-                        builder.setTitle("Activacion de cuenta");
-                        builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                ReactiveAccount r = new ReactiveAccount();
-                                r.execute();
-                                Toast toast = Toast.makeText(getApplicationContext(), "Su cuenta ha sido activada exitosamente" + "nombre" + name, Toast.LENGTH_SHORT);
-                                toast.show();
-                                Intent intent = new Intent(Login.this, Main.class);
-                                intent.putExtra("access-token", access_token);
-                                intent.putExtra("client", client);
-                                intent.putExtra("uid", uid);
-                                intent.putExtra("name",name);
-                                startActivity(intent);
-                            }
-                        });
-
-                        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
-                        });
-                        AlertDialog dialog = builder.create();
-                        dialog.show();
-                    }
-                    else{
-
-                        Toast toast = Toast.makeText(getApplicationContext(), "Bienvenido a Rcyclo " + name + "!", Toast.LENGTH_SHORT);
-                        toast.show();
-                        Intent intent = new Intent(Login.this, Main.class);
-                        intent.putExtra("access-token", access_token);
-                        intent.putExtra("client", client);
-                        intent.putExtra("uid", uid);
-                        intent.putExtra("name",name);
-
-                        startActivity(intent);
-                    }
-
-                }
-                else{
-                    Toast toast1 =
-                            Toast.makeText(getApplicationContext(),
-                                    "El usuario ingresado no existe", Toast.LENGTH_SHORT);
-
-                    toast1.show();
-                }
-            }
-        }
-
+    public void register(View view) {
+        Intent intent = new Intent(this,Register.class);
+        startActivity(intent);
     }
 }

@@ -14,10 +14,9 @@ public class SelectWaste extends AppCompatActivity implements View.OnClickListen
 
     public String waste;
     Button paper, plastic, glass, tin;
-    private String access_token;
-    private String client;
-    private String uid;
     private String Company;
+    private String Email;
+    private String Address;
     Toolbar toolbar;
 
 
@@ -31,10 +30,9 @@ public class SelectWaste extends AppCompatActivity implements View.OnClickListen
 
         Intent intent = getIntent();
 
-        access_token = intent.getStringExtra("access-token");
-        client = intent.getStringExtra("client");
-        uid = intent.getStringExtra("uid");
         Company = intent.getStringExtra("name");
+        Email = intent.getStringExtra("email");
+        Address = intent.getStringExtra("address");
 
         paper   = (Button) findViewById(R.id.paper);
         plastic = (Button) findViewById(R.id.plastic);
@@ -50,27 +48,26 @@ public class SelectWaste extends AppCompatActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.paper:
-                waste = "1";
+                waste = "Papel";
                 break;
 
             case R.id.plastic:
-                waste = "2";
+                waste = "Plastico";
                 break;
 
             case R.id.glass:
-                waste = "3";
+                waste = "Vidrio";
                 break;
 
             case R.id.tin:
-                waste = "4";
+                waste = "Lata";
                 break;
         }
         Intent intent = new Intent(this, SelectEst.class);
         intent.putExtra(SelectEst.WASTE, waste);
-        intent.putExtra("access-token", access_token);
-        intent.putExtra("client", client);
-        intent.putExtra("uid", uid);
         intent.putExtra("name", Company);
+        intent.putExtra("email", Email);
+        intent.putExtra("address", Address);
         startActivity(intent);
     }
 }

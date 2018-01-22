@@ -44,20 +44,20 @@ public class WaitAdapter extends ArrayAdapter<Container> {
 
         // 3. Get the two text view from the rowView
         TextView ContainerName = (TextView) rowView.findViewById(R.id.ContainerName);
-        TextView ContainerStatus = (TextView) rowView.findViewById(R.id.ContainerStatus);
         Button mostrar = (Button) rowView.findViewById(R.id.ContainerStatus);
         ImageView imContenedor = (ImageView) rowView.findViewById(R.id.move_poster);
 
         // 4. Set the text for textView
-        ContainerName.setText(itemsArrayList.get(position).getNameContainer());
-        if(itemsArrayList.get(position).getStatus().equals("1")) {
+        final String nameContainter = itemsArrayList.get(position).getEstablishment()+" - "+itemsArrayList.get(position).getDesecho();
+        ContainerName.setText(nameContainter);
+        if(itemsArrayList.get(position).getStatus().equals("Vacio")) {
             imContenedor.setImageResource(R.drawable.icon_container_vacio);
         }
-        else if(itemsArrayList.get(position).getStatus().equals("3")){
+        else if(itemsArrayList.get(position).getStatus().equals("Lleno")){
             imContenedor.setImageResource(R.drawable.icon_container_lleno);
 
         }
-        else if(itemsArrayList.get(position).getStatus().equals("2")){
+        else if(itemsArrayList.get(position).getStatus().equals("Medio")){
             imContenedor.setImageResource(R.drawable.icon_container_mitad);
         }
         else if(itemsArrayList.get(position).getStatus().equals("Congelado")){
@@ -67,7 +67,7 @@ public class WaitAdapter extends ArrayAdapter<Container> {
             imContenedor.setImageResource(R.drawable.vacio);
         }
 
-        final String[] desecho = itemsArrayList.get(position).getDesecho().split("\\|");
+        //final String[] desecho = itemsArrayList.get(position).getDesecho().split("\\|");
 
             mostrar.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -76,11 +76,11 @@ public class WaitAdapter extends ArrayAdapter<Container> {
 
                     AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
                     builder.setMessage(
-                            "Nombre del contenedor: " + "\n" + itemsArrayList.get(position).getNameContainer() + "\n" +
+                            "Nombre del contenedor: " + "\n" + nameContainter + "\n" +
                                     "\n" + "Ubicacion: " + "\n" + itemsArrayList.get(position).getLatlong() + "\n" +
                                     "\n" + "Fundacion Asociada: " + "\n" + itemsArrayList.get(position).getEstablishment() + "\n" +
                                     "\n" + "Estado del contenedor: " + "\n" + estado + "\n" +
-                                    "\n" + "Tipo de desecho: " + "\n" + desecho[1] + "\n");
+                                    "\n" + "Fundacion Asociada: " + "\n" + itemsArrayList.get(position).getDesecho() + "\n");
                     builder.setTitle("Datos del contenedor");
                     builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         @Override
@@ -92,7 +92,6 @@ public class WaitAdapter extends ArrayAdapter<Container> {
                     dialog.show();
                 }
             });
-
 
         // 5. retrn rowView
         return rowView;

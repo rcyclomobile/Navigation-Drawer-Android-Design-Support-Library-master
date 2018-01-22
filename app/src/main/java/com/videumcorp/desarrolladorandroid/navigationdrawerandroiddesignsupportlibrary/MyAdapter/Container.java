@@ -7,20 +7,20 @@ import android.widget.Button;
  */
 public class Container {
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getNameContainer() {
         return nameContainer;
     }
 
     public void setNameContainer(String nameContainer) {
         this.nameContainer = nameContainer;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public String getLatlong() {
@@ -39,51 +39,6 @@ public class Container {
         this.establishment = establishment;
     }
 
-    public String getDesecho() {
-        return desecho;
-    }
-
-    public void setDesecho(String desecho) {
-        this.desecho = desecho;
-    }
-
-    private String nameContainer;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    private String id;
-    private String status;
-    private String latlong;
-    private String establishment;
-    private String desecho ;
-    private String company;
-
-    public String getLat() {
-        return Lat;
-    }
-
-    public void setLat(String lat) {
-        Lat = lat;
-    }
-
-    public String getLng() {
-        return Lng;
-    }
-
-    public void setLng(String lng) {
-        Lng = lng;
-    }
-
-    private String Lat;
-    private String Lng;
-    private String activo;
-
     public String getCompany() {
         return company;
     }
@@ -92,7 +47,40 @@ public class Container {
         this.company = company;
     }
 
-    public Container(String id, String nameContainer, String latlong, String establishment , String company ,String status, String desecho, String activo, String Lat, String Lng) {
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getActivo() {
+        return activo;
+    }
+
+    public void setActivo(String activo) {
+        this.activo = activo;
+    }
+
+    public String getDesecho() {
+        return desecho;
+    }
+
+    public void setDesecho(String desecho) {
+        this.desecho = desecho;
+    }
+
+    private String id;
+    private String nameContainer;
+    private String latlong;
+    private String establishment;
+    private String company;
+    private String status;
+    private String activo;
+    private String desecho;
+
+    public Container(String id, String nameContainer, String latlong, String establishment , String company ,String status, String desecho, String activo) {
         this.nameContainer = nameContainer;
         this.latlong = latlong;
         this.establishment = establishment;
@@ -101,8 +89,6 @@ public class Container {
         this.company = company;
         this.activo = activo;
         this.id = id;
-        this.Lat = Lat;
-        this.Lng = Lng;
     }
 
 

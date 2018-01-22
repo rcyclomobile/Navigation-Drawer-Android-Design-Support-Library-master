@@ -1,6 +1,7 @@
 package com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter;
 
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -43,25 +44,21 @@ public class AdapterDelEst extends ArrayAdapter<Container> {
     private SQLiteDatabase db;
     ProgressBar progressBar;
 
-    private String access_token;
-    private String client;
-    private String uid;
-
     public String container_id;
+    public String Company;
+    public String Email;
+    public String Address;
 
-    public AdapterDelEst(Context context, ArrayList<Container> itemsArrayList, String access_token, String client, String uid) {
+
+    public AdapterDelEst(Context context, ArrayList<Container> itemsArrayList, String Company, String Email, String Address) {
 
         super(context, R.layout.item_list_delete_establishment, itemsArrayList);
 
         this.context = context;
         this.itemsArrayList = itemsArrayList;
-        this.access_token = access_token;
-        this.client = client;
-        this.uid = uid;
-    }
-
-    public void notifyDataSetChanged(){
-
+        this.Address = Address;
+        this.Email = Email;
+        this.Company = Company;
     }
 
     @Override
@@ -77,28 +74,29 @@ public class AdapterDelEst extends ArrayAdapter<Container> {
         // 3. Get the two text view from the rowView
         TextView ContainerName = (TextView) rowView.findViewById(R.id.ContainerName);
         TextView ContainerStatus = (TextView) rowView.findViewById(R.id.ContainerStatus);
-        final Button btCambiar = (Button) rowView.findViewById(R.id.btCambiar);
         Button mostrar = (Button) rowView.findViewById(R.id.ContainerStatus);
+        final Button btCambiar = (Button) rowView.findViewById(R.id.btCambiar);
         ImageView imContenedor = (ImageView) rowView.findViewById(R.id.move_poster);
 
-        //progressBar = (ProgressBar) rowView.findViewById(R.id.progressBar);
-        //progressBar.setVisibility(View.VISIBLE);
-        //progressBar.setProgressDrawable(rowView.getResources().getDrawable(android.R.drawable.progress_horizontal));
+        progressBar = (ProgressBar) rowView.findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
+        progressBar.setProgressDrawable(rowView.getResources().getDrawable(android.R.drawable.progress_horizontal));
 
         // 4. Set the text for textView
-        ContainerName.setText(itemsArrayList.get(position).getNameContainer());
-        if(itemsArrayList.get(position).getStatus().equals("1")) {
+        final String nameContainter = itemsArrayList.get(position).getCompany()+" - " + itemsArrayList.get(position).getDesecho() + " - " + itemsArrayList.get(position).getId();
+        ContainerName.setText(nameContainter);
+        if(itemsArrayList.get(position).getStatus().equals("Vacio")) {
             imContenedor.setImageResource(R.drawable.icon_container_vacio);
-//            progressBar.setProgress(2);
+            progressBar.setProgress(2);
         }
-        else if(itemsArrayList.get(position).getStatus().equals("3")){
+        else if(itemsArrayList.get(position).getStatus().equals("Lleno")){
             imContenedor.setImageResource(R.drawable.icon_container_lleno);
-//            progressBar.getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
-//            progressBar.setProgress(100);
+            progressBar.getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+            progressBar.setProgress(100);
         }
-        else if(itemsArrayList.get(position).getStatus().equals("2")){
+        else if(itemsArrayList.get(position).getStatus().equals("Medio")){
             imContenedor.setImageResource(R.drawable.icon_container_mitad);
-//            progressBar.setProgress(50);
+            progressBar.setProgress(50);
         }
         else if(itemsArrayList.get(position).getStatus().equals("4")){
             imContenedor.setImageResource(R.drawable.congelado);
@@ -108,13 +106,13 @@ public class AdapterDelEst extends ArrayAdapter<Container> {
             @Override
             public void onClick(final View v) {
                 String estado;
-                if(itemsArrayList.get(position).getStatus().equals("1")){
+                if(itemsArrayList.get(position).getStatus().equals("Vacio")){
                     estado = "Vacio";
                 }
-                else if(itemsArrayList.get(position).getStatus().equals("2")){
+                else if(itemsArrayList.get(position).getStatus().equals("Medio")){
                     estado = "Medio";
                 }
-                else if(itemsArrayList.get(position).getStatus().equals("1") ){
+                else if(itemsArrayList.get(position).getStatus().equals("Lleno") ){
                     estado = "Lleno";
                 }
                 else{
@@ -122,9 +120,9 @@ public class AdapterDelEst extends ArrayAdapter<Container> {
                 }
                 AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
                 builder.setMessage(
-                        "Nombre del contenedor: " + "\n" + itemsArrayList.get(position).getNameContainer() + "\n" +
+                        "Nombre del contenedor: " + "\n" + itemsArrayList.get(position).getCompany() + " - " + itemsArrayList.get(position).getDesecho() + " - " + itemsArrayList.get(position).getId() + "\n" +
                                 "\n" + "Ubicacion: " + "\n" + itemsArrayList.get(position).getLatlong() + "\n" +
-                                "\n" + "Fundacion Asociada: " + "\n" + itemsArrayList.get(position).getEstablishment() + "\n" +
+                                "\n" + "Empresa Asociada: " + "\n" + itemsArrayList.get(position).getEstablishment() + "\n" +
                                 "\n" + "Estado del contenedor: " + "\n" + estado + "\n" +
                                 "\n" + "Tipo de desecho: " + "\n" + itemsArrayList.get(position).getDesecho() + "\n");
                 builder.setTitle("Datos del contenedor");
@@ -139,7 +137,6 @@ public class AdapterDelEst extends ArrayAdapter<Container> {
             }
         });
 
-
         btCambiar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
@@ -151,8 +148,15 @@ public class AdapterDelEst extends ArrayAdapter<Container> {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         container_id = itemsArrayList.get(position).getId();
-                        GetContainers g = new GetContainers();
-                        g.execute();
+
+                        SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(context);
+                        SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
+
+                        db.delete("CONTAINER", "_id=" + container_id, null);
+
+                        DeleteCont activity = (DeleteCont) context;
+                        activity.finish();
+                        activity.startActivity(activity.getIntent());
 
                     }
 
@@ -181,10 +185,6 @@ public class AdapterDelEst extends ArrayAdapter<Container> {
             try {
                 URL url = new URL("https://api-rcyclo.herokuapp.com/establishments/delete_container");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-                conn.setRequestProperty("access-token", access_token);
-                conn.setRequestProperty("client", client);
-                conn.setRequestProperty("uid", uid);
 
                 conn.setDoInput(true);
                 conn.setDoOutput(true);

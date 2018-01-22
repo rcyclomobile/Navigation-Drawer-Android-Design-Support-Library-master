@@ -1,8 +1,12 @@
 package com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter;
 
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.AsyncTask;
@@ -18,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.Main;
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.DataBase.RcycloDatabaseHelper;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
 
 import java.io.BufferedReader;
@@ -34,22 +39,16 @@ public class MyAdapter extends ArrayAdapter<Container> {
     private final ArrayList<Container> itemsArrayList;
     ProgressBar progressBar;
 
-    private String access_token;
-    private String client;
-    private String uid;
-
     public String container_id;
-    public String status_id;
+    public String nameContainer_to_Change;
+    public String nameCompany_to_Change;
 
-    public MyAdapter(Context context, ArrayList<Container> itemsArrayList, String access_token, String client, String uid) {
+    public MyAdapter(Context context, ArrayList<Container> itemsArrayList) {
 
         super(context, R.layout.item_list, itemsArrayList);
 
         this.context = context;
         this.itemsArrayList = itemsArrayList;
-        this.access_token = access_token;
-        this.client = client;
-        this.uid = uid;
     }
 
     @Override
@@ -64,7 +63,6 @@ public class MyAdapter extends ArrayAdapter<Container> {
 
         // 3. Get the two text view from the rowView
         TextView ContainerName = (TextView) rowView.findViewById(R.id.ContainerName);
-        TextView ContainerStatus = (TextView) rowView.findViewById(R.id.ContainerStatus);
         Button mostrar = (Button) rowView.findViewById(R.id.ContainerStatus);
         final Button btCambiar = (Button) rowView.findViewById(R.id.btCambiar);
         ImageView imContenedor = (ImageView) rowView.findViewById(R.id.move_poster);
@@ -74,17 +72,18 @@ public class MyAdapter extends ArrayAdapter<Container> {
         progressBar.setProgressDrawable(rowView.getResources().getDrawable(android.R.drawable.progress_horizontal));
 
         // 4. Set the text for textView
-        ContainerName.setText(itemsArrayList.get(position).getNameContainer());
-        if(itemsArrayList.get(position).getStatus().equals("1")) {
+        final String nameContainter = itemsArrayList.get(position).getCompany()+" - " + itemsArrayList.get(position).getDesecho() + " - " + itemsArrayList.get(position).getId();
+        ContainerName.setText(nameContainter);
+        if(itemsArrayList.get(position).getStatus().equals("Vacio")) {
             imContenedor.setImageResource(R.drawable.icon_container_vacio);
             progressBar.setProgress(2);
         }
-        else if(itemsArrayList.get(position).getStatus().equals("3")){
+        else if(itemsArrayList.get(position).getStatus().equals("Lleno")){
             imContenedor.setImageResource(R.drawable.icon_container_lleno);
             progressBar.getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
             progressBar.setProgress(100);
         }
-        else if(itemsArrayList.get(position).getStatus().equals("2")){
+        else if(itemsArrayList.get(position).getStatus().equals("Medio")){
             imContenedor.setImageResource(R.drawable.icon_container_mitad);
             progressBar.setProgress(50);
         }
@@ -96,13 +95,13 @@ public class MyAdapter extends ArrayAdapter<Container> {
                 @Override
                 public void onClick(final View v) {
                     String estado;
-                    if(itemsArrayList.get(position).getStatus().equals("1")){
+                    if(itemsArrayList.get(position).getStatus().equals("Vacio")){
                         estado = "Vacio";
                     }
-                    else if(itemsArrayList.get(position).getStatus().equals("2")){
+                    else if(itemsArrayList.get(position).getStatus().equals("Medio")){
                         estado = "Medio";
                     }
-                    else if(itemsArrayList.get(position).getStatus().equals("1") ){
+                    else if(itemsArrayList.get(position).getStatus().equals("Lleno") ){
                         estado = "Lleno";
                     }
                     else{
@@ -110,7 +109,7 @@ public class MyAdapter extends ArrayAdapter<Container> {
                     }
                     AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
                     builder.setMessage(
-                            "Nombre del contenedor: " + "\n" + itemsArrayList.get(position).getNameContainer() + "\n" +
+                            "Nombre del contenedor: " + "\n" + nameContainter + "\n" +
                                     "\n" + "Ubicacion: " + "\n" + itemsArrayList.get(position).getLatlong() + "\n" +
                                     "\n" + "Fundacion Asociada: " + "\n" + itemsArrayList.get(position).getEstablishment() + "\n" +
                                     "\n" + "Estado del contenedor: " + "\n" + estado + "\n" +
@@ -145,15 +144,15 @@ public class MyAdapter extends ArrayAdapter<Container> {
 
                 String estado                     = itemsArrayList.get(position).getStatus();
 
-                if("1".equals(estado) ){
+                if("Vacio".equals(estado) ){
                     rbVacio.setChecked(true);
                 }
 
-                else if("2".equals(estado)){
+                else if("Medio".equals(estado)){
                     rbMitad.setChecked(true);
                 }
 
-                else if("3".equals(estado)){
+                else if("Lleno".equals(estado)){
                     rbLLeno.setChecked(true);
                 }
 
@@ -161,20 +160,32 @@ public class MyAdapter extends ArrayAdapter<Container> {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
-                            if (rbVacio.isChecked()) {
-                                status_id = "1";
-                            }
-                            else if (rbMitad.isChecked()) {
-                                status_id = "2";
-                            }
-                            else if (rbLLeno.isChecked()) {
-                                status_id = "3";
+                            String idToChange = itemsArrayList.get(position).getId();
+                            nameContainer_to_Change = itemsArrayList.get(position).getNameContainer();
+                            nameCompany_to_Change = itemsArrayList.get(position).getCompany();
+
+                            SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(context);
+                            SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
+
+                            ContentValues containerValues = new ContentValues();
+
+                            if(rbVacio.isChecked() == true){
+                                containerValues.put("ESTADO", "Vacio");
                             }
 
-                            container_id = itemsArrayList.get(position).getId();
+                            else if(rbMitad.isChecked() == true){
+                                containerValues.put("ESTADO", "Medio");
+                            }
 
-                            GetContainers g = new GetContainers();
-                            g.execute();
+                            else if(rbLLeno.isChecked() == true){
+                                containerValues.put("ESTADO", "Lleno");
+                            }
+                            db.update("CONTAINER", containerValues, "_id = ? AND NAME_CONTAINER = ? AND COMPANY = ?", new String[]{idToChange,nameContainer_to_Change, nameCompany_to_Change});
+                            Toast.makeText(context, "El estado del contenedor ha sido cambiado.",
+                                    Toast.LENGTH_SHORT).show();
+                            Main activity = (Main) context;
+                            activity.finish();
+                            activity.startActivity(activity.getIntent());
                         }
                     });
 
@@ -194,67 +205,5 @@ public class MyAdapter extends ArrayAdapter<Container> {
         // 5. retrn rowView
         return rowView;
     }
-
-    public class GetContainers extends AsyncTask<URL, String, String> {
-
-
-        public String name;
-
-        @Override
-        protected String doInBackground(URL... params) {
-
-            try {
-                URL url = new URL("https://api-rcyclo.herokuapp.com/companies/update_state_container?container_id="+container_id+"&status_id="+status_id);
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-                conn.setRequestProperty("access-token", access_token);
-                conn.setRequestProperty("client", client);
-                conn.setRequestProperty("uid", uid);
-                conn.setRequestMethod("GET");
-
-                try {
-                    BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                    StringBuilder sb = new StringBuilder();
-
-                    String line;
-
-                    while ((line = in.readLine()) != null) {
-                        sb.append(line + "\n");
-                    }
-
-                    in.close();
-
-                    return "success";
-
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            return "failed";
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-            if (result.equals("success")) {
-                Toast.makeText(context, "El estado del contenedor ha sido cambiado.",
-                        Toast.LENGTH_SHORT).show();
-                Main activity = (Main) context;
-                activity.finish();
-                activity.startActivity(activity.getIntent());
-            } else {
-                Toast toast1 =
-                        Toast.makeText(context,
-                                "Lo sentimos, algo ha ido mal.", Toast.LENGTH_SHORT);
-
-                toast1.show();
-            }
-
-        }
-    }
-
 }
 

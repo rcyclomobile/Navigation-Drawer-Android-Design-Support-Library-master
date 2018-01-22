@@ -1,8 +1,11 @@
 package com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment;
 
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.AsyncTask;
@@ -21,6 +24,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.DataBase.RcycloDatabaseHelper;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
 
 import org.json.JSONException;
@@ -42,10 +46,9 @@ public class EditAddress extends AppCompatActivity {
     public static final String ADDRESS = "direccion";
     public static final String EMAIL = "email";
 
-    private String access_token;
-    private String client;
-    private String uid;
     private String Company;
+    private String Email;
+    private String Address;
 
     public String nameCompany;
     public String addressCompany;
@@ -70,10 +73,9 @@ public class EditAddress extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        access_token = intent.getStringExtra("access-token");
-        client = intent.getStringExtra("client");
-        uid = intent.getStringExtra("uid");
         Company = intent.getStringExtra("name");
+        Email = intent.getStringExtra("email");
+        Address = intent.getStringExtra("address");
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -152,16 +154,34 @@ public class EditAddress extends AppCompatActivity {
                             final String adddressNew = addresses.get(0).getAddressLine(0);
                             final String cityNew = addresses.get(0).getLocality();
                             final String country = addresses.get(0).getCountryName();
+                            final Double latitude = addresses.get(0).getLatitude();
+                            final Double longitude = addresses.get(0).getLongitude();
 
                             AlertDialog.Builder dialogo1 = new AlertDialog.Builder(EditAddress.this);
-                            dialogo1.setTitle("Direccion Contenedor");
+                            dialogo1.setTitle("Direccion fundacion");
                             dialogo1.setMessage("¿Es correcta esta direccion?" + "\n" + adddressNew + ", " + cityNew + ", " + country);
                             dialogo1.setCancelable(false);
                             dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialogo1, int id) {
-                                    newAddress = adddressNew + ", " + cityNew + ", " + country;
-                                    GetContainers g = new GetContainers();
-                                    g.execute();
+                                    //newAddress = adddressNew + ", " + cityNew + ", " + country;
+                                    newAddress = "lat/lng: (" + Double.toString(latitude) + "," + Double.toString(longitude) + ")";
+                                    SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(getApplicationContext());
+                                    SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
+
+                                    ContentValues containerValues = new ContentValues();
+                                    containerValues.put("ADDRESS", newAddress);
+
+                                    db.update("ESTABLISHMENT", containerValues, "EMAIL = ?", new String[]{Email});
+
+                                    Toast toast1 =
+                                            Toast.makeText(getApplicationContext(),
+                                                    "La solicitud de cambio de direccion ha sido enviada.", Toast.LENGTH_SHORT);
+                                    toast1.show();
+
+                                    Intent intent = new Intent(EditAddress.this, com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.Login.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                    startActivity(intent);
+                                    finish();
 
                                 }
                             });
@@ -208,10 +228,6 @@ public class EditAddress extends AppCompatActivity {
             try {
                 URL url = new URL("https://api-rcyclo.herokuapp.com/establishments/update");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-                conn.setRequestProperty("access-token", access_token);
-                conn.setRequestProperty("client", client);
-                conn.setRequestProperty("uid", uid);
 
                 conn.setDoInput(true);
                 conn.setDoOutput(true);
@@ -266,9 +282,6 @@ public class EditAddress extends AppCompatActivity {
                 toast1.show();
 
                 Intent intent = new Intent(EditAddress.this, Login.class);
-                intent.putExtra("access-token", access_token);
-                intent.putExtra("client", client);
-                intent.putExtra("uid", uid);
                 intent.putExtra("name", Company);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);

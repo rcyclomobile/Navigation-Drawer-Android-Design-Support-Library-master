@@ -21,21 +21,19 @@ public class AdapterSelEst extends ArrayAdapter<Establishment> {
 
     private final Context context;
     private final String name;
+    private final String email;
+    private final String direccion;
     private final ArrayList<Establishment> itemsArrayList;
-    private String access_token;
-    private String client;
-    private String uid;
 
-    public AdapterSelEst(Context context, ArrayList<Establishment> itemsArrayList, String empresa, String access_token, String client, String uid) {
+    public AdapterSelEst(Context context, ArrayList<Establishment> itemsArrayList, String empresa, String correo, String direccion) {
 
         super(context, R.layout.item_list_establishment_container, itemsArrayList);
 
         this.context = context;
         this.itemsArrayList = itemsArrayList;
         this.name = empresa;
-        this.access_token = access_token;
-        this.client = client;
-        this.uid = uid;
+        this.email = correo;
+        this.direccion = direccion;
     }
 
     @Override
@@ -90,22 +88,23 @@ public class AdapterSelEst extends ArrayAdapter<Establishment> {
                 String address = itemsArrayList.get(position).getAddress();
                 String empresa = name;
                 String desecho;
+                String correo_est = itemsArrayList.get(position).getEmail();
 
                 switch (waste) {
                     case "Papel":
-                        desecho = "1";
+                        desecho = "Papel";
                         break;
 
                     case "Plastico":
-                        desecho = "2";
+                        desecho = "Plastico";
                         break;
 
                     case "Vidrio":
-                        desecho = "3";
+                        desecho = "Vidrio";
                         break;
 
                     case "Lata":
-                        desecho = "4";
+                        desecho = "Lata";
                         break;
 
                     default:
@@ -120,15 +119,13 @@ public class AdapterSelEst extends ArrayAdapter<Establishment> {
                 intent.putExtra(FormContReq.ESTABLISHMENT_ID, establishment_id);
                 intent.putExtra(FormContReq.FUNDACION, nombre);
                 intent.putExtra(FormContReq.EMPRESA, empresa);
-                intent.putExtra(FormContReq.ADDRESS, address);
-                intent.putExtra("access-token", access_token);
-                intent.putExtra("client", client);
-                intent.putExtra("uid", uid);
+                intent.putExtra(FormContReq.ADDRESS, direccion);
+                intent.putExtra(FormContReq.EMAIL_COMPANY, email);
+                intent.putExtra(FormContReq.EMAIL_ESTABLISHMENT, correo_est);
 
                 v.getContext().startActivity(intent);
             }
         });
-
 
         // 5. retrn rowView
         return rowView;

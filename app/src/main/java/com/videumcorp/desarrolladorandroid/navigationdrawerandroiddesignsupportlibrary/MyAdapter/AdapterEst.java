@@ -1,8 +1,11 @@
 package com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.MyAdapter;
 
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.DataBase.RcycloDatabaseHelper;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.AvailableCont;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
 
@@ -29,20 +33,19 @@ public class AdapterEst extends ArrayAdapter<Container> {
     private final Context context;
     private final ArrayList<Container> itemsArrayList;
     public String id;
+    public String nameEst;
+    public String emailEst;
+    public String addressEst;
 
-    private String access_token;
-    private String client;
-    private String uid;
-
-    public AdapterEst(Context context, ArrayList<Container> itemsArrayList, String access_token, String client, String uid) {
+    public AdapterEst(Context context, ArrayList<Container> itemsArrayList, String nameEst, String emailEst, String addressEst) {
 
         super(context, R.layout.item_list_establishment, itemsArrayList);
 
         this.context = context;
         this.itemsArrayList = itemsArrayList;
-        this.access_token = access_token;
-        this.client = client;
-        this.uid = uid;
+        this.nameEst = nameEst;
+        this.emailEst = emailEst;
+        this.addressEst = addressEst;
     }
 
     @Override
@@ -75,8 +78,7 @@ public class AdapterEst extends ArrayAdapter<Container> {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
                 builder.setMessage(
-                        "Nombre del contenedor: " + "\n" + itemsArrayList.get(position).getNameContainer() + "\n" +
-                                "\n" + "Ubicacion: " + "\n" + itemsArrayList.get(position).getLatlong() + "\n" +
+                        "Nombre del contenedor: " + "\n" + itemsArrayList.get(position).getCompany() + " - " + itemsArrayList.get(position).getDesecho() + " - " + itemsArrayList.get(position).getId() + "\n" +
                                 "\n" + "Empresa Asociada: " + "\n" + itemsArrayList.get(position).getCompany() + "\n" +
                                 "\n" + "Estado del contenedor: " + "\n" + estado + "\n" +
                                 "\n" + "Tipo de desecho: " + "\n" + itemsArrayList.get(position).getDesecho() + "\n");
@@ -103,8 +105,22 @@ public class AdapterEst extends ArrayAdapter<Container> {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        GetContainers g = new GetContainers();
-                        g.execute();
+                        SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(context);
+                        SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
+
+                        ContentValues containerValues = new ContentValues();
+                        containerValues.put("ACTIVE", "ACTIVO");
+
+                        db.update("CONTAINER", containerValues, "_id = ?", new String[]{itemsArrayList.get(position).getId()});
+
+                        Toast toast1 =
+                                Toast.makeText(context,
+                                        "La solicitud ha sido aceptada.", Toast.LENGTH_SHORT);
+
+                        toast1.show();
+                        AvailableCont activity = (AvailableCont) context;
+                        activity.finish();
+                        activity.startActivity(activity.getIntent());
 
                     }
 
@@ -134,9 +150,6 @@ public class AdapterEst extends ArrayAdapter<Container> {
                 URL url = new URL(" https://api-rcyclo.herokuapp.com/establishments/accept_container_request?container_id=" + id);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
-                conn.setRequestProperty("access-token", access_token);
-                conn.setRequestProperty("client", client);
-                conn.setRequestProperty("uid", uid);
                 conn.setRequestMethod("GET");
 
                 try {

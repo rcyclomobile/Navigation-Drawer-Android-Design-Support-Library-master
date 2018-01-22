@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Color;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +19,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.*;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.DataBase.RcycloDatabaseHelper;
 
@@ -29,6 +33,8 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.regex.Matcher;
@@ -40,14 +46,16 @@ import de.keyboardsurfer.android.widget.crouton.Style;
 
 public class APIRegister extends AppCompatActivity {
 
-    private final int DURACION = 1000;
     EditText etName, etEmail, etPassword,etPhone, etAddress;
-    RadioGroup rgWaste;
     private RadioButton rbPapel, rbPlastico, rbVidrio, rbLata;
     Toolbar toolbar;
     String name, email, password, phone, address, desecho;
 
-
+    private String Name;
+    private String Email;
+    private String Password;
+    private String PasswordRepeat;
+    private String Address = "nada";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +69,148 @@ public class APIRegister extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Intent intent = getIntent();
+
+        Name = intent.getStringExtra("name");
+        Email = intent.getStringExtra("email");
+        Password = intent.getStringExtra("password");
+        PasswordRepeat = intent.getStringExtra("passwordRepeat");
+        Address = intent.getStringExtra("address");
+
+        etName.setText(Name);
+        etEmail.setText(Email);
+        etPassword.setText(Password);
+        etPhone.setText(PasswordRepeat);
+
+        if(Name != null){
+            etName.setText(Name);
+        }
+
+        if(Email != null){
+            etEmail.setText(Email);
+        }
+        if(Password != null){
+            etPassword.setText(Password);
+        }
+        if(PasswordRepeat != null){
+            etPhone.setText(PasswordRepeat);
+        }
+
+        disableEditText(etAddress, Address);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        Intent intent = getIntent();
+        Name = intent.getStringExtra("name");
+        Email = intent.getStringExtra("email");
+        Password = intent.getStringExtra("password");
+        PasswordRepeat = intent.getStringExtra("passwordRepeat");
+        Address = intent.getStringExtra("address");
+        if (Name != null) {
+            etName.setText(Name);
+        }
+
+        if (Email != null) {
+            etEmail.setText(Email);
+        }
+        if (Password != null) {
+            etPassword.setText(Password);
+        }
+        if (PasswordRepeat != null) {
+            etPhone.setText(PasswordRepeat);
+        }
+
+        disableEditText(etAddress, Address);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        Intent intent = getIntent();
+        Name = intent.getStringExtra("name");
+        Email = intent.getStringExtra("email");
+        Password = intent.getStringExtra("password");
+        PasswordRepeat = intent.getStringExtra("passwordRepeat");
+        Address = intent.getStringExtra("address");
+        if (Name != null) {
+            etName.setText(Name);
+        }
+
+        if (Email != null) {
+            etEmail.setText(Email);
+        }
+        if (Password != null) {
+            etPassword.setText(Password);
+        }
+        if (PasswordRepeat != null) {
+            etPhone.setText(PasswordRepeat);
+        }
+
+        address = disableEditText(etAddress, Address);
+    }
+
+    private String getCompleteAddressString(double LATITUDE, double LONGITUDE) {
+        String strAdd = "";
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+        try {
+            List<android.location.Address> addresses = geocoder.getFromLocation(LATITUDE, LONGITUDE, 1);
+            if (addresses != null) {
+                Address returnedAddress = addresses.get(0);
+                StringBuilder strReturnedAddress = new StringBuilder("");
+
+                for (int i = 0; i <= returnedAddress.getMaxAddressLineIndex(); i++) {
+                    strReturnedAddress.append(returnedAddress.getAddressLine(i)).append("\n");
+                }
+                strAdd = strReturnedAddress.toString();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return strAdd;
+    }
+
+    private String disableEditText(EditText editText, String Address) {
+        //editText.setFocusable(false);
+        //editText.setEnabled(false);
+        editText.setCursorVisible(false);
+        editText.setKeyListener(null);
+        editText.setHint("Escoja la dirección en el mapa");
+        editText.setBackgroundColor(Color.TRANSPARENT);
+        if(Address == null){
+            editText.setHint("Escoja la dirección en el mapa");
+            return "nada";
+        }
+        else{
+            String[] direccion = Address.split(":");
+            String[] direccion1 = direccion[1].split("\\(");
+            String[] direccion2 = direccion1[1].split("\\)");
+            String[] direccion3 = direccion2[0].split(",");
+            Double latAddress = Double.parseDouble(direccion3[0]);
+            Double lngAddress = Double.parseDouble(direccion3[1]);
+
+            String addressShow = getCompleteAddressString(latAddress,lngAddress);
+            editText.setHint(addressShow);
+            return addressShow;
+        }
+    }
+
+    public void sendToMap(View view){
+        name = etName.getText().toString();
+        email = etEmail.getText().toString();
+        password = etPassword.getText().toString();
+        phone = etPhone.getText().toString();
+
+        Intent intent = new Intent(APIRegister.this, com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.EditAddressRegister.class);
+        intent.putExtra("name", name);
+        intent.putExtra("email", email);
+        intent.putExtra("password", password);
+        intent.putExtra("passwordRepeat", phone);
+        startActivity(intent);
+        finish();
     }
 
 
@@ -69,7 +219,6 @@ public class APIRegister extends AppCompatActivity {
         email    = etEmail.getText().toString();
         password = etPassword.getText().toString();
         phone    = etPhone.getText().toString();
-        address  = etAddress.getText().toString();
 
         rbPapel     = (RadioButton) findViewById(R.id.radio_papel);
         rbVidrio    = (RadioButton) findViewById(R.id.radio_vidrio);
@@ -77,13 +226,13 @@ public class APIRegister extends AppCompatActivity {
         rbLata      = (RadioButton) findViewById(R.id.radio_lata);
 
         if (rbPapel.isChecked()) {
-            desecho = "papel";
+            desecho = "Papel";
         } else if (rbPlastico.isChecked()) {
-            desecho = "´plastico";
+            desecho = "Plastico";
         } else if (rbVidrio.isChecked()) {
-            desecho = "vidrio";
+            desecho = "Vidrio";
         } else if (rbLata.isChecked()) {
-            desecho = "lata";
+            desecho = "Lata";
         }
         if (name.equals("")) {
             etName.setError("Debe llenar este campo!");
@@ -91,25 +240,62 @@ public class APIRegister extends AppCompatActivity {
         else if(email.equals("")){
             etEmail.setError("Debe llenar este campo!");
         }
-        else if(address.equals("")){
-            etAddress.setError("Debe llenar este campo!");
-        }
         else if(password.equals("")){
             etPassword.setError("Debe llenar este campo!");
         }
         else if(phone.equals("")){
             etPhone.setError("Debe llenar este campo!");
         }
+        else if(address.equals("nada")){
+            etAddress.setError("Debe llenar este campo mediante el mapa!");
+        }
         else {
             if (isEmailValid(email)) {
                 if (change_password(view)) {
-                    GetContainers g = new GetContainers();
-                    g.execute();
+
+                    if( isEmailUsed(email)){
+                        Crouton.makeText(this, "El Email ya existe!!", Style.ALERT).show();
+                    }
+
+                    else {
+                        ContentValues establishmentValues = new ContentValues();
+                        establishmentValues.put("NAME", name);
+                        establishmentValues.put("EMAIL", email);
+                        establishmentValues.put("PASSWORD", password);
+                        establishmentValues.put("PHONE", phone);
+                        establishmentValues.put("ADDRESS", Address);
+                        establishmentValues.put("ACTIVE", "ACTIVO");
+
+                        SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(this);
+                        SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
+
+                        if (rbPapel.isChecked() == true) {
+                            establishmentValues.put("WASTE", "Papel");
+                        } else if (rbPlastico.isChecked() == true) {
+                            establishmentValues.put("WASTE", "Plastico");
+                        } else if (rbVidrio.isChecked() == true) {
+                            establishmentValues.put("WASTE", "Vidrio");
+                        } else if (rbLata.isChecked() == true) {
+                            establishmentValues.put("WASTE", "Lata");
+                        }
+
+                        db.insert("ESTABLISHMENT", null, establishmentValues);
+                        db.close();
+
+                        Toast toast1 = Toast.makeText(getApplicationContext(), Address, Toast.LENGTH_LONG);
+                        toast1.show();
+
+                        Toast toast = Toast.makeText(getApplicationContext(), "Registro exitoso!", Toast.LENGTH_LONG);
+                        toast.show();
+                        Intent intent = new Intent(APIRegister.this, Login.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        startActivity(intent);
+                        finish();
+                    }
                 }
             }
-
             else {
-                etEmail.setError("¡El mail debe ser valido!");
+                Crouton.makeText(this, "El mail debe ser valido!!", Style.ALERT).show();
             }
         }
     }
@@ -139,81 +325,15 @@ public class APIRegister extends AppCompatActivity {
 
     }
 
-    public class GetContainers extends AsyncTask<URL, String, String> {
-
-        @Override
-        protected String doInBackground(URL... params) {
-
-            try {
-                URL url = new URL("https://api-rcyclo.herokuapp.com/establishments/new");
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-                conn.setDoInput(true);
-                conn.setDoOutput(true);
-
-                conn.setRequestProperty("Content-Type", "application/json");
-                conn.setRequestProperty("Accept", "application/json");
-
-                JSONObject jsonParam = new JSONObject();
-
-                jsonParam.put("name", name);
-                jsonParam.put("address", address);
-                jsonParam.put("email", email);
-                jsonParam.put("password", password);
-                jsonParam.put("password_confirmation", phone);
-
-
-                OutputStreamWriter out = new OutputStreamWriter(conn.getOutputStream());
-                out.write(jsonParam.toString());
-                out.close();
-
-
-                try {
-                    BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                    StringBuilder sb = new StringBuilder();
-
-                    String line;
-
-                    while ((line = in.readLine()) != null) {
-                        sb.append(line + "\n");
-                    }
-
-                    in.close();
-
-                    return "success";
-
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            return "failed";
+    public boolean isEmailUsed(String email) {
+        SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(this);
+        SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
+        Cursor cursor = db.query("ESTABLISHMENT", new String[]{"EMAIL"}, "EMAIL = ?", new String[]{email}, null, null, null);
+        if (cursor.moveToFirst()){
+            return true;
         }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-
-            if(result.equals("success")) {
-                Toast toast = Toast.makeText(getApplicationContext(), "Registro exitoso!", Toast.LENGTH_LONG);
-                toast.show();
-                Intent intent = new Intent(APIRegister.this, Login.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                startActivity(intent);
-                finish();
-            }
-            else{
-                Toast toast1 =
-                        Toast.makeText(getApplicationContext(),
-                                "Lo sentimos, algo ha ido mal.", Toast.LENGTH_SHORT);
-
-                toast1.show();
-            }
-
+        else {
+            return false;
         }
     }
-
 }

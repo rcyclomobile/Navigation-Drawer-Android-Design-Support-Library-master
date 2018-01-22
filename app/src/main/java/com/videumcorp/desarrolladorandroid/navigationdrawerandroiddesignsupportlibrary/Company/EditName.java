@@ -1,6 +1,9 @@
 package com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.DataBase.RcycloDatabaseHelper;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.R;
 
 import org.json.JSONException;
@@ -40,10 +44,8 @@ public class EditName extends AppCompatActivity {
 
     TextView nombreHeaderCo;
 
-    private String access_token;
-    private String client;
-    private String uid;
     private String Company;
+    private String Email;
 
     public String nameCompany;
     public String addressCompany;
@@ -62,13 +64,11 @@ public class EditName extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        access_token = intent.getStringExtra("access-token");
-        client = intent.getStringExtra("client");
-        uid = intent.getStringExtra("uid");
         Company = intent.getStringExtra("name");
+        Email = intent.getStringExtra("email");
 
         EditText etEmail = (EditText) findViewById(R.id.emailCo);
-        etEmail.setText(nameCompany);
+        etEmail.setText(Company);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -106,8 +106,25 @@ public class EditName extends AppCompatActivity {
 
         if (!email.matches("")) {
 
-                GetContainers g = new GetContainers();
-                g.execute();
+            SQLiteOpenHelper rcycloDatabaseHelper = new RcycloDatabaseHelper(this);
+            SQLiteDatabase db = rcycloDatabaseHelper.getWritableDatabase();
+
+            ContentValues containerValues = new ContentValues();
+            containerValues.put("NAME", newEmail);
+
+            db.update("COMPANY", containerValues, "EMAIL = ?", new String[]{Email});
+
+            Toast toast1 =
+                    Toast.makeText(getApplicationContext(),
+                            "La solicitud de cambio de nombre ha sido enviada.", Toast.LENGTH_SHORT);
+            toast1.show();
+
+            Intent intent = new Intent(EditName.this, Login.class);
+            intent.putExtra("name", newEmail);
+            intent.putExtra("email", Email);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            startActivity(intent);
+            finish();
             }
         else {
             etEmail.setError("No se puede dejar el nombre en blanco.");
@@ -125,10 +142,6 @@ public class EditName extends AppCompatActivity {
             try {
                 URL url = new URL("https://api-rcyclo.herokuapp.com/companies/modify_data");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
-                conn.setRequestProperty("access-token", access_token);
-                conn.setRequestProperty("client", client);
-                conn.setRequestProperty("uid", uid);
 
                 conn.setDoInput(true);
                 conn.setDoOutput(true);
@@ -183,9 +196,6 @@ public class EditName extends AppCompatActivity {
                 toast1.show();
 
                 Intent intent = new Intent(EditName.this, Login.class);
-                intent.putExtra("access-token", access_token);
-                intent.putExtra("client", client);
-                intent.putExtra("uid", uid);
                 intent.putExtra("name", Company);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);

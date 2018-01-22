@@ -16,7 +16,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-    <!--
+
         <ProgressBar
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyleHorizontal"
@@ -26,7 +26,7 @@
             android:layout_alignLeft="@+id/move_poster"
             android:layout_alignStart="@+id/move_poster">
         </ProgressBar>
-    -->
+
 
     <TextView
         android:id="@+id/ContainerName"
@@ -79,7 +79,7 @@
         android:drawableTop="@drawable/icono_delete32_blanco"
 
 
-        android:text="Eliminar Contenedor"
+        android:text="Eliminar"
         android:textSize="14sp"
         android:textColor="#ffffff"
         android:textStyle="bold"
