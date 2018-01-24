@@ -318,7 +318,7 @@ ADDED from AndroidManifest.xml:142:9
 		ADDED from AndroidManifest.xml:145:13
 	android:name
 		ADDED from AndroidManifest.xml:143:13
-activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.SelectEst
+activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.ZoomMap
 ADDED from AndroidManifest.xml:147:9
 	android:label
 		ADDED from AndroidManifest.xml:149:13
@@ -326,7 +326,7 @@ ADDED from AndroidManifest.xml:147:9
 		ADDED from AndroidManifest.xml:150:13
 	android:name
 		ADDED from AndroidManifest.xml:148:13
-activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.EditAddress
+activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.SelectEst
 ADDED from AndroidManifest.xml:152:9
 	android:label
 		ADDED from AndroidManifest.xml:154:13
@@ -334,7 +334,7 @@ ADDED from AndroidManifest.xml:152:9
 		ADDED from AndroidManifest.xml:155:13
 	android:name
 		ADDED from AndroidManifest.xml:153:13
-activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.WaitCont
+activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.EditAddress
 ADDED from AndroidManifest.xml:157:9
 	android:label
 		ADDED from AndroidManifest.xml:159:13
@@ -342,22 +342,30 @@ ADDED from AndroidManifest.xml:157:9
 		ADDED from AndroidManifest.xml:160:13
 	android:name
 		ADDED from AndroidManifest.xml:158:13
-activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.EditName
+activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.WaitCont
 ADDED from AndroidManifest.xml:162:9
 	android:label
-		ADDED from AndroidManifest.xml:163:13
-	android:theme
 		ADDED from AndroidManifest.xml:164:13
-	android:name
-		ADDED from AndroidManifest.xml:162:19
-activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.EditName
-ADDED from AndroidManifest.xml:166:9
-	android:label
-		ADDED from AndroidManifest.xml:167:13
 	android:theme
-		ADDED from AndroidManifest.xml:168:13
+		ADDED from AndroidManifest.xml:165:13
 	android:name
-		ADDED from AndroidManifest.xml:166:19
+		ADDED from AndroidManifest.xml:163:13
+activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Company.EditName
+ADDED from AndroidManifest.xml:167:9
+	android:label
+		ADDED from AndroidManifest.xml:168:13
+	android:theme
+		ADDED from AndroidManifest.xml:169:13
+	android:name
+		ADDED from AndroidManifest.xml:167:19
+activity#com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrary.Establishment.EditName
+ADDED from AndroidManifest.xml:171:9
+	android:label
+		ADDED from AndroidManifest.xml:172:13
+	android:theme
+		ADDED from AndroidManifest.xml:173:13
+	android:name
+		ADDED from AndroidManifest.xml:171:19
 uses-sdk
 INJECTED from AndroidManifest.xml:0:0 reason: use-sdk injection requested
 MERGED from com.android.support:appcompat-v7:22.2.1:20:5
